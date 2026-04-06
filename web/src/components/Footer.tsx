@@ -105,6 +105,9 @@ export default function Footer() {
   }
 
   const links = ["Home", "About", "Services", "Contact"]
+  const socialLinks = [
+    { label: "Facebook", href: "https://www.facebook.com/unifixictsolutions", icon: "f" },
+  ]
 
   return (
     <>
@@ -380,8 +383,17 @@ export default function Footer() {
             </p>
 
             <div className="social-row">
-              {["f"].map(s => (
-                <div key={s} className="social-dot">{s}</div>
+              {socialLinks.map(({ label, href, icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-dot"
+                  aria-label={label}
+                >
+                  {icon}
+                </a>
               ))}
             </div>
           </div>
