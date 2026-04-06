@@ -1,6 +1,8 @@
-"use client"
-
 import Link from "next/link"
+
+export const metadata = {
+  title: "About",
+}
 
 const stats = [
   { value: "10+", label: "Years of Experience" },
