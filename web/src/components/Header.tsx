@@ -5,10 +5,10 @@ import { useState, useEffect, useRef } from "react"
 
 const serviceLinks = [
   { href: "/services/structured-cabling", label: "Structured Cabling",  category: "Infrastructure" },
-  { href: "/services/cctv",               label: "CCTV Systems",         category: "Security" },
-  { href: "/services/ip-ipbx",            label: "IP-PBX System",        category: "Communications" },
-  { href: "/services/access-control",     label: "Access Control",       category: "Security" },
-  { href: "/services/public-address",     label: "Public Address",       category: "Communications" },
+  { href: "/services/cctv",               label: "CCTV Surveillance System",         category: "Security" },
+  { href: "/services/ip-ipbx",            label: "IP-PBX Telephone System",        category: "Communications" },
+  { href: "/services/access-control",     label: "Access Control System",       category: "Security" },
+  { href: "/services/public-address",     label: "Public Addressing System",       category: "Communications" },
   { href: "/services/network-security",   label: "Network & Security",   category: "Infrastructure" },
   { href: "/services/conference",         label: "Conference System",    category: "Communications" },
   { href: "/services/parking",            label: "Parking System",       category: "Operations" },
