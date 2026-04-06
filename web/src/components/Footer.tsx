@@ -374,6 +374,11 @@ export default function Footer() {
             <p className="brand-desc">
               Professional tech solutions crafted to help your business thrive in a digital-first world.
             </p>
+
+            <p className="brand-desc">
+              hello@unifixictsolutions.com <br />(02) 8294 0531 <br />+63 936 496 8421
+            </p>
+
             <div className="social-row">
               {["f"].map(s => (
                 <div key={s} className="social-dot">{s}</div>
