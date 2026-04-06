@@ -557,9 +557,6 @@ export default function Header() {
           <div className="hdr-right">
             <Link href="/contact" className="hdr-cta">
               Get in Touch
-              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
-                <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
             </Link>
 
             {/* Mobile toggle */}
