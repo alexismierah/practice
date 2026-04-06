@@ -551,7 +551,7 @@ export default function HomePage() {
               <h2>Your partner in <em>reliable</em> tech infrastructure</h2>
               <p>Tech Company has been delivering quality infrastructure projects across the Philippines for over 15 years. We combine deep technical expertise with a commitment to client satisfaction that never wavers.</p>
               <p>From small offices to large enterprises, we bring the same precision, care, and professionalism to every engagement — on time and on budget.</p>
-              <Link href="/about" className="btn-outline">Read Our Story →</Link>
+              <Link href="/about" className="btn-outline">Read Our Story</Link>
             </div>
             <div className="about-image">
               <img
@@ -570,7 +570,7 @@ export default function HomePage() {
                 <div className="eyebrow">Our Services</div>
                 <h2>What we <em>do best</em></h2>
               </div>
-              <Link href="/services" className="btn-outline">View All Services →</Link>
+              <Link href="/services" className="btn-outline">View All Services</Link>
             </div>
             <div className="services-grid">
               {services.map((s) => (
