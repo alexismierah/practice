@@ -492,7 +492,7 @@ export default function Header() {
           {/* Desktop Nav */}
           <nav className="hdr-nav">
             <Link href="/" className="hdr-link">Home</Link>
-            <Link href="/about" className="hdr-link">About</Link>
+            <Link href="/about" className="hdr-link">About Us</Link>
 
             {/* Services Dropdown */}
             <div className="hdr-dropdown-wrap" ref={dropdownRef}>
@@ -546,8 +546,6 @@ export default function Header() {
                 </div>
               </div>
             </div>
-
-            <Link href="/about" className="hdr-link">Portfolio</Link>
           </nav>
 
           {/* Right side */}
@@ -579,7 +577,6 @@ export default function Header() {
         <div className={`hdr-mobile${mobileOpen ? " open" : ""}`}>
           <Link href="/" className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>Home</Link>
           <Link href="/about" className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>About</Link>
-          <Link href="/about" className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>Portfolio</Link>
           <div className="hdr-mobile-section">Services</div>
           {serviceLinks.map(({ href, label }) => (
             <Link key={href} href={href} className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>
