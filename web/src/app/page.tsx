@@ -520,10 +520,10 @@ export default function HomePage() {
           <div className="hero-overlay" />
           <div className="hero-content">
             <h1>
-              Infrastructure<br />built for <em>lasting</em><br />impact
+              Smart<em> Solutions</em><br />for Smarter Operations
             </h1>
             <p className="hero-sub">
-              We design and deploy networking, security, and cabling systems that power modern businesses with reliability and precision.
+              We deliver reliable ICT solutions for businesses of all sizes. From installation to maintenance, our team ensures your communication and security systems stay connected, secure, and running smoothly.
             </p>
             <div className="hero-actions">
               <Link href="/services" className="btn-primary">Explore Services</Link>
@@ -548,9 +548,9 @@ export default function HomePage() {
           <div className="about-inner">
             <div>
               <div className="eyebrow">About Us</div>
-              <h2>Your partner in <em>reliable</em> tech infrastructure</h2>
-              <p>Tech Company has been delivering quality infrastructure projects across the Philippines for over 15 years. We combine deep technical expertise with a commitment to client satisfaction that never wavers.</p>
-              <p>From small offices to large enterprises, we bring the same precision, care, and professionalism to every engagement — on time and on budget.</p>
+              <h2> Unifix ICT <em>Solutions</em></h2>
+              <p>Unifix ICT Solutions by Rich Haven Enterprises (RHE) is a reliable company engaged in the supply of products and services for telecommunications industry since October 2014.</p>
+              <p>The company’s primary objective is to provide services that satisfy customer requirements. We ensure that we satisfy even the most specific expectations our clients have by providing comprehensive telecommunications and ICT solutions. </p>
               <Link href="/about" className="btn-outline">Read Our Story</Link>
             </div>
             <div className="about-image">

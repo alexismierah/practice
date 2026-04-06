@@ -512,9 +512,6 @@ export default function Header() {
                   <span className="hdr-dd-title">Services</span>
                   <Link href="/services" className="hdr-dd-viewall" onClick={() => setServicesOpen(false)}>
                     View all
-                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
-                      <path d="M2 5.5h7M5.5 2l3.5 3.5L5.5 9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
                   </Link>
                 </div>
 
