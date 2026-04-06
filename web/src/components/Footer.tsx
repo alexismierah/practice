@@ -375,7 +375,7 @@ export default function Footer() {
             <p className="brand-eyebrow">Est. 2014</p>
             <h2 className="brand-name">Unifix ICT Solutions<span></span></h2>
             <p className="brand-desc">
-              Professional tech solutions crafted to help your business thrive in a digital-first world.
+              Professional tech solutions crafted to help your business thrive.
             </p>
 
             <p className="brand-desc">
