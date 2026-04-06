@@ -1,7 +1,3 @@
-export const metadata = {
-  title: "Services",
-}
-
 export default function ServicesPage() {
   return (
     <div className="p-8">
