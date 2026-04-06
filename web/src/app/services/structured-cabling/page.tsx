@@ -106,7 +106,7 @@ export default function StructuredCablingPage() {
         .sc-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: url('https://westcoastcomm.com/wp-content/uploads/2018/05/structured-cablin-main2-768x332.png');
+          background-image: url('https://20659463.fs1.hubspotusercontent-na1.net/hubfs/20659463/Best%20Practices%20for%20Regular%20Data%20Center%20Cleaning%20and%20Maintenance%20-%20Featured%20Image%20-%201200x700.png');
           background-size: cover;
           background-position: center;
           opacity: 0.35;
@@ -126,8 +126,8 @@ export default function StructuredCablingPage() {
           width: 80px;
           height: 80px;
           border-radius: 20px;
-          background: rgba(58,137,221,0.12);
-          border: 1px solid rgba(58,137,221,0.25);
+          background: transparent;
+          border: transparent;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -287,7 +287,7 @@ export default function StructuredCablingPage() {
           <div className="sc-hero-inner">
 
             <div className="sc-hero-icon-wrap">
-              <svg width="40" height="40" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="40" height="40" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0">
                 <rect x="8" y="22" width="36" height="8" rx="4" stroke="currentColor" strokeWidth="1.8"/>
                 <rect x="14" y="10" width="8" height="12" rx="3" stroke="currentColor" strokeWidth="1.8"/>
                 <rect x="30" y="10" width="8" height="12" rx="3" stroke="currentColor" strokeWidth="1.8"/>

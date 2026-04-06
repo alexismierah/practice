@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react"
 const serviceLinks = [
   { href: "/services/structured-cabling", label: "Structured Cabling",  category: "Infrastructure" },
   { href: "/services/cctv",               label: "CCTV Surveillance System",         category: "Security" },
-  { href: "/services/ip-ipbx",            label: "IP-PBX Telephone System",        category: "Communications" },
+  { href: "/services/ip-pbx",            label: "IP-PBX Telephone System",        category: "Communications" },
   { href: "/services/access-control",     label: "Access Control System",       category: "Security" },
   { href: "/services/public-address",     label: "Public Addressing System",       category: "Communications" },
   { href: "/services/network-security",   label: "Network & Security",   category: "Infrastructure" },
