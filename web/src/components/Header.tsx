@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react"
 const serviceLinks = [
   { href: "/services/structured-cabling", label: "Structured Cabling",  category: "Infrastructure" },
   { href: "/services/cctv",               label: "CCTV Systems",         category: "Security" },
-  { href: "/services/ip-pbx",             label: "IP-PBX System",        category: "Communications" },
+  { href: "/services/ip-ipbx",            label: "IP-PBX System",        category: "Communications" },
   { href: "/services/access-control",     label: "Access Control",       category: "Security" },
   { href: "/services/public-address",     label: "Public Address",       category: "Communications" },
   { href: "/services/network-security",   label: "Network & Security",   category: "Infrastructure" },
@@ -19,17 +19,10 @@ const serviceLinks = [
 ]
 
 export default function Header() {
-  const [scrolled, setScrolled]         = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen]     = useState(false)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
-  const dropdownRef                      = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
@@ -56,34 +49,23 @@ export default function Header() {
           --ink:       #0d1117;
           --ink-2:     #2d3748;
           --ink-3:     #718096;
-          --surface:   #ffffff;
           --border:    rgba(13,17,23,0.08);
         }
 
-        /* ── Reset ── */
         *, *::before, *::after { box-sizing: border-box; }
 
-        /* ── Header shell ── */
+        /* ── Header — always white, static ── */
         .hdr {
-          position: sticky;
+          position: fixed;
           top: 0;
+          left: 0;
+          right: 0;
           z-index: 100;
           width: 100%;
           font-family: 'Outfit', sans-serif;
-        }
-
-        /* top-of-page: transparent with a gradient fade */
-        .hdr.top {
-          background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);
-        }
-
-        /* scrolled: frosted glass */
-        .hdr.scrolled {
-          background: rgba(255,255,255,0.88);
-          backdrop-filter: blur(20px) saturate(180%);
-          -webkit-backdrop-filter: blur(20px) saturate(180%);
+          background: #ffffff;
           border-bottom: 1px solid var(--border);
-          box-shadow: 0 2px 32px rgba(13,17,23,0.06);
+          box-shadow: 0 1px 16px rgba(13,17,23,0.06);
         }
 
         .hdr-inner {
@@ -105,7 +87,6 @@ export default function Header() {
           gap: 11px;
           flex-shrink: 0;
         }
-
         .hdr-logo-mark {
           position: relative;
           width: 36px;
@@ -119,9 +100,7 @@ export default function Header() {
           border-radius: 10px;
           transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
         }
-        .hdr-logo:hover .hdr-logo-mark-bg {
-          transform: rotate(8deg) scale(1.05);
-        }
+        .hdr-logo:hover .hdr-logo-mark-bg { transform: rotate(8deg) scale(1.05); }
         .hdr-logo-mark svg {
           position: relative;
           z-index: 1;
@@ -129,7 +108,6 @@ export default function Header() {
           margin: auto;
           margin-top: 9px;
         }
-
         .hdr-logo-wordmark {
           display: flex;
           flex-direction: column;
@@ -140,9 +118,7 @@ export default function Header() {
           font-size: 1.125rem;
           color: var(--ink);
           letter-spacing: -0.01em;
-          transition: color 0.2s;
         }
-        .hdr.top .hdr-logo-name { color: #fff; }
         .hdr-logo-sub {
           font-size: 0.6rem;
           font-weight: 500;
@@ -151,7 +127,6 @@ export default function Header() {
           color: var(--blue);
           margin-top: 2px;
         }
-        .hdr.top .hdr-logo-sub { color: rgba(255,255,255,0.55); }
 
         /* ── Desktop nav ── */
         .hdr-nav {
@@ -159,7 +134,7 @@ export default function Header() {
           align-items: center;
           gap: 0.125rem;
           flex: 1;
-          justify-content: center;
+          justify-content: flex-end;
         }
 
         .hdr-link {
@@ -188,8 +163,6 @@ export default function Header() {
         }
         .hdr-link:hover { color: var(--ink); }
         .hdr-link:hover::after { transform: scaleX(1); }
-        .hdr.top .hdr-link { color: rgba(255,255,255,0.75); }
-        .hdr.top .hdr-link:hover { color: #fff; }
 
         /* ── Services trigger ── */
         .hdr-dropdown-wrap { position: relative; }
@@ -228,9 +201,6 @@ export default function Header() {
         .hdr-services-btn.open { color: var(--ink); }
         .hdr-services-btn.open::after,
         .hdr-services-btn:hover::after { transform: scaleX(1); }
-        .hdr.top .hdr-services-btn { color: rgba(255,255,255,0.75); }
-        .hdr.top .hdr-services-btn:hover,
-        .hdr.top .hdr-services-btn.open { color: #fff; }
 
         .hdr-chevron {
           opacity: 0.45;
@@ -245,7 +215,7 @@ export default function Header() {
         .hdr-dropdown {
           position: absolute;
           top: calc(100% + 14px);
-          left: 50%;
+          right: 0;
           width: 620px;
           background: #fff;
           border: 1px solid rgba(13,17,23,0.07);
@@ -254,20 +224,18 @@ export default function Header() {
             0 0 0 1px rgba(255,255,255,0.8) inset,
             0 20px 60px rgba(13,17,23,0.14),
             0 4px 12px rgba(13,17,23,0.06);
-          padding: 0;
           opacity: 0;
           pointer-events: none;
-          transform: translateX(-50%) translateY(-10px) scale(0.97);
+          transform: translateY(-10px) scale(0.97);
           transition: opacity 0.2s ease, transform 0.2s ease;
           overflow: hidden;
         }
         .hdr-dropdown.open {
           opacity: 1;
           pointer-events: auto;
-          transform: translateX(-50%) translateY(0) scale(1);
+          transform: translateY(0) scale(1);
         }
 
-        /* dropdown top bar */
         .hdr-dd-topbar {
           display: flex;
           align-items: center;
@@ -298,7 +266,6 @@ export default function Header() {
         }
         .hdr-dd-viewall:hover { background: #c8e2f8; gap: 7px; }
 
-        /* category pills */
         .hdr-dd-cats {
           display: flex;
           gap: 6px;
@@ -321,13 +288,8 @@ export default function Header() {
           transition: all 0.13s;
         }
         .hdr-dd-cat:hover { background: rgba(13,17,23,0.04); color: var(--ink-2); }
-        .hdr-dd-cat.active {
-          background: var(--blue);
-          color: #fff;
-          border-color: var(--blue);
-        }
+        .hdr-dd-cat.active { background: var(--blue); color: #fff; border-color: var(--blue); }
 
-        /* service grid */
         .hdr-dd-grid {
           display: grid;
           grid-template-columns: 1fr 1fr 1fr;
@@ -342,7 +304,6 @@ export default function Header() {
           border-radius: 10px;
           text-decoration: none;
           transition: background 0.13s;
-          group: true;
         }
         .hdr-dd-item:hover { background: #f0f7ff; }
         .hdr-dd-item:hover .hdr-dd-dot { background: var(--blue); transform: scale(1.4); }
@@ -363,7 +324,7 @@ export default function Header() {
           line-height: 1.3;
         }
 
-        /* ── CTA ── */
+        /* ── Right side ── */
         .hdr-right { display: flex; align-items: center; gap: 0.5rem; }
 
         .hdr-cta {
@@ -389,16 +350,6 @@ export default function Header() {
           box-shadow: 0 4px 16px rgba(58,137,221,0.4);
         }
         .hdr-cta:active { transform: translateY(0); }
-        .hdr.top .hdr-cta {
-          background: rgba(255,255,255,0.15);
-          border: 1px solid rgba(255,255,255,0.3);
-          backdrop-filter: blur(8px);
-          box-shadow: none;
-        }
-        .hdr.top .hdr-cta:hover {
-          background: rgba(255,255,255,0.25);
-          transform: translateY(-1px);
-        }
 
         /* ── Mobile toggle ── */
         .hdr-mobile-btn {
@@ -411,7 +362,6 @@ export default function Header() {
           border-radius: 8px;
           transition: background 0.15s;
         }
-        .hdr.top .hdr-mobile-btn { color: #fff; }
         .hdr-mobile-btn:hover { background: rgba(13,17,23,0.06); }
 
         /* ── Mobile menu ── */
@@ -469,32 +419,27 @@ export default function Header() {
         @media (max-width: 900px) {
           .hdr-nav { display: none; }
           .hdr-mobile-btn { display: flex; }
-          .hdr.top {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
-          }
         }
-
         @media (max-width: 480px) {
           .hdr-inner { padding: 0 1.25rem; }
         }
       `}</style>
 
-      <header className={`hdr${scrolled ? " scrolled" : " top"}`}>
+      <header className="hdr">
         <div className="hdr-inner">
 
           {/* Logo */}
           <Link href="/" className="hdr-logo">
             <div className="hdr-logo-wordmark">
-              <span className="hdr-logo-name">----------</span>
+              <span className="hdr-logo-name">-------</span>
             </div>
           </Link>
 
           {/* Desktop Nav */}
           <nav className="hdr-nav">
             <Link href="/" className="hdr-link">Home</Link>
-            <Link href="/about" className="hdr-link">About Us</Link>
+            <Link href="/about" className="hdr-link">About</Link>
 
-            {/* Services Dropdown */}
             <div className="hdr-dropdown-wrap" ref={dropdownRef}>
               <button
                 className={`hdr-services-btn${servicesOpen ? " open" : ""}`}
@@ -515,7 +460,6 @@ export default function Header() {
                   </Link>
                 </div>
 
-                {/* Category filters */}
                 <div className="hdr-dd-cats">
                   <button
                     className={`hdr-dd-cat${activeCategory === null ? " active" : ""}`}
@@ -536,7 +480,7 @@ export default function Header() {
                       key={href}
                       href={href}
                       className="hdr-dd-item"
-                      onClick={() => { setServicesOpen(false); setActiveCategory(null); }}
+                      onClick={() => { setServicesOpen(false); setActiveCategory(null) }}
                       role="menuitem"
                     >
                       <span className="hdr-dd-dot" />
@@ -554,7 +498,6 @@ export default function Header() {
               Get in Touch
             </Link>
 
-            {/* Mobile toggle */}
             <button
               className="hdr-mobile-btn"
               onClick={() => setMobileOpen((v) => !v)}
