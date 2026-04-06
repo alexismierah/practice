@@ -3,22 +3,105 @@
 import { useState } from "react"
 
 export default function Footer() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" })
   const [submitted, setSubmitted] = useState(false)
   const [focused, setFocused] = useState<string | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [emailError, setEmailError] = useState("")
+  const [phoneError, setPhoneError] = useState("")
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
+  // Email validation function
+  const isValidEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Phone validation function
+  const isValidPhone = (phone: string): boolean => {
+    const phoneRegex = /^[0-9+\-\s()]+$/
+    return phoneRegex.test(phone) || phone === ""
+  }
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+
+    // For phone field, only allow numbers and common phone characters
+    if (name === 'phone') {
+      const filteredValue = value.replace(/[^0-9+\-\s()]/g, '')
+      setFormData({ ...formData, [name]: filteredValue })
+    } else {
+      setFormData({ ...formData, [name]: value })
+    }
+
+    // Clear errors when user starts typing
+    if (name === 'email') {
+      setEmailError("")
+    }
+    if (name === 'phone') {
+      setPhoneError("")
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    console.log("Quote Request Submitted:", formData)
-    setSubmitted(true)
-    setTimeout(() => {
-      setSubmitted(false)
-      setFormData({ name: "", email: "", message: "" })
-    }, 3000)
+
+    // Validate required fields
+    if (!formData.name.trim()) {
+      alert("Please enter your name")
+      return
+    }
+
+    if (!formData.email.trim()) {
+      alert("Please enter your email address")
+      return
+    }
+
+    if (!formData.message.trim()) {
+      alert("Please enter your message")
+      return
+    }
+
+    // Validate email format
+    if (!isValidEmail(formData.email)) {
+      setEmailError("Please enter a valid email address")
+      return
+    }
+
+    // Validate phone format (if provided)
+    if (formData.phone && !isValidPhone(formData.phone)) {
+      setPhoneError("Please enter a valid phone number (numbers only)")
+      return
+    }
+
+    setLoading(true)
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+        setFormData({ name: "", email: "", phone: "", message: "" })
+        setEmailError("")
+        setPhoneError("")
+        setTimeout(() => {
+          setSubmitted(false)
+        }, 3000)
+      } else {
+        const errorData = await response.json()
+        setEmailError(errorData.error || 'Failed to send message')
+      }
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setEmailError('Failed to send message. Please try again later.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const links = ["Home", "About", "Services", "Contact"]
@@ -208,6 +291,13 @@ export default function Footer() {
 
         textarea.field-input { resize: none; }
 
+        .field-error {
+          color: #ef4444;
+          font-size: 12px;
+          margin-top: 4px;
+          font-weight: 500;
+        }
+
         .submit-btn {
           margin-top: 4px;
           width: 100%;
@@ -230,6 +320,8 @@ export default function Footer() {
         .submit-btn:hover { background: #2a78cc; transform: translateY(-1px); }
         .submit-btn:active { transform: translateY(0); }
         .submit-btn.success { background: #1a9e6e; }
+        .submit-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+        .submit-btn.loading { background: #2a78cc; }
 
         /* ─── Divider ─── */
         .footer-divider {
@@ -303,22 +395,33 @@ export default function Footer() {
           <div>
             <p className="col-label">Request a Quote</p>
             <div className="form-wrap">
-              {(["name", "email"] as const).map(field => (
+              {(["name", "email", "phone"] as const).map(field => (
                 <div className="field-wrap" key={field}>
                   <label className={`field-label ${focused === field ? "active" : ""}`}>
-                    {field === "name" ? "Full Name" : "Email Address"}
+                    {field === "name" ? "Full Name" :
+                     field === "email" ? "Email Address" :
+                     "Contact Number"}
                   </label>
                   <input
-                    type={field === "email" ? "email" : "text"}
+                    type={field === "email" ? "email" :
+                          field === "phone" ? "tel" : "text"}
                     name={field}
                     value={formData[field]}
                     onChange={handleChange}
                     onFocus={() => setFocused(field)}
                     onBlur={() => setFocused(null)}
-                    placeholder={field === "name" ? "Jane Smith" : "jane@company.com"}
-                    required
+                    placeholder={field === "name" ? "Enter your name" :
+                                field === "email" ? "Enter your email" :
+                                "Enter your contact number"}
+                    required={field !== "phone"}
                     className="field-input"
                   />
+                  {field === "email" && emailError && (
+                    <div className="field-error">{emailError}</div>
+                  )}
+                  {field === "phone" && phoneError && (
+                    <div className="field-error">{phoneError}</div>
+                  )}
                 </div>
               ))}
               <div className="field-wrap">
@@ -339,9 +442,10 @@ export default function Footer() {
               </div>
               <button
                 onClick={handleSubmit}
-                className={`submit-btn ${submitted ? "success" : ""}`}
+                disabled={loading || submitted}
+                className={`submit-btn ${submitted ? "success" : ""} ${loading ? "loading" : ""}`}
               >
-                {submitted ? "✓ Request Sent" : "Submit Request"}
+                {loading ? "Sending..." : submitted ? "✓ Request Sent" : "Submit Request"}
               </button>
             </div>
           </div>
