@@ -625,7 +625,7 @@ export default function HomePage() {
             <div className="cta-right">
               <p>Tell us about your project and we'll put together a solution that fits your goals and budget.</p>
               <div className="cta-btns">
-                <Link href="/contact" className="btn-white">Get in Touch</Link>
+                <Link href="#footer" className="btn-white">Request a Qoute</Link>
                 <Link href="/services" className="btn-ghost-white2">View Services</Link>
               </div>
             </div>

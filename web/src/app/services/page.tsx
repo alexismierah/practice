@@ -441,7 +441,7 @@ export default function ServicesPage() {
           <div className="sp-cta-glow" />
           <h2>Not sure what you <em>need?</em></h2>
           <p>Talk to our team — we'll recommend the right solution for your business.</p>
-          <Link href="/contact" className="sp-cta-btn">Get in Touch</Link>
+          <Link href="#footer" className="sp-cta-btn">Request a Qoute</Link>
         </section>
 
       </div>

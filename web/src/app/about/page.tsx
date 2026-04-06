@@ -431,8 +431,8 @@ export default function AboutPage() {
             <p className="about-cta-p">
               Let's talk about your project. We'll recommend the right solution and handle it from end to end.
             </p>
-            <Link href="/contact" className="about-cta-btn">
-              Get a free consultation
+            <Link href="#footer" className="about-cta-btn">
+              Request a Qoute
             </Link>
           </div>
         </section>

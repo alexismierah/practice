@@ -272,7 +272,7 @@ export default function Footer() {
         .footer-tagline span { color: #3a89dd; opacity: 0.7; }
       `}</style>
 
-      <footer className="footer-root">
+      <footer id="footer" className="footer-root">
         <div className="footer-grid">
 
           {/* Brand */}

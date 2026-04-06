@@ -494,8 +494,8 @@ export default function Header() {
 
           {/* Right side */}
           <div className="hdr-right">
-            <Link href="/contact" className="hdr-cta">
-              Get in Touch
+            <Link href="#footer" className="hdr-cta">
+              Request a Qoute
             </Link>
 
             <button
