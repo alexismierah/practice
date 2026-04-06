@@ -9,6 +9,7 @@ const services = [
     desc: "Scalable, standards-compliant cabling infrastructure engineered for reliability and long-term growth.",
     tag: "Infrastructure",
     img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+    href: "/services/structured-cabling",
   },
   {
     num: "02",
@@ -16,6 +17,7 @@ const services = [
     desc: "High-definition surveillance solutions that keep your premises and people protected around the clock.",
     tag: "Security",
     img: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=600&q=80",
+    href: "/services/cctv",
   },
   {
     num: "03",
@@ -23,6 +25,7 @@ const services = [
     desc: "Enterprise-grade networking with layered security protocols that protect data and maximize uptime.",
     tag: "Networking",
     img: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    href: "/services/network-security",
   },
 ]
 
@@ -584,7 +587,7 @@ export default function HomePage() {
                     <p>{s.desc}</p>
                     <div className="svc-footer">
                       <span className="svc-tag">{s.tag}</span>
-                      <Link href="/services" className="svc-link">
+                      <Link href={s.href} className="svc-link">
                         Learn more
                         <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                           <path d="M2.5 6.5h8M6.5 2.5l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
