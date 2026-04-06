@@ -116,7 +116,7 @@ export default function HomePage() {
         }
         .hero-dot { width: 5px; height: 5px; border-radius: 50%; background: #93c5fd; flex-shrink: 0; }
         .hero h1 {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(3rem, 6vw, 5.25rem);
           font-weight: 400;
           line-height: 1.08;
@@ -202,7 +202,7 @@ export default function HomePage() {
         }
         .stat-item:last-child { border-right: none; }
         .stat-n {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 2.25rem;
           font-weight: 400;
           color: #fff;
@@ -235,7 +235,7 @@ export default function HomePage() {
           margin-bottom: 1.25rem;
         }
         .about h2 {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.75rem, 3vw, 2.75rem);
           font-weight: 400;
           line-height: 1.2;
@@ -289,7 +289,7 @@ export default function HomePage() {
           box-shadow: 0 4px 20px rgba(0,0,0,0.12);
         }
         .badge-num {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 1.75rem;
           font-weight: 400;
           color: var(--blue);
@@ -309,7 +309,7 @@ export default function HomePage() {
           flex-wrap: wrap;
         }
         .services-head h2 {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.75rem, 3vw, 2.75rem);
           font-weight: 400;
           line-height: 1.2;
@@ -345,7 +345,7 @@ export default function HomePage() {
         .svc-img-wrap { overflow: hidden; flex-shrink: 0; }
         .svc-body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
         .svc-num {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 0.8rem;
           font-style: italic;
           color: var(--ink-3);
@@ -407,7 +407,7 @@ export default function HomePage() {
           flex-wrap: wrap;
         }
         .partners-head h2 {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 2rem;
           font-weight: 400;
           color: var(--ink);
@@ -465,7 +465,7 @@ export default function HomePage() {
           align-items: center;
         }
         .cta h2 {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(2rem, 3.5vw, 3.25rem);
           font-weight: 400;
           color: #fff;
