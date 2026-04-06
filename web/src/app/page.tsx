@@ -31,7 +31,32 @@ const services = [
   },
 ]
 
-const partners = ["Cisco", "Hikvision", "Ubiquiti", "Axis", "Palo Alto", "Fortinet"]
+const partners = [
+  {
+    name: "Cisco",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/320px-Cisco_logo_blue_2016.svg.png",
+  },
+  {
+    name: "Hikvision",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/twentytwo/Hikvision_logo.svg/320px-Hikvision_logo.svg.png",
+  },
+  {
+    name: "Ubiquiti",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ubiquiti_Networks_2016.svg/320px-Ubiquiti_Networks_2016.svg.png",
+  },
+  {
+    name: "Axis",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Axis_Communications_logo.svg/320px-Axis_Communications_logo.svg.png",
+  },
+  {
+    name: "Palo Alto",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Palo_Alto_Networks_logo.svg/320px-Palo_Alto_Networks_logo.svg.png",
+  },
+  {
+    name: "Fortinet",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Fortinet_logo.svg/320px-Fortinet_logo.svg.png",
+  },
+]
 
 const stats = [
   { n: "500+", l: "Projects Delivered" },
@@ -103,23 +128,6 @@ export default function HomePage() {
           padding: 8rem 2.5rem 6rem;
           width: 100%;
         }
-        .hero-eyebrow {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 11px;
-          font-weight: 500;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #93c5fd;
-          margin-bottom: 1.75rem;
-          padding: 6px 14px;
-          border: 1px solid rgba(147,197,253,0.3);
-          border-radius: 999px;
-          background: rgba(58,137,221,0.12);
-          backdrop-filter: blur(4px);
-        }
-        .hero-dot { width: 5px; height: 5px; border-radius: 50%; background: #93c5fd; flex-shrink: 0; }
         .hero h1 {
           font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(3rem, 6vw, 5.25rem);
@@ -171,26 +179,6 @@ export default function HomePage() {
           background: rgba(255,255,255,0.05);
         }
         .btn-ghost-white:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); }
-        .hero-scroll-hint {
-          position: absolute;
-          bottom: 2.5rem;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 2;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 6px;
-          color: rgba(255,255,255,0.35);
-          font-size: 10px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          animation: floatDown 2.2s ease-in-out infinite;
-        }
-        @keyframes floatDown {
-          0%,100% { transform: translateX(-50%) translateY(0); }
-          50%      { transform: translateX(-50%) translateY(6px); }
-        }
 
         /* ── STATS ── */
         .stats { background: var(--blue); padding: 0 2.5rem; }
@@ -283,24 +271,6 @@ export default function HomePage() {
           transition: transform 0.5s ease;
         }
         .about-image:hover img { transform: scale(1.03); }
-        .about-image-badge {
-          position: absolute;
-          bottom: 1.5rem;
-          left: 1.5rem;
-          background: rgba(255,255,255,0.95);
-          backdrop-filter: blur(8px);
-          border-radius: 12px;
-          padding: 1rem 1.25rem;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.12);
-        }
-        .badge-num {
-          font-family: 'Instrument Sans', sans-serif;
-          font-size: 1.75rem;
-          font-weight: 400;
-          color: var(--blue);
-          line-height: 1;
-        }
-        .badge-label { font-size: 11px; color: var(--ink-3); margin-top: 3px; font-weight: 300; }
 
         /* ── SERVICES ── */
         .services { background: var(--surface); padding: 7rem 2.5rem; border-top: 1px solid var(--border-2); }
@@ -404,40 +374,58 @@ export default function HomePage() {
         .partners { padding: 6rem 2.5rem; background: var(--white); }
         .partners-inner { max-width: 1200px; margin: 0 auto; }
         .partners-head {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
+          text-align: center;
           margin-bottom: 2.75rem;
-          gap: 2rem;
-          flex-wrap: wrap;
         }
         .partners-head h2 {
           font-family: 'Instrument Sans', sans-serif;
           font-size: 2rem;
           font-weight: 400;
           color: var(--ink);
+          margin-top: 0.5rem;
         }
-        .partners-head p {
-          font-size: 0.9rem;
-          color: var(--ink-3);
-          font-weight: 300;
-          max-width: 30ch;
-          line-height: 1.65;
-          text-align: right;
+
+        /* ── MARQUEE ── */
+        .marquee-track {
+          overflow: hidden;
+          -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
-        .partners-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .partner-chip {
-          padding: 11px 24px;
-          border: 1px solid var(--border);
-          border-radius: 9px;
-          background: var(--surface);
-          font-size: 0.875rem;
-          font-weight: 400;
-          color: var(--ink-2);
-          transition: border-color 0.2s, color 0.2s, background 0.15s;
-          cursor: default;
+        .marquee-inner {
+          display: flex;
+          align-items: center;
+          gap: 3rem;
+          width: max-content;
+          animation: marquee 22s linear infinite;
         }
-        .partner-chip:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-xlt); }
+        .marquee-inner:hover {
+          animation-play-state: paused;
+        }
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .partner-logo-wrap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 140px;
+          height: 60px;
+          flex-shrink: 0;
+          filter: grayscale(100%);
+          opacity: 0.5;
+          transition: filter 0.3s, opacity 0.3s;
+        }
+        .partner-logo-wrap:hover {
+          filter: grayscale(0%);
+          opacity: 1;
+        }
+        .partner-logo-wrap img {
+          max-width: 100%;
+          max-height: 100%;
+          object-fit: contain;
+          display: block;
+        }
 
         /* ── CTA ── */
         .cta {
@@ -512,7 +500,6 @@ export default function HomePage() {
           .services-grid { grid-template-columns: 1fr; }
           .stats-inner { grid-template-columns: repeat(2,1fr); }
           .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
-          .partners-head p { text-align: left; }
           .services-head { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
@@ -553,9 +540,9 @@ export default function HomePage() {
           <div className="about-inner">
             <div>
               <div className="eyebrow">About Us</div>
-              <h2> Unifix ICT <em>Solutions</em></h2>
+              <h2>Unifix ICT <em>Solutions</em></h2>
               <p>Unifix ICT Solutions by Rich Haven Enterprises (RHE) is a reliable company engaged in the supply of products and services for telecommunications industry since October 2014.</p>
-              <p>The company’s primary objective is to provide services that satisfy customer requirements. We ensure that we satisfy even the most specific expectations our clients have by providing comprehensive telecommunications and ICT solutions. </p>
+              <p>The company's primary objective is to provide services that satisfy customer requirements. We ensure that we satisfy even the most specific expectations our clients have by providing comprehensive telecommunications and ICT solutions.</p>
               <Link href="/about" className="btn-outline">Read Our Story</Link>
             </div>
             <div className="about-image">
@@ -607,16 +594,17 @@ export default function HomePage() {
         <section className="partners">
           <div className="partners-inner">
             <div className="partners-head">
-              <div>
-                <div className="eyebrow">Technology Partners</div>
-                <h2>Trusted brands we work with</h2>
-              </div>
-              <p>Certified installers and resellers for industry-leading technology manufacturers.</p>
+              <div className="eyebrow">Technology Partners</div>
+              <h2>Trusted brands we work with</h2>
             </div>
-            <div className="partners-row">
-              {partners.map((p) => (
-                <div className="partner-chip" key={p}>{p}</div>
-              ))}
+            <div className="marquee-track">
+              <div className="marquee-inner">
+                {[...partners, ...partners, ...partners].map((p, i) => (
+                  <div className="partner-logo-wrap" key={i}>
+                    <img src={p.logo} alt={p.name} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -630,7 +618,7 @@ export default function HomePage() {
             <div className="cta-right">
               <p>Tell us about your project and we'll put together a solution that fits your goals and budget.</p>
               <div className="cta-btns">
-                <Link href="#footer" className="btn-white">Request a Qoute</Link>
+                <Link href="#footer" className="btn-white">Request a Quote</Link>
                 <Link href="/services" className="btn-ghost-white2">View Services</Link>
               </div>
             </div>

@@ -1,13 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
-// Email validation function
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }
 
-// Phone validation function
 function isValidPhone(phone: string): boolean {
   const phoneRegex = /^[0-9+\-\s()]+$/
   return phoneRegex.test(phone) || phone === ""
@@ -17,7 +15,6 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, message } = await request.json()
 
-    // Validate required fields
     if (!name?.trim() || !email?.trim() || !message?.trim()) {
       return NextResponse.json(
         { error: 'All required fields must be filled: name, email, and message' },
@@ -25,7 +22,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate email format
     if (!isValidEmail(email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
@@ -33,7 +29,6 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Validate phone format (if provided)
     if (phone && !isValidPhone(phone)) {
       return NextResponse.json(
         { error: 'Invalid phone number format' },
@@ -75,22 +70,16 @@ export async function POST(request: NextRequest) {
           <!-- Header -->
           <tr>
             <td style="background:#0d1117;border-radius:16px 16px 0 0;padding:36px 40px 32px;">
-                <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td>
-                    <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#3a89dd;margin-bottom:8px;">
-                        New Enquiry
-                    </div>
-                    <div style="font-family:Georgia,serif;font-size:26px;font-weight:400;color:#ffffff;line-height:1.2;letter-spacing:-0.02em;">
-                        Quote Request Received
-                    </div>
-                    </td>
-                </tr>
-                </table>
+              <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#3a89dd;margin-bottom:8px;">
+                New Enquiry
+              </div>
+              <div style="font-family:Georgia,serif;font-size:26px;color:#ffffff;">
+                Quote Request Received
+              </div>
             </td>
-            </tr>
+          </tr>
 
-          <!-- Divider accent -->
+          <!-- Accent -->
           <tr>
             <td style="background:#3a89dd;height:3px;"></td>
           </tr>
@@ -99,111 +88,46 @@ export async function POST(request: NextRequest) {
           <tr>
             <td style="background:#ffffff;padding:36px 40px;">
 
-              <p style="margin:0 0 24px;font-size:15px;color:#4a5568;line-height:1.7;font-weight:300;">
-                A new quote request has been submitted through your website contact form. Details are below.
+              <p style="font-size:15px;color:#4a5568;line-height:1.7;margin-bottom:24px;">
+                A new quote request has been submitted. Details are below:
               </p>
 
-              <!-- Info cards -->
-              <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom:24px;">
+              <p style="margin:0 0 12px;">
+                <strong>Name:</strong><br/>
+                ${name}
+              </p>
 
-                <!-- Name -->
-                <tr>
-                  <td style="padding-bottom:12px;">
-                    <table width="100%" cellpadding="0" cellspacing="0"
-                      style="background:#f8fafc;border:1px solid rgba(13,17,23,0.08);border-radius:12px;overflow:hidden;">
-                      <tr>
-                        <td style="padding:16px 20px;border-left:3px solid #3a89dd;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#718096;margin-bottom:4px;">Full Name</div>
-                          <div style="font-size:16px;font-weight:500;color:#0d1117;">${name}</div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+              <p style="margin:0 0 12px;">
+                <strong>Email:</strong><br/>
+                <a href="mailto:${email}" style="color:#3a89dd;text-decoration:none;">
+                  ${email}
+                </a>
+              </p>
 
-                <!-- Email -->
-                <tr>
-                  <td style="padding-bottom:12px;">
-                    <table width="100%" cellpadding="0" cellspacing="0"
-                      style="background:#f8fafc;border:1px solid rgba(13,17,23,0.08);border-radius:12px;overflow:hidden;">
-                      <tr>
-                        <td style="padding:16px 20px;border-left:3px solid #3a89dd;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#718096;margin-bottom:4px;">Email Address</div>
-                          <div style="font-size:16px;font-weight:500;color:#0d1117;">
-                            <a href="mailto:${email}" style="color:#3a89dd;text-decoration:none;">${email}</a>
-                          </div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+              <p style="margin:0 0 12px;">
+                <strong>Contact:</strong><br/>
+                ${phone || 'Not provided'}
+              </p>
 
-                <!-- Phone -->
-                <tr>
-                  <td style="padding-bottom:12px;">
-                    <table width="100%" cellpadding="0" cellspacing="0"
-                      style="background:#f8fafc;border:1px solid rgba(13,17,23,0.08);border-radius:12px;overflow:hidden;">
-                      <tr>
-                        <td style="padding:16px 20px;border-left:3px solid #3a89dd;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#718096;margin-bottom:4px;">Contact Number</div>
-                          <div style="font-size:16px;font-weight:500;color:#0d1117;">${phone || 'Not provided'}</div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
+              <p style="margin:0 0 24px;">
+                <strong>Message:</strong><br/>
+                <span style="white-space:pre-wrap;">${message}</span>
+              </p>
 
-                <!-- Message -->
-                <tr>
-                  <td>
-                    <table width="100%" cellpadding="0" cellspacing="0"
-                      style="background:#f8fafc;border:1px solid rgba(13,17,23,0.08);border-radius:12px;overflow:hidden;">
-                      <tr>
-                        <td style="padding:16px 20px;border-left:3px solid #3a89dd;">
-                          <div style="font-size:10px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#718096;margin-bottom:8px;">Message</div>
-                          <div style="font-size:15px;font-weight:300;color:#2d3748;line-height:1.75;white-space:pre-wrap;">${message}</div>
-                        </td>
-                      </tr>
-                    </table>
-                  </td>
-                </tr>
-
-              </table>
-
-              <!-- CTA -->
-              <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:28px;">
-                <tr>
-                  <td>
-                    <a href="mailto:${email}?subject=Re: Your Quote Request"
-                      style="display:inline-block;background:#3a89dd;color:#ffffff;padding:13px 28px;border-radius:9px;
-                             font-size:14px;font-weight:500;text-decoration:none;letter-spacing:0.03em;">
-                      Reply to ${name} 
-                    </a>
-                  </td>
-                </tr>
-              </table>
+              <a href="mailto:${email}?subject=Re: Your Quote Request"
+                style="display:inline-block;background:#3a89dd;color:#ffffff;padding:12px 24px;border-radius:8px;text-decoration:none;">
+                Reply to ${name}
+              </a>
 
             </td>
           </tr>
 
           <!-- Footer -->
           <tr>
-            <td style="background:#f8fafc;border:1px solid rgba(13,17,23,0.06);border-top:none;border-radius:0 0 16px 16px;padding:24px 40px;">
-              <table width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td>
-                    <div style="font-size:12px;color:#a0aec0;line-height:1.6;">
-                      Submitted on <strong style="color:#718096;">${submittedAt}</strong> (PHT)<br/>
-                      This email was sent automatically from your website contact form.
-                    </div>
-                  </td>
-                  <td align="right">
-                    <div style="font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:#cbd5e0;">
-                      Tech Company
-                    </div>
-                  </td>
-                </tr>
-              </table>
+            <td style="background:#f8fafc;padding:24px 40px;border-radius:0 0 16px 16px;">
+              <div style="font-size:12px;color:#718096;">
+                Submitted on <strong>${submittedAt}</strong> (PHT)
+              </div>
             </td>
           </tr>
 

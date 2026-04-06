@@ -414,7 +414,7 @@ export default function AboutPage() {
             </div>
             <div className="about-story-body">
               <p>
-                Back in 2014, <strong>Unifix</strong> was established with purpose to provide dependable telecommunications, security, and ICT solutions that meet the needs of businesses. From the beginning, the company believed that technology should make work easier and that every client deserves solutions built with care and reliability.
+                Back in 2014, Unifix was established with purpose to provide dependable telecommunications, security, and ICT solutions that meet the needs of businesses. From the beginning, the company believed that technology should make work easier and that every client deserves solutions built with care and reliability.
               </p>
               <p>
                 That same commitment continues today. Unifix focuses on delivering cost-effective systems, technical support, and solutions tailored to client requirements. Every project is handled with attention to detail, ensuring that issues are identified and resolved efficiently because quality service is never compromised.
