@@ -407,7 +407,7 @@ export default function AboutPage() {
           <div className="about-story-inner">
             <div className="about-story-left">
               <span className="about-section-tag">Our Story</span>
-              <h2 className="about-story-h2">Unifix ICT Solutions</h2>
+              <h2 className="about-story-h2">Unifix ICT <em>Solutions</em></h2>
               <div className="about-story-rule" />
             </div>
             <div className="about-story-body">
