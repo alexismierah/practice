@@ -108,6 +108,12 @@ export default function Header() {
           margin: auto;
           margin-top: 9px;
         }
+        .hdr-logo-image {
+          display: block;
+          height: 68px;
+          width: auto;
+          max-width: 380px;
+        }
         .hdr-logo-wordmark {
           display: flex;
           flex-direction: column;
@@ -430,9 +436,11 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="hdr-logo">
-            <div className="hdr-logo-wordmark">
-              <span className="hdr-logo-name">-------</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="UNIFIX ICT Solutions logo"
+              className="hdr-logo-image"
+            />
           </Link>
 
           {/* Desktop Nav */}
