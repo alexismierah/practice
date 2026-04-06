@@ -1,9 +1,6 @@
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "About Us",
-};
-
+export const metadata = {
+  title: "Services",
+}
 
 export default function ServicesPage() {
   return (
@@ -14,7 +11,7 @@ export default function ServicesPage() {
       <ul className="mt-4 list-disc list-inside">
         <li><a href="/services/structured-cabling">Structured & Network Cabling</a></li>
         <li><a href="/services/cctv">CCTV</a></li>
-        <li><a href="/services/ip-ipbx">IP-PBX System</a></li>
+        <li><a href="/services/ip-pbx">IP-PBX System</a></li>
         <li><a href="/services/access-control">Access Control System</a></li>
         <li><a href="/services/public-address">Public Address System</a></li>
         <li><a href="/services/network-security">Network & Security</a></li>

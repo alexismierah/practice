@@ -1,11 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Home",
-};
 
 const services = [
   {
