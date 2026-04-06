@@ -159,7 +159,7 @@ export default function ServicesPage() {
         }
         .sp-eyebrow-bar { width: 24px; height: 1.5px; background: var(--blue); }
         .sp-hero h1 {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(2.75rem, 5vw, 4.25rem);
           font-weight: 400;
           line-height: 1.1;
@@ -177,7 +177,7 @@ export default function ServicesPage() {
         }
         .sp-hero-stat { text-align: right; flex-shrink: 0; }
         .sp-hero-stat-n {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 5.5rem;
           font-weight: 400;
           line-height: 1;
@@ -249,7 +249,7 @@ export default function ServicesPage() {
           margin-bottom: 1rem;
         }
         .sp-row-num {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 0.875rem;
           font-style: italic;
           color: var(--ink-4);
@@ -264,7 +264,7 @@ export default function ServicesPage() {
           border: 1px solid;
         }
         .sp-row-name {
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.375rem, 2vw, 1.875rem);
           font-weight: 400;
           line-height: 1.2;
@@ -338,7 +338,7 @@ export default function ServicesPage() {
         }
         .sp-cta h2 {
           position: relative;
-          font-family: 'Playfair Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.75rem, 3vw, 2.75rem);
           font-weight: 400;
           color: #fff;

@@ -44,7 +44,7 @@ export default function AboutPage() {
         }
 
         .about-root {
-          font-family: 'Outfit', sans-serif;
+          font-family: 'Instrument Sans', sans-serif;
           color: var(--ink-2);
         }
 
@@ -114,7 +114,7 @@ export default function AboutPage() {
         }
 
         .about-hero-h1 {
-          font-family: 'DM Serif Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(2.5rem, 5vw, 3.75rem);
           font-weight: 400;
           color: #ffffff;
@@ -174,7 +174,7 @@ export default function AboutPage() {
           background: rgba(58,137,221,0.07);
         }
         .about-stat-val {
-          font-family: 'DM Serif Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 2rem;
           color: #fff;
           line-height: 1;
@@ -223,7 +223,7 @@ export default function AboutPage() {
         }
 
         .about-story-h2 {
-          font-family: 'DM Serif Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(2rem, 3.5vw, 2.75rem);
           font-weight: 400;
           color: var(--ink);
@@ -282,7 +282,7 @@ export default function AboutPage() {
         }
 
         .about-values-h2 {
-          font-family: 'DM Serif Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.75rem, 3vw, 2.5rem);
           font-weight: 400;
           color: var(--ink);
@@ -329,7 +329,7 @@ export default function AboutPage() {
         }
 
         .about-val-title {
-          font-family: 'DM Serif Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: 1.2rem;
           color: var(--ink);
           margin-bottom: 0.6rem;
@@ -366,7 +366,7 @@ export default function AboutPage() {
         }
 
         .about-cta-h2 {
-          font-family: 'DM Serif Display', serif;
+          font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.75rem, 3vw, 2.5rem);
           color: #fff;
           margin-bottom: 1rem;
