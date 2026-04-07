@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Uninterruptible Power Supply",
+  title: "UPS",
 }
 
 const features = [
@@ -106,7 +106,7 @@ export default function UPSPage() {
         .sc-hero-bg {
           position: absolute;
           inset: 0;
-          background-image: url('https://blogg.anda-olsen.no/images/fullscreen_online_ups.jpg');
+          background-image: url('https://cdn.thewirecutter.com/wp-content/media/2025/09/BEST-UNINTERRUPTIBLE-POWER-SUPPLY-UPS-01296-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp');
           background-size: cover;
           background-position: center;
           opacity: 0.35;
@@ -297,7 +297,7 @@ export default function UPSPage() {
 
             <h1 className="sc-hero-h1">Uninterruptible Power Supply</h1>
             <p className="sc-hero-p">
-              End-to-end network infrastructure — designed to perform, built to last.
+              Reliable backup power solutions — designed to keep your systems running, built to last.
             </p>
           </div>
         </section>

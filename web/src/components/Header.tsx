@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 
 const serviceLinks = [
-  { href: "/services/structured-cabling", label: "Structured Cabling",       category: "Infrastructure" },
+  { href: "/services/structured-cabling", label: "Structured & Network Cabling",       category: "Infrastructure" },
   { href: "/services/network-security",   label: "Network & Security",        category: "Infrastructure" },
   { href: "/services/cctv",               label: "CCTV Surveillance System",  category: "Security" },
   { href: "/services/access-control",     label: "Access Control System",     category: "Security" },
