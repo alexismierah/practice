@@ -1,8 +1,6 @@
-import Link from "next/link"
+"use client"
 
-export const metadata = {
-  title: "Home",
-}
+import Link from "next/link"
 
 const services = [
   {
@@ -32,44 +30,53 @@ const services = [
 ]
 
 const partners = [
-  {
-    name: "Cisco",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo_blue_2016.svg/320px-Cisco_logo_blue_2016.svg.png",
-  },
-  {
-    name: "Hikvision",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/twentytwo/Hikvision_logo.svg/320px-Hikvision_logo.svg.png",
-  },
-  {
-    name: "Ubiquiti",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Ubiquiti_Networks_2016.svg/320px-Ubiquiti_Networks_2016.svg.png",
-  },
-  {
-    name: "Axis",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Axis_Communications_logo.svg/320px-Axis_Communications_logo.svg.png",
-  },
-  {
-    name: "Palo Alto",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Palo_Alto_Networks_logo.svg/320px-Palo_Alto_Networks_logo.svg.png",
-  },
-  {
-    name: "Fortinet",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Fortinet_logo.svg/320px-Fortinet_logo.svg.png",
-  },
+  { name: "Dahua",       logo: "/logos/dahua.png" },
+  { name: "Ruijie",      logo: "/logos/ruijie.png" },
+  { name: "TP-Link",     logo: "/logos/tplink.png" },
+  { name: "BDCOM",       logo: "/logos/bdcom.png" },
+  { name: "ITC Audio",   logo: "/logos/itc-audio.png" },
+  { name: "Growatt",     logo: "/logos/growatt.png" },
+  { name: "Hopewind",    logo: "/logos/hopewind.png" },
+  { name: "Belden",      logo: "/logos/belden.svg" },
+  { name: "Hikvision",   logo: "/logos/hikvision.png" },
+  { name: "ZKTeco",      logo: "/logos/zkteco.png" },
+  { name: "KSTAR",       logo: "/logos/kstar.jpeg" },
+  { name: "Yeastar",     logo: "/logos/yeastar.jpg" },
+  { name: "Deltapath",   logo: "/logos/deltapath.png" },
+  { name: "Sangfor",     logo: "/logos/sangfor.png" },
+  { name: "TOA",         logo: "/logos/toa.png" },
+  { name: "Grandstream", logo: "/logos/grandstream.png" },
 ]
 
 const stats = [
-  { n: "500+", l: "Projects Delivered" },
-  { n: "15 yrs", l: "Experience" },
-  { n: "98%", l: "Client Satisfaction" },
-  { n: "24/7", l: "Support" },
+  { n: "Reliable Technology" },
+  { n: "Safe & Secure" },
+  { n: "Innovative Solutions" },
 ]
+
+function PartnerLogo({ name, logo }: { name: string; logo: string }) {
+  return (
+    <div className="partner-logo-wrap">
+      <img
+        src={logo}
+        alt={name}
+        onError={(e) => {
+          const img = e.currentTarget
+          img.style.display = "none"
+          const badge = img.nextElementSibling as HTMLElement
+          if (badge) badge.style.display = "flex"
+        }}
+      />
+      <span className="partner-text-badge">{name}</span>
+    </div>
+  )
+}
 
 export default function HomePage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500&display=swap');
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
@@ -95,294 +102,135 @@ export default function HomePage() {
 
         /* ── HERO ── */
         .hero {
-          position: relative;
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          overflow: hidden;
+          position: relative; min-height: 100vh;
+          display: flex; align-items: center; overflow: hidden;
         }
         .hero-bg {
-          position: absolute;
-          inset: 0;
+          position: absolute; inset: 0;
           background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80');
-          background-size: cover;
-          background-position: center;
-          z-index: 0;
+          background-size: cover; background-position: center; z-index: 0;
         }
         .hero-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            105deg,
-            rgba(10,20,40,0.82) 0%,
-            rgba(10,20,40,0.65) 50%,
-            rgba(10,20,40,0.30) 100%
-          );
+          position: absolute; inset: 0;
+          background: linear-gradient(105deg, rgba(10,20,40,0.82) 0%, rgba(10,20,40,0.65) 50%, rgba(10,20,40,0.30) 100%);
           z-index: 1;
         }
         .hero-content {
-          position: relative;
-          z-index: 2;
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 8rem 2.5rem 6rem;
-          width: 100%;
+          position: relative; z-index: 2;
+          max-width: 1200px; margin: 0 auto;
+          padding: 8rem 2.5rem 6rem; width: 100%;
         }
         .hero h1 {
           font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(3rem, 6vw, 5.25rem);
-          font-weight: 400;
-          line-height: 1.08;
-          color: #fff;
-          max-width: 16ch;
-          margin-bottom: 1.5rem;
-          letter-spacing: -0.02em;
+          font-weight: 400; line-height: 1.08; color: #fff;
+          max-width: 16ch; margin-bottom: 1.5rem; letter-spacing: -0.02em;
         }
-        .hero h1 em {
-          font-style: italic;
-          color: #93c5fd;
-        }
+        .hero h1 em { font-style: italic; color: #93c5fd; }
         .hero-sub {
-          font-size: 1.125rem;
-          color: rgba(255,255,255,0.65);
-          max-width: 42ch;
-          line-height: 1.75;
-          margin-bottom: 2.75rem;
-          font-weight: 300;
+          font-size: 1.125rem; color: rgba(255,255,255,0.65);
+          max-width: 42ch; line-height: 1.75; margin-bottom: 2.75rem; font-weight: 300;
         }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
         .btn-primary {
-          display: inline-block;
-          background: var(--blue);
-          color: #fff;
-          padding: 14px 28px;
-          border-radius: 8px;
+          display: inline-block; background: var(--blue); color: #fff;
+          padding: 14px 28px; border-radius: 8px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.9rem;
-          font-weight: 500;
-          text-decoration: none;
+          font-size: 0.9rem; font-weight: 500; text-decoration: none;
           transition: background 0.2s, transform 0.15s;
         }
         .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
-        .btn-ghost-white {
-          display: inline-block;
-          border: 1px solid rgba(255,255,255,0.3);
-          color: rgba(255,255,255,0.85);
-          padding: 14px 28px;
-          border-radius: 8px;
-          font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.9rem;
-          font-weight: 400;
-          text-decoration: none;
-          transition: border-color 0.2s, background 0.2s;
-          backdrop-filter: blur(4px);
-          background: rgba(255,255,255,0.05);
-        }
-        .btn-ghost-white:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1); }
 
         /* ── STATS ── */
         .stats { background: var(--blue); padding: 0 2.5rem; }
         .stats-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          max-width: 1200px; margin: 0 auto;
+          display: grid; grid-template-columns: repeat(3, 1fr);
         }
         .stat-item {
-          padding: 2rem 0;
-          text-align: center;
+          padding: 2rem 0; text-align: center;
           border-right: 1px solid rgba(255,255,255,0.15);
         }
         .stat-item:last-child { border-right: none; }
         .stat-n {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 2.25rem;
-          font-weight: 400;
-          color: #fff;
-          line-height: 1;
-        }
-        .stat-l {
-          font-size: 11px;
-          color: rgba(255,255,255,0.55);
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          margin-top: 5px;
+          font-size: 1.5rem; font-weight: 400; color: #fff; line-height: 1;
         }
 
         /* ── ABOUT ── */
         .about { background: var(--white); padding: 7rem 2.5rem; }
         .about-inner {
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 6rem;
-          align-items: center;
+          max-width: 1200px; margin: 0 auto;
+          display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
         }
-        .eyebrow {
-          font-size: 11px;
-          font-weight: 500;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: var(--blue);
-          margin-bottom: 1.25rem;
-        }
+        .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 1.25rem; }
         .about h2 {
           font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(1.75rem, 3vw, 2.75rem);
-          font-weight: 400;
-          line-height: 1.2;
-          color: var(--ink);
-          margin-bottom: 1.25rem;
+          font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 1.25rem;
         }
         .about h2 em { font-style: italic; color: var(--blue); }
-        .about p {
-          font-size: 0.9375rem;
-          color: var(--ink-3);
-          line-height: 1.8;
-          font-weight: 300;
-          margin-bottom: 1rem;
-        }
+        .about p { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.8; font-weight: 300; margin-bottom: 1rem; }
         .btn-outline {
-          display: inline-block;
-          margin-top: 0.75rem;
-          padding: 12px 24px;
-          border: 1px solid var(--border);
-          border-radius: 8px;
+          display: inline-block; margin-top: 0.75rem; padding: 12px 24px;
+          border: 1px solid var(--border); border-radius: 8px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.875rem;
-          font-weight: 500;
-          color: var(--ink-2);
-          text-decoration: none;
+          font-size: 0.875rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
           transition: border-color 0.2s, background 0.2s;
         }
         .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-xlt); }
-        .about-image {
-          border-radius: 20px;
-          overflow: hidden;
-          aspect-ratio: 4/3;
-          position: relative;
-        }
-        .about-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.5s ease;
-        }
+        .about-image { border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; }
+        .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .about-image:hover img { transform: scale(1.03); }
 
         /* ── SERVICES ── */
         .services { background: var(--surface); padding: 7rem 2.5rem; border-top: 1px solid var(--border-2); }
         .services-inner { max-width: 1200px; margin: 0 auto; }
         .services-head {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          margin-bottom: 3.5rem;
-          gap: 2rem;
-          flex-wrap: wrap;
+          display: flex; justify-content: space-between; align-items: flex-end;
+          margin-bottom: 3.5rem; gap: 2rem; flex-wrap: wrap;
         }
         .services-head h2 {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: clamp(1.75rem, 3vw, 2.75rem);
-          font-weight: 400;
-          line-height: 1.2;
-          color: var(--ink);
+          font-size: clamp(1.75rem, 3vw, 2.75rem); font-weight: 400; line-height: 1.2; color: var(--ink);
         }
         .services-head h2 em { font-style: italic; color: var(--blue); }
-        .services-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.5rem;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .svc-card {
-          background: var(--white);
-          border: 1px solid var(--border);
-          border-radius: 18px;
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
+          background: var(--white); border: 1px solid var(--border); border-radius: 18px;
+          overflow: hidden; display: flex; flex-direction: column;
           transition: box-shadow 0.25s, transform 0.25s;
         }
-        .svc-card:hover {
-          box-shadow: 0 12px 40px rgba(58,137,221,0.12);
-          transform: translateY(-4px);
-        }
-        .svc-img {
-          width: 100%;
-          height: 210px;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.5s ease;
-        }
+        .svc-card:hover { box-shadow: 0 12px 40px rgba(58,137,221,0.12); transform: translateY(-4px); }
+        .svc-img { width: 100%; height: 210px; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .svc-card:hover .svc-img { transform: scale(1.04); }
         .svc-img-wrap { overflow: hidden; flex-shrink: 0; }
         .svc-body { padding: 1.75rem; display: flex; flex-direction: column; flex: 1; }
-        .svc-num {
-          font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.8rem;
-          font-style: italic;
-          color: var(--ink-3);
-          margin-bottom: 0.5rem;
-        }
-        .svc-card h3 {
-          font-size: 1.0625rem;
-          font-weight: 500;
-          color: var(--ink);
-          margin-bottom: 0.625rem;
-        }
-        .svc-card p {
-          font-size: 0.875rem;
-          color: var(--ink-3);
-          line-height: 1.7;
-          font-weight: 300;
-          flex: 1;
-        }
+        .svc-num { font-size: 0.8rem; font-style: italic; color: var(--ink-3); margin-bottom: 0.5rem; }
+        .svc-card h3 { font-size: 1.0625rem; font-weight: 500; color: var(--ink); margin-bottom: 0.625rem; }
+        .svc-card p { font-size: 0.875rem; color: var(--ink-3); line-height: 1.7; font-weight: 300; flex: 1; }
         .svc-footer {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 1.5rem;
-          padding-top: 1.25rem;
-          border-top: 1px solid var(--border-2);
+          display: flex; justify-content: space-between; align-items: center;
+          margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-2);
         }
         .svc-tag {
-          font-size: 10px;
-          font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: var(--blue);
-          background: var(--blue-xlt);
-          border-radius: 999px;
-          padding: 3px 10px;
-          border: 1px solid rgba(58,137,221,0.15);
+          font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+          color: var(--blue); background: var(--blue-xlt); border-radius: 999px;
+          padding: 3px 10px; border: 1px solid rgba(58,137,221,0.15);
         }
         .svc-link {
-          font-size: 0.8125rem;
-          color: var(--blue);
-          text-decoration: none;
-          font-weight: 500;
-          display: inline-flex;
-          align-items: center;
-          gap: 5px;
-          transition: gap 0.2s;
+          font-size: 0.8125rem; color: var(--blue); text-decoration: none; font-weight: 500;
+          display: inline-flex; align-items: center; gap: 5px; transition: gap 0.2s;
         }
         .svc-card:hover .svc-link { gap: 9px; }
 
         /* ── PARTNERS ── */
         .partners { padding: 6rem 2.5rem; background: var(--white); }
         .partners-inner { max-width: 1200px; margin: 0 auto; }
-        .partners-head {
-          text-align: center;
-          margin-bottom: 2.75rem;
-        }
+        .partners-head { text-align: center; margin-bottom: 2.75rem; }
         .partners-head h2 {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 2rem;
-          font-weight: 400;
-          color: var(--ink);
-          margin-top: 0.5rem;
+          font-size: 2rem; font-weight: 400; color: var(--ink); margin-top: 0.5rem;
         }
 
         /* ── MARQUEE ── */
@@ -392,105 +240,74 @@ export default function HomePage() {
           mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
         }
         .marquee-inner {
-          display: flex;
-          align-items: center;
-          gap: 3rem;
+          display: flex; align-items: center; gap: 2.5rem;
           width: max-content;
-          animation: marquee 22s linear infinite;
+          animation: marquee 36s linear infinite;
         }
-        .marquee-inner:hover {
-          animation-play-state: paused;
-        }
+        .marquee-inner:hover { animation-play-state: paused; }
         @keyframes marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .partner-logo-wrap {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 140px;
-          height: 60px;
-          flex-shrink: 0;
-          filter: grayscale(100%);
-          opacity: 0.5;
-          transition: filter 0.3s, opacity 0.3s;
+          display: flex; align-items: center; justify-content: center;
+          width: 150px; height: 64px; flex-shrink: 0;
+          opacity: 0.75;
+          transition: opacity 0.3s;
         }
-        .partner-logo-wrap:hover {
-          filter: grayscale(0%);
-          opacity: 1;
-        }
+        .partner-logo-wrap:hover { opacity: 1; }
         .partner-logo-wrap img {
-          max-width: 100%;
-          max-height: 100%;
-          object-fit: contain;
-          display: block;
+          max-width: 120px; max-height: 44px;
+          object-fit: contain; display: block;
+        }
+        .partner-text-badge {
+          display: none;
+          align-items: center; justify-content: center;
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 0.8125rem; font-weight: 600; color: var(--ink-2);
+          letter-spacing: -0.01em; white-space: nowrap;
+          padding: 6px 14px;
+          border: 1.5px solid var(--border);
+          border-radius: 6px;
         }
 
         /* ── CTA ── */
-        .cta {
-          position: relative;
-          overflow: hidden;
-          padding: 7rem 2.5rem;
-        }
+        .cta { position: relative; overflow: hidden; padding: 7rem 2.5rem; }
         .cta-bg {
-          position: absolute;
-          inset: 0;
+          position: absolute; inset: 0;
           background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80');
-          background-size: cover;
-          background-position: center;
-          z-index: 0;
+          background-size: cover; background-position: center; z-index: 0;
         }
         .cta-overlay {
-          position: absolute;
-          inset: 0;
+          position: absolute; inset: 0;
           background: linear-gradient(135deg, rgba(15,30,60,0.88) 0%, rgba(58,137,221,0.65) 100%);
           z-index: 1;
         }
         .cta-inner {
-          position: relative;
-          z-index: 2;
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          align-items: center;
+          position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
+          display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
         }
         .cta h2 {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: clamp(2rem, 3.5vw, 3.25rem);
-          font-weight: 400;
-          color: #fff;
-          line-height: 1.2;
+          font-size: clamp(2rem, 3.5vw, 3.25rem); font-weight: 400; color: #fff; line-height: 1.2;
         }
         .cta h2 em { font-style: italic; color: #bfdbfe; }
         .cta-right { display: flex; flex-direction: column; gap: 1.25rem; align-items: flex-start; }
         .cta p { font-size: 1rem; color: rgba(255,255,255,0.6); line-height: 1.75; font-weight: 300; }
         .cta-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
         .btn-white {
-          display: inline-block;
-          background: #fff;
-          color: var(--blue-dark);
-          padding: 14px 28px;
-          border-radius: 8px;
+          display: inline-block; background: #fff; color: var(--blue-dark);
+          padding: 14px 28px; border-radius: 8px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.9rem;
-          font-weight: 500;
-          text-decoration: none;
+          font-size: 0.9rem; font-weight: 500; text-decoration: none;
           transition: background 0.2s, transform 0.15s;
         }
         .btn-white:hover { background: #e8f2fc; transform: translateY(-1px); }
         .btn-ghost-white2 {
-          display: inline-block;
-          border: 1px solid rgba(255,255,255,0.35);
-          color: rgba(255,255,255,0.85);
-          padding: 14px 28px;
-          border-radius: 8px;
+          display: inline-block; border: 1px solid rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.85); padding: 14px 28px; border-radius: 8px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.9rem;
-          font-weight: 400;
-          text-decoration: none;
+          font-size: 0.9rem; font-weight: 400; text-decoration: none;
           transition: border-color 0.2s, background 0.2s;
         }
         .btn-ghost-white2:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }
@@ -498,7 +315,7 @@ export default function HomePage() {
         @media (max-width: 900px) {
           .about-inner, .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
           .services-grid { grid-template-columns: 1fr; }
-          .stats-inner { grid-template-columns: repeat(2,1fr); }
+          .stats-inner { grid-template-columns: repeat(1, 1fr); }
           .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
           .services-head { flex-direction: column; align-items: flex-start; }
         }
@@ -511,9 +328,7 @@ export default function HomePage() {
           <div className="hero-bg" />
           <div className="hero-overlay" />
           <div className="hero-content">
-            <h1>
-              Smart<em> Solutions</em><br />for Smarter Operations
-            </h1>
+            <h1>Smart<em> Solutions</em><br />for Smarter Operations</h1>
             <p className="hero-sub">
               We deliver reliable ICT solutions for businesses of all sizes. From installation to maintenance, our team ensures your communication and security systems stay connected, secure, and running smoothly.
             </p>
@@ -526,10 +341,9 @@ export default function HomePage() {
         {/* ── Stats ── */}
         <div className="stats">
           <div className="stats-inner">
-            {stats.map(({ n, l }) => (
-              <div className="stat-item" key={l}>
+            {stats.map(({ n }) => (
+              <div className="stat-item" key={n}>
                 <div className="stat-n">{n}</div>
-                <div className="stat-l">{l}</div>
               </div>
             ))}
           </div>
@@ -546,10 +360,7 @@ export default function HomePage() {
               <Link href="/about" className="btn-outline">Read Our Story</Link>
             </div>
             <div className="about-image">
-              <img
-                src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80"
-                alt="Our team at work"
-              />
+              <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80" alt="Our team at work" />
             </div>
           </div>
         </section>
@@ -599,10 +410,8 @@ export default function HomePage() {
             </div>
             <div className="marquee-track">
               <div className="marquee-inner">
-                {[...partners, ...partners, ...partners].map((p, i) => (
-                  <div className="partner-logo-wrap" key={i}>
-                    <img src={p.logo} alt={p.name} />
-                  </div>
+                {[...partners, ...partners].map((p, i) => (
+                  <PartnerLogo key={i} name={p.name} logo={p.logo} />
                 ))}
               </div>
             </div>
