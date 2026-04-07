@@ -405,7 +405,7 @@ export default function HomePage() {
         <section className="partners">
           <div className="partners-inner">
             <div className="partners-head">
-              <div className="eyebrow">Technology Partners</div>
+              <div className="eyebrow">Brand Partners</div>
               <h2>Trusted brands we work with</h2>
             </div>
             <div className="marquee-track">
