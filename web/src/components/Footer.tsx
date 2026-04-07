@@ -369,7 +369,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <span className="footer-copy">
-            © {new Date().getFullYear()} Unifix ICT Solutions. All rights reserved.
+            © 2026 Unifix ICT Solutions. All rights reserved.
           </span>
         </div>
       </footer>
