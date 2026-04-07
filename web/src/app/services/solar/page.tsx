@@ -4,68 +4,55 @@ export const metadata = {
 
 const features = [
   {
-    title: "Horizontal & Backbone Cabling",
-    desc: "Cat6A, Cat6, and fiber optic installation from telecoms room to every workstation and access point.",
+    title: "Solar Panel Installation",
+    desc: "Installation of high-efficiency solar panels positioned for maximum sunlight exposure, ensuring optimal energy generation throughout the day.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="9" width="18" height="4" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="6" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
-        <line x1="6" y1="9" x2="6" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="9" x2="16" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="6" y1="13" x2="6" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="13" x2="16" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="23" height="23" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="9" stroke="currentColor" strokeWidth="3"/>
+        <line x1="24" y1="5" x2="24" y2="10" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="24" y1="38" x2="24" y2="43" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="5" y1="24" x2="10" y2="24" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="38" y1="24" x2="43" y2="24" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="10.5" y1="10.5" x2="14" y2="14" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="34" y1="34" x2="37.5" y2="37.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="34" y1="14" x2="37.5" y2="10.5" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="10.5" y1="37.5" x2="14" y2="34" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Patch Panel & Cabinet Setup",
-    desc: "Neat, labelled patch panels, managed cable trays, and rack installations for clean, serviceable comms rooms.",
+    title: "Inverter & Power Management",
+    desc: "Setup of inverters and control systems to convert solar energy into usable electricity, with monitoring for performance and efficiency",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="6" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="7.5" y1="6" x2="7.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="11" y1="6" x2="11" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="14.5" y1="6" x2="14.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <circle cx="11" cy="18.5" r="1" fill="currentColor"/>
+      <svg width="21" height="21" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3"/>
+        <path d="M26 10L16 26H24L22 38L32 22H24L26 10Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
   {
-    title: "Fiber Optic Networks",
-    desc: "Single-mode and multi-mode fiber splicing, termination, and OTDR-verified testing for high-speed links.",
+    title: "Battery Storage Solutions",
+    desc: "Optional battery systems store excess energy for use during nighttime or power outages, ensuring continuous power supply.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="11" cy="11" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <line x1="11" y1="3" x2="11" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="11" y1="14" x2="11" y2="19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="3" y1="11" x2="8" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="14" y1="11" x2="19" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="14" width="24" height="24" rx="2" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M34 20V32H37C38.1046 32 39 31.1046 39 30V22C39 20.8954 38.1046 20 37 20H34Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <line x1="16" y1="20" x2="16" y2="32" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="22" y1="20" x2="22" y2="32" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="28" y1="20" x2="28" y2="32" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Testing & Certification",
-    desc: "Every link tested with Fluke DSX-600 and certified to TIA-568 standards. Full documentation provided.",
+    title: "Monitoring & Maintenance",
+    desc: "Monitoring of energy production and system performance, with maintenance support to ensure long-term reliability and efficiency.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>
-    ),
-  },
-  {
-    title: "As-Built Documentation",
-    desc: "Detailed floor plans, port schedules, and cable records — so your team can manage the network for years to come.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="5" y="3" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="15" x2="11" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
+     <svg width="27" height="27" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M34.5 13.5C37.5 16.5 37.5 21.5 34.5 24.5L30 29L19 18L23.5 13.5C26.5 10.5 31.5 10.5 34.5 13.5Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M24 13L28 17M15 22L12 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+      <path d="M19 18L8 29C6 31 6 34 8 36C10 38 13 38 15 36L26 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="11.5" cy="32.5" r="1.5" fill="currentColor"/>
+    </svg>
     ),
   },
 ]
@@ -297,7 +284,7 @@ export default function SolarPowerPage() {
 
             <h1 className="sc-hero-h1">Solar Power</h1>
             <p className="sc-hero-p">
-              End-to-end public address management solution — designed to optimize communication flow, built to last.
+              Harness clean energy from the sun to power your space efficiently and sustainably every day.
             </p>
           </div>
         </section>
@@ -309,13 +296,10 @@ export default function SolarPowerPage() {
             <div className="sc-about-left">
               <span className="sc-section-tag">What we do</span>
               <h2 className="sc-about-h2">
-                The backbone of your network, <em>done right</em>
+                Clean energy, <em>smart investment</em>
               </h2>
               <p className="sc-about-p">
-                We design and install scalable structured cabling systems for commercial, industrial,
-                and enterprise environments. From Cat6A copper runs to fiber optic backbones, every
-                cable we lay is certified, documented, and future-proofed for the demands of
-                tomorrow&apos;s technology.
+                We supply and install solar power systems for residential, commercial, and industrial applications. From rooftop panels to complete energy solutions, our systems help reduce electricity costs, provide backup power, and promote sustainable energy use.
               </p>
               <div className="sc-rule" />
             </div>
