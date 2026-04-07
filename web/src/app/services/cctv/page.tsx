@@ -4,67 +4,54 @@ export const metadata = {
 
 const features = [
   {
-    title: "Horizontal & Backbone Cabling",
-    desc: "Cat6A, Cat6, and fiber optic installation from telecoms room to every workstation and access point.",
+    title: "Analog & IP Camera Installation",
+    desc: "Professional setup of analog or IP cameras, including dome, bullet, and PTZ models. Cameras are placed for optimal coverage of entrances, hallways, offices, parking areas, and other critical zones.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="9" width="18" height="4" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="6" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
-        <line x1="6" y1="9" x2="6" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="9" x2="16" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="6" y1="13" x2="6" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="13" x2="16" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g transform="translate(0, 8)">
+          <path d="M12 6H36" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+          <path d="M14 6V9H34V6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M8 22C8 13.1634 15.1634 6 24 6C32.8366 6 40 13.1634 40 22V26H8V22Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+          <circle cx="24" cy="18" r="4" stroke="currentColor" strokeWidth="3"/>
+          <circle cx="24" cy="18" r="1" fill="currentColor"/>
+        </g>
       </svg>
     ),
   },
   {
-    title: "Patch Panel & Cabinet Setup",
-    desc: "Neat, labelled patch panels, managed cable trays, and rack installations for clean, serviceable comms rooms.",
+    title: "Remote Access & Live Monitoring",
+    desc: "Configuration of DVR or NVR systems that allow live viewing from mobile devices or computers. Monitor your property in real-time, whether you’re on-site or off-site.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="6" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="7.5" y1="6" x2="7.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="11" y1="6" x2="11" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="14.5" y1="6" x2="14.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <circle cx="11" cy="18.5" r="1" fill="currentColor"/>
+      <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="10" width="32" height="24" rx="3" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M12 14H36V28H12V14Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M20 34L18 38H30L28 34H20Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M16 38H32" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Fiber Optic Networks",
-    desc: "Single-mode and multi-mode fiber splicing, termination, and OTDR-verified testing for high-speed links.",
+    title: "Night Vision & Motion Detection",
+    desc: "Installation of cameras with infrared capabilities and motion detection features to capture clear footage in low-light conditions or detect unusual activity automatically.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="11" cy="11" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <line x1="11" y1="3" x2="11" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="11" y1="14" x2="11" y2="19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="3" y1="11" x2="8" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="14" y1="11" x2="19" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="28" height="28" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="14" width="28" height="14" rx="2" stroke="currentColor" strokeWidth="3"/>
+        <circle cx="17" cy="21" r="3" stroke="currentColor" strokeWidth="3"/>
+        <circle cx="31" cy="21" r="3" stroke="currentColor" strokeWidth="3"/>
+        <path d="M6 21H9M39 21H42" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Testing & Certification",
-    desc: "Every link tested with Fluke DSX-600 and certified to TIA-568 standards. Full documentation provided.",
+    title: "Recording & Storage Solutions",
+    desc: "Secure storage of video footage with scheduled recording, continuous recording, or motion-triggered capture. Ensures easy playback for incident review, investigations, or compliance purposes.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>
-    ),
-  },
-  {
-    title: "As-Built Documentation",
-    desc: "Detailed floor plans, port schedules, and cable records — so your team can manage the network for years to come.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="5" y="3" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="15" x2="11" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="24" r="10" stroke="currentColor" strokeWidth="3"/>
+        <circle cx="34" cy="24" r="10" stroke="currentColor" strokeWidth="3"/>
+        <circle cx="14" cy="24" r="3" fill="currentColor"/>
+        <circle cx="34" cy="24" r="3" fill="currentColor"/>
+        <path d="M14 14H34M14 34H34" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -297,7 +284,7 @@ export default function CCTVSurveillanceSystemPage() {
 
             <h1 className="sc-hero-h1">CCTV Surveillance System</h1>
             <p className="sc-hero-p">
-              End-to-end network infrastructure — designed to perform, built to last.
+              Watch over what matters, keep every space secure.
             </p>
           </div>
         </section>
@@ -309,13 +296,10 @@ export default function CCTVSurveillanceSystemPage() {
             <div className="sc-about-left">
               <span className="sc-section-tag">What we do</span>
               <h2 className="sc-about-h2">
-                The backbone of your network, <em>done right</em>
+                Security, <em>always in sight</em>
               </h2>
               <p className="sc-about-p">
-                We design and install scalable structured cabling systems for commercial, industrial,
-                and enterprise environments. From Cat6A copper runs to fiber optic backbones, every
-                cable we lay is certified, documented, and future-proofed for the demands of
-                tomorrow&apos;s technology.
+                We supply and install CCTV surveillance systems for homes, offices, and commercial facilities, providing complete coverage and peace of mind. From high-definition cameras and night-vision capabilities to networked recording and real-time remote monitoring, every system is carefully configured for reliability, clarity, and ease of use.
               </p>
               <div className="sc-rule" />
             </div>
