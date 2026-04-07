@@ -10,7 +10,7 @@ const serviceLinks = [
   { href: "/services/access-control",     label: "Access Control System",     category: "Security" },
   { href: "/services/video-intercom",     label: "Video Intercom",            category: "Security" },
   { href: "/services/ip-pbx",             label: "IP-PBX Telephone System",   category: "Communications" },
-  { href: "/services/public-address",     label: "Public Addressing System",  category: "Communications" },
+  { href: "/services/public-address",     label: "Public Address System",  category: "Communications" },
   { href: "/services/conference",         label: "Conference System",         category: "Communications" },
   { href: "/services/parking",            label: "Parking System",            category: "Operations" },
   { href: "/services/led-display",        label: "LED Display",               category: "Operations" },
