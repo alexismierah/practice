@@ -4,70 +4,49 @@ export const metadata = {
 
 const features = [
   {
-    title: "Horizontal & Backbone Cabling",
-    desc: "Cat6A, Cat6, and fiber optic installation from telecoms room to every workstation and access point.",
+    title: "LED Parking Signage",
+    desc: "Installation of bright, easy-to-read LED displays that show available parking slots in real-time. Signage can be placed at entrances, intersections, or individual zones, ensuring drivers always know where to park without wasting time searching.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="9" width="18" height="4" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="6" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
-        <line x1="6" y1="9" x2="6" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="9" x2="16" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="6" y1="13" x2="6" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="13" x2="16" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="32" height="32" rx="2" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M18 16H26C28.2091 16 30 17.7909 30 20C30 22.2091 28.2091 24 26 24H18V16Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <line x1="18" y1="24" x2="18" y2="32" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Patch Panel & Cabinet Setup",
-    desc: "Neat, labelled patch panels, managed cable trays, and rack installations for clean, serviceable comms rooms.",
+    title: "Sensors & Camera Detection",
+    desc: "Deployment of ultrasonic, infrared, or camera-based sensors to detect vehicle presence in each parking slot. The system updates the LED signage automatically and can track occupancy trends for reporting.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="6" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="7.5" y1="6" x2="7.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="11" y1="6" x2="11" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="14.5" y1="6" x2="14.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <circle cx="11" cy="18.5" r="1" fill="currentColor"/>
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="5" stroke="currentColor" strokeWidth="3"/>
+        <circle cx="24" cy="24" r="1" fill="currentColor"/>
+        <path d="M12.6863 12.6863C9.5621 15.8105 8 19.9052 8 24C8 28.0948 9.5621 32.1895 12.6863 35.3137M35.3137 12.6863C38.4379 15.8105 40 19.9052 40 24C40 28.0948 38.4379 32.1895 35.3137 35.3137" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Fiber Optic Networks",
-    desc: "Single-mode and multi-mode fiber splicing, termination, and OTDR-verified testing for high-speed links.",
+    title: "Guidance & Flow Management",
+    desc: "Intelligent guidance using visual indicators, arrows, or floor lights to direct drivers to free spaces quickly. Combined with signage and sensors, this ensures smooth traffic flow throughout the parking area and prevents bottlenecks.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="11" cy="11" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <line x1="11" y1="3" x2="11" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="11" y1="14" x2="11" y2="19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="3" y1="11" x2="8" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="14" y1="11" x2="19" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3"/>
+        <line x1="24" y1="36" x2="24" y2="12" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <path d="M16 20L24 12L32 20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
   {
-    title: "Testing & Certification",
-    desc: "Every link tested with Fluke DSX-600 and certified to TIA-568 standards. Full documentation provided.",
+    title: "Access Control & Boom Barriers",
+    desc: "Integration of automated boom barriers, RFID cards, QR codes, or token-based entry for secure vehicle access. Logs of entries and exits are maintained for security and monitoring purposes.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3"/>
+        <line x1="12" y1="24" x2="36" y2="24" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
-  {
-    title: "As-Built Documentation",
-    desc: "Detailed floor plans, port schedules, and cable records — so your team can manage the network for years to come.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="5" y="3" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="15" x2="11" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
+
 ]
 
 export default function ParkingGuidanceSystemPage() {
@@ -297,7 +276,7 @@ export default function ParkingGuidanceSystemPage() {
 
             <h1 className="sc-hero-h1">Parking System</h1>
             <p className="sc-hero-p">
-              End-to-end parking management solution — designed to optimize traffic flow, built to last.
+              Manage every space with ease, streamline vehicle entry, and make parking effortless.
             </p>
           </div>
         </section>
@@ -309,13 +288,10 @@ export default function ParkingGuidanceSystemPage() {
             <div className="sc-about-left">
               <span className="sc-section-tag">What we do</span>
               <h2 className="sc-about-h2">
-                The backbone of your network, <em>done right</em>
+                Smart parking, <em>hassle free</em>
               </h2>
               <p className="sc-about-p">
-                We design and install scalable structured cabling systems for commercial, industrial,
-                and enterprise environments. From Cat6A copper runs to fiber optic backbones, every
-                cable we lay is certified, documented, and future-proofed for the demands of
-                tomorrow&apos;s technology.
+                We design and install advanced parking guidance systems for residential, commercial, and industrial facilities. From LED signage to real-time sensor networks, our solutions guide drivers to available spaces efficiently, reduce congestion, and improve overall parking management. Every system is engineered for safety, accuracy, and seamless operation.
               </p>
               <div className="sc-rule" />
             </div>
