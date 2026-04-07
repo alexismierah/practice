@@ -282,7 +282,7 @@ export default function AccessControlSystemPage() {
 
             <h1 className="sc-hero-h1">Access Control System</h1>
             <p className="sc-hero-p">
-              End-to-end network infrastructure — designed to perform, built to last.
+              Smart access, secure spaces — control who enters, effortlessly.
             </p>
           </div>
         </section>
