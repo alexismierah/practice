@@ -17,35 +17,15 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, message } = await request.json()
 
-    // Field validations with specific errors
-    if (!name?.trim()) {
-      return NextResponse.json(
-        { error: 'Name is required' },
-        { status: 400 }
-      )
-    }
-
-    if (!email?.trim()) {
-      return NextResponse.json(
-        { error: 'Email is required' },
-        { status: 400 }
-      )
-    }
-
-    if (!message?.trim()) {
-      return NextResponse.json(
-        { error: 'Message is required' },
-        { status: 400 }
-      )
-    }
-
-    if (!isValidEmail(email)) {
+    // Optional: only validate email format if email is provided
+    if (email && !isValidEmail(email)) {
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }
       )
     }
 
+    // Optional: only validate phone format if phone is provided
     if (phone && !isValidPhone(phone)) {
       return NextResponse.json(
         { error: 'Invalid phone number format' },
@@ -64,14 +44,12 @@ export async function POST(request: NextRequest) {
       },
     })
 
-    // Timestamp for email
     const submittedAt = new Date().toLocaleString('en-PH', {
       timeZone: 'Asia/Manila',
       dateStyle: 'long',
       timeStyle: 'short',
     })
 
-    // HTML email body
     const htmlBody = `
       <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:20px;">
         <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:10px; padding:24px; border:1px solid #e5e7eb;">
@@ -79,13 +57,13 @@ export async function POST(request: NextRequest) {
 
           <div style="margin-bottom:16px;">
             <p style="margin:0; font-size:14px; color:#6b7280;">Full Name</p>
-            <p style="margin:4px 0 0; font-size:16px; font-weight:600;">${name}</p>
+            <p style="margin:4px 0 0; font-size:16px; font-weight:600;">${name || 'Not provided'}</p>
           </div>
 
           <div style="margin-bottom:16px;">
             <p style="margin:0; font-size:14px; color:#6b7280;">Email</p>
             <p style="margin:4px 0 0; font-size:16px;">
-              <a href="mailto:${email}" style="color:#2563eb; text-decoration:none;">${email}</a>
+              ${email ? `<a href="mailto:${email}" style="color:#2563eb; text-decoration:none;">${email}</a>` : 'Not provided'}
             </p>
           </div>
 
@@ -96,7 +74,7 @@ export async function POST(request: NextRequest) {
 
           <div style="margin-bottom:20px;">
             <p style="margin:0; font-size:14px; color:#6b7280;">Message</p>
-            <p style="margin:6px 0 0; font-size:15px; line-height:1.6; white-space:pre-wrap;">${message}</p>
+            <p style="margin:6px 0 0; font-size:15px; line-height:1.6; white-space:pre-wrap;">${message || 'Not provided'}</p>
           </div>
 
           <hr style="border:none; border-top:1px solid #e5e7eb; margin:20px 0;" />
@@ -105,16 +83,14 @@ export async function POST(request: NextRequest) {
       </div>
     `
 
-    // Email options
     const mailOptions = {
       from: `"Unifix ICT Solutions" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER, // send to yourself
-      replyTo: email,
-      subject: `New Quote Request from ${name}`,
+      replyTo: email || undefined,
+      subject: `New Quote Request from ${name || 'Unknown'}`,
       html: htmlBody,
     }
 
-    // Send the email
     await transporter.sendMail(mailOptions)
 
     return NextResponse.json(
