@@ -1,15 +1,6 @@
+"use client"
+
 import Link from "next/link"
-
-export const metadata = {
-  title: "About",
-}
-
-const stats = [
-  { value: "10+", label: "Years of Experience" },
-  { value: "500+", label: "Projects Delivered" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "50+", label: "Expert Engineers" },
-]
 
 const values = [
   {
@@ -28,6 +19,12 @@ const values = [
     icon: `<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>`,
   },
 ]
+
+function scrollToFooter(e: React.MouseEvent<HTMLAnchorElement>) {
+  e.preventDefault()
+  const el = document.getElementById("footer")
+  if (el) el.scrollIntoView({ behavior: "smooth" })
+}
 
 export default function AboutPage() {
   return (
@@ -68,7 +65,6 @@ export default function AboutPage() {
             radial-gradient(ellipse 50% 60% at 80% 20%, rgba(34,99,168,0.12) 0%, transparent 55%);
         }
 
-        /* subtle grid lines */
         .about-hero-grid {
           position: absolute;
           inset: 0;
@@ -156,7 +152,6 @@ export default function AboutPage() {
         }
         .about-hero-cta:hover { background: var(--blue-dk); transform: translateY(-1px); }
 
-        /* right side cards */
         .about-hero-right {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -420,7 +415,7 @@ export default function AboutPage() {
                 That same commitment continues today. Unifix focuses on delivering cost-effective systems, technical support, and solutions tailored to client requirements. Every project is handled with attention to detail, ensuring that issues are identified and resolved efficiently because quality service is never compromised.
               </p>
               <p>
-                At its core, Unifix is about trust and partnership. The team supports clients from planning to implementation, making sure they feel confident in their systems and in their choice. Every solution is treated as if it were for their own business, because when clients succeed, Unifix succeeds too
+                At its core, Unifix is about trust and partnership. The team supports clients from planning to implementation, making sure they feel confident in their systems and in their choice. Every solution is treated as if it were for their own business, because when clients succeed, Unifix succeeds too.
               </p>
             </div>
           </div>
@@ -433,9 +428,9 @@ export default function AboutPage() {
             <p className="about-cta-p">
               Let's talk about your project. We'll recommend the right solution and handle it from end to end.
             </p>
-            <Link href="#footer" className="about-cta-btn">
-              Request a Qoute
-            </Link>
+            <a href="#footer" className="about-cta-btn" onClick={scrollToFooter}>
+              Request a Quote
+            </a>
           </div>
         </section>
       </div>
