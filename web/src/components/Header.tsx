@@ -495,9 +495,6 @@ export default function Header() {
               {label}
             </Link>
           ))}
-          <Link href="/contact" className="hdr-mobile-cta" onClick={() => setMobileOpen(false)}>
-            Get in Touch
-          </Link>
         </div>
       </header>
     </>
