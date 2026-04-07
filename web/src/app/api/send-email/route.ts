@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
 
+// Validate email format
 function isValidEmail(email: string): boolean {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }
 
+// Validate phone format (optional field)
 function isValidPhone(phone: string): boolean {
   const phoneRegex = /^[0-9+\-\s()]+$/
   return phoneRegex.test(phone) || phone === ""
@@ -15,9 +17,24 @@ export async function POST(request: NextRequest) {
   try {
     const { name, email, phone, message } = await request.json()
 
-    if (!name?.trim() || !email?.trim() || !message?.trim()) {
+    // Field validations with specific errors
+    if (!name?.trim()) {
       return NextResponse.json(
-        { error: 'All required fields must be filled: name, email, and message' },
+        { error: 'Name is required' },
+        { status: 400 }
+      )
+    }
+
+    if (!email?.trim()) {
+      return NextResponse.json(
+        { error: 'Email is required' },
+        { status: 400 }
+      )
+    }
+
+    if (!message?.trim()) {
+      return NextResponse.json(
+        { error: 'Message is required' },
         { status: 400 }
       )
     }
@@ -36,118 +53,68 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Configure Nodemailer transporter
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: parseInt(process.env.SMTP_PORT || '587'),
-      secure: process.env.SMTP_SECURE === 'true',
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
       },
     })
 
+    // Timestamp for email
     const submittedAt = new Date().toLocaleString('en-PH', {
       timeZone: 'Asia/Manila',
       dateStyle: 'long',
       timeStyle: 'short',
     })
 
+    // HTML email body
     const htmlBody = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>New Quote Request</title>
-</head>
-<body style="margin:0;padding:0;background:#f1f5f9;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
+      <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:20px;">
+        <div style="max-width:600px; margin:auto; background:#ffffff; border-radius:10px; padding:24px; border:1px solid #e5e7eb;">
+          <h2 style="margin-bottom:16px; color:#111827;">New Quote Request</h2>
 
-  <table width="100%" cellpadding="0" cellspacing="0" style="padding:40px 16px;">
-    <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;">
+          <div style="margin-bottom:16px;">
+            <p style="margin:0; font-size:14px; color:#6b7280;">Full Name</p>
+            <p style="margin:4px 0 0; font-size:16px; font-weight:600;">${name}</p>
+          </div>
 
-          <!-- Header -->
-          <tr>
-            <td style="background:#0d1117;border-radius:16px 16px 0 0;padding:36px 40px 32px;">
-              <div style="font-size:11px;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#3a89dd;margin-bottom:8px;">
-                New Enquiry
-              </div>
-              <div style="font-family:Georgia,serif;font-size:26px;color:#ffffff;">
-                Quote Request Received
-              </div>
-            </td>
-          </tr>
+          <div style="margin-bottom:16px;">
+            <p style="margin:0; font-size:14px; color:#6b7280;">Email</p>
+            <p style="margin:4px 0 0; font-size:16px;">
+              <a href="mailto:${email}" style="color:#2563eb; text-decoration:none;">${email}</a>
+            </p>
+          </div>
 
-          <!-- Accent -->
-          <tr>
-            <td style="background:#3a89dd;height:3px;"></td>
-          </tr>
+          <div style="margin-bottom:16px;">
+            <p style="margin:0; font-size:14px; color:#6b7280;">Contact Number</p>
+            <p style="margin:4px 0 0; font-size:16px;">${phone || 'Not provided'}</p>
+          </div>
 
-          <!-- Body -->
-          <tr>
-            <td style="background:#ffffff;padding:36px 40px;">
+          <div style="margin-bottom:20px;">
+            <p style="margin:0; font-size:14px; color:#6b7280;">Message</p>
+            <p style="margin:6px 0 0; font-size:15px; line-height:1.6; white-space:pre-wrap;">${message}</p>
+          </div>
 
-              <p style="font-size:15px;color:#4a5568;line-height:1.7;margin-bottom:24px;">
-                A new quote request has been submitted. Details are below:
-              </p>
+          <hr style="border:none; border-top:1px solid #e5e7eb; margin:20px 0;" />
+          <p style="font-size:12px; color:#9ca3af;">Submitted on ${submittedAt} (PHT)</p>
+        </div>
+      </div>
+    `
 
-              <p style="margin:0 0 12px;">
-                <strong>Name:</strong><br/>
-                ${name}
-              </p>
-
-              <p style="margin:0 0 12px;">
-                <strong>Email:</strong><br/>
-                <a href="mailto:${email}" style="color:#3a89dd;text-decoration:none;">
-                  ${email}
-                </a>
-              </p>
-
-              <p style="margin:0 0 12px;">
-                <strong>Contact:</strong><br/>
-                ${phone || 'Not provided'}
-              </p>
-
-              <p style="margin:0 0 24px;">
-                <strong>Message:</strong><br/>
-                <span style="white-space:pre-wrap;">${message}</span>
-              </p>
-
-              <a href="mailto:${email}?subject=Re: Your Quote Request"
-                style="display:inline-block;background:#3a89dd;color:#ffffff;padding:12px 24px;border-radius:8px;text-decoration:none;">
-                Reply to ${name}
-              </a>
-
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background:#f8fafc;padding:24px 40px;border-radius:0 0 16px 16px;">
-              <div style="font-size:12px;color:#718096;">
-                Submitted on <strong>${submittedAt}</strong> (PHT)
-              </div>
-            </td>
-          </tr>
-
-        </table>
-      </td>
-    </tr>
-  </table>
-
-</body>
-</html>
-    `.trim()
-
+    // Email options
     const mailOptions = {
-      from: `"Unifix ICT Solutions Website" <${process.env.FROM_EMAIL}>`,
-      to: process.env.CONTACT_EMAIL,
+      from: `"Unifix ICT Solutions" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER, // send to yourself
       replyTo: email,
       subject: `New Quote Request from ${name}`,
       html: htmlBody,
     }
 
+    // Send the email
     await transporter.sendMail(mailOptions)
 
     return NextResponse.json(
@@ -156,7 +123,7 @@ export async function POST(request: NextRequest) {
     )
 
   } catch (error) {
-    console.error('Email sending error:', error)
+    console.error('EMAIL ERROR:', error)
     return NextResponse.json(
       { error: 'Failed to send email' },
       { status: 500 }
