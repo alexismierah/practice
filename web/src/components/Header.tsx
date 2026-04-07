@@ -457,7 +457,7 @@ export default function Header() {
                   <div className="hdr-dd-footer">
                     <span className="hdr-dd-footer-text">Not sure what you need? We can help.</span>
                     <Link href="/services" className="hdr-dd-viewall" onClick={() => setServicesOpen(false)}>
-                      View all services →
+                      View all services
                     </Link>
                   </div>
 
