@@ -394,7 +394,7 @@ export default function ServicesPage() {
               </div>
               <h1>Our <em>Services</em></h1>
               <p className="sp-hero-sub">
-                Professional technology solutions for modern businesses from infrastructure to intelligent systems.
+                Technology solutions for businesses from infrastructure to intelligent systems.
               </p>
             </div>
             <div className="sp-hero-stat">
