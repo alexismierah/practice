@@ -4,70 +4,40 @@ export const metadata = {
 
 const features = [
   {
-    title: "Horizontal & Backbone Cabling",
-    desc: "Cat6A, Cat6, and fiber optic installation from telecoms room to every workstation and access point.",
+    title: "UPS Supply",
+    desc: "Provision and setup of UPS units sized according to your load requirements, ensuring proper backup support for computers, servers, and essential systems.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="9" width="18" height="4" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="6" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
-        <line x1="6" y1="9" x2="6" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="9" x2="16" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="6" y1="13" x2="6" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="13" x2="16" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 14L14 26H20V34L28 22H22V14Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="8" y="8" width="32" height="32" rx="2" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
       </svg>
     ),
   },
   {
-    title: "Patch Panel & Cabinet Setup",
-    desc: "Neat, labelled patch panels, managed cable trays, and rack installations for clean, serviceable comms rooms.",
+    title: "Power Backup & Protection",
+    desc: "Delivers instant backup power during outages while protecting devices from voltage fluctuations, surges, and power disturbances.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="6" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="7.5" y1="6" x2="7.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="11" y1="6" x2="11" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="14.5" y1="6" x2="14.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <circle cx="11" cy="18.5" r="1" fill="currentColor"/>
+      <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="14" width="32" height="22" rx="2" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M16 14V8H32V14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="14" y1="21" x2="34" y2="21" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Fiber Optic Networks",
-    desc: "Single-mode and multi-mode fiber splicing, termination, and OTDR-verified testing for high-speed links.",
+    title: "Maintenance & Battery Management",
+    desc: "Regular inspection, battery testing, and replacement to ensure the UPS system remains reliable and ready when needed.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="11" cy="11" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <line x1="11" y1="3" x2="11" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="11" y1="14" x2="11" y2="19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="3" y1="11" x2="8" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="14" y1="11" x2="19" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
+     <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 14V34C30 35.1 29.1 36 28 36H6C4.9 36 4 35.1 4 34V14C4 12.9 4.9 12 6 12H28C29.1 12 30 12.9 30 14Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+      <path d="M30 18H34V28H30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="36" cy="34" r="5" stroke="currentColor" strokeWidth="3"/>
+      <circle cx="36" cy="34" r="1.5" fill="currentColor"/>
+    </svg>
     ),
   },
-  {
-    title: "Testing & Certification",
-    desc: "Every link tested with Fluke DSX-600 and certified to TIA-568 standards. Full documentation provided.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>
-    ),
-  },
-  {
-    title: "As-Built Documentation",
-    desc: "Detailed floor plans, port schedules, and cable records — so your team can manage the network for years to come.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="5" y="3" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="15" x2="11" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
+
 ]
 
 export default function UPSPage() {
@@ -297,7 +267,7 @@ export default function UPSPage() {
 
             <h1 className="sc-hero-h1">Uninterruptible Power Supply</h1>
             <p className="sc-hero-p">
-              Reliable backup power solutions — designed to keep your systems running, built to last.
+              Ensure continuous power and protect critical systems from outages with dependable backup you can trust.
             </p>
           </div>
         </section>
@@ -309,13 +279,10 @@ export default function UPSPage() {
             <div className="sc-about-left">
               <span className="sc-section-tag">What we do</span>
               <h2 className="sc-about-h2">
-                The backbone of your network, <em>done right</em>
+                Power that never <em>stops</em>
               </h2>
               <p className="sc-about-p">
-                We design and install scalable structured cabling systems for commercial, industrial,
-                and enterprise environments. From Cat6A copper runs to fiber optic backbones, every
-                cable we lay is certified, documented, and future-proofed for the demands of
-                tomorrow&apos;s technology.
+                We supply, install, and maintain UPS systems for residential, commercial, and industrial applications. Our solutions provide backup power and protection for critical equipment, ensuring continuous operation during power interruptions.
               </p>
               <div className="sc-rule" />
             </div>
