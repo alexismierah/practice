@@ -7,106 +7,75 @@ export default function Footer() {
   const [submitted, setSubmitted] = useState(false)
   const [focused, setFocused] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [emailError, setEmailError] = useState("")
-  const [phoneError, setPhoneError] = useState("")
+  const [errors, setErrors] = useState<{ name?: string; email?: string; phone?: string; message?: string }>({})
 
-  // Email validation function
-  const isValidEmail = (email: string): boolean => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    return emailRegex.test(email)
-  }
-
-  // Phone validation function
-  const isValidPhone = (phone: string): boolean => {
-    const phoneRegex = /^[0-9+\-\s()]+$/
-    return phoneRegex.test(phone) || phone === ""
-  }
+  const isValidEmail = (email: string): boolean => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  const isValidPhone = (phone: string): boolean => /^[0-9+\-\s()]+$/.test(phone) || phone === ""
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
+    const filtered = name === "phone" ? value.replace(/[^0-9+\-\s()]/g, "") : value
+    setFormData(prev => ({ ...prev, [name]: filtered }))
+    setErrors(prev => ({ ...prev, [name]: undefined }))
+  }
 
-    // For phone field, only allow numbers and common phone characters
-    if (name === 'phone') {
-      const filteredValue = value.replace(/[^0-9+\-\s()]/g, '')
-      setFormData({ ...formData, [name]: filteredValue })
-    } else {
-      setFormData({ ...formData, [name]: value })
-    }
-
-    // Clear errors when user starts typing
-    if (name === 'email') {
-      setEmailError("")
-    }
-    if (name === 'phone') {
-      setPhoneError("")
-    }
+  const validate = () => {
+    const newErrors: typeof errors = {}
+    if (!formData.name.trim()) newErrors.name = "Please enter your name"
+    if (!formData.email.trim()) newErrors.email = "Please enter your email address"
+    else if (!isValidEmail(formData.email)) newErrors.email = "Please enter a valid email address"
+    if (formData.phone && !isValidPhone(formData.phone)) newErrors.phone = "Please enter a valid phone number"
+    if (!formData.message.trim()) newErrors.message = "Please enter your message"
+    return newErrors
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-
-    // Validate required fields
-    if (!formData.name.trim()) {
-      alert("Please enter your name")
-      return
-    }
-
-    if (!formData.email.trim()) {
-      alert("Please enter your email address")
-      return
-    }
-
-    if (!formData.message.trim()) {
-      alert("Please enter your message")
-      return
-    }
-
-    // Validate email format
-    if (!isValidEmail(formData.email)) {
-      setEmailError("Please enter a valid email address")
-      return
-    }
-
-    // Validate phone format (if provided)
-    if (formData.phone && !isValidPhone(formData.phone)) {
-      setPhoneError("Please enter a valid phone number (numbers only)")
+    const newErrors = validate()
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
       return
     }
 
     setLoading(true)
-
     try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       })
 
       if (response.ok) {
         setSubmitted(true)
         setFormData({ name: "", email: "", phone: "", message: "" })
-        setEmailError("")
-        setPhoneError("")
-        setTimeout(() => {
-          setSubmitted(false)
-        }, 3000)
+        setErrors({})
+        setTimeout(() => setSubmitted(false), 3000)
       } else {
         const errorData = await response.json()
-        setEmailError(errorData.error || 'Failed to send message')
+        setErrors({ email: errorData.error || "Failed to send message" })
       }
-    } catch (error) {
-      console.error('Error sending email:', error)
-      setEmailError('Failed to send message. Please try again later.')
+    } catch {
+      setErrors({ email: "Failed to send message. Please try again later." })
     } finally {
       setLoading(false)
     }
   }
 
-  const links = ["Home", "About", "Services", "Contact"]
+  const links = [
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Services", href: "#services" },
+    { label: "Contact", href: "#contact" },
+  ]
+
   const socialLinks = [
     { label: "Facebook", href: "https://www.facebook.com/unifixictsolutions", icon: "f" },
+  ]
+
+  const fields = [
+    { key: "name" as const, label: "Full Name", type: "text", placeholder: "Enter your name", required: true },
+    { key: "email" as const, label: "Email Address", type: "email", placeholder: "Enter your email", required: true },
+    { key: "phone" as const, label: "Contact Number", type: "tel", placeholder: "Enter your contact number", required: false },
   ]
 
   return (
@@ -144,9 +113,7 @@ export default function Footer() {
           .footer-grid { grid-template-columns: 1fr; gap: 48px; padding: 48px 24px 40px; }
         }
 
-        /* ─── Brand ─── */
         .brand-eyebrow {
-          font-family: 'Instrument Sans', sans-serif;
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 0.2em;
@@ -156,17 +123,12 @@ export default function Footer() {
         }
 
         .brand-name {
-          font-family: 'Instrument Sans', sans-serif;
           font-size: 28px;
           font-weight: 800;
           letter-spacing: -0.03em;
           color: #ffffff;
           line-height: 1;
           margin-bottom: 16px;
-        }
-
-        .brand-name span {
-          color: #3a89dd;
         }
 
         .brand-desc {
@@ -178,10 +140,7 @@ export default function Footer() {
           margin-bottom: 28px;
         }
 
-        .social-row {
-          display: flex;
-          gap: 12px;
-        }
+        .social-row { display: flex; gap: 12px; }
 
         .social-dot {
           width: 36px;
@@ -196,12 +155,11 @@ export default function Footer() {
           color: #7a92ad;
           font-size: 13px;
           font-weight: 600;
+          text-decoration: none;
         }
         .social-dot:hover { border-color: #3a89dd; background: rgba(58,137,221,0.12); color: #3a89dd; }
 
-        /* ─── Links ─── */
         .col-label {
-          font-family: 'Instrument Sans', sans-serif;
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 0.15em;
@@ -210,14 +168,7 @@ export default function Footer() {
           margin-bottom: 24px;
         }
 
-        .nav-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 2px;
-        }
+        .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
 
         .nav-item {
           position: relative;
@@ -231,6 +182,7 @@ export default function Footer() {
           padding: 6px 0;
           transition: color 0.2s;
           width: fit-content;
+          text-decoration: none;
         }
 
         .nav-item::before {
@@ -245,16 +197,9 @@ export default function Footer() {
         .nav-item:hover { color: #e8e6e1; }
         .nav-item:hover::before { width: 16px; }
 
-        /* ─── Form ─── */
-        .form-wrap {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-        }
+        .form-wrap { display: flex; flex-direction: column; gap: 12px; }
 
-        .field-wrap {
-          position: relative;
-        }
+        .field-wrap { position: relative; }
 
         .field-label {
           display: block;
@@ -286,20 +231,12 @@ export default function Footer() {
         }
 
         .field-input::placeholder { color: #5a7080; }
-
-        .field-input:focus {
-          border-color: rgba(58,137,221,0.6);
-          background: rgba(58,137,221,0.06);
-        }
+        .field-input:focus { border-color: rgba(58,137,221,0.6); background: rgba(58,137,221,0.06); }
+        .field-input.has-error { border-color: rgba(239,68,68,0.6); }
 
         textarea.field-input { resize: none; }
 
-        .field-error {
-          color: #ef4444;
-          font-size: 12px;
-          margin-top: 4px;
-          font-weight: 500;
-        }
+        .field-error { color: #ef4444; font-size: 12px; margin-top: 4px; font-weight: 500; }
 
         .submit-btn {
           margin-top: 4px;
@@ -316,17 +253,13 @@ export default function Footer() {
           color: #fff;
           cursor: pointer;
           transition: background 0.2s, transform 0.15s;
-          position: relative;
-          overflow: hidden;
         }
 
-        .submit-btn:hover { background: #2a78cc; transform: translateY(-1px); }
-        .submit-btn:active { transform: translateY(0); }
+        .submit-btn:hover:not(:disabled) { background: #2a78cc; transform: translateY(-1px); }
+        .submit-btn:active:not(:disabled) { transform: translateY(0); }
         .submit-btn.success { background: #1a9e6e; }
         .submit-btn:disabled { cursor: not-allowed; opacity: 0.7; }
-        .submit-btn.loading { background: #2a78cc; }
 
-        /* ─── Divider ─── */
         .footer-divider {
           max-width: 1200px;
           margin: 0 auto;
@@ -334,7 +267,6 @@ export default function Footer() {
           background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent);
         }
 
-        /* ─── Bottom bar ─── */
         .footer-bottom {
           max-width: 1200px;
           margin: 0 auto;
@@ -349,22 +281,7 @@ export default function Footer() {
           .footer-bottom { flex-direction: column; text-align: center; padding: 20px 24px; }
         }
 
-        .footer-copy {
-          font-size: 12px;
-          font-weight: 300;
-          color: #5a7080;
-          letter-spacing: 0.02em;
-        }
-
-        .footer-tagline {
-          font-size: 11px;
-          font-weight: 400;
-          color: #4a6070;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-        }
-
-        .footer-tagline span { color: #3a89dd; opacity: 0.7; }
+        .footer-copy { font-size: 12px; font-weight: 300; color: #5a7080; letter-spacing: 0.02em; }
       `}</style>
 
       <footer id="footer" className="footer-root">
@@ -373,37 +290,28 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <p className="brand-eyebrow">Est. 2014</p>
-            <h2 className="brand-name">Unifix ICT Solutions<span></span></h2>
+            <h2 className="brand-name">Unifix ICT Solutions</h2>
+            <p className="brand-desc">Professional tech solutions crafted to help your business thrive.</p>
             <p className="brand-desc">
-              Professional tech solutions crafted to help your business thrive.
+              hello@unifixictsolutions.com<br />(02) 8294 0531<br />+63 936 496 8421
             </p>
-
-            <p className="brand-desc">
-              hello@unifixictsolutions.com <br />(02) 8294 0531 <br />+63 936 496 8421
-            </p>
-
             <div className="social-row">
               {socialLinks.map(({ label, href, icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="social-dot"
-                  aria-label={label}
-                >
+                <a key={label} href={href} target="_blank" rel="noreferrer" className="social-dot" aria-label={label}>
                   {icon}
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links — now actual anchor tags */}
           <div>
             <p className="col-label">Navigation</p>
             <ul className="nav-list">
-              {links.map(link => (
-                <li key={link} className="nav-item">{link}</li>
+              {links.map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} className="nav-item">{label}</a>
+                </li>
               ))}
             </ul>
           </div>
@@ -412,39 +320,26 @@ export default function Footer() {
           <div>
             <p className="col-label">Request a Quote</p>
             <div className="form-wrap">
-              {(["name", "email", "phone"] as const).map(field => (
-                <div className="field-wrap" key={field}>
-                  <label className={`field-label ${focused === field ? "active" : ""}`}>
-                    {field === "name" ? "Full Name" :
-                     field === "email" ? "Email Address" :
-                     "Contact Number"}
-                  </label>
+              {fields.map(({ key, label, type, placeholder, required }) => (
+                <div className="field-wrap" key={key}>
+                  <label className={`field-label ${focused === key ? "active" : ""}`}>{label}</label>
                   <input
-                    type={field === "email" ? "email" :
-                          field === "phone" ? "tel" : "text"}
-                    name={field}
-                    value={formData[field]}
+                    type={type}
+                    name={key}
+                    value={formData[key]}
                     onChange={handleChange}
-                    onFocus={() => setFocused(field)}
+                    onFocus={() => setFocused(key)}
                     onBlur={() => setFocused(null)}
-                    placeholder={field === "name" ? "Enter your name" :
-                                field === "email" ? "Enter your email" :
-                                "Enter your contact number"}
-                    required={field !== "phone"}
-                    className="field-input"
+                    placeholder={placeholder}
+                    required={required}
+                    className={`field-input ${errors[key] ? "has-error" : ""}`}
                   />
-                  {field === "email" && emailError && (
-                    <div className="field-error">{emailError}</div>
-                  )}
-                  {field === "phone" && phoneError && (
-                    <div className="field-error">{phoneError}</div>
-                  )}
+                  {errors[key] && <div className="field-error">{errors[key]}</div>}
                 </div>
               ))}
+
               <div className="field-wrap">
-                <label className={`field-label ${focused === "message" ? "active" : ""}`}>
-                  Your Request
-                </label>
+                <label className={`field-label ${focused === "message" ? "active" : ""}`}>Your Request</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -454,13 +349,15 @@ export default function Footer() {
                   placeholder="Tell us what you need..."
                   required
                   rows={3}
-                  className="field-input"
+                  className={`field-input ${errors.message ? "has-error" : ""}`}
                 />
+                {errors.message && <div className="field-error">{errors.message}</div>}
               </div>
+
               <button
                 onClick={handleSubmit}
                 disabled={loading || submitted}
-                className={`submit-btn ${submitted ? "success" : ""} ${loading ? "loading" : ""}`}
+                className={`submit-btn ${submitted ? "success" : ""}`}
               >
                 {loading ? "Sending..." : submitted ? "✓ Request Sent" : "Submit Request"}
               </button>
