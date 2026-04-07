@@ -70,9 +70,9 @@ export default function Header() {
           z-index: 100;
           font-family: 'Outfit', sans-serif;
 
-          /* Layered background: subtle grid + white */
+          /* Solid white background with subtle grid */
           background:
-            linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)),
+            linear-gradient(rgba(255,255,255,1), rgba(255,255,255,1)),
             repeating-linear-gradient(
               90deg,
               transparent,
