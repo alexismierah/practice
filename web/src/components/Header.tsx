@@ -22,6 +22,7 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false)
   const [mobileOpen, setMobileOpen]     = useState(false)
   const [activeCategory, setActiveCategory] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   const categories = [...new Set(serviceLinks.map(s => s.category))]
@@ -37,6 +38,12 @@ export default function Header() {
     }
     document.addEventListener("mousedown", handler)
     return () => document.removeEventListener("mousedown", handler)
+  }, [])
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   return (
@@ -56,21 +63,43 @@ export default function Header() {
           --border:    rgba(13,17,23,0.08);
         }
 
+        /* ── Header shell ── */
         .hdr {
           position: fixed;
           top: 0; left: 0; right: 0;
           z-index: 100;
           font-family: 'Outfit', sans-serif;
-          background: #fff;
-          /* Remove border-bottom when open so header and dropdown merge */
+
+          /* Layered background: subtle grid + white */
+          background:
+            linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)),
+            repeating-linear-gradient(
+              90deg,
+              transparent,
+              transparent 39px,
+              rgba(58,137,221,0.055) 39px,
+              rgba(58,137,221,0.055) 40px
+            ),
+            repeating-linear-gradient(
+              0deg,
+              transparent,
+              transparent 39px,
+              rgba(58,137,221,0.055) 39px,
+              rgba(58,137,221,0.055) 40px
+            );
           border-bottom: 1px solid var(--border);
-          box-shadow: 0 1px 16px rgba(13,17,23,0.06);
-          transition: box-shadow 0.2s;
+
+          /* Lifted shadow on scroll */
+          transition: background 0.3s;
+        }
+        .hdr.scrolled {
         }
         .hdr.menu-open {
           border-bottom-color: transparent;
           box-shadow: none;
         }
+
+
 
         .hdr-inner {
           max-width: 1200px;
@@ -83,19 +112,28 @@ export default function Header() {
           gap: 1.5rem;
         }
 
+        /* ── Logo ── */
         .hdr-logo {
           text-decoration: none;
           display: flex;
           align-items: center;
           flex-shrink: 0;
+          position: relative;
         }
+
+
+
         .hdr-logo-image {
           display: block;
           height: 68px;
           width: auto;
           max-width: 380px;
+          /* Slight drop-shadow for dimension */
+          filter: drop-shadow(0 1px 3px rgba(13,17,23,0.10));
         }
 
+
+        /* ── Nav ── */
         .hdr-nav {
           display: flex;
           align-items: center;
@@ -171,13 +209,12 @@ export default function Header() {
         }
         .hdr-services-btn.open .hdr-chevron { transform: rotate(180deg); opacity: 0.8; }
 
-        /* ── Mega dropdown — seamlessly attached to header ── */
+        /* ── Mega dropdown ── */
         .hdr-dropdown {
           position: fixed;
           top: 70px;
           left: 0; right: 0;
           background: #fff;
-          /* Top border matches header bottom so they merge visually */
           border-top: 1px solid var(--border);
           border-bottom: 1px solid var(--border);
           box-shadow: 0 16px 48px rgba(13,17,23,0.12);
@@ -199,7 +236,6 @@ export default function Header() {
           padding: 0 2rem;
         }
 
-        /* Filter row */
         .hdr-dd-cats {
           display: flex;
           align-items: center;
@@ -236,7 +272,6 @@ export default function Header() {
           border-color: var(--blue);
         }
 
-        /* Service grid — more rows, more breathing room */
         .hdr-dd-grid {
           display: grid;
           grid-template-columns: repeat(6, 1fr);
@@ -270,7 +305,6 @@ export default function Header() {
           line-height: 1.3;
         }
 
-        /* Footer strip */
         .hdr-dd-footer {
           border-top: 1px solid var(--border);
           padding: 0.75rem 0;
@@ -297,34 +331,47 @@ export default function Header() {
         }
         .hdr-dd-viewall:hover { background: #c8e2f8; gap: 7px; }
 
-        /* Right / CTA */
+        /* ── Right / CTA ── */
         .hdr-right { display: flex; align-items: center; gap: 0.5rem; }
+
+        /* Divider between nav and CTA */
+        .hdr-divider {
+          width: 1px;
+          height: 24px;
+          background: var(--border);
+          margin: 0 6px;
+          flex-shrink: 0;
+        }
 
         .hdr-cta {
           display: inline-flex;
           align-items: center;
           gap: 6px;
-          background: var(--blue);
+          background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
           color: #fff;
-          padding: 9px 18px;
+          padding: 9px 20px;
           border-radius: 9px;
           font-family: 'Outfit', sans-serif;
           font-size: 0.85rem;
           font-weight: 500;
           text-decoration: none;
           letter-spacing: 0.02em;
-          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+          transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
           white-space: nowrap;
-          box-shadow: 0 2px 8px rgba(58,137,221,0.3);
+          box-shadow:
+            0 2px 8px rgba(58,137,221,0.35),
+            inset 0 1px 0 rgba(255,255,255,0.18);
         }
         .hdr-cta:hover {
-          background: var(--blue-dark);
+          opacity: 0.92;
           transform: translateY(-1px);
-          box-shadow: 0 4px 16px rgba(58,137,221,0.4);
+          box-shadow: 0 6px 20px rgba(58,137,221,0.42), inset 0 1px 0 rgba(255,255,255,0.18);
         }
         .hdr-cta:active { transform: translateY(0); }
 
-        /* Mobile toggle */
+
+
+        /* ── Mobile toggle ── */
         .hdr-mobile-btn {
           display: none;
           background: none;
@@ -337,7 +384,7 @@ export default function Header() {
         }
         .hdr-mobile-btn:hover { background: rgba(13,17,23,0.06); }
 
-        /* Mobile menu */
+        /* ── Mobile menu ── */
         .hdr-mobile {
           display: none;
           flex-direction: column;
@@ -373,7 +420,7 @@ export default function Header() {
 
         .hdr-mobile-cta {
           margin-top: 1rem;
-          background: var(--blue);
+          background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
           color: #fff;
           text-align: center;
           padding: 13px;
@@ -381,16 +428,17 @@ export default function Header() {
           font-size: 0.9rem;
           font-weight: 500;
           text-decoration: none;
-          transition: background 0.2s;
+          transition: opacity 0.2s;
           font-family: 'Outfit', sans-serif;
+          box-shadow: 0 2px 12px rgba(58,137,221,0.30);
         }
-        .hdr-mobile-cta:hover { background: var(--blue-dark); }
+        .hdr-mobile-cta:hover { opacity: 0.88; }
 
         @media (max-width: 1024px) {
           .hdr-dd-grid { grid-template-columns: repeat(4, 1fr); }
         }
         @media (max-width: 900px) {
-          .hdr-nav { display: none; }
+          .hdr-nav, .hdr-divider { display: none; }
           .hdr-mobile-btn { display: flex; }
         }
         @media (max-width: 480px) {
@@ -398,7 +446,7 @@ export default function Header() {
         }
       `}</style>
 
-      <header className={`hdr${servicesOpen ? " menu-open" : ""}`}>
+      <header className={`hdr${servicesOpen ? " menu-open" : ""}${scrolled ? " scrolled" : ""}`}>
         <div className="hdr-inner">
 
           <Link href="/" className="hdr-logo">
@@ -423,7 +471,6 @@ export default function Header() {
 
               <div className={`hdr-dropdown${servicesOpen ? " open" : ""}`} role="menu">
                 <div className="hdr-dd-inner">
-
                   <div className="hdr-dd-cats">
                     <span className="hdr-dd-cats-label">Filter:</span>
                     <button
@@ -460,14 +507,24 @@ export default function Header() {
                       View all services
                     </Link>
                   </div>
-
                 </div>
               </div>
             </div>
           </nav>
 
           <div className="hdr-right">
-            <Link href="#footer" className="hdr-cta">Request a Quote</Link>
+            <span className="hdr-divider" />
+            <a
+              className="hdr-cta"
+              onClick={(e) => {
+                e.preventDefault()
+                const el = document.getElementById("footer")
+                if (el) el.scrollIntoView({ behavior: "smooth" })
+              }}
+              href="#footer"
+            >
+              Request a Quote
+            </a>
             <button
               className="hdr-mobile-btn"
               onClick={() => setMobileOpen(v => !v)}
@@ -495,6 +552,18 @@ export default function Header() {
               {label}
             </Link>
           ))}
+          <a
+            className="hdr-mobile-cta"
+            onClick={(e) => {
+              e.preventDefault()
+              setMobileOpen(false)
+              const el = document.getElementById("footer")
+              if (el) el.scrollIntoView({ behavior: "smooth" })
+            }}
+            href="#footer"
+          >
+            Request a Quote
+          </a>
         </div>
       </header>
     </>
