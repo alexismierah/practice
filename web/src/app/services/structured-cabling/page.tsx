@@ -1,11 +1,11 @@
 export const metadata = {
-  title: "Structured & Network Cabling",
+  title: "Structured Network Cabling",
 }
 
 const features = [
   {
-    title: "Horizontal & Backbone Cabling",
-    desc: "Cat6A, Cat6, and fiber optic installation from telecoms room to every workstation and access point.",
+    title: "Structured Network Cabling",
+    desc: "Design and implementation of a complete cabling system that integrates data, voice, and security devices — including computers, IP phones, CCTV, and access control systems — into one reliable infrastructure.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <rect x="2" y="9" width="18" height="4" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -21,7 +21,7 @@ const features = [
   },
   {
     title: "Patch Panel & Cabinet Setup",
-    desc: "Neat, labelled patch panels, managed cable trays, and rack installations for clean, serviceable comms rooms.",
+    desc: "Neat, labelled patch panels, managed cable trays, and rack installations to ensure a clean, efficient, and easily maintainable network environment.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <rect x="3" y="6" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -33,8 +33,8 @@ const features = [
     ),
   },
   {
-    title: "Fiber Optic Networks",
-    desc: "Single-mode and multi-mode fiber splicing, termination, and OTDR-verified testing for high-speed links.",
+    title: "High Quality Cabling Installation",
+    desc: "Deployment of premium copper and fiber optic cabling to deliver stable, high-speed connectivity for all network requirements.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
@@ -48,23 +48,11 @@ const features = [
   },
   {
     title: "Testing & Certification",
-    desc: "Every link tested with Fluke DSX-600 and certified to TIA-568 standards. Full documentation provided.",
+    desc: "Every link tested with Fluke Tester to validate continuity, signal integrity, and proper configuration, ensuring optimal performance and long-term reliability.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
         <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-      </svg>
-    ),
-  },
-  {
-    title: "As-Built Documentation",
-    desc: "Detailed floor plans, port schedules, and cable records — so your team can manage the network for years to come.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="5" y="3" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="15" x2="11" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -304,7 +292,7 @@ export default function StructuredCablingPage() {
               </svg>
             </div>
 
-            <h1 className="sc-hero-h1">Structured & Network Cabling</h1>
+            <h1 className="sc-hero-h1">Structured Network Cabling</h1>
             <p className="sc-hero-p">
               End-to-end network infrastructure — designed to perform, built to last.
             </p>
