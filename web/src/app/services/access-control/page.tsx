@@ -128,8 +128,8 @@ export default function AccessControlSystemPage() {
           width: 80px;
           height: 80px;
           border-radius: 20px;
-          background: rgba(58,137,221,0.12);
-          border: 1px solid rgba(58,137,221,0.25);
+          background: transparent;
+          border: transparent;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -289,7 +289,7 @@ export default function AccessControlSystemPage() {
           <div className="sc-hero-inner">
 
             <div className="sc-hero-icon-wrap">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0"
 >               <path d="M17 9V7c0-2.76-2.24-5-5-5S7 4.24 7 7v2c-1.66 0-3 1.34-3 3v7c0 1.66 1.34 3 3 3h10c1.66 0 3-1.34 3-3v-7c0-1.66-1.34-3-3-3zM9 7c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V7z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
                 <path d="M13.1 15.5v1.5c0 .55-.45 1-1 1s-1-.45-1-1v-1.5c-.58-.58-.7-1.53-.14-2.14.58-.61 1.53-.72 2.14-.14.62.58.72 1.52.14 2.14z" fill="currentColor"/>
               </svg>
