@@ -9,10 +9,10 @@ const features = [
     icon: (
       
       <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M4 24C12 12 36 12 44 24C36 36 12 36 4 24Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="24" cy="24" r="8" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 24C12 12 36 12 44 24C36 36 12 36 4 24Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="2"/>
         <circle cx="24" cy="24" r="4" fill="currentColor"/>
-        <path d="M24 16v-4M24 32v4M16 24h-4M32 24h4M17 17l-2-2M31 31l2 2M17 31l-2 2M31 17l2-2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M24 16v-4M24 32v4M16 24h-4M32 24h4M17 17l-2-2M31 31l2 2M17 31l-2 2M31 17l2-2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
       </svg>
     ),
   },
@@ -21,8 +21,8 @@ const features = [
     desc: "Installation of RFID and card-based entry systems for controlled and trackable access. Allows easy assignment or removal of access with entry logs for monitoring.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="12" width="36" height="24" rx="4" stroke="currentColor" stroke-width="2"/>
-        <line x1="14" y1="24" x2="34" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <rect x="6" y="12" width="36" height="24" rx="4" stroke="currentColor" strokeWidth="2"/>
+        <line x1="14" y1="24" x2="34" y2="24" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
         <circle cx="36" cy="24" r="2" fill="currentColor"/>
       </svg>
     ),
@@ -32,12 +32,12 @@ const features = [
     desc: "Installation of automated boom barriers for vehicle access control in parking areas, subdivisions, and secured premises. Can be integrated with card access, remotes, or license plate recognition systems.",
     icon: (
       <svg width="27" height="27" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="10" y="18" width="28" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
-        <path d="M12 18L16 12H32L36 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="10" y="18" width="28" height="14" rx="2" stroke="currentColor" strokeWidth="2"/>
+        <path d="M12 18L16 12H32L36 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         <circle cx="12" cy="25" r="2" fill="currentColor"/>
         <circle cx="36" cy="25" r="2" fill="currentColor"/>
-        <circle cx="16" cy="32" r="3" stroke="currentColor" stroke-width="2"/>
-        <circle cx="32" cy="32" r="3" stroke="currentColor" stroke-width="2"/>
+        <circle cx="16" cy="32" r="3" stroke="currentColor" strokeWidth="2"/>
+        <circle cx="32" cy="32" r="3" stroke="currentColor" strokeWidth="2"/>
       </svg>
     ),
   },
@@ -46,10 +46,10 @@ const features = [
     desc: "Setup of integrated time-in and time-out monitoring using biometric or card-based systems. Captures employee attendance data in real time, with logs for tracking, reporting, and payroll support.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="6" y="10" width="36" height="32" rx="4" stroke="currentColor" stroke-width="2"/>
-        <line x1="6" y1="18" x2="42" y2="18" stroke="currentColor" stroke-width="2"/>
-        <circle cx="24" cy="28" r="6" stroke="currentColor" stroke-width="2"/>
-        <path d="M21 28l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="6" y="10" width="36" height="32" rx="4" stroke="currentColor" strokeWidth="2"/>
+        <line x1="6" y1="18" x2="42" y2="18" stroke="currentColor" strokeWidth="2"/>
+        <circle cx="24" cy="28" r="6" stroke="currentColor" strokeWidth="2"/>
+        <path d="M21 28l2 2 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
   },
