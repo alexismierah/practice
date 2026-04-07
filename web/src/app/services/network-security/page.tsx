@@ -4,70 +4,53 @@ export const metadata = {
 
 const features = [
   {
-    title: "Horizontal & Backbone Cabling",
-    desc: "Cat6A, Cat6, and fiber optic installation from telecoms room to every workstation and access point.",
+    title: "Device Supply",
+    desc: "Provision of routers, switches, access points, and related network equipment based on your requirements. We supply reliable, compatible devices ready for deployment.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="2" y="9" width="18" height="4" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="6" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="11" cy="11" r="1.2" fill="currentColor"/>
-        <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
-        <line x1="6" y1="9" x2="6" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="9" x2="16" y2="5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="6" y1="13" x2="6" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="16" y1="13" x2="16" y2="17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="27" height="27" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 28H20L24 18H16L12 28Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <rect x="8" y="28" width="20" height="10" rx="2" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <circle cx="12" cy="40" r="3" stroke="currentColor" strokeWidth="3"/>
+        <circle cx="24" cy="40" r="3" stroke="currentColor" strokeWidth="3"/>
+        <line x1="32" y1="12" x2="32" y2="38" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="32" y1="34" x2="40" y2="34" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Patch Panel & Cabinet Setup",
-    desc: "Neat, labelled patch panels, managed cable trays, and rack installations for clean, serviceable comms rooms.",
+    title: "Installation & Configuration",
+    desc: "Setup and configuration of network devices, including IP addressing, VLANs, Wi-Fi settings, and bandwidth management to ensure secure and optimized performance.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="3" y="6" width="16" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="7.5" y1="6" x2="7.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="11" y1="6" x2="11" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <line x1="14.5" y1="6" x2="14.5" y2="16" stroke="currentColor" strokeWidth="1" opacity="0.5"/>
-        <circle cx="11" cy="18.5" r="1" fill="currentColor"/>
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 10H30L34 16V26L30 32H14V10Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M20 32V42H10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="34" y1="21" x2="42" y2="21" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="14" y1="21" x2="10" y2="21" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Fiber Optic Networks",
-    desc: "Single-mode and multi-mode fiber splicing, termination, and OTDR-verified testing for high-speed links.",
+    title: "Security Setup",
+    desc: "Implementation of firewall settings, user access control, and basic network protection to safeguard your system from unauthorized access and threats.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <circle cx="11" cy="11" r="8" stroke="currentColor" strokeWidth="1.5"/>
-        <circle cx="11" cy="11" r="3" stroke="currentColor" strokeWidth="1.5"/>
-        <line x1="11" y1="3" x2="11" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="11" y1="14" x2="11" y2="19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="3" y1="11" x2="8" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="14" y1="11" x2="19" y2="11" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4L6 10V22C6 33 13.5 41 24 44C34.5 41 42 33 42 22V10L24 4Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="24" y1="10" x2="24" y2="38" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     ),
   },
   {
-    title: "Testing & Certification",
-    desc: "Every link tested with Fluke DSX-600 and certified to TIA-568 standards. Full documentation provided.",
+    title: "Maintenance & Support",
+    desc: "Ongoing maintenance, troubleshooting, and upgrades to keep your network stable, secure, and up to date.",
     icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M34.5 13.5C37.5 16.5 37.5 21.5 34.5 24.5L30 29L19 18L23.5 13.5C26.5 10.5 31.5 10.5 34.5 13.5Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M24 13L28 17M15 22L12 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <path d="M19 18L8 29C6 31 6 34 8 36C10 38 13 38 15 36L26 25" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <circle cx="11.5" cy="32.5" r="1.5" fill="currentColor"/>
       </svg>
     ),
-  },
-  {
-    title: "As-Built Documentation",
-    desc: "Detailed floor plans, port schedules, and cable records — so your team can manage the network for years to come.",
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-        <rect x="5" y="3" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <line x1="8" y1="8" x2="14" y2="8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="11.5" x2="14" y2="11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="8" y1="15" x2="11" y2="15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-      </svg>
-    ),
-  },
+  },  
 ]
 
 export default function NetworkSecurityPage() {
@@ -297,8 +280,7 @@ export default function NetworkSecurityPage() {
 
             <h1 className="sc-hero-h1">Network and Security</h1>
             <p className="sc-hero-p">
-              End-to-end public address management solution — designed to optimize communication flow, built to last.
-            </p>
+              Build a strong and secure digital foundation with reliable connectivity and advanced protection for every system.            </p>
           </div>
         </section>
 
@@ -309,13 +291,10 @@ export default function NetworkSecurityPage() {
             <div className="sc-about-left">
               <span className="sc-section-tag">What we do</span>
               <h2 className="sc-about-h2">
-                The backbone of your network, <em>done right</em>
+               Reliable devices, <em>secured systems</em>
               </h2>
               <p className="sc-about-p">
-                We design and install scalable structured cabling systems for commercial, industrial,
-                and enterprise environments. From Cat6A copper runs to fiber optic backbones, every
-                cable we lay is certified, documented, and future-proofed for the demands of
-                tomorrow&apos;s technology.
+                We supply and install network and security devices for homes, offices, and commercial facilities. From routers and switches to complete network setups, our services ensure stable connectivity, secure access, and efficient data flow across your operations.
               </p>
               <div className="sc-rule" />
             </div>
