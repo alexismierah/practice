@@ -389,12 +389,12 @@ export default function ServicesPage() {
           <div className="sp-hero-inner">
             <div>
               <div className="sp-eyebrow">
-                <span className="sp-eyebrow-bar" />
-                What We Offer
+                <span/>
+              What We Offer
               </div>
               <h1>Our <em>Services</em></h1>
               <p className="sp-hero-sub">
-                Professional technology solutions for modern businesses — from infrastructure to intelligent systems.
+                Professional technology solutions for modern businesses from infrastructure to intelligent systems.
               </p>
             </div>
             <div className="sp-hero-stat">
