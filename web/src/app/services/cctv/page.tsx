@@ -15,7 +15,7 @@ const features = [
           <circle cx="24" cy="18" r="4" stroke="currentColor" strokeWidth="3"/>
           <circle cx="24" cy="18" r="1" fill="currentColor"/>
         </g>
-      </svg>
+    </svg>
     ),
   },
   {
@@ -46,12 +46,9 @@ const features = [
     title: "Recording & Storage Solutions",
     desc: "Secure storage of video footage with scheduled recording, continuous recording, or motion-triggered capture. Ensures easy playback for incident review, investigations, or compliance purposes.",
     icon: (
-      <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="14" cy="24" r="10" stroke="currentColor" strokeWidth="3"/>
-        <circle cx="34" cy="24" r="10" stroke="currentColor" strokeWidth="3"/>
-        <circle cx="14" cy="24" r="3" fill="currentColor"/>
-        <circle cx="34" cy="24" r="3" fill="currentColor"/>
-        <path d="M14 14H34M14 34H34" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <path d="M9 11l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+        <path d="M11 2.5a9.5 9.5 0 00-6.5 2.3A9.55 9.55 0 002 9c0 4.42 3.02 8.14 7.12 9.2a9.5 9.5 0 001.88.28C15.97 18.48 20 14.64 20 9c0-.82-.1-1.62-.3-2.38A9.5 9.5 0 0011 2.5z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
       </svg>
     ),
   },
