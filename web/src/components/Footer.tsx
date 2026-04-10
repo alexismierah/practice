@@ -292,7 +292,7 @@ export default function Footer() {
             <h2 className="brand-name">Unifix ICT Solutions</h2>
             <p className="brand-desc">Professional tech solutions crafted to help your business thrive.</p>
             <p className="brand-desc">
-              hello@unifixictsolutions.com<br />(02) 8294 0531<br />+63 936 496 8421
+              unifixictsolutions01@gmail.com<br />(02) 8294 0531<br />+63 936 496 8421
             </p>
             <div className="social-row">
               {socialLinks.map(({ label, href, icon }) => (
