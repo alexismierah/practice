@@ -49,9 +49,31 @@ const partners = [
 ]
 
 const stats = [
-  { n: "Reliable Technology" },
-  { n: "Safe & Secure" },
-  { n: "Innovative Solutions" },
+  {
+    label: "Reliable Technology",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Safe & Secure",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Innovative Solutions",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
+      </svg>
+    ),
+  },
 ]
 
 function PartnerLogo({ name, logo }: { name: string; logo: string }) {
@@ -142,19 +164,28 @@ export default function HomePage() {
         .btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); }
 
         /* ── STATS ── */
-        .stats { background: var(--blue); padding: 0 2.5rem; }
+        .stats { background: #1e3a5f; padding: 0 2.5rem; }
         .stats-inner {
           max-width: 1200px; margin: 0 auto;
           display: grid; grid-template-columns: repeat(3, 1fr);
         }
         .stat-item {
-          padding: 2rem 0; text-align: center;
-          border-right: 1px solid rgba(255,255,255,0.15);
+          padding: 24px 32px;
+          display: flex; align-items: center; justify-content: center; gap: 12px;
+          border-right: 1px solid rgba(255,255,255,0.1);
+          transition: background 0.2s;
         }
         .stat-item:last-child { border-right: none; }
+        .stat-item:hover { background: rgba(255,255,255,0.05); }
+        .stat-icon {
+          width: 36px; height: 36px; border-radius: 9px;
+          background: rgba(147,197,253,0.15);
+          display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .stat-icon svg { width: 18px; height: 18px; }
         .stat-n {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 1.5rem; font-weight: 400; color: #fff; line-height: 1;
+          font-size: 15px; font-weight: 500; color: #fff; letter-spacing: -0.01em;
         }
 
         /* ── ABOUT ── */
@@ -252,23 +283,16 @@ export default function HomePage() {
         .partner-logo-wrap {
           display: flex; align-items: center; justify-content: center;
           width: 150px; height: 64px; flex-shrink: 0;
-          opacity: 0.75;
-          transition: opacity 0.3s;
+          opacity: 0.75; transition: opacity 0.3s;
         }
         .partner-logo-wrap:hover { opacity: 1; }
-        .partner-logo-wrap img {
-          max-width: 120px; max-height: 44px;
-          object-fit: contain; display: block;
-        }
+        .partner-logo-wrap img { max-width: 120px; max-height: 44px; object-fit: contain; display: block; }
         .partner-text-badge {
-          display: none;
-          align-items: center; justify-content: center;
+          display: none; align-items: center; justify-content: center;
           font-family: 'Instrument Sans', sans-serif;
           font-size: 0.8125rem; font-weight: 600; color: var(--ink-2);
           letter-spacing: -0.01em; white-space: nowrap;
-          padding: 6px 14px;
-          border: 1.5px solid var(--border);
-          border-radius: 6px;
+          padding: 6px 14px; border: 1.5px solid var(--border); border-radius: 6px;
         }
 
         /* ── CTA ── */
@@ -315,8 +339,9 @@ export default function HomePage() {
         @media (max-width: 900px) {
           .about-inner, .cta-inner { grid-template-columns: 1fr; gap: 3rem; }
           .services-grid { grid-template-columns: 1fr; }
-          .stats-inner { grid-template-columns: repeat(1, 1fr); }
-          .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+          .stats-inner { grid-template-columns: 1fr; }
+          .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); justify-content: flex-start; }
+          .stat-item:last-child { border-bottom: none; }
           .services-head { flex-direction: column; align-items: flex-start; }
         }
       `}</style>
@@ -341,9 +366,10 @@ export default function HomePage() {
         {/* ── Stats ── */}
         <div className="stats">
           <div className="stats-inner">
-            {stats.map(({ n }) => (
-              <div className="stat-item" key={n}>
-                <div className="stat-n">{n}</div>
+            {stats.map(({ label, icon }) => (
+              <div className="stat-item" key={label}>
+                <div className="stat-icon">{icon}</div>
+                <div className="stat-n">{label}</div>
               </div>
             ))}
           </div>
