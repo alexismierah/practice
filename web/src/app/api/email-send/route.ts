@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
       from: `${senderDisplayName}<${fromEmail}>`,
       to: toEmail,
       replyTo: email || undefined,
-      subject: `New Quote Request from ${name || 'Unknown'}`,
+      subject: `New Quote Request`,
       html: htmlBody,
     })
 
