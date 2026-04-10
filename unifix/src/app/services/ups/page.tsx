@@ -1,0 +1,308 @@
+export const metadata = {
+  title: "UPS",
+}
+
+const features = [
+  {
+    title: "UPS Supply",
+    desc: "Provision and setup of UPS units sized according to your load requirements, ensuring proper backup support for computers, servers, and essential systems.",
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 14L14 26H20V34L28 22H22V14Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <rect x="8" y="8" width="32" height="32" rx="2" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Power Backup & Protection",
+    desc: "Delivers instant backup power during outages while protecting devices from voltage fluctuations, surges, and power disturbances.",
+    icon: (
+      <svg width="25" height="25" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="14" width="32" height="22" rx="2" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+        <path d="M16 14V8H32V14" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+        <line x1="14" y1="21" x2="34" y2="21" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+        <line x1="14" y1="28" x2="34" y2="28" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    title: "Maintenance & Battery Management",
+    desc: "Regular inspection, battery testing, and replacement to ensure the UPS system remains reliable and ready when needed.",
+    icon: (
+     <svg width="26" height="26" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M30 14V34C30 35.1 29.1 36 28 36H6C4.9 36 4 35.1 4 34V14C4 12.9 4.9 12 6 12H28C29.1 12 30 12.9 30 14Z" stroke="currentColor" strokeWidth="3" strokeLinejoin="round"/>
+      <path d="M30 18H34V28H30" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="36" cy="34" r="5" stroke="currentColor" strokeWidth="3"/>
+      <circle cx="36" cy="34" r="1.5" fill="currentColor"/>
+    </svg>
+    ),
+  },
+
+]
+
+export default function UPSPage() {
+  return (
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap');
+
+        :root {
+          --blue:    #3a89dd;
+          --blue-dk: #2263a8;
+          --blue-lt: #e8f3fd;
+          --ink:     #0d1117;
+          --ink-2:   #2d3748;
+          --ink-3:   #718096;
+          --rule:    rgba(13,17,23,0.08);
+        }
+
+        .sc-root {
+          font-family: 'Instrument Sans', sans-serif;
+          color: var(--ink-2);
+        }
+
+        /* ── Hero ── */
+        .sc-hero {
+          position: relative;
+          min-height: 48vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          background: #0d1117;
+          text-align: center;
+        }
+
+        .sc-hero-bg {
+          position: absolute;
+          inset: 0;
+          background-image: url('https://cdn.thewirecutter.com/wp-content/media/2025/09/BEST-UNINTERRUPTIBLE-POWER-SUPPLY-UPS-01296-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp');
+          background-size: cover;
+          background-position: center;
+          opacity: 0.35;
+          width: 100%;
+          height: 100%;
+        }
+
+        .sc-hero-inner {
+          position: relative;
+          max-width: 800px;
+          margin: 0 auto;
+          padding: 6rem 2.5rem 5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .sc-hero-icon-wrap {
+          width: 80px;
+          height: 80px;
+          border-radius: 20px;
+          background: transparent;
+          border: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1rem;
+          color: var(--blue);
+        }
+
+        
+        .sc-hero-h1 {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: clamp(2.4rem, 5vw, 3.5rem);
+          font-weight: 400;
+          color: #ffffff;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          margin-bottom: 1.1rem;
+        }
+
+        .sc-hero-p {
+          font-size: 1.0625rem;
+          font-weight: 300;
+          line-height: 1.75;
+          color: rgba(255,255,255,0.55);
+          max-width: 440px;
+          margin: 0;
+        }
+
+        /* ── About / Features ── */
+        .sc-about {
+          background: #fff;
+          padding: 6rem 2.5rem;
+        }
+
+        .sc-about-inner {
+          max-width: 1100px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: 1fr 2fr;
+          gap: 5rem;
+          align-items: start;
+        }
+
+        @media (max-width: 768px) {
+          .sc-hero-inner { padding: 5rem 1.5rem 4rem; }
+          .sc-about { padding: 4rem 1.5rem; }
+          .sc-about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+        }
+
+        .sc-about-left {
+          position: sticky;
+          top: 100px;
+        }
+
+        .sc-section-tag {
+          display: inline-block;
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--blue);
+          margin-bottom: 0.75rem;
+        }
+
+        .sc-about-h2 {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: clamp(1.9rem, 3vw, 2.6rem);
+          font-weight: 400;
+          color: var(--ink);
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          margin-bottom: 1rem;
+        }
+
+        .sc-about-h2 em {
+          font-style: italic;
+          color: var(--blue);
+        }
+
+        .sc-about-p {
+          font-size: 1rem;
+          font-weight: 300;
+          line-height: 1.85;
+          color: var(--ink-3);
+          margin: 0;
+        }
+
+        .sc-rule {
+          width: 40px;
+          height: 2px;
+          background: var(--blue);
+          border-radius: 1px;
+          margin-top: 1.5rem;
+        }
+
+        /* Feature cards */
+        .sc-features {
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          border: 1px solid var(--rule);
+          border-radius: 18px;
+          overflow: hidden;
+        }
+
+        .sc-feat-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 16px;
+          padding: 1.4rem 1.5rem;
+          background: #fff;
+          border-bottom: 1px solid var(--rule);
+          transition: background 0.2s, transform 0.2s;
+        }
+
+        .sc-feat-row:last-child { border-bottom: none; }
+
+        .sc-feat-row:hover {
+          background: #f8fafc;
+        }
+
+        .sc-feat-icon {
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          border-radius: 12px;
+          background: var(--blue-lt);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--blue);
+          margin-top: 1px;
+        }
+
+        .sc-feat-title {
+          font-family: 'Instrument Sans', sans-serif;
+          font-size: 1.05rem;
+          color: var(--ink);
+          margin: 0 0 4px;
+          letter-spacing: -0.01em;
+        }
+
+        .sc-feat-desc {
+          font-size: 0.875rem;
+          font-weight: 300;
+          line-height: 1.75;
+          color: var(--ink-3);
+          margin: 0;
+        }
+      `}</style>
+
+      <div className="sc-root">
+
+        {/* ── Hero ── */}
+        <section className="sc-hero">
+          <div className="sc-hero-bg" />
+          <div className="sc-hero-grid" />
+          <div className="sc-hero-inner">
+
+            <div className="sc-hero-icon-wrap">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0"
+>               <path d="M17 9V7c0-2.76-2.24-5-5-5S7 4.24 7 7v2c-1.66 0-3 1.34-3 3v7c0 1.66 1.34 3 3 3h10c1.66 0 3-1.34 3-3v-7c0-1.66-1.34-3-3-3zM9 7c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V7z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                <path d="M13.1 15.5v1.5c0 .55-.45 1-1 1s-1-.45-1-1v-1.5c-.58-.58-.7-1.53-.14-2.14.58-.61 1.53-.72 2.14-.14.62.58.72 1.52.14 2.14z" fill="currentColor"/>
+              </svg>
+            </div>
+
+            <h1 className="sc-hero-h1">Uninterruptible Power Supply</h1>
+            <p className="sc-hero-p">
+              Ensure continuous power and protect critical systems from outages with dependable backup you can trust.
+            </p>
+          </div>
+        </section>
+
+        {/* ── About + Features ── */}
+        <section className="sc-about">
+          <div className="sc-about-inner">
+
+            <div className="sc-about-left">
+              <span className="sc-section-tag">What we do</span>
+              <h2 className="sc-about-h2">
+                Power that never <em>stops</em>
+              </h2>
+              <p className="sc-about-p">
+                We supply, install, and maintain UPS systems for residential, commercial, and industrial applications. Our solutions provide backup power and protection for critical equipment, ensuring continuous operation during power interruptions.
+              </p>
+              <div className="sc-rule" />
+            </div>
+
+            <div className="sc-features">
+              {features.map((feat) => (
+                <div key={feat.title} className="sc-feat-row">
+                  <div className="sc-feat-icon">{feat.icon}</div>
+                  <div>
+                    <p className="sc-feat-title">{feat.title}</p>
+                    <p className="sc-feat-desc">{feat.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </>
+  )
+}
