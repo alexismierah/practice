@@ -283,7 +283,7 @@ export default function IPPBXSystemPage() {
               </svg>
             </div>
 
-            <h1 className="sc-hero-h1">IP-PBX Telephone System</h1>
+            <h1 className="sc-hero-h1">UC / IP-PBX Telephone System</h1>
             <p className="sc-hero-p">
               Seamless calls, smarter connections — your voice, your control.
             </p>
