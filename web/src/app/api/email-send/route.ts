@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import nodemailer from 'nodemailer'
+import { Resend } from 'resend'
 
 // Validate email format
 function isValidEmail(email: string): boolean {
@@ -13,8 +13,22 @@ function isValidPhone(phone: string): boolean {
   return phoneRegex.test(phone) || phone === ""
 }
 
+function getDomain(email: string): string {
+  const atIndex = email.lastIndexOf("@")
+  return atIndex === -1 ? "" : email.slice(atIndex + 1).toLowerCase()
+}
+
 export async function POST(request: NextRequest) {
   try {
+    const resendApiKey = process.env.RESEND_API_KEY
+    if (!resendApiKey) {
+      return NextResponse.json(
+        { error: 'Missing RESEND_API_KEY configuration' },
+        { status: 500 }
+      )
+    }
+
+    const resend = new Resend(resendApiKey)
     const { name, email, phone, message } = await request.json()
 
     // Optional: only validate email format if email is provided
@@ -32,17 +46,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       )
     }
-
-    // Configure Nodemailer transporter
-    const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-      },
-    })
 
     const submittedAt = new Date().toLocaleString('en-PH', {
       timeZone: 'Asia/Manila',
@@ -83,15 +86,46 @@ export async function POST(request: NextRequest) {
       </div>
     `
 
-    const mailOptions = {
-      from: `"Unifix ICT Solutions" <${process.env.SMTP_USER}>`,
-      to: process.env.SMTP_USER, // send to yourself
+    const toEmail = process.env.CONTACT_TO_EMAIL || process.env.CONTACT_EMAIL
+    const configuredFromEmail =
+      process.env.RESEND_FROM_EMAIL ||
+      process.env.FROM_EMAIL ||
+      'onboarding@resend.dev'
+    const restrictedDomains = new Set([
+      'gmail.com',
+      'yahoo.com',
+      'hotmail.com',
+      'outlook.com',
+      'icloud.com',
+    ])
+    const fromEmail = restrictedDomains.has(getDomain(configuredFromEmail))
+      ? 'onboarding@resend.dev'
+      : configuredFromEmail
+
+    if (!toEmail) {
+      return NextResponse.json(
+        { error: 'Missing CONTACT_TO_EMAIL configuration' },
+        { status: 500 }
+      )
+    }
+
+    const senderDisplayName = (name || email || 'Website Inquiry').toString().trim()
+
+    const { error } = await resend.emails.send({
+      from: `${senderDisplayName}<${fromEmail}>`,
+      to: toEmail,
       replyTo: email || undefined,
       subject: `New Quote Request from ${name || 'Unknown'}`,
       html: htmlBody,
-    }
+    })
 
-    await transporter.sendMail(mailOptions)
+    if (error) {
+      console.error('RESEND ERROR:', error)
+      return NextResponse.json(
+        { error: error.message || 'Failed to send email' },
+        { status: 500 }
+      )
+    }
 
     return NextResponse.json(
       { message: 'Email sent successfully' },
