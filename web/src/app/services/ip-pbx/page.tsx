@@ -12,7 +12,6 @@ const features = [
         <path d="M8 18C8 12 14 8 24 8C34 8 40 12 40 18V22H34V18C34 16 30 14 24 14C18 14 14 16 14 18V22H8V18Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
         <circle cx="24" cy="33" r="3" stroke="currentColor" strokeWidth="3"/>
       </svg>
-
     ),
   },
   {
@@ -24,7 +23,6 @@ const features = [
         <path d="M8 14C8 8 14 4 24 4C34 4 40 8 40 14V18H34V14C34 12 30 10 24 10C18 10 14 12 14 14V18H8V14Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
         <path d="M4 20C2 17 2 13 4 10M44 20C46 17 46 13 44 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
       </svg>
-
     ),
   },
   {
@@ -65,246 +63,136 @@ export default function IPPBXSystemPage() {
         @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap');
 
         :root {
-          --blue:    #3a89dd;
-          --blue-dk: #2263a8;
-          --blue-lt: #e8f3fd;
-          --ink:     #0d1117;
-          --ink-2:   #2d3748;
-          --ink-3:   #718096;
-          --rule:    rgba(13,17,23,0.08);
+          --blue:    #3a89dd; --blue-dk: #2263a8; --blue-lt: #e8f3fd;
+          --ink: #0d1117; --ink-2: #2d3748; --ink-3: #718096;
+          --rule: rgba(13,17,23,0.08);
         }
 
-        .sc-root {
-          font-family: 'Instrument Sans', sans-serif;
-          color: var(--ink-2);
-        }
+        .sc-root { font-family: 'Instrument Sans', sans-serif; color: var(--ink-2); }
 
-        /* ── Hero ── */
         .sc-hero {
-          position: relative;
-          min-height: 48vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          background: #0d1117;
-          text-align: center;
+          position: relative; min-height: 48vh;
+          display: flex; align-items: center; justify-content: center;
+          overflow: hidden; background: #0d1117; text-align: center;
         }
 
         .sc-hero-bg {
-          position: absolute;
-          inset: 0;
+          position: absolute; inset: 0;
           background-image: url('https://roicallcentersolutions.com/wp-content/uploads/2018/02/business-businessmen-classroom-267507.jpg');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.35;
-          width: 100%;
-          height: 100%;
+          background-size: cover; background-position: center;
+          opacity: 0.35; width: 100%; height: 100%;
         }
 
         .sc-hero-inner {
-          position: relative;
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 6rem 2.5rem 5rem;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+          position: relative; max-width: 800px; margin: 0 auto;
+          padding: 5rem 1.5rem 4rem;
+          display: flex; flex-direction: column; align-items: center;
         }
 
         .sc-hero-icon-wrap {
-          width: 80px;
-          height: 80px;
-          border-radius: 20px;
-          background: transparent;
-          border: transparent;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 1rem;
-          color: var(--blue);
+          width: 80px; height: 80px; border-radius: 20px;
+          background: transparent; border: transparent;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 1rem; color: var(--blue);
         }
 
-        
         .sc-hero-h1 {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: clamp(2.4rem, 5vw, 3.5rem);
-          font-weight: 400;
-          color: #ffffff;
-          line-height: 1.1;
-          letter-spacing: -0.02em;
-          margin-bottom: 1.1rem;
+          font-size: clamp(2.4rem, 5vw, 3.5rem); font-weight: 400;
+          color: #ffffff; line-height: 1.1;
+          letter-spacing: -0.02em; margin-bottom: 1.1rem;
         }
 
         .sc-hero-p {
-          font-size: 1.0625rem;
-          font-weight: 300;
-          line-height: 1.75;
-          color: rgba(255,255,255,0.55);
-          max-width: 440px;
-          margin: 0;
+          font-size: 1.0625rem; font-weight: 300; line-height: 1.75;
+          color: rgba(255,255,255,0.55); max-width: 440px; margin: 0;
         }
 
-        /* ── About / Features ── */
-        .sc-about {
-          background: #fff;
-          padding: 6rem 2.5rem;
-        }
+        .sc-about { background: #fff; padding: 4rem 1.25rem; }
 
         .sc-about-inner {
-          max-width: 1100px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: 1fr 2fr;
-          gap: 5rem;
-          align-items: start;
+          max-width: 1100px; margin: 0 auto;
+          display: grid; grid-template-columns: 1fr;
+          gap: 2rem; align-items: start;
         }
 
-        @media (max-width: 768px) {
-          .sc-hero-inner { padding: 5rem 1.5rem 4rem; }
-          .sc-about { padding: 4rem 1.5rem; }
-          .sc-about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-        }
+        /* Mobile-first: no sticky */
+        .sc-about-left { position: static; }
 
-        .sc-about-left {
-          position: sticky;
-          top: 100px;
+        /* Desktop only: two columns + sticky */
+        @media (min-width: 769px) {
+          .sc-hero-inner { padding: 6rem 2.5rem 5rem; }
+          .sc-about { padding: 6rem 2.5rem; }
+          .sc-about-inner { grid-template-columns: 1fr 2fr; gap: 5rem; }
+          .sc-about-left { position: sticky; top: 100px; }
         }
 
         .sc-section-tag {
-          display: inline-block;
-          font-size: 0.7rem;
-          font-weight: 600;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: var(--blue);
-          margin-bottom: 0.75rem;
+          display: inline-block; font-size: 0.7rem; font-weight: 600;
+          letter-spacing: 0.18em; text-transform: uppercase;
+          color: var(--blue); margin-bottom: 0.75rem;
         }
 
         .sc-about-h2 {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: clamp(1.9rem, 3vw, 2.6rem);
-          font-weight: 400;
-          color: var(--ink);
-          line-height: 1.15;
-          letter-spacing: -0.02em;
-          margin-bottom: 1rem;
+          font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 400;
+          color: var(--ink); line-height: 1.15;
+          letter-spacing: -0.02em; margin-bottom: 1rem;
         }
 
-        .sc-about-h2 em {
-          font-style: italic;
-          color: var(--blue);
-        }
+        .sc-about-h2 em { font-style: italic; color: var(--blue); }
+        .sc-about-p { font-size: 1rem; font-weight: 300; line-height: 1.85; color: var(--ink-3); margin: 0; }
+        .sc-rule { width: 40px; height: 2px; background: var(--blue); border-radius: 1px; margin-top: 1.5rem; }
 
-        .sc-about-p {
-          font-size: 1rem;
-          font-weight: 300;
-          line-height: 1.85;
-          color: var(--ink-3);
-          margin: 0;
-        }
-
-        .sc-rule {
-          width: 40px;
-          height: 2px;
-          background: var(--blue);
-          border-radius: 1px;
-          margin-top: 1.5rem;
-        }
-
-        /* Feature cards */
         .sc-features {
-          display: flex;
-          flex-direction: column;
-          gap: 1px;
-          border: 1px solid var(--rule);
-          border-radius: 18px;
-          overflow: hidden;
+          display: flex; flex-direction: column; gap: 1px;
+          border: 1px solid var(--rule); border-radius: 18px; overflow: hidden;
         }
 
         .sc-feat-row {
-          display: flex;
-          align-items: flex-start;
-          gap: 16px;
-          padding: 1.4rem 1.5rem;
-          background: #fff;
+          display: flex; align-items: flex-start; gap: 16px;
+          padding: 1.4rem 1.5rem; background: #fff;
           border-bottom: 1px solid var(--rule);
           transition: background 0.2s, transform 0.2s;
         }
 
         .sc-feat-row:last-child { border-bottom: none; }
-
-        .sc-feat-row:hover {
-          background: #f8fafc;
-        }
+        .sc-feat-row:hover { background: #f8fafc; }
 
         .sc-feat-icon {
-          width: 44px;
-          height: 44px;
-          min-width: 44px;
-          border-radius: 12px;
-          background: var(--blue-lt);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: var(--blue);
-          margin-top: 1px;
+          width: 44px; height: 44px; min-width: 44px; border-radius: 12px;
+          background: var(--blue-lt); display: flex; align-items: center;
+          justify-content: center; color: var(--blue); margin-top: 1px;
         }
 
-        .sc-feat-title {
-          font-family: 'Instrument Sans', sans-serif;
-          font-size: 1.05rem;
-          color: var(--ink);
-          margin: 0 0 4px;
-          letter-spacing: -0.01em;
-        }
-
-        .sc-feat-desc {
-          font-size: 0.875rem;
-          font-weight: 300;
-          line-height: 1.75;
-          color: var(--ink-3);
-          margin: 0;
-        }
+        .sc-feat-title { font-family: 'Instrument Sans', sans-serif; font-size: 1.05rem; color: var(--ink); margin: 0 0 4px; letter-spacing: -0.01em; }
+        .sc-feat-desc { font-size: 0.875rem; font-weight: 300; line-height: 1.75; color: var(--ink-3); margin: 0; }
       `}</style>
 
       <div className="sc-root">
-
-        {/* ── Hero ── */}
         <section className="sc-hero">
           <div className="sc-hero-bg" />
-          <div className="sc-hero-grid" />
           <div className="sc-hero-inner">
-
             <div className="sc-hero-icon-wrap">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0"
->               <path d="M17 9V7c0-2.76-2.24-5-5-5S7 4.24 7 7v2c-1.66 0-3 1.34-3 3v7c0 1.66 1.34 3 3 3h10c1.66 0 3-1.34 3-3v-7c0-1.66-1.34-3-3-3zM9 7c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V7z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
-                <path d="M13.1 15.5v1.5c0 .55-.45 1-1 1s-1-.45-1-1v-1.5c-.58-.58-.7-1.53-.14-2.14.58-.61 1.53-.72 2.14-.14.62.58.72 1.52.14 2.14z" fill="currentColor"/>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" opacity="0">
+                <path d="M17 9V7c0-2.76-2.24-5-5-5S7 4.24 7 7v2c-1.66 0-3 1.34-3 3v7c0 1.66 1.34 3 3 3h10c1.66 0 3-1.34 3-3v-7c0-1.66-1.34-3-3-3zM9 7c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V7z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
               </svg>
             </div>
-
             <h1 className="sc-hero-h1">UC / IP-PBX Telephone System</h1>
-            <p className="sc-hero-p">
-              Seamless calls, smarter connections — your voice, your control.
-            </p>
+            <p className="sc-hero-p">Seamless calls, smarter connections — your voice, your control.</p>
           </div>
         </section>
 
-        {/* ── About + Features ── */}
         <section className="sc-about">
           <div className="sc-about-inner">
-
             <div className="sc-about-left">
               <span className="sc-section-tag">What we do</span>
-              <h2 className="sc-about-h2">
-                Reliable communication, <em>simplified</em>
-              </h2>
+              <h2 className="sc-about-h2">Reliable communication, <em>simplified</em></h2>
               <p className="sc-about-p">
                 We design, supply and install IP-PBX telephone systems for residential, commercial, and industrial environments. From VoIP handsets to automated call routing and voicemail management, every solution is built for clear, efficient, and scalable communication.
               </p>
               <div className="sc-rule" />
             </div>
-
             <div className="sc-features">
               {features.map((feat) => (
                 <div key={feat.title} className="sc-feat-row">
@@ -316,10 +204,8 @@ export default function IPPBXSystemPage() {
                 </div>
               ))}
             </div>
-
           </div>
         </section>
-
       </div>
     </>
   )
