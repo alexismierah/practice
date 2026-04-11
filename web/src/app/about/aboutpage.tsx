@@ -30,26 +30,36 @@ export default function AboutPage() {
         /* ── Story ── */
         .about-story {
           background: #fff;
-          padding: 6rem 2.5rem;
+          padding: 4rem 1.25rem;
         }
 
         .about-story-inner {
           max-width: 1100px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1fr 2fr;
-          gap: 5rem;
+          grid-template-columns: 1fr;
+          gap: 2rem;
           align-items: start;
         }
 
-        @media (max-width: 768px) {
-          .about-story-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-          .about-story { padding: 4rem 1.5rem; }
+        /* Mobile-first: heading is normal flow — no sticky */
+        .about-story-left {
+          position: static;
         }
 
-        .about-story-left {
-          position: sticky;
-          top: 100px;
+        /* Desktop only: two columns + sticky heading */
+        @media (min-width: 769px) {
+          .about-story {
+            padding: 6rem 2.5rem;
+          }
+          .about-story-inner {
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+          }
+          .about-story-left {
+            position: sticky;
+            top: 100px;
+          }
         }
 
         .about-section-tag {
@@ -69,7 +79,7 @@ export default function AboutPage() {
           color: var(--ink);
           line-height: 1.15;
           letter-spacing: -0.02em;
-          margin-bottom: 1rem;
+          margin: 0 0 1rem;
         }
 
         .about-story-h2 em {
