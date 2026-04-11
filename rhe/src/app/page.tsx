@@ -23,7 +23,7 @@ export default function Home() {
           <div className="mt-8 flex items-center justify-center gap-4">
             
             {/* FIXED BUTTON */}
-            <Link href="/contact">
+            <Link href="/contact-page">
               <Button className="bg-green-600 hover:bg-green-700 text-white">
                 Get a Quote
               </Button>

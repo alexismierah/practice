@@ -24,7 +24,7 @@ export function Header() {
             Home
           </Link>
 
-          <Link href="/about" className="hover:text-green-600 transition">
+          <Link href="/about-page" className="hover:text-green-600 transition">
             About Us
           </Link>
 
@@ -91,14 +91,14 @@ export function Header() {
             )}
           </div>
 
-          <Link href="/portfolio" className="hover:text-green-600 transition">
+          <Link href="/portfolio-page" className="hover:text-green-600 transition">
             Portfolio
           </Link>
 
         </nav>
 
         {/* CTA */}
-        <Link href="/contact">
+        <Link href="/contact-page">
           <Button className="bg-green-600 hover:bg-green-700 text-white">
             Get Quote
           </Button>
