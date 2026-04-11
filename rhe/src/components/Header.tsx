@@ -54,7 +54,7 @@ export function Header() {
               Rich Haven
             </span>
             <span className="font-serif text-[9px] tracking-[0.28em] uppercase italic text-[#8a7660]">
-              Botanical Artisans
+              Enterprises
             </span>
           </Link>
           <div className="hidden sm:block w-px h-7 bg-gradient-to-b from-transparent via-[rgba(120,100,70,0.2)] to-transparent shrink-0" />
