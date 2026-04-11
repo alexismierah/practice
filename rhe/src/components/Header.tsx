@@ -30,11 +30,13 @@ export function Header() {
 
           {/* DROPDOWN (CLICK ONLY) */}
           <div className="relative">
+
             <button
               onClick={() => setOpen(!open)}
               className="flex items-center gap-1 hover:text-green-600 transition"
             >
               Products & Services
+
               <ChevronDown
                 className={`h-4 w-4 transition-transform duration-300 ${
                   open ? "rotate-180" : ""
@@ -45,25 +47,41 @@ export function Header() {
             {open && (
               <div className="absolute top-8 left-0 w-60 bg-white dark:bg-background border rounded-lg shadow-md p-2 space-y-1">
 
-                <Link href="/artificial-grass" className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded">
+                <Link
+                  href="/products-services/artificial-grass"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded"
+                >
                   Artificial Grass
                 </Link>
 
-                <Link href="/artificial-garden" className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded">
+                <Link
+                  href="/products-services/artificial-garden"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded"
+                >
                   Artificial Garden
                 </Link>
 
-                <Link href="/potted-plants" className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded">
+                <Link
+                  href="/products-services/potted-plants"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded"
+                >
                   Potted Plants
                 </Link>
 
-                <Link href="/potted-trees" className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded">
+                <Link
+                  href="/products-services/potted-trees"
+                  onClick={() => setOpen(false)}
+                  className="block px-4 py-2 hover:bg-green-50 dark:hover:bg-muted rounded"
+                >
                   Potted Trees
                 </Link>
 
                 <div className="border-t my-2" />
 
-                <Link href="/products-services">
+                <Link href="/products-services" onClick={() => setOpen(false)}>
                   <Button className="w-full bg-green-600 hover:bg-green-700 text-white">
                     View All Services
                   </Button>
