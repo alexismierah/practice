@@ -7,7 +7,6 @@ const features = [
     title: "Bimoteric Door Security System",
     desc: "Installation of fingerprint and facial recognition systems to secure entry points and restrict access to authorized users. Supports contactless authentication and configurable access levels for different users.",
     icon: (
-      
       <svg width="22" height="22" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 24C12 12 36 12 44 24C36 36 12 36 4 24Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
         <circle cx="24" cy="24" r="8" stroke="currentColor" strokeWidth="3"/>
@@ -103,7 +102,7 @@ export default function AccessControlSystemPage() {
           position: relative;
           max-width: 800px;
           margin: 0 auto;
-          padding: 6rem 2.5rem 5rem;
+          padding: 5rem 1.5rem 4rem;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -122,7 +121,6 @@ export default function AccessControlSystemPage() {
           color: var(--blue);
         }
 
-        
         .sc-hero-h1 {
           font-family: 'Instrument Sans', sans-serif;
           font-size: clamp(2.4rem, 5vw, 3.5rem);
@@ -145,27 +143,39 @@ export default function AccessControlSystemPage() {
         /* ── About / Features ── */
         .sc-about {
           background: #fff;
-          padding: 6rem 2.5rem;
+          padding: 4rem 1.25rem;
         }
 
         .sc-about-inner {
           max-width: 1100px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: 1fr 2fr;
-          gap: 5rem;
+          grid-template-columns: 1fr;
+          gap: 2rem;
           align-items: start;
         }
 
-        @media (max-width: 768px) {
-          .sc-hero-inner { padding: 5rem 1.5rem 4rem; }
-          .sc-about { padding: 4rem 1.5rem; }
-          .sc-about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+        /* Mobile-first: no sticky */
+        .sc-about-left {
+          position: static;
         }
 
-        .sc-about-left {
-          position: sticky;
-          top: 100px;
+        /* Desktop only: two columns + sticky */
+        @media (min-width: 769px) {
+          .sc-hero-inner {
+            padding: 6rem 2.5rem 5rem;
+          }
+          .sc-about {
+            padding: 6rem 2.5rem;
+          }
+          .sc-about-inner {
+            grid-template-columns: 1fr 2fr;
+            gap: 5rem;
+          }
+          .sc-about-left {
+            position: sticky;
+            top: 100px;
+          }
         }
 
         .sc-section-tag {
@@ -274,8 +284,8 @@ export default function AccessControlSystemPage() {
           <div className="sc-hero-inner">
 
             <div className="sc-hero-icon-wrap">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0"
->               <path d="M17 9V7c0-2.76-2.24-5-5-5S7 4.24 7 7v2c-1.66 0-3 1.34-3 3v7c0 1.66 1.34 3 3 3h10c1.66 0 3-1.34 3-3v-7c0-1.66-1.34-3-3-3zM9 7c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V7z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" opacity="0">
+                <path d="M17 9V7c0-2.76-2.24-5-5-5S7 4.24 7 7v2c-1.66 0-3 1.34-3 3v7c0 1.66 1.34 3 3 3h10c1.66 0 3-1.34 3-3v-7c0-1.66-1.34-3-3-3zM9 7c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V7z" stroke="currentColor" strokeWidth="1.5" fill="none"/>
                 <path d="M13.1 15.5v1.5c0 .55-.45 1-1 1s-1-.45-1-1v-1.5c-.58-.58-.7-1.53-.14-2.14.58-.61 1.53-.72 2.14-.14.62.58.72 1.52.14 2.14z" fill="currentColor"/>
               </svg>
             </div>
@@ -297,7 +307,7 @@ export default function AccessControlSystemPage() {
                 Secure every entry, <em>control every access</em>
               </h2>
               <p className="sc-about-p">
-                We design and install reliable access control systems for residential, commercial, and industrial environments. From biometric door security to card-based entry and automated boom barrier gates, every solution is built for security, efficiency, and seamless integration with your property’s operations.
+                We design and install reliable access control systems for residential, commercial, and industrial environments. From biometric door security to card-based entry and automated boom barrier gates, every solution is built for security, efficiency, and seamless integration with your property's operations.
               </p>
               <div className="sc-rule" />
             </div>
