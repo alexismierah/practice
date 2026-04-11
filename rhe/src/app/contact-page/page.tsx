@@ -139,7 +139,6 @@ export default function Contact() {
             }}
           >
             <span>Send Message</span>
-            <ArrowRight size={14} style={{ opacity: 0.7 }} />
           </button>
         </div>
 
