@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export default function Home() {
@@ -20,12 +21,18 @@ export default function Home() {
           </p>
 
           <div className="mt-8 flex items-center justify-center gap-4">
-            <Button className="bg-green-600 hover:bg-green-700 text-white">
-              Get a Quote
-            </Button>
+            
+            {/* FIXED BUTTON */}
+            <Link href="/contact">
+              <Button className="bg-green-600 hover:bg-green-700 text-white">
+                Get a Quote
+              </Button>
+            </Link>
+
             <Button variant="outline">
               View Portfolio
             </Button>
+
           </div>
 
         </div>
