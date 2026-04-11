@@ -145,15 +145,16 @@ export default function ConferenceSystemPage() {
           align-items: start;
         }
 
-        @media (max-width: 768px) {
-          .sc-hero-inner { padding: 5rem 1.5rem 4rem; }
-          .sc-about { padding: 4rem 1.5rem; }
-          .sc-about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-        }
-
         .sc-about-left {
           position: sticky;
           top: 100px;
+        }
+
+        @media (max-width: 960px) {
+          .sc-hero-inner { padding: 5rem 1.5rem 4rem; }
+          .sc-about { padding: 4rem 1.5rem; }
+          .sc-about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+          .sc-about-left { position: static; top: auto; }
         }
 
         .sc-section-tag {
