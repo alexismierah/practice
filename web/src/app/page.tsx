@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Breadcrumbs from "@/components/Breadcrumbs"
 
 const services = [
   {
@@ -354,10 +353,6 @@ export default function HomePage() {
           <div className="hero-bg" />
           <div className="hero-overlay" />
           <div className="hero-content">
-            <Breadcrumbs
-              className="text-white/70 mb-6 [&_a:hover]:text-white"
-              items={[{ name: "Home", path: "/" }]}
-            />
             <h1>Smart<em> Solutions</em><br />for Smarter Operations</h1>
             <p className="hero-sub">
               We deliver reliable ICT solutions for businesses of all sizes. From installation to maintenance, our team ensures your communication and security systems stay connected, secure, and running smoothly.
