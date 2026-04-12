@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
 const services = [
   {
@@ -390,6 +391,12 @@ export default function ServicesPage() {
           <div className="sp-hero-grid" />
           <div className="sp-hero-inner">
             <div>
+              <Breadcrumbs
+                items={[
+                  { name: "Home", path: "/" },
+                  { name: "Services", path: "/services" },
+                ]}
+              />
               <div className="sp-eyebrow">
                 <span/>
                 What We Offer

@@ -1,5 +1,7 @@
 "use client"
 
+import Breadcrumbs from "@/components/Breadcrumbs"
+
 export default function AboutPage() {
   function scrollToFooter(e: React.MouseEvent<HTMLAnchorElement>) {
     e.preventDefault()
@@ -171,6 +173,14 @@ export default function AboutPage() {
 
         {/* Story */}
         <section className="about-story">
+          <div className="max-w-[1100px] mx-auto w-full">
+            <Breadcrumbs
+              items={[
+                { name: "Home", path: "/" },
+                { name: "About Us", path: "/about" },
+              ]}
+            />
+          </div>
           <div className="about-story-inner">
             <div className="about-story-left">
               <span className="about-section-tag">Our Story</span>
