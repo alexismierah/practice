@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 const stats = [
   { value: "1,900+", label: "Happy Plant Lovers", title: "Trusted by" },
@@ -91,10 +92,10 @@ const categories = [
 ];
 
 const shopReasons = [
-  { title: "Free and Fast Delivery", desc: "Enjoy doorstep delivery in your city and nearby areas in 2-4 days.", icon: "D" },
-  { title: "Hassle-Free Returns", desc: "Changed your mind? Returns are simple and quick within 30 days, no stress.", icon: "R" },
-  { title: "24/7 Customer Support", desc: "We are here whenever you need us, day or night.", icon: "S" },
-  { title: "Secure Payments", desc: "Pay safely with encrypted checkout and trusted payment partners.", icon: "P" },
+  { title: "Free and Fast Delivery", desc: "Get doorstep delivery in your city and nearby areas within 2-4 days.", icon: "D" },
+  { title: "Hassle-Free Returns", desc: "Changed your mind? Return items easily within 30 days, no stress involved.", icon: "R" },
+  { title: "24/7 Customer Support", desc: "Our team is available anytime you need help, day or night.", icon: "S" },
+  { title: "Secure Payments", desc: "Checkout confidently with encrypted payments and trusted partners.", icon: "P" },
 ];
 
 export default function RichHavenHome() {
@@ -111,7 +112,7 @@ export default function RichHavenHome() {
           font-family: "Inter", sans-serif;
           background: #f2f6ef;
           min-height: 100vh;
-          padding: 0 0 80px;
+          padding: 0;
         }
 
         /* ── HERO ── */
@@ -624,7 +625,7 @@ export default function RichHavenHome() {
           <h1 className="hero-title">Discover beautiful indoor plants for every corner of your home</h1>
           <p className="hero-copy">From indoor greens to outdoor beauties, shop plants, pots, and care tools delivered with love.</p>
           <div className="hero-actions">
-            <button className="button button-primary" type="button">View Products & Services <span>➜</span></button>
+            <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <button className="button button-secondary" type="button">Watch How</button>
           </div>
         </div>
@@ -642,7 +643,7 @@ export default function RichHavenHome() {
       {/* ── WHY SHOP ── */}
       <section className="why-shop" aria-labelledby="why-shop-title">
         <h2 className="why-shop-title" id="why-shop-title">Why Choose Rich Haven?</h2>
-        <p className="why-shop-subtitle">From your screen to your space - we are here to make plant shopping smooth and stress-free.</p>
+        <p className="why-shop-subtitle">From your screen to your space, we make plant shopping simple, smooth, and stress-free.</p>
         <div className="why-shop-grid">
           <div className="why-shop-column">
             {shopReasons.slice(0, 2).map((reason) => (
@@ -1022,11 +1023,11 @@ export default function RichHavenHome() {
       <h2 className="ps-title" id="products-heading">Our<em> Products</em></h2>
     </div>
     <div className="ps-tabs">
-    <button className="ps-explore" type="button">
+    <Link className="ps-explore" href="/products-services">
       <span className="ps-explore-line" />
       View all products
       <span className="ps-explore-line" />
-    </button>
+    </Link>
     </div>
   </div>
 
