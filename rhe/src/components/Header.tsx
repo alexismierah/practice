@@ -9,15 +9,16 @@ const navLinks = [
   {
     label: "Products & Services",
     href: "/products-services",
-    dropdown: [
-      { label: "Filter All", href: "/products-services", group: null },
-      { label: "Turf", href: "/products-services", group: "Turf", isGroup: true },
-      { label: "Grass", href: "/products-services/grass", group: "Turf" },
-      { label: "Garden", href: "/products-services/garden", group: "Garden", isGroup: true },
-      { label: "Plants", href: "/products-services/plants", group: "Garden" },
-      { label: "Trees", href: "/products-services/trees", group: "Garden" },
-      { label: "Wall", href: "/products-services/garden", group: "Garden" },
-    ],
+    dropdown: {
+      turf: [
+        { label: "Grass", href: "/products-services/grass" },
+      ],
+      garden: [
+        { label: "Plants", href: "/products-services/plants" },
+        { label: "Trees", href: "/products-services/trees" },
+        { label: "Wall", href: "/products-services/wall" },
+      ],
+    },
   },
   { label: "Portfolio", href: "/portfolio" },
 ];
@@ -61,7 +62,6 @@ export default function Header() {
           --shadow: 0 4px 32px rgba(26,46,26,0.13);
         }
 
-        /* Scoped box model only — a global * { margin:0; padding:0 } broke Tailwind spacing site-wide */
         .rh-header,
         .rh-header *,
         .rh-mobile-menu,
@@ -105,7 +105,6 @@ export default function Header() {
           gap: 2rem;
         }
 
-        /* LOGO */
         .rh-logo {
           display: flex;
           align-items: center;
@@ -139,7 +138,6 @@ export default function Header() {
           margin-top: 2px;
         }
 
-        /* NAV */
         .rh-nav {
           display: flex;
           align-items: center;
@@ -174,7 +172,6 @@ export default function Header() {
         .rh-nav-link:hover { color: var(--sage); }
         .rh-nav-link:hover::after { transform: scaleX(1); }
 
-        /* DROPDOWN TRIGGER */
         .rh-drop-wrap { position: relative; }
 
         .rh-drop-trigger {
@@ -214,25 +211,27 @@ export default function Header() {
         .rh-chevron {
           width: 9px; height: 9px;
           transition: transform 0.25s ease;
-          opacity: 0.55;
+          opacity: 0.45;
           flex-shrink: 0;
         }
         .rh-chevron.open { transform: rotate(180deg); }
 
-        /* DROPDOWN MENU */
+        /* DROPDOWN — soft & light */
         .rh-dropdown {
           position: absolute;
-          top: calc(100% + 12px);
+          top: calc(100% + 10px);
           left: 50%;
-          transform: translateX(-50%) translateY(-6px);
-          background: var(--white);
-          border-radius: 3px;
-          box-shadow: 0 10px 36px rgba(26,46,26,0.11);
-          min-width: 196px;
-          padding: 0.35rem 0;
+          transform: translateX(-50%) translateY(-4px);
+          background: #fdfcf9;
+          border-radius: 6px;
+          border: 1px solid rgba(201,168,76,0.18);
+          box-shadow: 0 8px 28px rgba(26,46,26,0.08);
+          width: 460px;
+          padding: 0;
           opacity: 0;
           pointer-events: none;
-          transition: opacity 0.2s ease, transform 0.2s ease;
+          transition: opacity 0.18s ease, transform 0.18s ease;
+          overflow: hidden;
         }
 
         .rh-dropdown.open {
@@ -241,54 +240,103 @@ export default function Header() {
           transform: translateX(-50%) translateY(0);
         }
 
-        .rh-dropdown-item {
-          display: block;
-          padding: 0.58rem 1.2rem;
+        /* Soft "View All" banner — warm cream instead of dark forest */
+        .rh-dropdown-banner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.75rem 1.3rem;
+          background: rgba(201,168,76,0.08);
+          border-bottom: 1px solid rgba(201,168,76,0.15);
           text-decoration: none;
-          color: var(--forest);
-          font-size: 0.82rem;
-          letter-spacing: 0.02em;
-          font-family: 'Jost', sans-serif;
-          transition: background 0.18s, color 0.18s;
+          transition: background 0.18s;
         }
 
-        .rh-dropdown-item:hover {
-          background: rgba(74,103,65,0.07);
+        .rh-dropdown-banner:hover {
+          background: rgba(201,168,76,0.14);
+        }
+
+        .rh-dropdown-banner-text {
+          font-family: 'Jost', sans-serif;
+          font-size: 0.76rem;
+          font-weight: 500;
+          letter-spacing: 0.08em;
           color: var(--sage);
         }
 
-        .rh-dropdown-group-label {
+        .rh-dropdown-banner-arrow {
+          display: flex;
+          align-items: center;
+          gap: 0.35rem;
+          font-family: 'Jost', sans-serif;
+          font-size: 0.72rem;
+          letter-spacing: 0.04em;
+          color: var(--gold);
+        }
+
+        .rh-dropdown-body {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .rh-dropdown-col {
+          padding: 1.1rem 1.3rem 1.3rem;
+        }
+
+        .rh-dropdown-col:first-child {
+          border-right: 1px solid rgba(26,46,26,0.06);
+        }
+
+        .rh-dropdown-col-label {
           display: block;
-          padding: 0.55rem 1.2rem 0.3rem;
-          font-size: 0.68rem;
-          letter-spacing: 0.12em;
+          font-size: 0.62rem;
+          letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gold);
           font-family: 'Jost', sans-serif;
           font-weight: 500;
-          margin-top: 0.2rem;
+          margin-bottom: 0.55rem;
+          padding-bottom: 0.45rem;
+          border-bottom: 1px solid rgba(201,168,76,0.16);
+          opacity: 0.85;
         }
 
-        .rh-dropdown-sub {
-          display: block;
-          padding: 0.48rem 1.2rem 0.48rem 2rem;
+        .rh-dropdown-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.45rem 0;
           text-decoration: none;
-          color: var(--forest);
-          font-size: 0.8rem;
+          color: #3a4f3a;
+          font-size: 0.83rem;
           letter-spacing: 0.02em;
           font-family: 'Jost', sans-serif;
-          transition: background 0.18s, color 0.18s;
+          transition: color 0.15s;
+          border-bottom: 1px solid rgba(26,46,26,0.04);
         }
 
-        .rh-dropdown-sub:hover {
-          background: rgba(74,103,65,0.07);
+        .rh-dropdown-item:last-child {
+          border-bottom: none;
+        }
+
+        .rh-dropdown-item::before {
+          content: '';
+          display: block;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: var(--gold);
+          flex-shrink: 0;
+          opacity: 0.45;
+          transition: opacity 0.15s;
+        }
+
+        .rh-dropdown-item:hover {
           color: var(--sage);
         }
 
-        .rh-dropdown-divider {
-          height: 1px;
-          background: rgba(26,46,26,0.07);
-          margin: 0.3rem 1.2rem;
+        .rh-dropdown-item:hover::before {
+          opacity: 0.9;
         }
 
         /* CTA BUTTON */
@@ -400,17 +448,59 @@ export default function Header() {
           letter-spacing: 0.04em;
         }
 
-        .rh-mobile-dropdown { display: none; padding: 0.25rem 0 0.5rem 1rem; }
+        .rh-mobile-dropdown { display: none; padding: 0.5rem 0 0.75rem 0; }
         .rh-mobile-dropdown.open { display: block; }
 
-        .rh-mobile-dropdown-item {
-          display: block;
-          padding: 0.55rem 0;
-          font-size: 0.88rem;
+        .rh-mobile-view-all {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0.55rem 1rem;
+          margin-bottom: 0.75rem;
+          background: rgba(201,168,76,0.1);
+          border: 1px solid rgba(201,168,76,0.2);
           color: var(--sage);
+          text-decoration: none;
+          font-size: 0.74rem;
+          letter-spacing: 0.08em;
+          font-family: 'Jost', sans-serif;
+          font-weight: 500;
+          border-radius: 2px;
+        }
+
+        .rh-mobile-group-label {
+          display: block;
+          padding: 0.6rem 0 0.25rem;
+          font-size: 0.62rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--gold);
+          font-family: 'Jost', sans-serif;
+          font-weight: 500;
+          opacity: 0.85;
+        }
+
+        .rh-mobile-dropdown-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.45rem 0 0.45rem 0.5rem;
+          font-size: 0.88rem;
+          color: #3a4f3a;
           text-decoration: none;
           font-family: 'Jost', sans-serif;
           letter-spacing: 0.02em;
+        }
+
+        .rh-mobile-dropdown-item::before {
+          content: '';
+          display: block;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: var(--gold);
+          flex-shrink: 0;
+          opacity: 0.45;
         }
 
         .rh-mobile-cta {
@@ -440,19 +530,6 @@ export default function Header() {
 
           {/* LOGO */}
           <Link href="/" className="rh-logo">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
-              <ellipse cx="20" cy="34" rx="14" ry="3" fill="#4a6741" opacity="0.18"/>
-              <rect x="18.5" y="22" width="3" height="10" rx="1.2" fill="#8a6a3a"/>
-              <path d="M10 34 Q8 28 11 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <path d="M13 34 Q12 27 14 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <path d="M30 34 Q32 28 29 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <path d="M27 34 Q28 27 26 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <ellipse cx="20" cy="18" rx="10" ry="7" fill="#1a2e1a"/>
-              <ellipse cx="20" cy="14" rx="8" ry="6" fill="#2d4d2d"/>
-              <ellipse cx="20" cy="10" rx="6" ry="5" fill="#3d6b3d"/>
-              <circle cx="29" cy="8" r="1.8" fill="#c9a84c"/>
-              <path d="M29 5.5 L29 6.8 M29 9.2 L29 10.5 M26.5 8 L27.8 8 M30.2 8 L31.5 8" stroke="#c9a84c" strokeWidth="1" strokeLinecap="round"/>
-            </svg>
             <div className="rh-logo-text">
               <span className="rh-logo-main">Rich Haven</span>
               <span className="rh-logo-sub">Enterprises</span>
@@ -474,23 +551,53 @@ export default function Header() {
                       <path d="M2 3.5 L5 6.5 L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </button>
+
                   <div className={`rh-dropdown${dropdownOpen ? " open" : ""}`} role="menu">
-                    {/* Filter All */}
-                    <Link href={link.dropdown[0].href} className="rh-dropdown-item" role="menuitem">
-                      {link.dropdown[0].label}
+                    {/* Soft View All banner */}
+                    <Link
+                      href={link.href}
+                      className="rh-dropdown-banner"
+                      role="menuitem"
+                      onClick={() => setDropdownOpen(false)}
+                    >
+                      <span className="rh-dropdown-banner-text">View All Products & Services</span>
+                      <span className="rh-dropdown-banner-arrow">
+                        Browse all
+
+                      </span>
                     </Link>
-                    <div className="rh-dropdown-divider" />
-                    {/* Turf group */}
-                    <span className="rh-dropdown-group-label">Turf</span>
-                    {link.dropdown.filter(i => i.group === "Turf" && !i.isGroup).map(item => (
-                      <Link key={item.label} href={item.href} className="rh-dropdown-sub" role="menuitem">{item.label}</Link>
-                    ))}
-                    <div className="rh-dropdown-divider" />
-                    {/* Garden group */}
-                    <span className="rh-dropdown-group-label">Garden</span>
-                    {link.dropdown.filter(i => i.group === "Garden" && !i.isGroup).map(item => (
-                      <Link key={item.label} href={item.href} className="rh-dropdown-sub" role="menuitem">{item.label}</Link>
-                    ))}
+
+                    <div className="rh-dropdown-body">
+                      <div className="rh-dropdown-col">
+                        <span className="rh-dropdown-col-label">Turf</span>
+                        {link.dropdown.turf.map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            className="rh-dropdown-item"
+                            role="menuitem"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+
+                      <div className="rh-dropdown-col">
+                        <span className="rh-dropdown-col-label">Garden</span>
+                        {link.dropdown.garden.map((item) => (
+                          <Link
+                            key={item.label}
+                            href={item.href}
+                            className="rh-dropdown-item"
+                            role="menuitem"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               ) : (
@@ -501,12 +608,10 @@ export default function Header() {
             )}
           </nav>
 
-          {/* CONTACT CTA */}
           <Link href="/contact" className="rh-cta">
             <span>Contact Us</span>
           </Link>
 
-          {/* MOBILE BURGER */}
           <button
             className={`rh-burger${mobileOpen ? " open" : ""}`}
             onClick={() => setMobileOpen((v) => !v)}
@@ -527,29 +632,70 @@ export default function Header() {
                 onClick={() => setMobileDropOpen((v) => !v)}
               >
                 {link.label}
-                <svg style={{ width: 11, transition: "transform 0.25s", transform: mobileDropOpen ? "rotate(180deg)" : "none" }} viewBox="0 0 10 10" fill="none">
+                <svg
+                  style={{
+                    width: 11,
+                    transition: "transform 0.25s",
+                    transform: mobileDropOpen ? "rotate(180deg)" : "none",
+                  }}
+                  viewBox="0 0 10 10"
+                  fill="none"
+                >
                   <path d="M2 3.5 L5 6.5 L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </button>
+
               <div className={`rh-mobile-dropdown${mobileDropOpen ? " open" : ""}`}>
-                <Link href={link.dropdown[0].href} className="rh-mobile-dropdown-item">Filter All</Link>
-                <span style={{ display: "block", padding: "0.5rem 0 0.2rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "'Jost', sans-serif" }}>Turf</span>
-                {link.dropdown.filter(i => i.group === "Turf" && !i.isGroup).map(item => (
-                  <Link key={item.label} href={item.href} className="rh-mobile-dropdown-item" style={{ paddingLeft: "0.75rem" }}>{item.label}</Link>
+                <Link
+                  href={link.href}
+                  className="rh-mobile-view-all"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span>View All Products & Services</span>
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
+                    <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </Link>
+
+                <span className="rh-mobile-group-label">Turf</span>
+                {link.dropdown.turf.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="rh-mobile-dropdown-item"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
                 ))}
-                <span style={{ display: "block", padding: "0.5rem 0 0.2rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "'Jost', sans-serif" }}>Garden</span>
-                {link.dropdown.filter(i => i.group === "Garden" && !i.isGroup).map(item => (
-                  <Link key={item.label} href={item.href} className="rh-mobile-dropdown-item" style={{ paddingLeft: "0.75rem" }}>{item.label}</Link>
+
+                <span className="rh-mobile-group-label">Garden</span>
+                {link.dropdown.garden.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className="rh-mobile-dropdown-item"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
                 ))}
               </div>
             </div>
           ) : (
-            <Link key={link.label} href={link.href} className="rh-mobile-link">
+            <Link
+              key={link.label}
+              href={link.href}
+              className="rh-mobile-link"
+              onClick={() => setMobileOpen(false)}
+            >
               {link.label}
             </Link>
           )
         )}
-        <Link href="/contact" className="rh-mobile-cta">Contact Us</Link>
+        <Link href="/contact" className="rh-mobile-cta" onClick={() => setMobileOpen(false)}>
+          Contact Us
+        </Link>
       </div>
     </>
   );
