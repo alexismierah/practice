@@ -50,7 +50,7 @@ export default function Header() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
 
         :root {
           --forest: #1a2e1a;
@@ -74,17 +74,17 @@ export default function Header() {
           top: 0; left: 0; right: 0;
           z-index: 1000;
           transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
         }
 
         .rh-header.scrolled {
-          background: rgba(245,240,232,0.97);
+          background: rgba(239, 242, 241, 0.95);
           backdrop-filter: blur(12px);
           box-shadow: var(--shadow);
         }
 
         .rh-header:not(.scrolled) {
-          background: rgba(245,240,232,0.92);
+          background: rgba(239, 242, 241, 0.88);
           backdrop-filter: blur(8px);
         }
 
@@ -120,7 +120,7 @@ export default function Header() {
         }
 
         .rh-logo-main {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: 'Playfair Display', serif;
           font-size: 1.25rem;
           font-weight: 600;
           color: var(--forest);
@@ -129,7 +129,7 @@ export default function Header() {
         }
 
         .rh-logo-sub {
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 0.58rem;
           font-weight: 400;
           color: var(--gold);
@@ -181,7 +181,7 @@ export default function Header() {
           cursor: pointer;
           background: none;
           border: none;
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 0.88rem;
           font-weight: 400;
           letter-spacing: 0.03em;
@@ -257,7 +257,7 @@ export default function Header() {
         }
 
         .rh-dropdown-banner-text {
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 0.76rem;
           font-weight: 500;
           letter-spacing: 0.08em;
@@ -268,7 +268,7 @@ export default function Header() {
           display: flex;
           align-items: center;
           gap: 0.35rem;
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
           letter-spacing: 0.04em;
           color: var(--gold);
@@ -293,7 +293,7 @@ export default function Header() {
           letter-spacing: 0.14em;
           text-transform: uppercase;
           color: var(--gold);
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-weight: 500;
           margin-bottom: 0.55rem;
           padding-bottom: 0.45rem;
@@ -310,7 +310,7 @@ export default function Header() {
           color: #3a4f3a;
           font-size: 0.83rem;
           letter-spacing: 0.02em;
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           transition: color 0.15s;
           border-bottom: 1px solid rgba(26,46,26,0.04);
         }
@@ -344,35 +344,23 @@ export default function Header() {
           flex-shrink: 0;
           display: inline-flex;
           align-items: center;
-          padding: 0.6rem 1.4rem;
-          background: var(--forest);
-          color: var(--cream);
+          justify-content: center;
+          gap: 8px;
+          padding: 14px 32px;
+          background: #2d5a27;
+          color: #fff;
           text-decoration: none;
-          font-family: 'Jost', sans-serif;
-          font-size: 0.82rem;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 15px;
           font-weight: 500;
-          letter-spacing: 0.06em;
-          border-radius: 2px;
-          border: 1px solid var(--forest);
-          position: relative;
-          overflow: hidden;
-          transition: color 0.3s, border-color 0.3s;
+          letter-spacing: normal;
+          border-radius: 50px;
+          border: none;
+          transition: all 0.25s ease;
         }
 
-        .rh-cta::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: var(--gold);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
-          z-index: 0;
-        }
-
-        .rh-cta span { position: relative; z-index: 1; }
-        .rh-cta:hover::before { transform: scaleX(1); }
-        .rh-cta:hover { color: var(--forest); border-color: var(--gold); }
+        .rh-cta span { position: static; }
+        .rh-cta:hover { background: #1e3d1a; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(45,90,39,0.25); }
 
         /* MOBILE BURGER */
         .rh-burger {
@@ -422,7 +410,7 @@ export default function Header() {
           display: block;
           padding: 0.9rem 0;
           font-size: 1.1rem;
-          font-family: 'Cormorant Garamond', serif;
+          font-family: 'Playfair Display', serif;
           font-weight: 500;
           color: var(--forest);
           text-decoration: none;
@@ -440,7 +428,7 @@ export default function Header() {
           border-bottom: 1px solid rgba(201,168,76,0.15);
           padding: 0.9rem 0;
           font-size: 1.1rem;
-          font-family: 'Cormorant Garamond', serif;
+          font-family: 'Playfair Display', serif;
           font-weight: 500;
           color: var(--forest);
           cursor: pointer;
@@ -463,7 +451,7 @@ export default function Header() {
           text-decoration: none;
           font-size: 0.74rem;
           letter-spacing: 0.08em;
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-weight: 500;
           border-radius: 2px;
         }
@@ -475,7 +463,7 @@ export default function Header() {
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: var(--gold);
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           font-weight: 500;
           opacity: 0.85;
         }
@@ -488,7 +476,7 @@ export default function Header() {
           font-size: 0.88rem;
           color: #3a4f3a;
           text-decoration: none;
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           letter-spacing: 0.02em;
         }
 
@@ -507,15 +495,16 @@ export default function Header() {
           display: block;
           margin-top: 1.5rem;
           text-align: center;
-          padding: 0.85rem;
-          background: var(--forest);
-          color: var(--cream);
+          padding: 14px 32px;
+          background: #2d5a27;
+          color: #fff;
           text-decoration: none;
-          font-size: 0.85rem;
-          letter-spacing: 0.06em;
-          font-family: 'Jost', sans-serif;
+          font-size: 15px;
+          letter-spacing: normal;
+          font-family: 'DM Sans', sans-serif;
           font-weight: 500;
-          border-radius: 2px;
+          border-radius: 50px;
+          transition: all 0.25s ease;
         }
 
         @media (max-width: 900px) {

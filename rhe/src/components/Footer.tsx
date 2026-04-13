@@ -5,7 +5,7 @@ export function Footer() {
   return (
     <footer
       className="w-full border-t"
-      style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300 }}
+      style={{ fontFamily: "'Playfair Display', 'Georgia', serif", fontWeight: 300 }}
     >
       <div className="w-full max-w-full px-6 pt-16 pb-10 sm:px-10">
 
@@ -29,7 +29,7 @@ export function Footer() {
           <div>
             <h2
               className="text-[28px] font-light italic text-foreground mb-4 leading-tight"
-              style={{ fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.01em" }}
+              style={{ fontFamily: "'Playfair Display', serif", letterSpacing: "0.01em" }}
             >
               Rich Haven Enterprises
             </h2>
@@ -104,7 +104,7 @@ export function Footer() {
             © {new Date().getFullYear()} &nbsp;
             <em
               className="text-[13px] text-muted-foreground not-italic"
-              style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
+              style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
             >
               Rich Haven Enterprises
             </em>
