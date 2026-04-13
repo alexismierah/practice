@@ -56,18 +56,21 @@ export default function Contact() {
   }
 
   return (
-    <main style={{ fontFamily: "'Jost', sans-serif", background: "#ffffff", color: "#1a2e1a" }}>
+    <main style={{ fontFamily: "'Jost', sans-serif", background: "#ffffff", color: "#2d5a2d", overflow: "visible" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap');
 
         :root {
-          --forest: #1a2e1a;
-          --sage: #4a6741;
+          --forest: #2d5a2d;
+          --sage: #7ab87a;
+          --sage-mid: #8ec88e;
+          --sage-light: #a8d8a8;
           --cream: #f5f0e8;
           --gold: #c9a84c;
-          --border: rgba(26,46,26,0.08);
-          --muted: #7a8c7a;
-          --body: #3d4f3d;
+          --border: rgba(122,184,122,0.18);
+          --muted: #80aa80;
+          --body: #456045;
+          --bg-icon: #edf7ed;
         }
 
         .ct *, .ct *::before, .ct *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -146,10 +149,10 @@ export default function Contact() {
         }
 
         .ct-detail-icon {
-          width: 28px;
-          height: 28px;
+          width: 30px;
+          height: 30px;
           border-radius: 50%;
-          background: #f0f4ee;
+          background: var(--bg-icon);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -169,10 +172,15 @@ export default function Contact() {
 
         /* ── BODY: form + sidebar ── */
         .ct-body {
-          display: grid;
-          grid-template-columns: 1fr 360px;
+          display: flex;
+          flex-direction: row;
           gap: 5rem;
-          align-items: start;
+          align-items: flex-start;
+        }
+
+        .ct-form-col {
+          flex: 1;
+          min-width: 0;
         }
 
         /* ── FORM ── */
@@ -224,7 +232,7 @@ export default function Contact() {
           transition: border-color 0.25s;
         }
 
-        .ct-input::placeholder { color: #b0bcb0; font-weight: 300; }
+        .ct-input::placeholder { color: #b8d4b8; font-weight: 300; }
         .ct-input:focus { border-bottom-color: var(--sage); }
 
         .ct-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
@@ -246,7 +254,7 @@ export default function Contact() {
           align-items: center;
           justify-content: center;
           gap: 0.5rem;
-          border-radius: 2px;
+          border-radius: 10px;
           transition: background 0.2s;
         }
 
@@ -265,20 +273,24 @@ export default function Contact() {
 
         /* ── SIDEBAR ── */
         .ct-sidebar {
-          position: sticky;
-          top: 6rem;
+          width: 360px;
+          flex-shrink: 0;
           display: flex;
           flex-direction: column;
           gap: 1px;
           background: var(--border);
           border: 1px solid var(--border);
-          border-radius: 4px;
+          border-radius: 14px;
           overflow: hidden;
+          position: sticky;
+          top: 2rem;
+          align-self: flex-start;
         }
 
         .ct-info-block {
           background: #fff;
           padding: 1.6rem 1.5rem;
+          border-radius: 13px 13px 0 0;
         }
 
         .ct-info-block-label {
@@ -304,7 +316,7 @@ export default function Contact() {
           width: 30px;
           height: 30px;
           border-radius: 50%;
-          background: #f0f4ee;
+          background: var(--bg-icon);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -335,7 +347,7 @@ export default function Contact() {
           margin-bottom: 1rem;
         }
 
-        .ct-hours-title em { font-style: italic; color: rgba(232,201,122,0.8); }
+        .ct-hours-title em { font-style: italic; color: rgba(232,201,122,0.85); }
 
         .ct-hours-row {
           display: flex;
@@ -354,11 +366,12 @@ export default function Contact() {
         .ct-hours-closed { color: rgba(245,240,232,0.3); font-style: italic; }
 
         .ct-note-block {
-          background: #fafdf8;
+          background: #f4fbf4;
           padding: 1.3rem 1.5rem;
           display: flex;
           gap: 0.75rem;
           align-items: flex-start;
+          border-radius: 0 0 13px 13px;
         }
 
         .ct-note-dot {
@@ -380,8 +393,8 @@ export default function Contact() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 960px) {
-          .ct-body { grid-template-columns: 1fr; gap: 3rem; }
-          .ct-sidebar { position: static; }
+          .ct-body { flex-direction: column; gap: 3rem; }
+          .ct-sidebar { position: static; width: 100%; }
         }
 
         @media (max-width: 680px) {
@@ -432,7 +445,7 @@ export default function Contact() {
           <div className="ct-body">
 
             {/* FORM */}
-            <div>
+            <div className="ct-form-col">
               <div className="ct-form-label-row">Send a message</div>
 
               <form onSubmit={handleSubmit} noValidate>
