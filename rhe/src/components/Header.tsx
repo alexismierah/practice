@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
@@ -9,10 +10,13 @@ const navLinks = [
     label: "Products & Services",
     href: "/products-services",
     dropdown: [
-      { label: "Artificial Grass", href: "/products-services/grass" },
-      { label: "Garden Design", href: "/products-services/garden" },
-      { label: "Potted Plants", href: "/products-services/plants" },
-      { label: "Trees", href: "/products-services/trees" },
+      { label: "Filter All", href: "/products-services", group: null },
+      { label: "Turf", href: "/products-services", group: "Turf", isGroup: true },
+      { label: "Grass", href: "/products-services/grass", group: "Turf" },
+      { label: "Garden", href: "/products-services/garden", group: "Garden", isGroup: true },
+      { label: "Plants", href: "/products-services/plants", group: "Garden" },
+      { label: "Trees", href: "/products-services/trees", group: "Garden" },
+      { label: "Wall", href: "/products-services/garden", group: "Garden" },
     ],
   },
   { label: "Portfolio", href: "/portfolio" },
@@ -57,7 +61,7 @@ export default function Header() {
           --shadow: 0 4px 32px rgba(26,46,26,0.13);
         }
 
-        /* Scoped box model only — never reset * { margin/padding } here; it breaks the whole site (Tailwind, footer, pages). */
+        /* Scoped box model only — a global * { margin:0; padding:0 } broke Tailwind spacing site-wide */
         .rh-header,
         .rh-header *,
         .rh-mobile-menu,
@@ -95,20 +99,10 @@ export default function Header() {
           max-width: 1280px;
           margin: 0 auto;
           padding: 0 2rem;
-          display: grid;
-          grid-template-columns: 1fr auto 1fr;
-          align-items: center;
-          height: 76px;
-          column-gap: 2rem;
-        }
-
-        .rh-header-actions {
           display: flex;
           align-items: center;
-          justify-content: flex-end;
-          gap: 0.75rem;
-          justify-self: end;
-          min-width: 0;
+          height: 76px;
+          gap: 2rem;
         }
 
         /* LOGO */
@@ -118,8 +112,6 @@ export default function Header() {
           gap: 0.65rem;
           text-decoration: none;
           flex-shrink: 0;
-          justify-self: start;
-          min-width: 0;
         }
 
         .rh-logo-text {
@@ -147,13 +139,13 @@ export default function Header() {
           margin-top: 2px;
         }
 
-        /* NAV — middle grid column is auto width, true viewport-centered bar */
+        /* NAV */
         .rh-nav {
           display: flex;
           align-items: center;
-          justify-content: center;
           gap: 0.25rem;
-          justify-self: center;
+          flex: 1;
+          justify-content: center;
         }
 
         .rh-nav-link {
@@ -265,6 +257,40 @@ export default function Header() {
           color: var(--sage);
         }
 
+        .rh-dropdown-group-label {
+          display: block;
+          padding: 0.55rem 1.2rem 0.3rem;
+          font-size: 0.68rem;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: var(--gold);
+          font-family: 'Jost', sans-serif;
+          font-weight: 500;
+          margin-top: 0.2rem;
+        }
+
+        .rh-dropdown-sub {
+          display: block;
+          padding: 0.48rem 1.2rem 0.48rem 2rem;
+          text-decoration: none;
+          color: var(--forest);
+          font-size: 0.8rem;
+          letter-spacing: 0.02em;
+          font-family: 'Jost', sans-serif;
+          transition: background 0.18s, color 0.18s;
+        }
+
+        .rh-dropdown-sub:hover {
+          background: rgba(74,103,65,0.07);
+          color: var(--sage);
+        }
+
+        .rh-dropdown-divider {
+          height: 1px;
+          background: rgba(26,46,26,0.07);
+          margin: 0.3rem 1.2rem;
+        }
+
         /* CTA BUTTON */
         .rh-cta {
           flex-shrink: 0;
@@ -309,6 +335,7 @@ export default function Header() {
           border: none;
           cursor: pointer;
           padding: 4px;
+          margin-left: auto;
         }
 
         .rh-burger span {
@@ -402,9 +429,6 @@ export default function Header() {
         }
 
         @media (max-width: 900px) {
-          .rh-inner {
-            grid-template-columns: auto 1fr;
-          }
           .rh-nav { display: none; }
           .rh-cta { display: none; }
           .rh-burger { display: flex; }
@@ -415,12 +439,25 @@ export default function Header() {
         <div className="rh-inner">
 
           {/* LOGO */}
-          <a href="/" className="rh-logo">
+          <Link href="/" className="rh-logo">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+              <ellipse cx="20" cy="34" rx="14" ry="3" fill="#4a6741" opacity="0.18"/>
+              <rect x="18.5" y="22" width="3" height="10" rx="1.2" fill="#8a6a3a"/>
+              <path d="M10 34 Q8 28 11 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <path d="M13 34 Q12 27 14 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <path d="M30 34 Q32 28 29 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <path d="M27 34 Q28 27 26 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <ellipse cx="20" cy="18" rx="10" ry="7" fill="#1a2e1a"/>
+              <ellipse cx="20" cy="14" rx="8" ry="6" fill="#2d4d2d"/>
+              <ellipse cx="20" cy="10" rx="6" ry="5" fill="#3d6b3d"/>
+              <circle cx="29" cy="8" r="1.8" fill="#c9a84c"/>
+              <path d="M29 5.5 L29 6.8 M29 9.2 L29 10.5 M26.5 8 L27.8 8 M30.2 8 L31.5 8" stroke="#c9a84c" strokeWidth="1" strokeLinecap="round"/>
+            </svg>
             <div className="rh-logo-text">
               <span className="rh-logo-main">Rich Haven</span>
               <span className="rh-logo-sub">Enterprises</span>
             </div>
-          </a>
+          </Link>
 
           {/* DESKTOP NAV */}
           <nav className="rh-nav">
@@ -438,33 +475,45 @@ export default function Header() {
                     </svg>
                   </button>
                   <div className={`rh-dropdown${dropdownOpen ? " open" : ""}`} role="menu">
-                    {link.dropdown.map((item) => (
-                      <a key={item.label} href={item.href} className="rh-dropdown-item" role="menuitem">
-                        {item.label}
-                      </a>
+                    {/* Filter All */}
+                    <Link href={link.dropdown[0].href} className="rh-dropdown-item" role="menuitem">
+                      {link.dropdown[0].label}
+                    </Link>
+                    <div className="rh-dropdown-divider" />
+                    {/* Turf group */}
+                    <span className="rh-dropdown-group-label">Turf</span>
+                    {link.dropdown.filter(i => i.group === "Turf" && !i.isGroup).map(item => (
+                      <Link key={item.label} href={item.href} className="rh-dropdown-sub" role="menuitem">{item.label}</Link>
+                    ))}
+                    <div className="rh-dropdown-divider" />
+                    {/* Garden group */}
+                    <span className="rh-dropdown-group-label">Garden</span>
+                    {link.dropdown.filter(i => i.group === "Garden" && !i.isGroup).map(item => (
+                      <Link key={item.label} href={item.href} className="rh-dropdown-sub" role="menuitem">{item.label}</Link>
                     ))}
                   </div>
                 </div>
               ) : (
-                <a key={link.label} href={link.href} className="rh-nav-link">
+                <Link key={link.label} href={link.href} className="rh-nav-link">
                   {link.label}
-                </a>
+                </Link>
               )
             )}
           </nav>
 
-          <div className="rh-header-actions">
-            <a href="/contact" className="rh-cta">
-              <span>Contact Us</span>
-            </a>
-            <button
-              className={`rh-burger${mobileOpen ? " open" : ""}`}
-              onClick={() => setMobileOpen((v) => !v)}
-              aria-label="Toggle menu"
-            >
-              <span /><span /><span />
-            </button>
-          </div>
+          {/* CONTACT CTA */}
+          <Link href="/contact" className="rh-cta">
+            <span>Contact Us</span>
+          </Link>
+
+          {/* MOBILE BURGER */}
+          <button
+            className={`rh-burger${mobileOpen ? " open" : ""}`}
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <span /><span /><span />
+          </button>
         </div>
       </header>
 
@@ -483,20 +532,24 @@ export default function Header() {
                 </svg>
               </button>
               <div className={`rh-mobile-dropdown${mobileDropOpen ? " open" : ""}`}>
-                {link.dropdown.map((item) => (
-                  <a key={item.label} href={item.href} className="rh-mobile-dropdown-item">
-                    {item.label}
-                  </a>
+                <Link href={link.dropdown[0].href} className="rh-mobile-dropdown-item">Filter All</Link>
+                <span style={{ display: "block", padding: "0.5rem 0 0.2rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "'Jost', sans-serif" }}>Turf</span>
+                {link.dropdown.filter(i => i.group === "Turf" && !i.isGroup).map(item => (
+                  <Link key={item.label} href={item.href} className="rh-mobile-dropdown-item" style={{ paddingLeft: "0.75rem" }}>{item.label}</Link>
+                ))}
+                <span style={{ display: "block", padding: "0.5rem 0 0.2rem", fontSize: "0.65rem", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gold)", fontFamily: "'Jost', sans-serif" }}>Garden</span>
+                {link.dropdown.filter(i => i.group === "Garden" && !i.isGroup).map(item => (
+                  <Link key={item.label} href={item.href} className="rh-mobile-dropdown-item" style={{ paddingLeft: "0.75rem" }}>{item.label}</Link>
                 ))}
               </div>
             </div>
           ) : (
-            <a key={link.label} href={link.href} className="rh-mobile-link">
+            <Link key={link.label} href={link.href} className="rh-mobile-link">
               {link.label}
-            </a>
+            </Link>
           )
         )}
-        <a href="/contact" className="rh-mobile-cta">Contact Us</a>
+        <Link href="/contact" className="rh-mobile-cta">Contact Us</Link>
       </div>
     </>
   );

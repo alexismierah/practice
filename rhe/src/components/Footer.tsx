@@ -7,7 +7,7 @@ export function Footer() {
       className="w-full border-t"
       style={{ fontFamily: "'Jost', sans-serif", fontWeight: 300 }}
     >
-      <div className="w-full px-10 pt-16 pb-10">
+      <div className="w-full max-w-full px-6 pt-16 pb-10 sm:px-10">
 
         {/* Eyebrow rule */}
         <div className="flex items-center gap-4 mb-14">
@@ -22,8 +22,8 @@ export function Footer() {
           <div className="flex-1 h-px bg-border" />
         </div>
 
-        {/* Main grid */}
-        <div className="grid grid-cols-[2fr_1px_1fr_1px_1fr] gap-x-12 mb-16">
+        {/* Main grid — stack on small screens; five columns only from lg up */}
+        <div className="mb-16 grid grid-cols-1 gap-y-12 lg:grid-cols-[minmax(0,2fr)_1px_minmax(0,1fr)_1px_minmax(0,1fr)] lg:gap-x-12 lg:gap-y-0">
 
           {/* Brand */}
           <div>
@@ -46,8 +46,8 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Vertical rule */}
-          <div className="bg-border self-stretch" />
+          {/* Vertical rule (desktop only) */}
+          <div className="hidden w-px bg-border lg:block lg:min-h-[1px]" aria-hidden />
 
           {/* Nav */}
           <div>
@@ -72,8 +72,8 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Vertical rule */}
-          <div className="bg-border self-stretch" />
+          {/* Vertical rule (desktop only) */}
+          <div className="hidden w-px bg-border lg:block lg:min-h-[1px]" aria-hidden />
 
           {/* Contact */}
           <div>

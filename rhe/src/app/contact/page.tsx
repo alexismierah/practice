@@ -160,9 +160,9 @@ export default function Contact() {
 
           <ul style={{ listStyle: "none", borderTop: "1px solid rgba(139,115,85,0.2)", marginBottom: 40 }}>
             {[
-              { icon: <Mail size={14} />, label: "Email", value: "hello@richhaven.com" },
-              { icon: <Phone size={14} />, label: "Phone", value: "+63 912 345 6789" },
-              { icon: <MapPin size={14} />, label: "Location", value: "Philippines" },
+              { icon: <Mail size={14} />, label: "Email", value: "hello@richhaven.net" },
+              { icon: <Phone size={11} />, label: "Phone", value: "+63 916 236 6737" },
+              { icon: <MapPin size={14} />, label: "Location", value: "Las Piñas City, Philippines" },
             ].map(({ icon, label, value }) => (
               <li key={label} className="rh-contact-item">
                 <div style={{
