@@ -1,159 +1,516 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect, useRef } from "react";
 
-export function Header() {
-  const [open, setOpen] = useState(false)
-  const dropdownRef = useRef<HTMLDivElement>(null)
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about-page" },
+  {
+    label: "Products & Services",
+    href: "/products-services",
+    dropdown: [
+      { label: "Artificial Grass", href: "/products-services/artificial-grass" },
+      { label: "Garden Design", href: "/products-services/artificial-garden" },
+      { label: "Potted Plants", href: "/products-services/potted-plants" },
+      { label: "Trees", href: "/products-services/potted-trees" },
+    ],
+  },
+  { label: "Portfolio", href: "/portfolio-page" },
+];
+
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileDropOpen, setMobileDropOpen] = useState(false);
+  const dropRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    function handleClickOutside(e: MouseEvent) {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setOpen(false)
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const t = e.target;
+      if (dropRef.current && t instanceof Node && !dropRef.current.contains(t)) {
+        setDropdownOpen(false);
       }
-    }
-    document.addEventListener("mousedown", handleClickOutside)
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [])
-
-  const navLinkClass =
-    "relative px-[22px] h-[72px] flex items-center font-serif text-[12.5px] tracking-[0.16em] text-[#6b5b45] transition-colors duration-200 hover:text-[#2a2118] after:absolute after:bottom-0 after:left-[22px] after:right-[22px] after:h-[1.5px] after:bg-[#7c5c2e] after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100"
-
-  const services = [
-    {
-      label: "Artificial grass",
-      href: "/products-services/artificial-grass",
-      description: "Premium synthetic turf solutions",
-    },
-    {
-      label: "Artificial garden",
-      href: "/products-services/artificial-garden",
-      description: "Low-maintenance garden design",
-    },
-    {
-      label: "Potted plants",
-      href: "/products-services/potted-plants",
-      description: "Curated indoor & outdoor flora",
-    },
-    {
-      label: "Potted trees",
-      href: "/products-services/potted-trees",
-      description: "Statement trees for any space",
-    },
-  ]
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[rgba(120,100,70,0.12)] bg-[rgba(250,249,245,0.92)] backdrop-blur-xl">
-      <div className="mx-auto max-w-7xl px-8 h-[72px] grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-4">
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap');
 
-        {/* Brand + rule */}
-        <div className="flex items-center gap-8 justify-self-start min-w-0">
-          <Link href="/" className="flex flex-col gap-px shrink-0">
-            <span className="font-serif text-[18px] tracking-[0.12em] uppercase text-[#2a2118]">
-              Rich Haven
-            </span>
-            <span className="font-serif text-[9px] tracking-[0.28em] uppercase italic text-[#8a7660]">
-              Enterprises
-            </span>
-          </Link>
-          <div className="hidden sm:block w-px h-7 bg-gradient-to-b from-transparent via-[rgba(120,100,70,0.2)] to-transparent shrink-0" />
-        </div>
+        :root {
+          --forest: #1a2e1a;
+          --sage: #4a6741;
+          --cream: #f5f0e8;
+          --gold: #c9a84c;
+          --gold-light: #e8c97a;
+          --white: #ffffff;
+          --shadow: 0 4px 32px rgba(26,46,26,0.13);
+        }
 
-        {/* Nav — centered in header */}
-        <nav className="hidden md:flex items-center justify-self-center">
-          <Link href="/" className={navLinkClass}>Home</Link>
-          <Link href="/about-page" className={navLinkClass}>About us</Link>
+        /* Scoped box model only — never reset * { margin/padding } here; it breaks the whole site (Tailwind, footer, pages). */
+        .rh-header,
+        .rh-header *,
+        .rh-mobile-menu,
+        .rh-mobile-menu * {
+          box-sizing: border-box;
+        }
 
-          {/* Dropdown */}
-          <div className="relative" ref={dropdownRef}>
-            <button
-              onClick={() => setOpen(!open)}
-              className="relative px-[22px] h-[72px] flex items-center gap-[6px] font-serif text-[12.5px] tracking-[0.16em] text-[#6b5b45] transition-colors duration-200 hover:text-[#2a2118] bg-transparent border-none cursor-pointer after:absolute after:bottom-0 after:left-[22px] after:right-[22px] after:h-[1.5px] after:bg-[#7c5c2e] after:scale-x-0 after:origin-center after:transition-transform after:duration-300 hover:after:scale-x-100"
-            >
-              Products & services
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 10 10"
-                fill="none"
-                className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-              >
-                <path d="M1 3L5 7L9 3" stroke="#8a7660" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
+        .rh-header {
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 1000;
+          transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+          font-family: 'Jost', sans-serif;
+        }
 
-            {/* Dropdown panel */}
-            <div
-              className={`absolute top-[calc(100%+1px)] left-1/2 -translate-x-1/2 w-[340px] transition-all duration-200 origin-top ${
-                open
-                  ? "opacity-100 scale-y-100 pointer-events-auto"
-                  : "opacity-0 scale-y-95 pointer-events-none"
-              }`}
-            >
-              {/* Top accent line */}
-              <div className="h-[2px] bg-[#7c5c2e] mx-6 rounded-full" />
+        .rh-header.scrolled {
+          background: rgba(245,240,232,0.97);
+          backdrop-filter: blur(12px);
+          box-shadow: var(--shadow);
+        }
 
-              <div className="bg-[rgba(250,249,245,0.98)] border border-[rgba(120,100,70,0.15)] border-t-0 shadow-[0_24px_56px_rgba(42,33,24,0.12)] p-3">
+        .rh-header:not(.scrolled) {
+          background: rgba(245,240,232,0.92);
+          backdrop-filter: blur(8px);
+        }
 
-                {/* Service items */}
-                <div className="grid grid-cols-2 gap-1.5">
-                  {services.map(({ label, href, description }) => (
-                    <Link
-                      key={href}
-                      href={href}
-                      onClick={() => setOpen(false)}
-                      className="group flex flex-col gap-1 px-4 py-3.5 rounded-sm transition-all duration-200 hover:bg-[rgba(120,100,70,0.06)]"
-                    >
-                      <span className="font-serif text-[12px] tracking-[0.12em] text-[#2a2118] transition-colors duration-200 group-hover:text-[#7c5c2e]">
-                        {label}
-                      </span>
-                      <span className="font-serif text-[10.5px] italic text-[#8a7660] leading-snug">
-                        {description}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
+        .rh-header::before {
+          content: '';
+          display: block;
+          height: 2px;
+          background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+        }
 
-                {/* Divider */}
-                <div className="h-px my-3 bg-[rgba(120,100,70,0.1)]" />
+        .rh-inner {
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 0 2rem;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+          height: 76px;
+          column-gap: 2rem;
+        }
 
-                {/* Subtle footer CTA */}
-                <Link
-                  href="/products-services"
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between px-4 py-2.5 group transition-all duration-200 hover:bg-[rgba(120,100,70,0.06)] rounded-sm"
-                >
-                  <span className="font-serif text-[10.5px] tracking-[0.18em] uppercase text-[#8a7660] transition-colors duration-200 group-hover:text-[#7c5c2e]">
-                    View all services
-                  </span>
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 12 12"
-                    fill="none"
-                    className="transition-transform duration-200 group-hover:translate-x-1"
+        .rh-header-actions {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          gap: 0.75rem;
+          justify-self: end;
+          min-width: 0;
+        }
+
+        /* LOGO */
+        .rh-logo {
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          text-decoration: none;
+          flex-shrink: 0;
+          justify-self: start;
+          min-width: 0;
+        }
+
+        .rh-logo-text {
+          display: flex;
+          flex-direction: column;
+          line-height: 1;
+        }
+
+        .rh-logo-main {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: var(--forest);
+          letter-spacing: 0.06em;
+          white-space: nowrap;
+        }
+
+        .rh-logo-sub {
+          font-family: 'Jost', sans-serif;
+          font-size: 0.58rem;
+          font-weight: 400;
+          color: var(--gold);
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          margin-top: 2px;
+        }
+
+        /* NAV — middle grid column is auto width, true viewport-centered bar */
+        .rh-nav {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.25rem;
+          justify-self: center;
+        }
+
+        .rh-nav-link {
+          font-size: 0.88rem;
+          font-weight: 400;
+          letter-spacing: 0.03em;
+          color: var(--forest);
+          text-decoration: none;
+          padding: 0.5rem 0.9rem;
+          transition: color 0.25s;
+          white-space: nowrap;
+          position: relative;
+        }
+
+        .rh-nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 4px; left: 0.9rem; right: 0.9rem;
+          height: 1px;
+          background: var(--gold);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+        }
+
+        .rh-nav-link:hover { color: var(--sage); }
+        .rh-nav-link:hover::after { transform: scaleX(1); }
+
+        /* DROPDOWN TRIGGER */
+        .rh-drop-wrap { position: relative; }
+
+        .rh-drop-trigger {
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          cursor: pointer;
+          background: none;
+          border: none;
+          font-family: 'Jost', sans-serif;
+          font-size: 0.88rem;
+          font-weight: 400;
+          letter-spacing: 0.03em;
+          color: var(--forest);
+          padding: 0.5rem 0.9rem;
+          transition: color 0.25s;
+          white-space: nowrap;
+          position: relative;
+        }
+
+        .rh-drop-trigger::after {
+          content: '';
+          position: absolute;
+          bottom: 4px; left: 0.9rem; right: 0.9rem;
+          height: 1px;
+          background: var(--gold);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.3s ease;
+        }
+
+        .rh-drop-trigger:hover,
+        .rh-drop-trigger.active { color: var(--sage); }
+        .rh-drop-trigger:hover::after,
+        .rh-drop-trigger.active::after { transform: scaleX(1); }
+
+        .rh-chevron {
+          width: 9px; height: 9px;
+          transition: transform 0.25s ease;
+          opacity: 0.55;
+          flex-shrink: 0;
+        }
+        .rh-chevron.open { transform: rotate(180deg); }
+
+        /* DROPDOWN MENU */
+        .rh-dropdown {
+          position: absolute;
+          top: calc(100% + 12px);
+          left: 50%;
+          transform: translateX(-50%) translateY(-6px);
+          background: var(--white);
+          border-radius: 3px;
+          box-shadow: 0 10px 36px rgba(26,46,26,0.11);
+          min-width: 196px;
+          padding: 0.35rem 0;
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .rh-dropdown.open {
+          opacity: 1;
+          pointer-events: all;
+          transform: translateX(-50%) translateY(0);
+        }
+
+        .rh-dropdown-item {
+          display: block;
+          padding: 0.58rem 1.2rem;
+          text-decoration: none;
+          color: var(--forest);
+          font-size: 0.82rem;
+          letter-spacing: 0.02em;
+          font-family: 'Jost', sans-serif;
+          transition: background 0.18s, color 0.18s;
+        }
+
+        .rh-dropdown-item:hover {
+          background: rgba(74,103,65,0.07);
+          color: var(--sage);
+        }
+
+        /* CTA BUTTON */
+        .rh-cta {
+          flex-shrink: 0;
+          display: inline-flex;
+          align-items: center;
+          padding: 0.6rem 1.4rem;
+          background: var(--forest);
+          color: var(--cream);
+          text-decoration: none;
+          font-family: 'Jost', sans-serif;
+          font-size: 0.82rem;
+          font-weight: 500;
+          letter-spacing: 0.06em;
+          border-radius: 2px;
+          border: 1px solid var(--forest);
+          position: relative;
+          overflow: hidden;
+          transition: color 0.3s, border-color 0.3s;
+        }
+
+        .rh-cta::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: var(--gold);
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+          z-index: 0;
+        }
+
+        .rh-cta span { position: relative; z-index: 1; }
+        .rh-cta:hover::before { transform: scaleX(1); }
+        .rh-cta:hover { color: var(--forest); border-color: var(--gold); }
+
+        /* MOBILE BURGER */
+        .rh-burger {
+          display: none;
+          flex-direction: column;
+          gap: 5px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          padding: 4px;
+        }
+
+        .rh-burger span {
+          display: block;
+          width: 22px;
+          height: 1.5px;
+          background: var(--forest);
+          transition: all 0.3s ease;
+          transform-origin: center;
+        }
+
+        .rh-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .rh-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .rh-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* MOBILE MENU */
+        .rh-mobile-menu {
+          display: none;
+          position: fixed;
+          top: 78px; left: 0; right: 0; bottom: 0;
+          background: var(--cream);
+          padding: 2rem;
+          overflow-y: auto;
+          border-top: 1px solid rgba(201,168,76,0.2);
+          animation: slideDown 0.25s ease;
+        }
+
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-8px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .rh-mobile-menu.open { display: block; }
+
+        .rh-mobile-link {
+          display: block;
+          padding: 0.9rem 0;
+          font-size: 1.1rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 500;
+          color: var(--forest);
+          text-decoration: none;
+          border-bottom: 1px solid rgba(201,168,76,0.15);
+          letter-spacing: 0.04em;
+        }
+
+        .rh-mobile-drop-btn {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          background: none;
+          border: none;
+          border-bottom: 1px solid rgba(201,168,76,0.15);
+          padding: 0.9rem 0;
+          font-size: 1.1rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 500;
+          color: var(--forest);
+          cursor: pointer;
+          text-align: left;
+          letter-spacing: 0.04em;
+        }
+
+        .rh-mobile-dropdown { display: none; padding: 0.25rem 0 0.5rem 1rem; }
+        .rh-mobile-dropdown.open { display: block; }
+
+        .rh-mobile-dropdown-item {
+          display: block;
+          padding: 0.55rem 0;
+          font-size: 0.88rem;
+          color: var(--sage);
+          text-decoration: none;
+          font-family: 'Jost', sans-serif;
+          letter-spacing: 0.02em;
+        }
+
+        .rh-mobile-cta {
+          display: block;
+          margin-top: 1.5rem;
+          text-align: center;
+          padding: 0.85rem;
+          background: var(--forest);
+          color: var(--cream);
+          text-decoration: none;
+          font-size: 0.85rem;
+          letter-spacing: 0.06em;
+          font-family: 'Jost', sans-serif;
+          font-weight: 500;
+          border-radius: 2px;
+        }
+
+        @media (max-width: 900px) {
+          .rh-inner {
+            grid-template-columns: auto 1fr;
+          }
+          .rh-nav { display: none; }
+          .rh-cta { display: none; }
+          .rh-burger { display: flex; }
+        }
+      `}</style>
+
+      <header className={`rh-header${scrolled ? " scrolled" : ""}`}>
+        <div className="rh-inner">
+
+          {/* LOGO */}
+          <a href="/" className="rh-logo">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+              <ellipse cx="20" cy="34" rx="14" ry="3" fill="#4a6741" opacity="0.18"/>
+              <rect x="18.5" y="22" width="3" height="10" rx="1.2" fill="#8a6a3a"/>
+              <path d="M10 34 Q8 28 11 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <path d="M13 34 Q12 27 14 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <path d="M30 34 Q32 28 29 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <path d="M27 34 Q28 27 26 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
+              <ellipse cx="20" cy="18" rx="10" ry="7" fill="#1a2e1a"/>
+              <ellipse cx="20" cy="14" rx="8" ry="6" fill="#2d4d2d"/>
+              <ellipse cx="20" cy="10" rx="6" ry="5" fill="#3d6b3d"/>
+              <circle cx="29" cy="8" r="1.8" fill="#c9a84c"/>
+              <path d="M29 5.5 L29 6.8 M29 9.2 L29 10.5 M26.5 8 L27.8 8 M30.2 8 L31.5 8" stroke="#c9a84c" strokeWidth="1" strokeLinecap="round"/>
+            </svg>
+            <div className="rh-logo-text">
+              <span className="rh-logo-main">Rich Haven</span>
+              <span className="rh-logo-sub">Enterprises</span>
+            </div>
+          </a>
+
+          {/* DESKTOP NAV */}
+          <nav className="rh-nav">
+            {navLinks.map((link) =>
+              link.dropdown ? (
+                <div key={link.label} className="rh-drop-wrap" ref={dropRef}>
+                  <button
+                    className={`rh-drop-trigger${dropdownOpen ? " active" : ""}`}
+                    onClick={() => setDropdownOpen((v) => !v)}
+                    aria-expanded={dropdownOpen}
                   >
-                    <path d="M2 6H10M7 3L10 6L7 9" stroke="#8a7660" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </Link>
+                    {link.label}
+                    <svg className={`rh-chevron${dropdownOpen ? " open" : ""}`} viewBox="0 0 10 10" fill="none">
+                      <path d="M2 3.5 L5 6.5 L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </button>
+                  <div className={`rh-dropdown${dropdownOpen ? " open" : ""}`} role="menu">
+                    {link.dropdown.map((item) => (
+                      <a key={item.label} href={item.href} className="rh-dropdown-item" role="menuitem">
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <a key={link.label} href={link.href} className="rh-nav-link">
+                  {link.label}
+                </a>
+              )
+            )}
+          </nav>
 
+          <div className="rh-header-actions">
+            <a href="/contact-page" className="rh-cta">
+              <span>Contact Us</span>
+            </a>
+            <button
+              className={`rh-burger${mobileOpen ? " open" : ""}`}
+              onClick={() => setMobileOpen((v) => !v)}
+              aria-label="Toggle menu"
+            >
+              <span /><span /><span />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE MENU */}
+      <div className={`rh-mobile-menu${mobileOpen ? " open" : ""}`} role="navigation">
+        {navLinks.map((link) =>
+          link.dropdown ? (
+            <div key={link.label}>
+              <button
+                className="rh-mobile-drop-btn"
+                onClick={() => setMobileDropOpen((v) => !v)}
+              >
+                {link.label}
+                <svg style={{ width: 11, transition: "transform 0.25s", transform: mobileDropOpen ? "rotate(180deg)" : "none" }} viewBox="0 0 10 10" fill="none">
+                  <path d="M2 3.5 L5 6.5 L8 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </button>
+              <div className={`rh-mobile-dropdown${mobileDropOpen ? " open" : ""}`}>
+                {link.dropdown.map((item) => (
+                  <a key={item.label} href={item.href} className="rh-mobile-dropdown-item">
+                    {item.label}
+                  </a>
+                ))}
               </div>
             </div>
-          </div>
-
-          <Link href="/portfolio-page" className={navLinkClass}>Portfolio</Link>
-        </nav>
-
-        {/* CTA */}
-        <Link
-          href="/contact-page"
-          className="justify-self-end shrink-0 font-serif text-[11px] tracking-[0.22em] uppercase text-[#e8dfc8] bg-[#2a2118] px-6 py-3 transition-colors duration-200 hover:bg-[#7c5c2e] whitespace-nowrap"
-        >
-          Get a quote
-        </Link>
-
+          ) : (
+            <a key={link.label} href={link.href} className="rh-mobile-link">
+              {link.label}
+            </a>
+          )
+        )}
+        <a href="/contact-page" className="rh-mobile-cta">Contact Us</a>
       </div>
-    </header>
-  )
+    </>
+  );
 }
