@@ -416,19 +416,6 @@ export default function Header() {
 
           {/* LOGO */}
           <a href="/" className="rh-logo">
-            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
-              <ellipse cx="20" cy="34" rx="14" ry="3" fill="#4a6741" opacity="0.18"/>
-              <rect x="18.5" y="22" width="3" height="10" rx="1.2" fill="#8a6a3a"/>
-              <path d="M10 34 Q8 28 11 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <path d="M13 34 Q12 27 14 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <path d="M30 34 Q32 28 29 24" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <path d="M27 34 Q28 27 26 23" stroke="#4a6741" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-              <ellipse cx="20" cy="18" rx="10" ry="7" fill="#1a2e1a"/>
-              <ellipse cx="20" cy="14" rx="8" ry="6" fill="#2d4d2d"/>
-              <ellipse cx="20" cy="10" rx="6" ry="5" fill="#3d6b3d"/>
-              <circle cx="29" cy="8" r="1.8" fill="#c9a84c"/>
-              <path d="M29 5.5 L29 6.8 M29 9.2 L29 10.5 M26.5 8 L27.8 8 M30.2 8 L31.5 8" stroke="#c9a84c" strokeWidth="1" strokeLinecap="round"/>
-            </svg>
             <div className="rh-logo-text">
               <span className="rh-logo-main">Rich Haven</span>
               <span className="rh-logo-sub">Enterprises</span>
