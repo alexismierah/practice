@@ -11,8 +11,9 @@ type ContactPayload = {
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
-  const to = process.env.CONTACT_TO_EMAIL;
+  const from =
+    process.env.CONTACT_FROM_EMAIL ?? process.env.FROM_EMAIL;
+  const to = process.env.CONTACT_TO_EMAIL ?? process.env.CONTACT_EMAIL;
 
   if (!apiKey || !from || !to) {
     return NextResponse.json(
