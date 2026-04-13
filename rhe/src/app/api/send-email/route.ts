@@ -5,6 +5,7 @@ type ContactPayload = {
   name?: string;
   email?: string;
   phone?: string;
+  subject?: string;
   message?: string;
 };
 
@@ -40,16 +41,22 @@ export async function POST(request: Request) {
     );
   }
 
+  const subjectLine =
+    typeof data.subject === "string" && data.subject.trim()
+      ? `Website contact: ${data.subject.trim()}`
+      : `Website contact${data.name?.trim() ? `: ${data.name.trim()}` : ""}`;
+
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from,
     to: [to],
     replyTo: data.email,
-    subject: `Website contact${data.name ? `: ${data.name}` : ""}`,
+    subject: subjectLine,
     text: [
-      `Name: ${data.name ?? "—"}`,
+      `Name: ${data.name?.trim() || "—"}`,
       `Email: ${data.email}`,
-      `Phone: ${data.phone ?? "—"}`,
+      `Phone: ${data.phone?.trim() || "—"}`,
+      `Subject: ${typeof data.subject === "string" && data.subject.trim() ? data.subject.trim() : "—"}`,
       "",
       data.message,
     ].join("\n"),

@@ -5,7 +5,7 @@ import "./globals.css"
 export const metadata = {
   title: "Home",
   icons: {
-    icon: "/icon.png",
+    icon: "/Favicon.ico",
   },
 }
 

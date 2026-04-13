@@ -1,6 +1,60 @@
-import { Mail, Phone, MapPin } from "lucide-react"
+"use client";
+
+import { useState, type FormEvent } from "react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 export default function Contact() {
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setErrorMessage("");
+    if (!email.trim() || !message.trim()) {
+      setErrorMessage("Please enter your email and message.");
+      setStatus("error");
+      return;
+    }
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim() || undefined,
+          phone: phone.trim() || undefined,
+          email: email.trim(),
+          subject: subject.trim() || undefined,
+          message: message.trim(),
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        error?: string;
+      };
+      if (!res.ok) {
+        setErrorMessage(data.error ?? "Something went wrong. Please try again.");
+        setStatus("error");
+        return;
+      }
+      setStatus("success");
+      setName("");
+      setPhone("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch {
+      setErrorMessage("Network error. Check your connection and try again.");
+      setStatus("error");
+    }
+  }
+
   return (
     <main style={{ fontFamily: "'Jost', sans-serif", background: "#ffffff", color: "#1a2e1a" }}>
       <style>{`
@@ -197,6 +251,17 @@ export default function Contact() {
         }
 
         .ct-btn:hover { background: var(--sage); }
+        .ct-btn:disabled { opacity: 0.65; cursor: not-allowed; }
+        .ct-btn:disabled:hover { background: var(--forest); }
+
+        .ct-form-status {
+          margin-top: 1rem;
+          font-size: 0.82rem;
+          font-weight: 300;
+          line-height: 1.5;
+        }
+        .ct-form-status--ok { color: var(--sage); }
+        .ct-form-status--err { color: #8b4040; }
 
         /* ── SIDEBAR ── */
         .ct-sidebar {
@@ -370,40 +435,109 @@ export default function Contact() {
             <div>
               <div className="ct-form-label-row">Send a message</div>
 
-              <div className="ct-row">
-                <div className="ct-field">
-                  <label className="ct-field-label">Full Name</label>
-                  <input className="ct-input" type="text" placeholder="e.g. Maria Santos" />
+              <form onSubmit={handleSubmit} noValidate>
+                <div className="ct-row">
+                  <div className="ct-field">
+                    <label className="ct-field-label" htmlFor="contact-name">
+                      Full Name
+                    </label>
+                    <input
+                      id="contact-name"
+                      className="ct-input"
+                      type="text"
+                      name="name"
+                      autoComplete="name"
+                      placeholder="e.g. Maria Santos"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                  <div className="ct-field">
+                    <label className="ct-field-label" htmlFor="contact-phone">
+                      Phone Number
+                    </label>
+                    <input
+                      id="contact-phone"
+                      className="ct-input"
+                      type="tel"
+                      name="phone"
+                      autoComplete="tel"
+                      placeholder="+63 9XX XXX XXXX"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                    />
+                  </div>
                 </div>
+
                 <div className="ct-field">
-                  <label className="ct-field-label">Phone Number</label>
-                  <input className="ct-input" type="tel" placeholder="+63 9XX XXX XXXX" />
+                  <label className="ct-field-label" htmlFor="contact-email">
+                    Email Address
+                  </label>
+                  <input
+                    id="contact-email"
+                    className="ct-input"
+                    type="email"
+                    name="email"
+                    autoComplete="email"
+                    required
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
                 </div>
-              </div>
 
-              <div className="ct-field">
-                <label className="ct-field-label">Email Address</label>
-                <input className="ct-input" type="email" placeholder="you@example.com" />
-              </div>
+                <div className="ct-field">
+                  <label className="ct-field-label" htmlFor="contact-subject">
+                    Subject
+                  </label>
+                  <input
+                    id="contact-subject"
+                    className="ct-input"
+                    type="text"
+                    name="subject"
+                    placeholder="e.g. Artificial turf for my garden"
+                    value={subject}
+                    onChange={(e) => setSubject(e.target.value)}
+                  />
+                </div>
 
-              <div className="ct-field">
-                <label className="ct-field-label">Subject</label>
-                <input className="ct-input" type="text" placeholder="e.g. Artificial turf for my garden" />
-              </div>
+                <div className="ct-field">
+                  <label className="ct-field-label" htmlFor="contact-message">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    className="ct-input"
+                    name="message"
+                    rows={5}
+                    required
+                    placeholder="Tell us about your space and what you have in mind…"
+                    style={{ resize: "none", lineHeight: 1.75 }}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
+                </div>
 
-              <div className="ct-field">
-                <label className="ct-field-label">Message</label>
-                <textarea
-                  className="ct-input"
-                  rows={5}
-                  placeholder="Tell us about your space and what you have in mind…"
-                  style={{ resize: "none", lineHeight: 1.75 }}
-                />
-              </div>
+                <button
+                  className="ct-btn"
+                  type="submit"
+                  disabled={status === "loading"}
+                >
+                  {status === "loading" ? "Sending…" : "Send Message"}
+                </button>
 
-              <button className="ct-btn">
-                Send Message
-              </button>
+                {status === "success" && (
+                  <p className="ct-form-status ct-form-status--ok" role="status">
+                    Thank you — your message was sent. We will get back to you
+                    soon.
+                  </p>
+                )}
+                {status === "error" && errorMessage && (
+                  <p className="ct-form-status ct-form-status--err" role="alert">
+                    {errorMessage}
+                  </p>
+                )}
+              </form>
             </div>
 
             {/* SIDEBAR */}
