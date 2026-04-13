@@ -345,13 +345,13 @@ export default function Header() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
-          padding: 14px 32px;
+          gap: 6px;
+          padding: 10px 24px;
           background: #2d5a27;
           color: #fff;
           text-decoration: none;
           font-family: 'DM Sans', sans-serif;
-          font-size: 15px;
+          font-size: 13px;
           font-weight: 500;
           letter-spacing: normal;
           border-radius: 50px;
