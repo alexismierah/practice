@@ -1,220 +1,452 @@
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 
 export default function Contact() {
   return (
-    <main
-      className="min-h-screen"
-      style={{ fontFamily: "'Jost', sans-serif", background: "#F7F4EE", color: "#1C1C1A" }}
-    >
-      {/* ── FONT IMPORTS ── */}
+    <main style={{ fontFamily: "'Jost', sans-serif", background: "#ffffff", color: "#1a2e1a" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap');
 
-        .rh-hero-leaf { position: absolute; opacity: 0.07; pointer-events: none; font-size: 180px; }
-        .rh-input { width: 100%; background: transparent; border: none; border-bottom: 1px solid rgba(139,115,85,0.2); border-radius: 0; padding: 10px 0; font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; color: #1C1C1A; outline: none; transition: border-color 0.3s; }
-        .rh-input::placeholder { color: #9E9890; font-weight: 300; }
-        .rh-input:focus { border-bottom-color: #4A7B4E; }
-        .rh-submit:hover { background: #4A7B4E !important; transform: translateY(-1px); }
-        .rh-contact-item { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(139,115,85,0.2); }
+        :root {
+          --forest: #1a2e1a;
+          --sage: #4a6741;
+          --cream: #f5f0e8;
+          --gold: #c9a84c;
+          --border: rgba(26,46,26,0.08);
+          --muted: #7a8c7a;
+          --body: #3d4f3d;
+        }
 
-        @media (max-width: 768px) {
-          .rh-grid { grid-template-columns: 1fr !important; gap: 48px !important; padding: 48px 24px !important; }
-          .rh-hero { padding: 60px 24px 56px !important; }
+        .ct *, .ct *::before, .ct *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ── PAGE SHELL ── */
+        .ct-wrap {
+          max-width: 1100px;
+          margin: 0 auto;
+          padding: 5rem clamp(1.5rem, 5vw, 3rem) 7rem;
+        }
+
+        /* ── PAGE HEADER ── */
+        .ct-head {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 4rem;
+          align-items: end;
+          padding-bottom: 3rem;
+          border-bottom: 1px solid var(--border);
+          margin-bottom: 4rem;
+        }
+
+        .ct-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          margin-bottom: 1rem;
+        }
+
+        .ct-eyebrow-line { width: 20px; height: 1px; background: var(--gold); }
+        .ct-eyebrow-text {
+          font-size: 0.62rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--gold);
+          font-weight: 500;
+        }
+
+        .ct-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(2.2rem, 4vw, 3rem);
+          font-weight: 500;
+          color: var(--forest);
+          line-height: 1.12;
+          letter-spacing: -0.01em;
+        }
+
+        .ct-title em { font-style: italic; color: var(--sage); }
+
+        .ct-head-right {
+          padding-bottom: 0.2rem;
+        }
+
+        .ct-tagline {
+          font-size: 0.9rem;
+          line-height: 1.9;
+          color: var(--body);
+          font-weight: 300;
+          margin-bottom: 1.8rem;
+        }
+
+        /* Contact details inline in header */
+        .ct-details {
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        .ct-detail {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.82rem;
+          color: var(--body);
+          font-weight: 300;
+        }
+
+        .ct-detail-icon {
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: #f0f4ee;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--sage);
+          flex-shrink: 0;
+        }
+
+        .ct-detail-label {
+          font-size: 0.62rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--muted);
+          font-weight: 400;
+          display: block;
+          margin-bottom: 1px;
+        }
+
+        /* ── BODY: form + sidebar ── */
+        .ct-body {
+          display: grid;
+          grid-template-columns: 1fr 360px;
+          gap: 5rem;
+          align-items: start;
+        }
+
+        /* ── FORM ── */
+        .ct-form-label-row {
+          font-size: 0.62rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: var(--gold);
+          font-weight: 500;
+          margin-bottom: 2rem;
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+        }
+
+        .ct-form-label-row::after {
+          content: '';
+          flex: 1;
+          height: 1px;
+          background: var(--border);
+        }
+
+        .ct-field {
+          margin-bottom: 1.6rem;
+        }
+
+        .ct-field-label {
+          display: block;
+          font-size: 0.62rem;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--muted);
+          font-weight: 400;
+          margin-bottom: 0.5rem;
+        }
+
+        .ct-input {
+          width: 100%;
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid var(--border);
+          border-radius: 0;
+          padding: 0.6rem 0;
+          font-family: 'Jost', sans-serif;
+          font-size: 0.875rem;
+          font-weight: 300;
+          color: var(--forest);
+          outline: none;
+          transition: border-color 0.25s;
+        }
+
+        .ct-input::placeholder { color: #b0bcb0; font-weight: 300; }
+        .ct-input:focus { border-bottom-color: var(--sage); }
+
+        .ct-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+        .ct-btn {
+          margin-top: 2rem;
+          width: 100%;
+          padding: 0.85rem 2rem;
+          background: var(--forest);
+          color: var(--cream);
+          border: none;
+          font-family: 'Jost', sans-serif;
+          font-size: 0.72rem;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          border-radius: 2px;
+          transition: background 0.2s;
+        }
+
+        .ct-btn:hover { background: var(--sage); }
+
+        /* ── SIDEBAR ── */
+        .ct-sidebar {
+          position: sticky;
+          top: 6rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+          background: var(--border);
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        .ct-info-block {
+          background: #fff;
+          padding: 1.6rem 1.5rem;
+        }
+
+        .ct-info-block-label {
+          font-size: 0.6rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--muted);
+          font-weight: 500;
+          margin-bottom: 0.9rem;
+        }
+
+        .ct-info-row {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          font-size: 0.82rem;
+          color: var(--body);
+          font-weight: 300;
+          line-height: 1.5;
+        }
+
+        .ct-info-icon {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          background: #f0f4ee;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--sage);
+          flex-shrink: 0;
+        }
+
+        .ct-hours-block {
+          background: var(--forest);
+          padding: 1.6rem 1.5rem;
+        }
+
+        .ct-hours-label {
+          font-size: 0.6rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(245,240,232,0.45);
+          font-weight: 500;
+          margin-bottom: 0.9rem;
+        }
+
+        .ct-hours-title {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.3rem;
+          font-weight: 500;
+          color: var(--cream);
+          line-height: 1.2;
+          margin-bottom: 1rem;
+        }
+
+        .ct-hours-title em { font-style: italic; color: rgba(232,201,122,0.8); }
+
+        .ct-hours-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          padding: 0.55rem 0;
+          border-bottom: 1px solid rgba(245,240,232,0.07);
+          font-size: 0.78rem;
+          font-weight: 300;
+        }
+
+        .ct-hours-row:last-child { border-bottom: none; }
+
+        .ct-hours-day { color: rgba(245,240,232,0.55); letter-spacing: 0.02em; }
+        .ct-hours-time { color: rgba(245,240,232,0.9); letter-spacing: 0.04em; }
+        .ct-hours-closed { color: rgba(245,240,232,0.3); font-style: italic; }
+
+        .ct-note-block {
+          background: #fafdf8;
+          padding: 1.3rem 1.5rem;
+          display: flex;
+          gap: 0.75rem;
+          align-items: flex-start;
+        }
+
+        .ct-note-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: var(--gold);
+          flex-shrink: 0;
+          margin-top: 0.35rem;
+          opacity: 0.6;
+        }
+
+        .ct-note-text {
+          font-size: 0.75rem;
+          line-height: 1.65;
+          color: var(--muted);
+          font-weight: 300;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+          .ct-body { grid-template-columns: 1fr; gap: 3rem; }
+          .ct-sidebar { position: static; }
+        }
+
+        @media (max-width: 680px) {
+          .ct-head { grid-template-columns: 1fr; gap: 2rem; }
+          .ct-row { grid-template-columns: 1fr; gap: 0; }
         }
       `}</style>
 
-      {/* ── HERO ── */}
-      <section
-        className="rh-hero"
-        style={{
-          position: "relative",
-          padding: "80px 48px 72px",
-          textAlign: "center",
-          overflow: "hidden",
-          borderBottom: "1px solid rgba(139,115,85,0.2)",
-        }}
-      >
+      <div className="ct">
+        <div className="ct-wrap">
 
-        {/* decorative leaves */}
-        <span className="rh-hero-leaf" style={{ left: -20, top: 20, transform: "rotate(-20deg)", color: "#2C4A2E" }}>🌿</span>
-        <span className="rh-hero-leaf" style={{ right: -20, bottom: -20, transform: "rotate(160deg)", color: "#2C4A2E", fontSize: 160 }}>🌿</span>
-
-        <span style={{
-          display: "inline-block",
-          fontSize: 11, fontWeight: 400, letterSpacing: "0.22em",
-          textTransform: "uppercase", color: "#8B7355", marginBottom: 20,
-        }}>
-          Rich Haven
-        </span>
-
-        <h1 style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(42px, 6vw, 68px)",
-          fontWeight: 300, lineHeight: 1.1, letterSpacing: "-0.01em",
-          marginBottom: 20,
-        }}>
-          Get in <em style={{ fontStyle: "italic", color: "#2C4A2E" }}>Touch</em>
-        </h1>
-
-        <div style={{ width: 40, height: 1, background: "#C4A97D", margin: "0 auto 20px" }} />
-
-        <p style={{
-          fontSize: 14, fontWeight: 300, lineHeight: 1.8,
-          color: "#6B6560", maxWidth: 460, margin: "0 auto", letterSpacing: "0.02em",
-        }}>
-          Let&apos;s bring your space to life with premium artificial grass and
-          botanical solutions. We respond within one business day.
-        </p>
-      </section>
-
-      {/* ── CONTENT ── */}
-      <section
-        className="rh-grid"
-        style={{
-          maxWidth: 1080, margin: "0 auto",
-          padding: "72px 48px 96px",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 80,
-          alignItems: "start",
-        }}
-      >
-
-        {/* ── FORM ── */}
-        <div>
-          {/* section label */}
-          <div style={{
-            display: "flex", alignItems: "center", gap: 12,
-            fontSize: 10, fontWeight: 500, letterSpacing: "0.25em",
-            textTransform: "uppercase", color: "#8B7355", marginBottom: 28,
-          }}>
-            Send a message
-            <span style={{ flex: 1, height: 1, background: "rgba(139,115,85,0.2)" }} />
-          </div>
-
-          {[
-            { label: "Your Name", type: "text", placeholder: "e.g. Maria Santos" },
-            { label: "Email Address", type: "email", placeholder: "you@example.com" },
-            { label: "Phone Number", type: "tel", placeholder: "+63 9XX XXX XXXX" },
-          ].map(({ label, type, placeholder }) => (
-            <div key={label} style={{ marginBottom: 20 }}>
-              <label style={{
-                display: "block", fontSize: 10, fontWeight: 400,
-                letterSpacing: "0.18em", textTransform: "uppercase",
-                color: "#9E9890", marginBottom: 8,
-              }}>
-                {label}
-              </label>
-              <input className="rh-input" type={type} placeholder={placeholder} />
+          {/* ── HEADER ── */}
+          <div className="ct-head">
+            <div>
+              <div className="ct-eyebrow">
+                <span className="ct-eyebrow-line" />
+                <span className="ct-eyebrow-text">Contact Us</span>
+              </div>
+              <h1 className="ct-title">
+                Let's bring your<br />
+                space to <em>life.</em>
+              </h1>
             </div>
-          ))}
 
-          <div style={{ marginBottom: 20 }}>
-            <label style={{
-              display: "block", fontSize: 10, fontWeight: 400,
-              letterSpacing: "0.18em", textTransform: "uppercase",
-              color: "#9E9890", marginBottom: 8,
-            }}>
-              Message
-            </label>
-            <textarea
-              className="rh-input"
-              rows={5}
-              placeholder="Tell us about your space and how we can help…"
-              style={{ resize: "none", lineHeight: 1.7 }}
-            />
-          </div>
-
-          <button
-            className="rh-submit"
-            style={{
-              marginTop: 36, width: "100%",
-              background: "#2C4A2E", color: "#F7F4EE",
-              border: "none", padding: "16px 32px",
-              fontFamily: "'Jost', sans-serif",
-              fontSize: 11, fontWeight: 400, letterSpacing: "0.22em",
-              textTransform: "uppercase", cursor: "pointer",
-              transition: "background 0.3s, transform 0.15s",
-              display: "flex", alignItems: "center", justifyContent: "center", gap: 12,
-            }}
-          >
-            <span>Send Message</span>
-          </button>
-        </div>
-
-        {/* ── INFO ── */}
-        <div style={{ paddingTop: 4 }}>
-          <div style={{ marginBottom: 48 }}>
-            <h2 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 32, fontWeight: 300, lineHeight: 1.25, marginBottom: 12,
-            }}>
-              We&apos;d love to<br />
-              <em style={{ fontStyle: "italic", color: "#2C4A2E" }}>hear from you</em>
-            </h2>
-            <p style={{ fontSize: 13, fontWeight: 300, color: "#6B6560", lineHeight: 1.8, letterSpacing: "0.02em" }}>
-              Whether you&apos;re designing a rooftop garden, a commercial lobby,
-              or a cosy balcony retreat — our team is here to guide you every step of the way.
-            </p>
-          </div>
-
-          <ul style={{ listStyle: "none", borderTop: "1px solid rgba(139,115,85,0.2)", marginBottom: 40 }}>
-            {[
-              { icon: <Mail size={14} />, label: "Email", value: "hello@richhaven.net" },
-              { icon: <Phone size={11} />, label: "Phone", value: "+63 916 236 6737" },
-              { icon: <MapPin size={14} />, label: "Location", value: "Las Piñas City, Philippines" },
-            ].map(({ icon, label, value }) => (
-              <li key={label} className="rh-contact-item">
-                <div style={{
-                  width: 36, height: 36, borderRadius: "50%",
-                  background: "#EEF4EE",
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  flexShrink: 0, color: "#2C4A2E",
-                }}>
-                  {icon}
-                </div>
-                <div>
-                  <div style={{ fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", color: "#9E9890", marginBottom: 3 }}>
-                    {label}
+            <div className="ct-head-right">
+              <p className="ct-tagline">
+                Have a project in mind or need advice on the right greenery for your space? Reach out — we respond within one business day.
+              </p>
+              <div className="ct-details">
+                {[
+                  { icon: <Mail size={13} />, label: "Email", value: "hello@richhaven.net" },
+                  { icon: <Phone size={13} />, label: "Phone", value: "+63 916 236 6737" },
+                  { icon: <MapPin size={13} />, label: "Location", value: "Las Piñas City, Philippines" },
+                ].map(({ icon, label, value }) => (
+                  <div className="ct-detail" key={label}>
+                    <div className="ct-detail-icon">{icon}</div>
+                    <div>
+                      <span className="ct-detail-label">{label}</span>
+                      {value}
+                    </div>
                   </div>
-                  <div style={{ fontSize: 13, fontWeight: 300 }}>{value}</div>
-                </div>
-              </li>
-            ))}
-          </ul>
-
-          {/* hours card */}
-          <div style={{
-            background: "#2C4A2E",
-            padding: "28px 32px",
-            position: "relative",
-            overflow: "hidden",
-          }}>
-            <div style={{
-              position: "absolute", top: -30, right: -30,
-              width: 120, height: 120, borderRadius: "50%",
-              background: "rgba(255,255,255,0.04)",
-            }} />
-            <div style={{ fontSize: 9, letterSpacing: "0.25em", textTransform: "uppercase", color: "rgba(244,237,220,0.5)", marginBottom: 14 }}>
-              Office Hours
-            </div>
-            <h3 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: 22, fontWeight: 300, color: "#F4EDDC",
-              marginBottom: 16, letterSpacing: "0.01em",
-            }}>
-              When we&apos;re available
-            </h3>
-            <div style={{ fontSize: 13, fontWeight: 300, color: "rgba(244,237,220,0.8)", letterSpacing: "0.04em", lineHeight: 1.8 }}>
-              Monday – Saturday
-            </div>
-            <div style={{ fontSize: 12, color: "#C4A97D", letterSpacing: "0.06em", marginTop: 6 }}>
-              9:00 AM — 6:00 PM
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-      </section>
+          {/* ── BODY ── */}
+          <div className="ct-body">
+
+            {/* FORM */}
+            <div>
+              <div className="ct-form-label-row">Send a message</div>
+
+              <div className="ct-row">
+                <div className="ct-field">
+                  <label className="ct-field-label">Full Name</label>
+                  <input className="ct-input" type="text" placeholder="e.g. Maria Santos" />
+                </div>
+                <div className="ct-field">
+                  <label className="ct-field-label">Phone Number</label>
+                  <input className="ct-input" type="tel" placeholder="+63 9XX XXX XXXX" />
+                </div>
+              </div>
+
+              <div className="ct-field">
+                <label className="ct-field-label">Email Address</label>
+                <input className="ct-input" type="email" placeholder="you@example.com" />
+              </div>
+
+              <div className="ct-field">
+                <label className="ct-field-label">Subject</label>
+                <input className="ct-input" type="text" placeholder="e.g. Artificial turf for my garden" />
+              </div>
+
+              <div className="ct-field">
+                <label className="ct-field-label">Message</label>
+                <textarea
+                  className="ct-input"
+                  rows={5}
+                  placeholder="Tell us about your space and what you have in mind…"
+                  style={{ resize: "none", lineHeight: 1.75 }}
+                />
+              </div>
+
+              <button className="ct-btn">
+                Send Message
+              </button>
+            </div>
+
+            {/* SIDEBAR */}
+            <div className="ct-sidebar">
+
+              <div className="ct-info-block">
+                <div className="ct-info-block-label">Our location</div>
+                <div className="ct-info-row">
+                  <div className="ct-info-icon"><MapPin size={13} /></div>
+                  Las Piñas City, Metro Manila, Philippines
+                </div>
+              </div>
+
+              <div className="ct-hours-block">
+                <div className="ct-hours-label">Office Hours</div>
+                <h3 className="ct-hours-title">When we're <em>available</em></h3>
+                {[
+                  { day: "Monday – Friday", time: "9:00 AM – 6:00 PM" },
+                  { day: "Saturday", time: "9:00 AM – 6:00 PM" },
+                  { day: "Sunday", time: null },
+                ].map(({ day, time }) => (
+                  <div className="ct-hours-row" key={day}>
+                    <span className="ct-hours-day">{day}</span>
+                    {time
+                      ? <span className="ct-hours-time">{time}</span>
+                      : <span className="ct-hours-closed">Closed</span>
+                    }
+                  </div>
+                ))}
+              </div>
+
+              <div className="ct-note-block">
+                <div className="ct-note-dot" />
+                <p className="ct-note-text">
+                  We typically respond to all inquiries within one business day. For urgent matters, please call us directly.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
     </main>
-  )
+  );
 }
