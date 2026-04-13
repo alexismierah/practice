@@ -4,18 +4,18 @@ import { useState, useEffect, useRef } from "react";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about-page" },
+  { label: "About Us", href: "/about" },
   {
     label: "Products & Services",
     href: "/products-services",
     dropdown: [
-      { label: "Artificial Grass", href: "/products-services/artificial-grass" },
-      { label: "Garden Design", href: "/products-services/artificial-garden" },
-      { label: "Potted Plants", href: "/products-services/potted-plants" },
-      { label: "Trees", href: "/products-services/potted-trees" },
+      { label: "Artificial Grass", href: "/products-services/grass" },
+      { label: "Garden Design", href: "/products-services/garden" },
+      { label: "Potted Plants", href: "/products-services/plants" },
+      { label: "Trees", href: "/products-services/trees" },
     ],
   },
-  { label: "Portfolio", href: "/portfolio-page" },
+  { label: "Portfolio", href: "/portfolio" },
 ];
 
 export default function Header() {
@@ -467,7 +467,7 @@ export default function Header() {
           </nav>
 
           <div className="rh-header-actions">
-            <a href="/contact-page" className="rh-cta">
+            <a href="/contact" className="rh-cta">
               <span>Contact Us</span>
             </a>
             <button
@@ -509,7 +509,7 @@ export default function Header() {
             </a>
           )
         )}
-        <a href="/contact-page" className="rh-mobile-cta">Contact Us</a>
+        <a href="/contact" className="rh-mobile-cta">Contact Us</a>
       </div>
     </>
   );
