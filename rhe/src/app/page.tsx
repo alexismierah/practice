@@ -10,69 +10,24 @@ const stats = [
 
 const featuredPlants = [
   {
-    name: "Monstera Deliciosa",
+    name: "Grass",
     sublabel: "Indoor Statement Plant",
-    price: "$20.00",
-    originalPrice: "$30.00",
-    featured: true,
     img: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&q=80",
-    tag: "All plants",
   },
   {
-    name: "Peace Lily",
+    name: "Plants",
     sublabel: "Air-Purifying Favorite",
-    price: "$20.00",
-    originalPrice: "$30.00",
     img: "https://images.unsplash.com/photo-1593482892290-f54927ae1bb6?w=600&q=80",
-    tag: "New Arrivals",
   },
   {
-    name: "Caladium",
+    name: "Trees",
     sublabel: "Colorful Foliage Plant",
-    price: "$20.00",
-    originalPrice: "$30.00",
     img: "https://images.unsplash.com/photo-1622372738946-62e02505feb3?w=600&q=80",
-    tag: "Sales",
   },
   {
-    name: "ZZ Plant",
+    name: "Wall Garden",
     sublabel: "Low-Maintenance Choice",
-    price: "$20.00",
-    originalPrice: "$30.00",
     img: "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&q=80",
-    tag: "Easy Care",
-  },
-  {
-    name: "Fiddle Leaf Fig",
-    sublabel: "Bold Focal Greenery",
-    price: "$20.00",
-    originalPrice: "$30.00",
-    img: "https://images.unsplash.com/photo-1534710961216-75c88202f43e?w=600&q=80",
-    tag: "All plants",
-  },
-  {
-    name: "Anthurium",
-    sublabel: "Exotic Flowering Plant",
-    price: "$20.00",
-    originalPrice: "$30.00",
-    img: "https://images.unsplash.com/photo-1612965607446-25e1332775ae?w=600&q=80",
-    tag: "New Arrivals",
-  },
-  {
-    name: "Pothos",
-    sublabel: "Trailing Vine Beauty",
-    price: "$20.00",
-    originalPrice: "$30.00",
-    img: "https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=600&q=80",
-    tag: "Easy Care",
-  },
-  {
-    name: "Rubber Plant",
-    sublabel: "Glossy Statement Tree",
-    price: "$20.00",
-    originalPrice: "$30.00",
-    img: "https://images.unsplash.com/photo-1592150621744-aca64f48394a?w=600&q=80",
-    tag: "All plants",
   },
 ];
 
@@ -80,39 +35,84 @@ const categories = [
   {
     title: "Supply",
     desc: "Elevate your indoor space with easy-care indoor plants that thrive with minimal effort and add a relaxing, natural touch to any room.",
-    img: "https://images.unsplash.com/photo-1545241047-6083a3684587?w=600&q=80",
     plantImg: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=300&q=80",
   },
   {
     title: "Installation",
     desc: "Bring life to your outdoor space with vibrant, long-living plants. Perfect for patios, balconies, and your garden — back to thrive in natural light and fresh air.",
-    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80",
     plantImg: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=300&q=80",
   },
 ];
 
 const shopReasons = [
   {
-    title: "Free and Fast Delivery",
-    desc: "Get doorstep delivery in your city and nearby areas within 2-4 days.",
-    icon: "D",
+    title: "Low Maintenance",
+    desc: "Enjoy beautiful greenery without watering, trimming, or fertilizing.",
+    icon: "lowUpkeep",
   },
   {
-    title: "Hassle-Free Returns",
-    desc: "Changed your mind? Return items easily within 30 days, no stress involved.",
-    icon: "R",
+    title: "Long-Lasting Quality",
+    desc: "Made from durable materials that stay vibrant and fresh-looking over time.",
+    icon: "durability",
   },
   {
-    title: "24/7 Customer Support",
-    desc: "Our team is available anytime you need help, day or night.",
-    icon: "S",
+    title: "All-Weather Friendly",
+    desc: "Suitable for indoor and outdoor spaces, resistant to fading and damage.",
+    icon: "weather",
   },
   {
-    title: "Secure Payments",
-    desc: "Checkout confidently with encrypted payments and trusted partners.",
-    icon: "P",
+    title: "Versatile Design",
+    desc: "Ideal for homes, offices, commercial spaces, events, and decorative projects.",
+    icon: "versatile",
   },
-];
+] as const;
+
+function ReasonIcon({ id }: { id: (typeof shopReasons)[number]["icon"] }) {
+  const s = {
+    fill: "none" as const,
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  switch (id) {
+    case "lowUpkeep":
+      return (
+        <g {...s}>
+          <path d="M10 5.2c2.6 0 4.8 2.5 4.8 5.1 0 3.1-4.8 6.9-4.8 6.9s-4.8-3.8-4.8-6.9c0-2.6 2.2-5.1 4.8-5.1z" />
+          <path d="M6.9 6.9l6.2 6.2" />
+        </g>
+      );
+    case "durability":
+      return (
+        <g {...s}>
+          <path d="M10 2.9l5.4 3.1v4.7c0 3.25-2.4 5.9-5.4 6.75-3-.85-5.4-3.5-5.4-6.75V6Z" />
+          <path d="M7.9 10.1l1.6 1.6 3.6-3.6" />
+        </g>
+      );
+    case "weather":
+      return (
+        <g {...s}>
+          <circle cx="13.75" cy="6.35" r="2.05" />
+          <path d="M13.75 4.1v1M13.75 8.6v1M11.55 6.35h-.95M17 6.35h-.95M11.85 4.65l-.65.65M15.65 8.05l-.65.65M15.65 4.65l-.65-.65M11.85 8.05l-.65-.65" />
+          <g transform="translate(0 1.85)">
+            <path d="M15 8.33h-1.05a6.67 6.67 0 1 0-6.45 8.34h7.5a4.17 4.17 0 0 0 0-8.34z" />
+          </g>
+        </g>
+      );
+    case "versatile":
+      return (
+        <g {...s}>
+          <rect x="3.25" y="3.25" width="5.9" height="5.9" rx="1.15" />
+          <rect x="10.85" y="3.25" width="5.9" height="5.9" rx="1.15" />
+          <rect x="3.25" y="10.85" width="5.9" height="5.9" rx="1.15" />
+          <rect x="10.85" y="10.85" width="5.9" height="5.9" rx="1.15" />
+        </g>
+      );
+    default:
+      return null;
+  }
+}
 
 export default function RichHavenHome() {
   const displayedPlants = featuredPlants.slice(0, 4);
@@ -634,9 +634,8 @@ export default function RichHavenHome() {
             {shopReasons.slice(0, 2).map((reason) => (
               <article className="reason" key={reason.title}>
                 <div className="reason-icon-wrap" aria-hidden="true">
-                  <svg className="reason-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    {reason.icon === "D" && (<><path d="M3 10h14M3 10l4-4M3 10l4 4" /><rect x="9" y="6" width="8" height="8" rx="2" /></>)}
-                    {reason.icon === "R" && (<><path d="M4 10a6 6 0 1 0 6-6" /><path d="M4 6v4h4" /></>)}
+                  <svg className="reason-icon" viewBox="0 0 20 20" aria-hidden="true">
+                    <ReasonIcon id={reason.icon} />
                   </svg>
                 </div>
                 <div className="reason-content">
@@ -657,9 +656,8 @@ export default function RichHavenHome() {
             {shopReasons.slice(2).map((reason) => (
               <article className="reason" key={reason.title}>
                 <div className="reason-icon-wrap" aria-hidden="true">
-                  <svg className="reason-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                    {reason.icon === "S" && (<><circle cx="10" cy="10" r="7" /><path d="M10 6v4l2.5 2.5" /></>)}
-                    {reason.icon === "P" && (<><rect x="3" y="7" width="14" height="10" rx="2" /><path d="M7 7V5a3 3 0 0 1 6 0v2" /></>)}
+                  <svg className="reason-icon" viewBox="0 0 20 20" aria-hidden="true">
+                    <ReasonIcon id={reason.icon} />
                   </svg>
                 </div>
                 <div className="reason-content">
