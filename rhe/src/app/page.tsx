@@ -68,7 +68,7 @@ const shopReasons = [
   },
 ] as const;
 
-export default function RichHavenHome() {
+export default function Home() {
   const displayedPlants = featuredPlants.slice(0, 4);
 
   return (
