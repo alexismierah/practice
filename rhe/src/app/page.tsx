@@ -554,7 +554,7 @@ export default function Home() {
           <p className="hero-copy">From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home.</p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
-            <button className="button button-secondary" type="button">Watch How</button>
+            <Link className="button button-secondary" href="/portfolio">Portfolio</Link>
           </div>
         </div>
         <div className="stats-wrap">
