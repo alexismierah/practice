@@ -14,7 +14,7 @@ export const navLinks = [
         { label: "Grass", href: "/products-services/grass" },
         { label: "Plants", href: "/products-services/plants" },
         { label: "Trees", href: "/products-services/trees" },
-        { label: "Wall", href: "/products-services/wall" },
+        { label: "Wall", href: "/products-services/garden" },
       ],
     },
   },
