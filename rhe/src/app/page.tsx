@@ -424,7 +424,7 @@ export default function RichHavenHome() {
 
         /* ── SERVICES ── */
         .services-section {
-          background: #163521;
+          background: #fff;
           padding: 96px 64px;
         }
 
@@ -439,7 +439,7 @@ export default function RichHavenHome() {
           font-size: 11px;
           letter-spacing: .12em;
           text-transform: uppercase;
-          color: rgba(255,255,255,.45);
+          color: #7a8f80;
           margin: 0 0 10px;
         }
 
@@ -448,11 +448,11 @@ export default function RichHavenHome() {
           font-family: "Playfair Display", serif;
           font-weight: 700;
           font-size: clamp(1.8rem, 1.4vw + 1rem, 2.6rem);
-          color: #fff;
+          color: #163521;
           line-height: 1.1;
         }
 
-        .svc-title em { font-style: italic; font-weight: 500; color: rgba(255,255,255,.65); }
+        .svc-title em { font-style: italic; font-weight: 500; color: #3f7a55; }
 
         .svc-grid {
           display: grid;
@@ -461,7 +461,7 @@ export default function RichHavenHome() {
         }
 
         .svc-card {
-          border: 1px solid rgba(255,255,255,.1);
+          border: 1px solid rgba(26,46,26,0.08);
           border-radius: 16px;
           overflow: hidden;
           display: grid;
@@ -470,14 +470,14 @@ export default function RichHavenHome() {
           transition: border-color .2s;
         }
 
-        .svc-card:hover { border-color: rgba(255,255,255,.25); }
+        .svc-card:hover { border-color: rgba(26,46,26,0.15); }
 
         .svc-card-body { padding: 36px 32px; display: flex; flex-direction: column; }
 
         .svc-card-title {
           margin: 0 0 12px;
           font-family: "Playfair Display", serif;
-          color: #fff;
+          color: #163521;
           font-size: 1.35rem;
           font-weight: 700;
           line-height: 1.2;
@@ -485,7 +485,7 @@ export default function RichHavenHome() {
 
         .svc-card-desc {
           margin: 0;
-          color: rgba(255,255,255,.5);
+          color: #7a8f80;
           font-size: 13px;
           line-height: 1.7;
         }
@@ -534,7 +534,7 @@ export default function RichHavenHome() {
             <button className="button button-secondary" type="button">Watch How</button>
           </div>
         </div>
-        <div className="stats-wrap">
+        {/* <div className="stats-wrap">
           {stats.map((stat) => (
             <article className="stat-card" key={stat.label}>
               <div className="stat-title">{stat.title}</div>
@@ -542,26 +542,25 @@ export default function RichHavenHome() {
               <p className="stat-label">{stat.label}</p>
             </article>
           ))}
-        </div>
+        </div> */}
       </section>
 
-      {/* ── ABOUT ── */}
-      <section className="about-section" aria-labelledby="about-title">
+      {/* ── ABOUT SECTION */}
+     {/*  <section className="about-section" aria-labelledby="about-title">
         <div className="about-inner">
           <p className="about-eyebrow">Our story</p>
           <h2 className="about-title" id="about-title">We Are <em>Rich Haven</em></h2>
           <p className="about-desc">
-            We started with a simple belief — a greener home is a happier home — and built Rich Haven from a
-            small local nursery into a place plant lovers trust. Every plant, pot, and care kit is chosen with
-            care, and we stay close by with honest guidance so your space can thrive.
+            Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. The company provides high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
           </p>
+          
           <Link className="ps-explore" href="/about">
             <span className="ps-explore-line" />
             Learn more about us
             <span className="ps-explore-line" />
           </Link>
         </div>
-      </section>
+      </section> */}
 
       {/* ── WHY SHOP ── */}
       <section className="why-shop" aria-labelledby="why-shop-title">

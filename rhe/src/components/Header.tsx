@@ -477,7 +477,7 @@ export default function Header() {
           <Link href="/" className="rh-logo">
             <div className="rh-logo-text">
               <span className="rh-logo-main">Rich Haven</span>
-              <span className="rh-logo-sub">Garden</span>
+              <span className="rh-logo-sub">Artificial Garden</span>
             </div>
           </Link>
 
