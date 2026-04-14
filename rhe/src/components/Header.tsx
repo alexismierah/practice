@@ -10,10 +10,8 @@ const navLinks = [
     label: "Products & Services",
     href: "/products-services",
     dropdown: {
-      turf: [
+      items: [
         { label: "Grass", href: "/products-services/grass" },
-      ],
-      garden: [
         { label: "Plants", href: "/products-services/plants" },
         { label: "Trees", href: "/products-services/trees" },
         { label: "Wall", href: "/products-services/wall" },
@@ -219,7 +217,7 @@ export default function Header() {
           border-radius: 6px;
           border: 1px solid rgba(201,168,76,0.18);
           box-shadow: 0 8px 28px rgba(26,46,26,0.08);
-          width: 460px;
+          width: 320px;
           padding: 0;
           opacity: 0;
           pointer-events: none;
@@ -268,37 +266,14 @@ export default function Header() {
         }
 
         .rh-dropdown-body {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .rh-dropdown-col {
-          padding: 1.1rem 1.3rem 1.3rem;
-        }
-
-        .rh-dropdown-col:first-child {
-          border-right: 1px solid rgba(26,46,26,0.06);
-        }
-
-        .rh-dropdown-col-label {
-          display: block;
-          font-size: 0.62rem;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: var(--gold);
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 500;
-          margin-bottom: 0.55rem;
-          padding-bottom: 0.45rem;
-          border-bottom: 1px solid rgba(201,168,76,0.16);
-          opacity: 0.85;
+          padding: 0.6rem 1.3rem 1rem;
         }
 
         .rh-dropdown-item {
           display: flex;
           align-items: center;
           gap: 0.5rem;
-          padding: 0.45rem 0;
+          padding: 0.55rem 0;
           text-decoration: none;
           color: #3a4f3a;
           font-size: 0.83rem;
@@ -449,18 +424,6 @@ export default function Header() {
           border-radius: 2px;
         }
 
-        .rh-mobile-group-label {
-          display: block;
-          padding: 0.6rem 0 0.25rem;
-          font-size: 0.62rem;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--gold);
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 500;
-          opacity: 0.85;
-        }
-
         .rh-mobile-dropdown-item {
           display: flex;
           align-items: center;
@@ -550,35 +513,17 @@ export default function Header() {
                     </Link>
 
                     <div className="rh-dropdown-body">
-                      <div className="rh-dropdown-col">
-                        <span className="rh-dropdown-col-label">Turf</span>
-                        {link.dropdown.turf.map((item) => (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            className="rh-dropdown-item"
-                            role="menuitem"
-                            onClick={() => setDropdownOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-
-                      <div className="rh-dropdown-col">
-                        <span className="rh-dropdown-col-label">Garden</span>
-                        {link.dropdown.garden.map((item) => (
-                          <Link
-                            key={item.label}
-                            href={item.href}
-                            className="rh-dropdown-item"
-                            role="menuitem"
-                            onClick={() => setDropdownOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
+                      {link.dropdown.items.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          className="rh-dropdown-item"
+                          role="menuitem"
+                          onClick={() => setDropdownOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -639,20 +584,7 @@ export default function Header() {
                   </svg>
                 </Link>
 
-                <span className="rh-mobile-group-label">Turf</span>
-                {link.dropdown.turf.map((item) => (
-                  <Link
-                    key={item.label}
-                    href={item.href}
-                    className="rh-mobile-dropdown-item"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-
-                <span className="rh-mobile-group-label">Garden</span>
-                {link.dropdown.garden.map((item) => (
+                {link.dropdown.items.map((item) => (
                   <Link
                     key={item.label}
                     href={item.href}

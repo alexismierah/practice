@@ -210,23 +210,11 @@ export default function RichHavenHome() {
           max-width: 34em;
         }
 
-        .about-cta {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #163521;
-          color: #fff;
-          border: none;
-          border-radius: 999px;
-          padding: 12px 24px;
-          font-size: 14px;
-          font-weight: 600;
-          cursor: pointer;
-          text-decoration: none;
-          transition: background .18s, transform .18s;
+        .about-inner .ps-explore {
+          align-self: center;
+          justify-content: center;
+          margin: 0 auto;
         }
-
-        .about-cta:hover { background: #1e4d2e; transform: translateY(-1px); }
 
         /* ── WHY SHOP ── */
         .why-shop {
@@ -567,8 +555,10 @@ export default function RichHavenHome() {
             small local nursery into a place plant lovers trust. Every plant, pot, and care kit is chosen with
             care, and we stay close by with honest guidance so your space can thrive.
           </p>
-          <Link className="about-cta" href="/about">
+          <Link className="ps-explore" href="/about">
+            <span className="ps-explore-line" />
             Learn more about us
+            <span className="ps-explore-line" />
           </Link>
         </div>
       </section>
