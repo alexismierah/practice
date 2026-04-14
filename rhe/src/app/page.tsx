@@ -588,7 +588,7 @@ export default function Home() {
       {/* ── WHY SHOP ── */}
       <section className="why-shop" aria-labelledby="why-shop-title">
         <div className="why-shop-header">
-          <p className="why-shop-eyebrow">Rich Haven</p>
+          <p className="why-shop-eyebrow">Bring nature to your space</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
             From start to finish, Rich Haven transforms your space with greenery.
