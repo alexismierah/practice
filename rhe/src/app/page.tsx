@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
+import { CloudSun, Grid2x2, Leaf, ShieldCheck, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const stats = [
   { value: "8,000+", label: "Happy Customers", title: "Trusted By" },
@@ -39,7 +40,7 @@ const categories = [
   },
   {
     title: "Installation",
-    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens creating a fresh, natural environment that’s built to last.",
+    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens creating a fresh, natural environment that's built to last.",
     plantImg: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/661958724_1455321336383992_8103217024831523114_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGWFYPUbrw88s88TgFQYjUVE244JEBz8NoTbjgkQHPw2oki82kse-3lXjyP5wR8JOAne0DzEZws_hu6VimYAZWJ&_nc_ohc=fSU2WOIPwa8Q7kNvwEt0T_w&_nc_oc=AdofztDrpzhClF8hgZ5ivFiHcvMLQdUha7MEIDPJsmUoxusTm6mR3eBfbZI9byTCQ0o&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=J7OgKli0DC-Qel3y6a2xxg&_nc_ss=7a3a8&oh=00_Af2seg98qtQ9QMrHbRGgF6F2N871SG4Mmujv36Hmq27M8g&oe=69E40115",
   },
 ];
@@ -67,8 +68,32 @@ const shopReasons = [
   },
 ] as const;
 
+const faqs = [
+  {
+    q: "Are your plants completely artificial?",
+    a: "Yes, all our products are made from high-quality artificial materials designed to mimic the look and feel of real plants — no watering, pruning, or sunlight required.",
+  },
+  {
+    q: "Do you offer installation services?",
+    a: "Absolutely. Our team handles full installation of grass, potted plants, planter boxes, and wall gardens for both residential and commercial spaces.",
+  },
+  {
+    q: "How long do your products last?",
+    a: "With proper care, our artificial plants can last many years. They're UV-resistant and built to retain their color and shape through different weather conditions.",
+  },
+  {
+    q: "Can I use your plants outdoors?",
+    a: "Yes. Our range is suitable for both indoor and outdoor environments, including patios, balconies, offices, and event spaces.",
+  },
+  {
+    q: "Do you cater to bulk or commercial orders?",
+    a: "We do. Rich Haven works with businesses, real estate developers, and event organizers. Reach out to us directly for custom quotes and bulk pricing.",
+  },
+];
+
 export default function Home() {
   const displayedPlants = featuredPlants.slice(0, 4);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <main className="landing">
@@ -139,10 +164,12 @@ export default function Home() {
           align-items: center;
           gap: 8px;
           transition: transform .2s ease, box-shadow .2s ease;
+          text-decoration: none;
         }
         .button:hover { transform: translateY(-1px); }
         .button-primary { background: #2f6f44; color: #fff; box-shadow: 0 10px 20px rgba(27,56,35,.28); }
         .button-secondary { color: rgba(246,249,246,.95); background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
+        .button-primary-dark { background: #2f6f44; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
 
         /* ── STATS ── */
         .stats-wrap {
@@ -157,26 +184,26 @@ export default function Home() {
         }
 
         .stats-wrap > div {
-        padding: 16px 24px;
-        background: none;
-        border: none;
-      }
+          padding: 16px 24px;
+          background: none;
+          border: none;
+        }
 
-      .stats-wrap > div div:nth-child(1) {
-        font-size: 11px;
-        opacity: 0.8;
-      }
+        .stats-wrap > div div:nth-child(1) {
+          font-size: 11px;
+          opacity: 0.8;
+        }
 
-      .stats-wrap > div div:nth-child(2) {
-        font-family: "Playfair Display", serif;
-        font-size: 1.75rem;
-        font-weight: 500;
-      }
+        .stats-wrap > div div:nth-child(2) {
+          font-family: "Playfair Display", serif;
+          font-size: 1.75rem;
+          font-weight: 500;
+        }
 
-      .stats-wrap > div div:nth-child(3) {
-        font-size: 13px;
-        opacity: 0.85;
-      }
+        .stats-wrap > div div:nth-child(3) {
+          font-size: 13px;
+          opacity: 0.85;
+        }
 
         .stat-card {
           background: rgba(255,255,255,.88);
@@ -515,6 +542,146 @@ export default function Home() {
 
         .svc-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        /* ── FAQs ── */
+        .faq-section {
+          background: #fafbf8;
+          padding: 80px 64px;
+          border-top: 1px solid #e4ebe0;
+        }
+
+        .faq-inner {
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .faq-eyebrow {
+          font-size: 11px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #7a8f80;
+          margin: 0 0 10px;
+        }
+
+        .faq-heading {
+          font-family: "Playfair Display", serif;
+          font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
+          font-weight: 700;
+          color: #163521;
+          line-height: 1.1;
+          margin: 0 0 40px;
+        }
+
+        .faq-heading em {
+          font-style: italic;
+          font-weight: 500;
+          color: #3f7a55;
+        }
+
+        .faq-item {
+          border-bottom: 1px solid #dce8d5;
+        }
+
+        .faq-item:first-of-type {
+          border-top: 1px solid #dce8d5;
+        }
+
+        .faq-trigger {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 20px 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          cursor: pointer;
+          text-align: left;
+        }
+
+        .faq-trigger:hover .faq-q {
+          color: #2f6f44;
+        }
+
+        .faq-q {
+          font-family: "Playfair Display", serif;
+          font-size: 1rem;
+          font-weight: 700;
+          color: #1d3d28;
+          margin: 0;
+          line-height: 1.4;
+          transition: color .15s;
+        }
+
+        .faq-chevron {
+          width: 16px;
+          height: 16px;
+          color: #7a8f80;
+          flex-shrink: 0;
+          transition: transform .25s ease;
+        }
+
+        .faq-chevron.open {
+          transform: rotate(180deg);
+        }
+
+        .faq-body {
+          overflow: hidden;
+          transition: max-height .3s ease, opacity .25s ease;
+          max-height: 0;
+          opacity: 0;
+        }
+
+        .faq-body.open {
+          max-height: 200px;
+          opacity: 1;
+        }
+
+        .faq-a {
+          font-size: 13.5px;
+          color: #6b7d72;
+          line-height: 1.72;
+          margin: 0;
+          padding-bottom: 20px;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+          background: #163521;
+          padding: 96px 64px;
+          text-align: center;
+        }
+
+        .cta-eyebrow {
+          font-size: 11px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #7ab990;
+          margin: 0 0 14px;
+        }
+
+        .cta-heading {
+          font-family: "Playfair Display", serif;
+          font-size: clamp(1.8rem, 2vw + 1rem, 2.8rem);
+          font-weight: 700;
+          color: #f0f7ed;
+          line-height: 1.12;
+          margin: 0 0 16px;
+        }
+
+        .cta-heading em {
+          font-style: italic;
+          font-weight: 500;
+          color: #82c99a;
+        }
+
+        .cta-sub {
+          font-size: 15px;
+          color: rgba(224,238,224,.72);
+          line-height: 1.75;
+          max-width: 480px;
+          margin: 0 auto 32px;
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
           .hero-content { padding: 48px 30px 240px; }
@@ -528,6 +695,8 @@ export default function Home() {
           .ps-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
           .ps-header { flex-direction: column; align-items: flex-start; gap: 20px; }
           .svc-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+          .faq-section { padding: 72px 40px; }
+          .cta-section { padding: 80px 40px; }
         }
 
         @media (max-width: 640px) {
@@ -543,6 +712,8 @@ export default function Home() {
           .svc-card { grid-template-columns: 1fr; }
           .svc-card-img { height: 180px; }
           .reason { padding: 20px 16px; }
+          .faq-section { padding: 56px 20px; }
+          .cta-section { padding: 64px 20px; }
         }
       `}</style>
 
@@ -567,23 +738,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* ── ABOUT SECTION */}
-     {/*  <section className="about-section" aria-labelledby="about-title">
-        <div className="about-inner">
-          <p className="about-eyebrow">Our story</p>
-          <h2 className="about-title" id="about-title">We Are <em>Rich Haven</em></h2>
-          <p className="about-desc">
-            Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. The company provides high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
-          </p>
-          
-          <Link className="ps-explore" href="/about">
-            <span className="ps-explore-line" />
-            Learn more about us
-            <span className="ps-explore-line" />
-          </Link>
-        </div>
-      </section> */}
 
       {/* ── WHY SHOP ── */}
       <section className="why-shop" aria-labelledby="why-shop-title">
@@ -679,6 +833,41 @@ export default function Home() {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* ── FAQs ── */}
+      <section className="faq-section" aria-labelledby="faq-title">
+        <div className="faq-inner">
+          <p className="faq-eyebrow">Got questions?</p>
+          <h2 className="faq-heading" id="faq-title">Frequently <em>Asked Questions</em></h2>
+
+          {faqs.map((faq, i) => (
+            <div className="faq-item" key={i}>
+              <button
+                className="faq-trigger"
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                aria-expanded={openFaq === i}
+              >
+                <p className="faq-q">{faq.q}</p>
+                <ChevronDown
+                  className={`faq-chevron${openFaq === i ? " open" : ""}`}
+                  strokeWidth={2}
+                />
+              </button>
+              <div className={`faq-body${openFaq === i ? " open" : ""}`}>
+                <p className="faq-a">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="cta-section" aria-labelledby="cta-title">
+        <p className="cta-eyebrow">Let's get started</p>
+        <h2 className="cta-heading" id="cta-title">Ready to bring <em>nature into your space?</em></h2>
+        <p className="cta-sub">Whether it's a single room or a full commercial fit-out, we're here to help. Let's make your space greener.</p>
+        <Link className="button button-primary" href="/contact">Contact Us</Link>
       </section>
     </main>
   );
