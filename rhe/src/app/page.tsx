@@ -566,7 +566,7 @@ export default function RichHavenHome() {
       {/* ── WHY SHOP ── */}
       <section className="why-shop" aria-labelledby="why-shop-title">
         <div className="why-shop-header">
-          <p className="why-shop-eyebrow">Our promise to you</p>
+          <p className="why-shop-eyebrow">Rich Haven</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
             From your screen to your space, we make plant shopping simple, smooth, and stress-free.

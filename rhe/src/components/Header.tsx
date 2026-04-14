@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
-const navLinks = [
+export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   {
