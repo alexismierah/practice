@@ -3,45 +3,44 @@ import Link from "next/link";
 import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
 
 const stats = [
-  { value: "1,900+", label: "Happy Plant Lovers", title: "Trusted by" },
-  { value: "8,000+", label: "Exotic Green Benefits", title: "Explore" },
-  { value: "520+", label: "Local Greenhouses", title: "Backed by" },
-  { value: "4.9+", label: "Rated by Customers", title: "Rated" },
+  { value: "8,000+", label: "Happy Customers", title: "Trusted By" },
+  { value: "1,900+", label: "Green Design Options", title: "Variety" },
+  { value: "500+", label: "Greens Collection", title: "Explore" },
 ];
 
 const featuredPlants = [
   {
     name: "Grass",
     sublabel: "Indoor Statement Plant",
-    img: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&q=80",
+    img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
   },
   {
     name: "Potted Plants",
     sublabel: "Air-Purifying Favorite",
-    img: "https://images.unsplash.com/photo-1593482892290-f54927ae1bb6?w=600&q=80",
+    img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
   },
   {
     name: "Planter Box",
     sublabel: "Colorful Foliage Plant",
-    img: "https://images.unsplash.com/photo-1622372738946-62e02505feb3?w=600&q=80",
+    img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
   },
   {
     name: "Wall Garden",
     sublabel: "Low-Maintenance Choice",
-    img: "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&q=80",
+    img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
   },
 ];
 
 const categories = [
   {
     title: "Supply",
-    desc: "We supply quality grass, potted plants, planter boxes, and wall gardens to enhance your space with ease and a natural touch., natural touch to any room.",
-    plantImg: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=300&q=80",
+    desc: "We supply quality grass, potted plants, planter boxes, and wall gardens to enhance your space with ease and a natural touch to any room.",
+    plantImg: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/598973170_1362085932374200_5536687096599188254_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGT0NG2TUJ5zSjWYQraD6ZFFz_SIjbfnecXP9IiNt-d5_ez5o5kNtzkM5eDqinu72xI0FFPFLKj1zgTFqyBkNJ7&_nc_ohc=p-RKDlyUvKYQ7kNvwHk0n0C&_nc_oc=AdqXMFp0qpigA8hNiov7C0Y9BB1PMllCrpVI-xQFcGk6zoNPmlAfmtueJDfQ5wxPcN4&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=RlRA6aQz6kjKovVCBWNnxQ&_nc_ss=7a3a8&oh=00_Af3Z8g_ZVDiyLRYHXKxfFykMiJt6Us38xM_hF4VPQcX7Vw&oe=69E40501",
   },
   {
     title: "Installation",
     desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens creating a fresh, natural environment that’s built to last.",
-    plantImg: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=300&q=80",
+    plantImg: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/661958724_1455321336383992_8103217024831523114_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGWFYPUbrw88s88TgFQYjUVE244JEBz8NoTbjgkQHPw2oki82kse-3lXjyP5wR8JOAne0DzEZws_hu6VimYAZWJ&_nc_ohc=fSU2WOIPwa8Q7kNvwEt0T_w&_nc_oc=AdofztDrpzhClF8hgZ5ivFiHcvMLQdUha7MEIDPJsmUoxusTm6mR3eBfbZI9byTCQ0o&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=J7OgKli0DC-Qel3y6a2xxg&_nc_ss=7a3a8&oh=00_Af2seg98qtQ9QMrHbRGgF6F2N871SG4Mmujv36Hmq27M8g&oe=69E40115",
   },
 ];
 
@@ -93,9 +92,9 @@ export default function Home() {
           overflow: hidden;
           display: flex;
           align-items: center;
-          background-image:
-            linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
-            url("https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1800&q=80");
+          background-image: 
+          linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
+          url("/Untitled design.png");
           background-size: cover;
           background-position: center;
         }
@@ -149,36 +148,35 @@ export default function Home() {
         .stats-wrap {
           position: absolute;
           inset: auto 36px 24px;
-          display: grid;
-          text-align: center;
-          grid-template-columns: repeat(4, minmax(0,1fr));
-          gap: 14px;
+          display: flex;
+          margin-left: 5px;
+          gap: 8px;
           z-index: 3;
-          color: #fff; /* optional so text is visible on hero */
+          color: #fff;
+          margin-bottom: 30px;
         }
 
         .stats-wrap > div {
-          padding: 30px;
-          background: none;
-          border: none;
-          margin: 2px;
-        }
+        padding: 16px 24px;
+        background: none;
+        border: none;
+      }
 
-        .stats-wrap > div div:nth-child(1) {
-          font-size: 11px;
-          opacity: 0.8;
-        }
+      .stats-wrap > div div:nth-child(1) {
+        font-size: 11px;
+        opacity: 0.8;
+      }
 
-        .stats-wrap > div div:nth-child(2) {
-          font-family: "Playfair Display", serif;
-          font-size: 1.75rem;
-          font-weight: 700;
-        }
+      .stats-wrap > div div:nth-child(2) {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        font-weight: 500;
+      }
 
-        .stats-wrap > div div:nth-child(3) {
-          font-size: 12px;
-          opacity: 0.85;
-        }
+      .stats-wrap > div div:nth-child(3) {
+        font-size: 13px;
+        opacity: 0.85;
+      }
 
         .stat-card {
           background: rgba(255,255,255,.88);
@@ -552,8 +550,8 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <p className="hero-kicker">Breathe Nature into your space</p>
-          <h1 className="hero-title">Discover beautiful greens plants for every corner of your home</h1>
-          <p className="hero-copy">From indoor greens to outdoor beauties, shop plants, pots, and care tools delivered with love.</p>
+          <h1 className="hero-title">Bring natural looking greenery to every corner of your living space</h1>
+          <p className="hero-copy">From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home.</p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <button className="button button-secondary" type="button">Watch How</button>
