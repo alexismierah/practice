@@ -85,10 +85,6 @@ const faqs = [
     q: "Can I use your plants outdoors?",
     a: "Yes. Our range is suitable for both indoor and outdoor environments, including patios, balconies, offices, and event spaces.",
   },
-  {
-    q: "Do you cater to bulk or commercial orders?",
-    a: "We do. Rich Haven works with businesses, real estate developers, and event organizers. Reach out to us directly for custom quotes and bulk pricing.",
-  },
 ];
 
 export default function Home() {
@@ -720,9 +716,9 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-kicker">Breathe Nature into your space</p>
+          <p className="hero-kicker"><em>Breathe Nature into your space</em></p>
           <h1 className="hero-title">Bring natural looking greenery to every corner of your living space</h1>
-          <p className="hero-copy">From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home.</p>
+          <p className="hero-copy"><em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home.</em></p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <Link className="button button-secondary" href="/portfolio">Portfolio</Link>
