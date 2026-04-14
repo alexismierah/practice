@@ -35,12 +35,12 @@ const featuredPlants = [
 const categories = [
   {
     title: "Supply",
-    desc: "Elevate your indoor space with easy-care indoor plants that thrive with minimal effort and add a relaxing, natural touch to any room.",
+    desc: "We supply quality grass, potted plants, planter boxes, and wall gardens to enhance your space with ease and a natural touch., natural touch to any room.",
     plantImg: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=300&q=80",
   },
   {
     title: "Installation",
-    desc: "Bring life to your outdoor space with vibrant, long-living plants. Perfect for patios, balconies, and your garden — back to thrive in natural light and fresh air.",
+    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens—creating a fresh, natural environment that’s built to last.",
     plantImg: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=300&q=80",
   },
 ];

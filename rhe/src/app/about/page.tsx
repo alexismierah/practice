@@ -1,64 +1,4 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-
-const benefits = [
-  {
-    title: "Low Maintenance",
-    desc: "No watering, trimming, or fertilizing needed.",
-  },
-  {
-    title: "Long-Lasting Quality",
-    desc: "Durable materials that stay vibrant and fresh-looking over time.",
-  },
-  {
-    title: "Cost-Effective",
-    desc: "No ongoing maintenance costs, replacements, or plant care expenses.",
-  },
-  {
-    title: "All-Weather Friendly",
-    desc: "Suitable for indoor and outdoor spaces, resistant to fading and damage.",
-  },
-  {
-    title: "Always Fresh Appearance",
-    desc: "Maintains a lush, green look all year round.",
-  },
-  {
-    title: "Versatile Design",
-    desc: "Ideal for homes, offices, commercial spaces, events, and decorative projects.",
-  },
-  {
-    title: "Hassle-Free Installation",
-    desc: "Easy to install with immediate visual impact.",
-  },
-  {
-    title: "Eco-Conscious Choice",
-    desc: "Reduces water usage and eliminates the need for pesticides or fertilizers.",
-  },
-];
-
 export default function AboutPage() {
-  const [visible, setVisible] = useState<boolean[]>(new Array(benefits.length).fill(false));
-  const refs = useRef<(HTMLLIElement | null)[]>([]);
-
-  useEffect(() => {
-    const observers = refs.current.map((el, i) => {
-      if (!el) return null;
-      const obs = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setVisible((prev) => { const n = [...prev]; n[i] = true; return n; });
-            obs.disconnect();
-          }
-        },
-        { threshold: 0.08 }
-      );
-      obs.observe(el);
-      return obs;
-    });
-    return () => observers.forEach((o) => o?.disconnect());
-  }, []);
-
   return (
     <>
       <style>{`
@@ -152,105 +92,6 @@ export default function AboutPage() {
           font-weight: 300;
         }
 
-        /* ── WHY SECTION ── */
-        .ab-why {
-          display: grid;
-          grid-template-columns: 220px 1fr;
-          gap: 4rem;
-          align-items: start;
-        }
-
-        .ab-why-sidebar {
-          position: sticky;
-          top: 6rem;
-        }
-
-        .ab-why-label {
-          font-size: 0.62rem;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          color: var(--gold);
-          font-weight: 500;
-          margin-bottom: 0.7rem;
-        }
-
-        .ab-why-heading {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 1.6rem;
-          font-weight: 500;
-          color: var(--forest);
-          line-height: 1.2;
-          margin-bottom: 1rem;
-        }
-
-        .ab-why-note {
-          font-size: 0.78rem;
-          line-height: 1.7;
-          color: var(--text-muted);
-          font-weight: 300;
-        }
-
-        /* ── BENEFITS LIST ── */
-        .ab-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .ab-item {
-          display: grid;
-          grid-template-columns: 1fr auto;
-          align-items: baseline;
-          gap: 1.5rem;
-          padding: 1.3rem 0;
-          border-bottom: 1px solid var(--border);
-          opacity: 0;
-          transform: translateY(10px);
-          transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-
-        .ab-item:first-child { border-top: 1px solid var(--border); }
-
-        .ab-item.in {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .ab-item:nth-child(1) { transition-delay: 0.00s; }
-        .ab-item:nth-child(2) { transition-delay: 0.05s; }
-        .ab-item:nth-child(3) { transition-delay: 0.10s; }
-        .ab-item:nth-child(4) { transition-delay: 0.15s; }
-        .ab-item:nth-child(5) { transition-delay: 0.20s; }
-        .ab-item:nth-child(6) { transition-delay: 0.25s; }
-        .ab-item:nth-child(7) { transition-delay: 0.30s; }
-        .ab-item:nth-child(8) { transition-delay: 0.35s; }
-
-        .ab-item-body {}
-
-        .ab-item-title {
-          font-size: 0.88rem;
-          font-weight: 500;
-          color: var(--forest);
-          margin-bottom: 0.25rem;
-          letter-spacing: 0.01em;
-        }
-
-        .ab-item-desc {
-          font-size: 0.8rem;
-          line-height: 1.65;
-          color: var(--text-muted);
-          font-weight: 300;
-        }
-
-        .ab-item-num {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: 0.78rem;
-          color: rgba(201,168,76,0.5);
-          font-weight: 400;
-          letter-spacing: 0.04em;
-          flex-shrink: 0;
-        }
-
         /* ── CLOSING ── */
         .ab-closing {
           margin-top: 4rem;
@@ -303,14 +144,7 @@ export default function AboutPage() {
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
           .ab-header { grid-template-columns: 1fr; gap: 1.5rem; }
-          .ab-why { grid-template-columns: 1fr; gap: 2rem; }
-          .ab-why-sidebar { position: static; }
           .ab-closing { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
-        }
-
-        @media (max-width: 500px) {
-          .ab-item { grid-template-columns: 1fr; gap: 0.2rem; }
-          .ab-item-num { display: none; }
         }
       `}</style>
 
@@ -339,31 +173,6 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* ── WHY SECTION ── */}
-          <div className="ab-why">
-            <div className="ab-why-sidebar">
-              <div className="ab-why-label">Why choose us</div>
-              <h2 className="ab-why-heading">Eight reasons to go green with Rich Haven.</h2>
-              <p className="ab-why-note">Artificial greenery that works as beautifully as it looks — built to last, season after season.</p>
-            </div>
-
-            <ul className="ab-list">
-              {benefits.map((b, i) => (
-                <li
-                  key={b.title}
-                  className={`ab-item${visible[i] ? " in" : ""}`}
-                  ref={(el) => { refs.current[i] = el; }}
-                >
-                  <div className="ab-item-body">
-                    <div className="ab-item-title">{b.title}</div>
-                    <p className="ab-item-desc">{b.desc}</p>
-                  </div>
-                  <span className="ab-item-num">0{i + 1}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* ── CLOSING ── */}
           <div className="ab-closing">
             <p className="ab-closing-text">
@@ -376,7 +185,6 @@ export default function AboutPage() {
               </svg>
             </a>
           </div>
-
         </div>
       </main>
     </>
