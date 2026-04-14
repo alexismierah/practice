@@ -14,21 +14,25 @@ const featuredPlants = [
     name: " Artificial Grass",
     sublabel: "Sports or design spaces",
     img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+    link: "/products-services/grass",
   },
   {
     name: "Potted Plants",
     sublabel: "Lush Indoor Statement Accent",
     img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
+    link: "/products-services/potted-plants",
   },
   {
     name: "Planter Box",
     sublabel: "Vibrant Designer Foliage Collection",
     img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
+    link: "/products-services/planter-box",
   },
   {
     name: "Wall Greens",
     sublabel: "Low-Maintenance Greenery",
     img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
+    link: "/products-services/wall-greens", 
   },
 ];
 
@@ -786,7 +790,7 @@ export default function Home() {
       <section className="products-section" aria-labelledby="products-heading">
         <div className="ps-header">
           <div>
-            <p className="ps-eyebrow">Curated collection</p>
+            <p className="ps-eyebrow">What we offer</p>
             <h2 className="ps-title" id="products-heading">Our <em>Products</em></h2>
           </div>
           <Link className="ps-explore" href="/products-services">
@@ -799,11 +803,13 @@ export default function Home() {
         <div className="ps-grid">
           {displayedPlants.map((plant) => (
             <article className="ps-card" key={plant.name}>
-              <img className="ps-card-img" src={plant.img} alt={plant.name} />
-              <div className="ps-card-body">
-                <h3 className="ps-card-name">{plant.name}</h3>
-                <p className="ps-card-sub">{plant.sublabel}</p>
-              </div>
+              <Link href={plant.link}>
+                <img className="ps-card-img" src={plant.img} alt={plant.name} />
+                <div className="ps-card-body">
+                  <h3 className="ps-card-name">{plant.name}</h3>
+                  <p className="ps-card-sub">{plant.sublabel}</p>
+                </div>
+              </Link>
             </article>
           ))}
         </div>
