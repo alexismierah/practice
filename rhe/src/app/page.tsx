@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
 
 const stats = [
   { value: "1,900+", label: "Happy Plant Lovers", title: "Trusted by" },
@@ -48,71 +49,24 @@ const shopReasons = [
   {
     title: "Low Maintenance",
     desc: "Enjoy beautiful greenery without watering, trimming, or fertilizing.",
-    icon: "lowUpkeep",
+    icon: Leaf,
   },
   {
     title: "Long-Lasting Quality",
     desc: "Made from durable materials that stay vibrant and fresh-looking over time.",
-    icon: "durability",
+    icon: ShieldCheck,
   },
   {
     title: "All-Weather Friendly",
     desc: "Suitable for indoor and outdoor spaces, resistant to fading and damage.",
-    icon: "weather",
+    icon: CloudSun,
   },
   {
     title: "Versatile Design",
     desc: "Ideal for homes, offices, commercial spaces, events, and decorative projects.",
-    icon: "versatile",
+    icon: Grid2x2,
   },
 ] as const;
-
-function ReasonIcon({ id }: { id: (typeof shopReasons)[number]["icon"] }) {
-  const s = {
-    fill: "none" as const,
-    stroke: "currentColor",
-    strokeWidth: 1.6,
-    strokeLinecap: "round" as const,
-    strokeLinejoin: "round" as const,
-  };
-  switch (id) {
-    case "lowUpkeep":
-      return (
-        <g {...s}>
-          <path d="M10 5.2c2.6 0 4.8 2.5 4.8 5.1 0 3.1-4.8 6.9-4.8 6.9s-4.8-3.8-4.8-6.9c0-2.6 2.2-5.1 4.8-5.1z" />
-          <path d="M6.9 6.9l6.2 6.2" />
-        </g>
-      );
-    case "durability":
-      return (
-        <g {...s}>
-          <path d="M10 2.9l5.4 3.1v4.7c0 3.25-2.4 5.9-5.4 6.75-3-.85-5.4-3.5-5.4-6.75V6Z" />
-          <path d="M7.9 10.1l1.6 1.6 3.6-3.6" />
-        </g>
-      );
-    case "weather":
-      return (
-        <g {...s}>
-          <circle cx="13.75" cy="6.35" r="2.05" />
-          <path d="M13.75 4.1v1M13.75 8.6v1M11.55 6.35h-.95M17 6.35h-.95M11.85 4.65l-.65.65M15.65 8.05l-.65.65M15.65 4.65l-.65-.65M11.85 8.05l-.65-.65" />
-          <g transform="translate(0 1.85)">
-            <path d="M15 8.33h-1.05a6.67 6.67 0 1 0-6.45 8.34h7.5a4.17 4.17 0 0 0 0-8.34z" />
-          </g>
-        </g>
-      );
-    case "versatile":
-      return (
-        <g {...s}>
-          <rect x="3.25" y="3.25" width="5.9" height="5.9" rx="1.15" />
-          <rect x="10.85" y="3.25" width="5.9" height="5.9" rx="1.15" />
-          <rect x="3.25" y="10.85" width="5.9" height="5.9" rx="1.15" />
-          <rect x="10.85" y="10.85" width="5.9" height="5.9" rx="1.15" />
-        </g>
-      );
-    default:
-      return null;
-  }
-}
 
 export default function RichHavenHome() {
   const displayedPlants = featuredPlants.slice(0, 4);
@@ -634,9 +588,7 @@ export default function RichHavenHome() {
             {shopReasons.slice(0, 2).map((reason) => (
               <article className="reason" key={reason.title}>
                 <div className="reason-icon-wrap" aria-hidden="true">
-                  <svg className="reason-icon" viewBox="0 0 20 20" aria-hidden="true">
-                    <ReasonIcon id={reason.icon} />
-                  </svg>
+                  <reason.icon className="reason-icon" aria-hidden="true" strokeWidth={1.8} />
                 </div>
                 <div className="reason-content">
                   <h3>{reason.title}</h3>
@@ -656,9 +608,7 @@ export default function RichHavenHome() {
             {shopReasons.slice(2).map((reason) => (
               <article className="reason" key={reason.title}>
                 <div className="reason-icon-wrap" aria-hidden="true">
-                  <svg className="reason-icon" viewBox="0 0 20 20" aria-hidden="true">
-                    <ReasonIcon id={reason.icon} />
-                  </svg>
+                  <reason.icon className="reason-icon" aria-hidden="true" strokeWidth={1.8} />
                 </div>
                 <div className="reason-content">
                   <h3>{reason.title}</h3>
