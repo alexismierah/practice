@@ -16,12 +16,12 @@ const featuredPlants = [
     img: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&q=80",
   },
   {
-    name: "Plants",
+    name: "Potted Plants",
     sublabel: "Air-Purifying Favorite",
     img: "https://images.unsplash.com/photo-1593482892290-f54927ae1bb6?w=600&q=80",
   },
   {
-    name: "Trees",
+    name: "Planter Box",
     sublabel: "Colorful Foliage Plant",
     img: "https://images.unsplash.com/photo-1622372738946-62e02505feb3?w=600&q=80",
   },
@@ -590,7 +590,7 @@ export default function RichHavenHome() {
 
           <div className="why-shop-plant-col">
             <div className="why-shop-plant-frame">
-              <img className="why-shop-plant" src="/plant.png" alt="Potted indoor plant" />
+              <img className="why-shop-plant" src="/Plant.png" alt="Potted indoor plant" />
             </div>
           </div>
 
