@@ -568,7 +568,7 @@ export default function RichHavenHome() {
           <p className="why-shop-eyebrow">Rich Haven</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
-            From your screen to your space, we make plant shopping simple, smooth, and stress-free.
+            From start to finish, Rich Haven transforms your space with greenery.
           </p>
         </div>
 
