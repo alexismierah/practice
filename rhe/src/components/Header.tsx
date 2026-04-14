@@ -88,13 +88,6 @@ export default function Header() {
           backdrop-filter: blur(8px);
         }
 
-        .rh-header::before {
-          content: '';
-          display: block;
-          height: 2px;
-          background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
-        }
-
         .rh-inner {
           max-width: 1280px;
           margin: 0 auto;
