@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const stats = [
   { value: "8,000+", label: "Happy Customers", title: "Trusted By" },
-  { value: "1,900+", label: "Green Design Options", title: "Variety" },
+  { value: "1,900+", label: "Design Options", title: "Variety" },
   { value: "500+", label: "Greens Collection", title: "Explore" },
 ];
 
