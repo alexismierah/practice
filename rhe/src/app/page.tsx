@@ -526,8 +526,8 @@ export default function RichHavenHome() {
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-kicker">Breathe life into your space</p>
-          <h1 className="hero-title">Discover beautiful indoor plants for every corner of your home</h1>
+          <p className="hero-kicker">Breathe Nature into your space</p>
+          <h1 className="hero-title">Discover beautiful greens plants for every corner of your home</h1>
           <p className="hero-copy">From indoor greens to outdoor beauties, shop plants, pots, and care tools delivered with love.</p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
