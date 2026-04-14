@@ -261,7 +261,7 @@ export default function RichHavenHome() {
 
         .why-shop-grid {
           display: grid;
-          grid-template-columns: minmax(0,1fr) minmax(240px,340px) minmax(0,1fr);
+          grid-template-columns: minmax(0,1fr) minmax(300px,370px) minmax(0,1fr);
           gap: 48px;
           align-items: center;
         }
