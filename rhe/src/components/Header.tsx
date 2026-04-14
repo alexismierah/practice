@@ -11,10 +11,10 @@ export const navLinks = [
     href: "/products-services",
     dropdown: {
       items: [
-        { label: "Grass", href: "/products-services/grass" },
-        { label: "Plants", href: "/products-services/plants" },
-        { label: "Trees", href: "/products-services/trees" },
-        { label: "Wall", href: "/products-services/garden" },
+        { label: "Artificial Grass", href: "/products-services/grass" },
+        { label: "Potted Plants", href: "/products-services/potted-plants" },
+        { label: "Planter Box", href: "/products-services/planter-box" },
+        { label: "Wall Greens", href: "/products-services/wall-greens" },
       ],
     },
   },

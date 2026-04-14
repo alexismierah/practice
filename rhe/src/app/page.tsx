@@ -1,47 +1,51 @@
 "use client";
 import Link from "next/link";
-import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
+import { CloudSun, Grid2x2, Leaf, ShieldCheck, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 const stats = [
-  { value: "1,900+", label: "Happy Plant Lovers", title: "Trusted by" },
-  { value: "8,000+", label: "Exotic Green Benefits", title: "Explore" },
-  { value: "520+", label: "Local Greenhouses", title: "Backed by" },
-  { value: "4.9+", label: "Rated by Customers", title: "Rated" },
+  { value: "8,000+", label: "Happy Customers", title: "Trusted By" },
+  { value: "1,900+", label: "Design Options", title: "Variety" },
+  { value: "500+", label: "Greens Collection", title: "Explore" },
 ];
 
 const featuredPlants = [
   {
-    name: "Grass",
-    sublabel: "Indoor Statement Plant",
-    img: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=600&q=80",
+    name: " Artificial Grass",
+    sublabel: "Sports or design spaces",
+    img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+    link: "/products-services/grass",
   },
   {
     name: "Potted Plants",
-    sublabel: "Air-Purifying Favorite",
-    img: "https://images.unsplash.com/photo-1593482892290-f54927ae1bb6?w=600&q=80",
+    sublabel: "Lush Indoor Statement Accent",
+    img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
+    link: "/products-services/potted-plants",
   },
   {
     name: "Planter Box",
-    sublabel: "Colorful Foliage Plant",
-    img: "https://images.unsplash.com/photo-1622372738946-62e02505feb3?w=600&q=80",
+    sublabel: "Vibrant Designer Foliage Collection",
+    img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
+    link: "/products-services/planter-box",
   },
   {
-    name: "Wall Garden",
-    sublabel: "Low-Maintenance Choice",
-    img: "https://images.unsplash.com/photo-1632207691143-643e2a9a9361?w=600&q=80",
+    name: "Wall Greens",
+    sublabel: "Low-Maintenance Greenery",
+    img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
+    link: "/products-services/wall-greens", 
   },
 ];
 
 const categories = [
   {
     title: "Supply",
-    desc: "Elevate your indoor space with easy-care indoor plants that thrive with minimal effort and add a relaxing, natural touch to any room.",
-    plantImg: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=300&q=80",
+    desc: "We supply quality grass, potted plants, planter boxes, and wall gardens to enhance your space with ease and a natural touch to any room.",
+    plantImg: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/598973170_1362085932374200_5536687096599188254_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGT0NG2TUJ5zSjWYQraD6ZFFz_SIjbfnecXP9IiNt-d5_ez5o5kNtzkM5eDqinu72xI0FFPFLKj1zgTFqyBkNJ7&_nc_ohc=p-RKDlyUvKYQ7kNvwHk0n0C&_nc_oc=AdqXMFp0qpigA8hNiov7C0Y9BB1PMllCrpVI-xQFcGk6zoNPmlAfmtueJDfQ5wxPcN4&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=RlRA6aQz6kjKovVCBWNnxQ&_nc_ss=7a3a8&oh=00_Af3Z8g_ZVDiyLRYHXKxfFykMiJt6Us38xM_hF4VPQcX7Vw&oe=69E40501",
   },
   {
     title: "Installation",
-    desc: "Bring life to your outdoor space with vibrant, long-living plants. Perfect for patios, balconies, and your garden — back to thrive in natural light and fresh air.",
-    plantImg: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=300&q=80",
+    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens creating a fresh, natural environment that's built to last.",
+    plantImg: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/661958724_1455321336383992_8103217024831523114_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGWFYPUbrw88s88TgFQYjUVE244JEBz8NoTbjgkQHPw2oki82kse-3lXjyP5wR8JOAne0DzEZws_hu6VimYAZWJ&_nc_ohc=fSU2WOIPwa8Q7kNvwEt0T_w&_nc_oc=AdofztDrpzhClF8hgZ5ivFiHcvMLQdUha7MEIDPJsmUoxusTm6mR3eBfbZI9byTCQ0o&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=J7OgKli0DC-Qel3y6a2xxg&_nc_ss=7a3a8&oh=00_Af2seg98qtQ9QMrHbRGgF6F2N871SG4Mmujv36Hmq27M8g&oe=69E40115",
   },
 ];
 
@@ -68,8 +72,28 @@ const shopReasons = [
   },
 ] as const;
 
+const faqs = [
+  {
+    q: "Are your plants completely artificial?",
+    a: "Yes, all our products are made from high-quality artificial materials designed to mimic the look and feel of real plants — no watering, pruning, or sunlight required.",
+  },
+  {
+    q: "Do you offer installation services?",
+    a: "Absolutely. Our team handles full installation of grass, potted plants, planter boxes, and wall gardens for both residential and commercial spaces.",
+  },
+  {
+    q: "How long do your products last?",
+    a: "With proper care, our artificial plants can last many years. They're UV-resistant and built to retain their color and shape through different weather conditions.",
+  },
+  {
+    q: "Can I use your plants outdoors?",
+    a: "Yes. Our range is suitable for both indoor and outdoor environments, including patios, balconies, offices, and event spaces.",
+  },
+];
+
 export default function Home() {
   const displayedPlants = featuredPlants.slice(0, 4);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <main className="landing">
@@ -93,9 +117,9 @@ export default function Home() {
           overflow: hidden;
           display: flex;
           align-items: center;
-          background-image:
-            linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
-            url("https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=1800&q=80");
+          background-image: 
+          linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
+          url("/Untitled design.png");
           background-size: cover;
           background-position: center;
         }
@@ -140,19 +164,45 @@ export default function Home() {
           align-items: center;
           gap: 8px;
           transition: transform .2s ease, box-shadow .2s ease;
+          text-decoration: none;
         }
         .button:hover { transform: translateY(-1px); }
         .button-primary { background: #2f6f44; color: #fff; box-shadow: 0 10px 20px rgba(27,56,35,.28); }
         .button-secondary { color: rgba(246,249,246,.95); background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
+        .button-primary-dark { background: #2f6f44; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
 
         /* ── STATS ── */
         .stats-wrap {
           position: absolute;
           inset: auto 36px 24px;
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0,1fr));
-          gap: 14px;
+          display: flex;
+          margin-left: 5px;
+          gap: 8px;
           z-index: 3;
+          color: #fff;
+          margin-bottom: 30px;
+        }
+
+        .stats-wrap > div {
+          padding: 16px 24px;
+          background: none;
+          border: none;
+        }
+
+        .stats-wrap > div div:nth-child(1) {
+          font-size: 11px;
+          opacity: 0.8;
+        }
+
+        .stats-wrap > div div:nth-child(2) {
+          font-family: "Playfair Display", serif;
+          font-size: 1.75rem;
+          font-weight: 500;
+        }
+
+        .stats-wrap > div div:nth-child(3) {
+          font-size: 13px;
+          opacity: 0.85;
         }
 
         .stat-card {
@@ -492,6 +542,146 @@ export default function Home() {
 
         .svc-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+        /* ── FAQs ── */
+        .faq-section {
+          background: #fafbf8;
+          padding: 80px 64px;
+          border-top: 1px solid #e4ebe0;
+        }
+
+        .faq-inner {
+          max-width: 700px;
+          margin: 0 auto;
+        }
+
+        .faq-eyebrow {
+          font-size: 11px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #7a8f80;
+          margin: 0 0 10px;
+        }
+
+        .faq-heading {
+          font-family: "Playfair Display", serif;
+          font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
+          font-weight: 700;
+          color: #163521;
+          line-height: 1.1;
+          margin: 0 0 40px;
+        }
+
+        .faq-heading em {
+          font-style: italic;
+          font-weight: 500;
+          color: #3f7a55;
+        }
+
+        .faq-item {
+          border-bottom: 1px solid #dce8d5;
+        }
+
+        .faq-item:first-of-type {
+          border-top: 1px solid #dce8d5;
+        }
+
+        .faq-trigger {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 20px 0;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          cursor: pointer;
+          text-align: left;
+        }
+
+        .faq-trigger:hover .faq-q {
+          color: #2f6f44;
+        }
+
+        .faq-q {
+          font-family: "Playfair Display", serif;
+          font-size: 1rem;
+          font-weight: 700;
+          color: #1d3d28;
+          margin: 0;
+          line-height: 1.4;
+          transition: color .15s;
+        }
+
+        .faq-chevron {
+          width: 16px;
+          height: 16px;
+          color: #7a8f80;
+          flex-shrink: 0;
+          transition: transform .25s ease;
+        }
+
+        .faq-chevron.open {
+          transform: rotate(180deg);
+        }
+
+        .faq-body {
+          overflow: hidden;
+          transition: max-height .3s ease, opacity .25s ease;
+          max-height: 0;
+          opacity: 0;
+        }
+
+        .faq-body.open {
+          max-height: 200px;
+          opacity: 1;
+        }
+
+        .faq-a {
+          font-size: 13.5px;
+          color: #6b7d72;
+          line-height: 1.72;
+          margin: 0;
+          padding-bottom: 20px;
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+          background: #163521;
+          padding: 96px 64px;
+          text-align: center;
+        }
+
+        .cta-eyebrow {
+          font-size: 11px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #7ab990;
+          margin: 0 0 14px;
+        }
+
+        .cta-heading {
+          font-family: "Playfair Display", serif;
+          font-size: clamp(1.8rem, 2vw + 1rem, 2.8rem);
+          font-weight: 700;
+          color: #f0f7ed;
+          line-height: 1.12;
+          margin: 0 0 16px;
+        }
+
+        .cta-heading em {
+          font-style: italic;
+          font-weight: 500;
+          color: #82c99a;
+        }
+
+        .cta-sub {
+          font-size: 15px;
+          color: rgba(224,238,224,.72);
+          line-height: 1.75;
+          max-width: 480px;
+          margin: 0 auto 32px;
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
           .hero-content { padding: 48px 30px 240px; }
@@ -505,6 +695,8 @@ export default function Home() {
           .ps-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
           .ps-header { flex-direction: column; align-items: flex-start; gap: 20px; }
           .svc-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+          .faq-section { padding: 72px 40px; }
+          .cta-section { padding: 80px 40px; }
         }
 
         @media (max-width: 640px) {
@@ -520,52 +712,37 @@ export default function Home() {
           .svc-card { grid-template-columns: 1fr; }
           .svc-card-img { height: 180px; }
           .reason { padding: 20px 16px; }
+          .faq-section { padding: 56px 20px; }
+          .cta-section { padding: 64px 20px; }
         }
       `}</style>
 
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-kicker">Breathe Nature into your space</p>
-          <h1 className="hero-title">Discover beautiful greens plants for every corner of your home</h1>
-          <p className="hero-copy">From indoor greens to outdoor beauties, shop plants, pots, and care tools delivered with love.</p>
+          <p className="hero-kicker"><em>Breathe Nature into your space</em></p>
+          <h1 className="hero-title">Bring natural looking greenery to every corner of your living space</h1>
+          <p className="hero-copy"><em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home.</em></p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
-            <button className="button button-secondary" type="button">Watch How</button>
+            <Link className="button button-secondary" href="/portfolio">Portfolio</Link>
           </div>
         </div>
-        {/* <div className="stats-wrap">
+        <div className="stats-wrap">
           {stats.map((stat) => (
-            <article className="stat-card" key={stat.label}>
-              <div className="stat-title">{stat.title}</div>
-              <p className="stat-value">{stat.value}</p>
-              <p className="stat-label">{stat.label}</p>
-            </article>
+            <div key={stat.label}>
+              <div>{stat.title}</div>
+              <div>{stat.value}</div>
+              <div>{stat.label}</div>
+            </div>
           ))}
-        </div> */}
-      </section>
-
-      {/* ── ABOUT SECTION */}
-     {/*  <section className="about-section" aria-labelledby="about-title">
-        <div className="about-inner">
-          <p className="about-eyebrow">Our story</p>
-          <h2 className="about-title" id="about-title">We Are <em>Rich Haven</em></h2>
-          <p className="about-desc">
-            Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. The company provides high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
-          </p>
-          
-          <Link className="ps-explore" href="/about">
-            <span className="ps-explore-line" />
-            Learn more about us
-            <span className="ps-explore-line" />
-          </Link>
         </div>
-      </section> */}
+      </section>
 
       {/* ── WHY SHOP ── */}
       <section className="why-shop" aria-labelledby="why-shop-title">
         <div className="why-shop-header">
-          <p className="why-shop-eyebrow">Rich Haven</p>
+          <p className="why-shop-eyebrow">Bring nature to your space</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
             From start to finish, Rich Haven transforms your space with greenery.
@@ -613,7 +790,7 @@ export default function Home() {
       <section className="products-section" aria-labelledby="products-heading">
         <div className="ps-header">
           <div>
-            <p className="ps-eyebrow">Curated collection</p>
+            <p className="ps-eyebrow">What we offer</p>
             <h2 className="ps-title" id="products-heading">Our <em>Products</em></h2>
           </div>
           <Link className="ps-explore" href="/products-services">
@@ -626,11 +803,13 @@ export default function Home() {
         <div className="ps-grid">
           {displayedPlants.map((plant) => (
             <article className="ps-card" key={plant.name}>
-              <img className="ps-card-img" src={plant.img} alt={plant.name} />
-              <div className="ps-card-body">
-                <h3 className="ps-card-name">{plant.name}</h3>
-                <p className="ps-card-sub">{plant.sublabel}</p>
-              </div>
+              <Link href={plant.link}>
+                <img className="ps-card-img" src={plant.img} alt={plant.name} />
+                <div className="ps-card-body">
+                  <h3 className="ps-card-name">{plant.name}</h3>
+                  <p className="ps-card-sub">{plant.sublabel}</p>
+                </div>
+              </Link>
             </article>
           ))}
         </div>
@@ -656,6 +835,41 @@ export default function Home() {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* ── FAQs ── */}
+      <section className="faq-section" aria-labelledby="faq-title">
+        <div className="faq-inner">
+          <p className="faq-eyebrow">Got questions?</p>
+          <h2 className="faq-heading" id="faq-title">Frequently <em>Asked Questions</em></h2>
+
+          {faqs.map((faq, i) => (
+            <div className="faq-item" key={i}>
+              <button
+                className="faq-trigger"
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                aria-expanded={openFaq === i}
+              >
+                <p className="faq-q">{faq.q}</p>
+                <ChevronDown
+                  className={`faq-chevron${openFaq === i ? " open" : ""}`}
+                  strokeWidth={2}
+                />
+              </button>
+              <div className={`faq-body${openFaq === i ? " open" : ""}`}>
+                <p className="faq-a">{faq.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
+      <section className="cta-section" aria-labelledby="cta-title">
+        <p className="cta-eyebrow">Let's get started</p>
+        <h2 className="cta-heading" id="cta-title">Ready to bring <em>nature into your space?</em></h2>
+        <p className="cta-sub">Whether it's a single room or a full commercial fit-out, we're here to help. Let's make your space greener.</p>
+        <Link className="button button-primary" href="/contact">Contact Us</Link>
       </section>
     </main>
   );
