@@ -30,7 +30,7 @@ export default function AboutPage() {
           width: 100%;
           max-width: none;
           margin: 0 auto;
-          padding: 5rem clamp(1.25rem, 5vw, 3rem) 7rem;
+          padding: 5rem clamp(1.25rem, 5vw, 3rem) 3rem;
         }
 
         /* ── TOP: two-column header ── */
@@ -40,7 +40,6 @@ export default function AboutPage() {
           gap: 4rem;
           align-items: start;
           padding-bottom: 3.5rem;
-          border-bottom: 1px solid var(--border);
           margin-bottom: 4rem;
         }
 
@@ -171,19 +170,6 @@ export default function AboutPage() {
                 Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you're elevating an interior, transforming an outdoor area, or creating a calming atmosphere, Rich Haven is committed to delivering style, quality, and timeless greenery you can rely on.
               </p>
             </div>
-          </div>
-
-          {/* ── CLOSING ── */}
-          <div className="ab-closing">
-            <p className="ab-closing-text">
-              <strong>Ready to transform your space?</strong> Explore our full range of artificial turf, potted plants, wall greens, and hanging arrangements.
-            </p>
-            <a href="/products-services" className="ab-closing-btn">
-              Browse Products & Services
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2.5 6H9.5M6.5 3L9.5 6L6.5 9" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
           </div>
         </div>
       </main>

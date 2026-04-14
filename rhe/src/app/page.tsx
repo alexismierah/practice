@@ -40,7 +40,7 @@ const categories = [
   },
   {
     title: "Installation",
-    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens—creating a fresh, natural environment that’s built to last.",
+    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens creating a fresh, natural environment that’s built to last.",
     plantImg: "https://images.unsplash.com/photo-1509587584298-0f3b3a3a1797?w=300&q=80",
   },
 ];
@@ -150,9 +150,34 @@ export default function Home() {
           position: absolute;
           inset: auto 36px 24px;
           display: grid;
+          text-align: center;
           grid-template-columns: repeat(4, minmax(0,1fr));
           gap: 14px;
           z-index: 3;
+          color: #fff; /* optional so text is visible on hero */
+        }
+
+        .stats-wrap > div {
+          padding: 30px;
+          background: none;
+          border: none;
+          margin: 2px;
+        }
+
+        .stats-wrap > div div:nth-child(1) {
+          font-size: 11px;
+          opacity: 0.8;
+        }
+
+        .stats-wrap > div div:nth-child(2) {
+          font-family: "Playfair Display", serif;
+          font-size: 1.75rem;
+          font-weight: 700;
+        }
+
+        .stats-wrap > div div:nth-child(3) {
+          font-size: 12px;
+          opacity: 0.85;
         }
 
         .stat-card {
@@ -534,15 +559,15 @@ export default function Home() {
             <button className="button button-secondary" type="button">Watch How</button>
           </div>
         </div>
-        {/* <div className="stats-wrap">
+        <div className="stats-wrap">
           {stats.map((stat) => (
-            <article className="stat-card" key={stat.label}>
-              <div className="stat-title">{stat.title}</div>
-              <p className="stat-value">{stat.value}</p>
-              <p className="stat-label">{stat.label}</p>
-            </article>
+            <div key={stat.label}>
+              <div>{stat.title}</div>
+              <div>{stat.value}</div>
+              <div>{stat.label}</div>
+            </div>
           ))}
-        </div> */}
+        </div>
       </section>
 
       {/* ── ABOUT SECTION */}
