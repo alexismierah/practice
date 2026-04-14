@@ -15,7 +15,7 @@ export function Footer() {
           <div className="flex items-center gap-2.5">
             <Leaf className="w-3.5 h-3.5 text-green-700 opacity-60" strokeWidth={1.2} />
             <span className="text-[10px] uppercase tracking-[0.22em] text-muted-foreground/60 whitespace-nowrap">
-              Est. in the Philippines
+              Est. in the 2014
             </span>
             <Leaf className="w-3.5 h-3.5 text-green-700 opacity-60 scale-x-[-1]" strokeWidth={1.2} />
           </div>
