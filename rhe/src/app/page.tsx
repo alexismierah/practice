@@ -128,7 +128,7 @@ export default function Home() {
           align-items: center;
           background-image: 
           linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
-          url("/p1.png");
+          url("/p6 (3).png");
           background-size: cover;
           background-position: center;
         }
