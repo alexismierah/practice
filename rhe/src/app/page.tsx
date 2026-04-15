@@ -730,14 +730,23 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <p className="hero-kicker"><em>Breathe Nature into your space</em></p>
-          <h1 className="hero-title">Bring natural looking greenery to every corner of your living space</h1>
-          <p className="hero-copy"><em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home.</em></p>
-          <div className="hero-actions">
+          
+          
+          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-white">
+            Rich Haven <br />
+          <span className="italic whitespace-nowrap">
+            Artificial Garden
+          </span>
+        </h1>
+          
+          <p className="hero-copy"><em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home, bringing timeless elegance, refreshing calm, and natural harmony to every corner of your living space.</em></p>
+
+          <div className="hero-actions mt-11">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <Link className="button button-secondary" href="/portfolio">Portfolio</Link>
           </div>
         </div>
-        <div className="stats-wrap">
+        <div className="stats-wrap  mb-12">
           {stats.map((stat) => (
             <div key={stat.label}>
               <div>{stat.title}</div>
