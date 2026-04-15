@@ -48,33 +48,7 @@ const partners = [
   { name: "Grandstream", logo: "/logos/grandstream.png" },
 ]
 
-const stats = [
-  {
-    label: "Reliable Technology",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
-      </svg>
-    ),
-  },
-  {
-    label: "Safe & Secure",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-      </svg>
-    ),
-  },
-  {
-    label: "Innovative Solutions",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#93c5fd" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3"/>
-        <path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/>
-      </svg>
-    ),
-  },
-]
+
 
 function PartnerLogo({ name, logo }: { name: string; logo: string }) {
   return (
@@ -362,18 +336,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* ── Stats ── */}
-        <div className="stats">
-          <div className="stats-inner">
-            {stats.map(({ label, icon }) => (
-              <div className="stat-item" key={label}>
-                <div className="stat-icon">{icon}</div>
-                <div className="stat-n">{label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* ── About ── */}
         <section className="about">
