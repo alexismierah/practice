@@ -3,7 +3,7 @@ import {Footer} from "@/components/Footer"
 import "./globals.css"
 
 export const metadata = {
-  title: "Home",
+  title: "Rich Haven Artificial Garden",
   icons: {
     icon: "/Favicon.ico",
   },
