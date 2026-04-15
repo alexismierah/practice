@@ -9,10 +9,10 @@ export default function AboutPage() {
         Where nature meets permanence
       </p>
 
-      {/* Main Section */}
-      <div className="flex flex-col lg:flex-row items-start justify-between gap-16 mb-16">
+      {/* Hero Section */}
+      <div className="flex flex-col lg:flex-row items-start justify-between gap-16">
 
-        {/* LEFT SIDE: Text */}
+        {/* Left: Text */}
         <div className="flex-1">
 
           {/* Headline */}
@@ -23,7 +23,7 @@ export default function AboutPage() {
             Artificial Garden
           </h1>
 
-          {/* Body */}
+          {/* Body Copy */}
           <div className="space-y-6">
             <p className="font-serif text-base md:text-lg leading-[1.8] text-gray-500">
               At Rich Haven Artificial Garden, we bring nature-inspired beauty to every
@@ -32,7 +32,6 @@ export default function AboutPage() {
               artificial turf, thoughtfully designed to enhance homes, offices, and
               commercial spaces.
             </p>
-
             <p className="font-serif text-base md:text-lg leading-[1.8] text-gray-500">
               Our products combine realistic aesthetics with durability, offering a
               lasting green solution that stays fresh and vibrant all year round.
@@ -44,26 +43,32 @@ export default function AboutPage() {
 
         </div>
 
-        {/* RIGHT SIDE: Image (moved up) */}
-        <div className="w-full lg:w-[480px] -mt-6 lg:-mt-12">
+        {/* Right: Image */}
+        <div className="w-full lg:w-[480px] -mt-6 lg:-mt-12 relative">
+
+          {/* Shadow BG Flower */}
+          <Image
+            src="/Untitled design (2).png"
+            alt=""
+            aria-hidden="true"
+            width={800}
+            height={600}
+            className="absolute inset-0 w-full h-auto object-contain rounded-2xl opacity-[0.13]"
+            style={{ filter: "blur(8px) saturate(0.3) brightness(0.4)", top: "-14%", left: "-10%", width: "120%" }}
+          />
+
+          {/* Main Flower */}
           <Image
             src="/Untitled design (2).png"
             alt="Rich Haven Artificial Garden"
             width={800}
             height={600}
-            className="w-full h-auto object-contain rounded-2xl"
+            className="relative z-10 w-full h-auto object-contain rounded-2xl"
           />
+
         </div>
 
       </div>
-
-      {/* Signature line (moved up) */}
-      {/*<div className="flex items-center gap-4 mt-0">
-        <div className="w-8 h-px bg-gray-200" />
-        <span className="font-serif text-sm italic text-gray-400">
-          Timeless greenery, thoughtfully made.
-        </span>
-      </div> */}
 
     </main>
   );
