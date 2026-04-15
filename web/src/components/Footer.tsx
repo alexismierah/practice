@@ -67,10 +67,6 @@ export default function Footer() {
     { label: "Services", href: "/services" },
   ]
 
-  const socialLinks = [
-    { label: "Facebook", href: "https://www.facebook.com/unifixictsolutions", icon: "f" },
-  ]
-
   const fields = [
     { key: "name" as const, label: "Full Name", type: "text", placeholder: "Enter your name", required: true },
     { key: "email" as const, label: "Email Address", type: "email", placeholder: "Enter your email", required: true },
@@ -136,7 +132,35 @@ export default function Footer() {
           line-height: 1.7;
           color: #9bacc4;
           max-width: 240px;
-          margin-bottom: 28px;
+          margin-bottom: 20px;
+        }
+
+        .contacts-label {
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.15em;
+          text-transform: uppercase;
+          color: #4a6880;
+          margin-bottom: 10px;
+          margin-top: 4px;
+        }
+
+        .contacts-block {
+          font-size: 13px;
+          font-weight: 300;
+          line-height: 1.9;
+          color: #9bacc4;
+          margin-bottom: 24px;
+        }
+
+        .contacts-block a {
+          color: #9bacc4;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .contacts-block a:hover {
+          color: #3a89dd;
         }
 
         .social-row { display: flex; gap: 12px; }
@@ -152,11 +176,11 @@ export default function Footer() {
           cursor: pointer;
           transition: border-color 0.2s, background 0.2s;
           color: #7a92ad;
-          font-size: 13px;
-          font-weight: 600;
           text-decoration: none;
         }
-        .social-dot:hover { border-color: #3a89dd; background: rgba(58,137,221,0.12); color: #3a89dd; }
+        .social-dot:hover { border-color: #3a89dd; background: rgba(58,137,221,0.12); }
+        .social-dot:hover svg { fill: #3a89dd; }
+        .social-dot svg { fill: #ffffff; transition: fill 0.2s; }
 
         .col-label {
           font-size: 11px;
@@ -217,8 +241,8 @@ export default function Footer() {
           width: 100%;
           background: rgba(255,255,255,0.06);
           border: 1px solid rgba(255,255,255,0.12);
-          border-radius: 8px;
-          padding: 10px 14px;
+          border-radius: 999px;
+          padding: 10px 18px;
           font-family: 'Instrument Sans', sans-serif;
           font-size: 14px;
           font-weight: 300;
@@ -233,22 +257,23 @@ export default function Footer() {
         .field-input:focus { border-color: rgba(58,137,221,0.6); background: rgba(58,137,221,0.06); }
         .field-input.has-error { border-color: rgba(239,68,68,0.6); }
 
-        textarea.field-input { resize: none; }
+        textarea.field-input { resize: none; border-radius: 20px; padding: 12px 18px; }
 
         .field-error { color: #ef4444; font-size: 12px; margin-top: 4px; font-weight: 500; }
 
         .submit-btn {
           margin-top: 4px;
-          width: 100%;
+          width: auto;
+          align-self: flex-start;
           background: #3a89dd;
           border: none;
-          border-radius: 8px;
-          padding: 12px 20px;
+          border-radius: 999px;
+          padding: 9px 28px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 13px;
+          font-size: 12px;
           font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
+          letter-spacing: 0.01em;
+          text-transform: none;
           color: #fff;
           cursor: pointer;
           transition: background 0.2s, transform 0.15s;
@@ -291,19 +316,23 @@ export default function Footer() {
             <p className="brand-eyebrow">Est. 2014</p>
             <h2 className="brand-name">Unifix ICT Solutions</h2>
             <p className="brand-desc">Professional tech solutions crafted to help your business thrive.</p>
-            <p className="brand-desc">
-              unifixictsolutions01@gmail.com<br />(02) 8294 0531<br />+63 936 496 8421
-            </p>
+
             <div className="social-row">
-              {socialLinks.map(({ label, href, icon }) => (
-                <a key={label} href={href} target="_blank" rel="noreferrer" className="social-dot" aria-label={label}>
-                  {icon}
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/unifixictsolutions"
+                target="_blank"
+                rel="noreferrer"
+                className="social-dot"
+                aria-label="Facebook"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                  <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                </svg>
+              </a>
             </div>
           </div>
 
-          {/* Quick Links — now actual anchor tags */}
+          {/* Quick Links + Contacts */}
           <div>
             <p className="col-label">Navigation</p>
             <ul className="nav-list">
@@ -312,6 +341,13 @@ export default function Footer() {
                   <a href={href} className="nav-item">{label}</a>
                 </li>
               ))}
+            </ul>
+
+            <p className="col-label" style={{ marginTop: "32px" }}>Contacts</p>
+            <ul className="nav-list">
+              <li><a href="mailto:unifixictsolutions01@gmail.com" className="nav-item">unifixictsolutions01@gmail.com</a></li>
+              <li><a href="tel:+63282940531" className="nav-item">(02) 8294 0531</a></li>
+              <li><a href="tel:+639364968421" className="nav-item">+63 936 496 8421</a></li>
             </ul>
           </div>
 
