@@ -4,9 +4,9 @@ import { CloudSun, Grid2x2, Leaf, ShieldCheck, ChevronDown } from "lucide-react"
 import { useState } from "react";
 
 const stats = [
-  { value: "8,000+", label: "Happy Customers", title: "Trusted By" },
-  { value: "1,900+", label: "Design Options", title: "Variety" },
-  { value: "500+", label: "Greens Collection", title: "Explore" },
+  { value: "12+", label: "Years of Expertise", title: "" },
+  { value: "98%", label: "Client Satisfaction", title: "" },
+  { value: "500+", label: "Green Creations", title: "" },
 ];
 
 const featuredPlants = [
