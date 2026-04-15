@@ -58,12 +58,12 @@ export default function AboutPage() {
       </div>
 
       {/* Signature line (moved up) */}
-      <div className="flex items-center gap-4 mt-0">
+      {/*<div className="flex items-center gap-4 mt-0">
         <div className="w-8 h-px bg-gray-200" />
         <span className="font-serif text-sm italic text-gray-400">
           Timeless greenery, thoughtfully made.
         </span>
-      </div>
+      </div> */}
 
     </main>
   );
