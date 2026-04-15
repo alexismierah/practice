@@ -775,7 +775,7 @@ export default function Home() {
 
           <div className="why-shop-plant-col">
             <div className="why-shop-plant-frame">
-              <img className="why-shop-plant" src="/Plant.png" alt="Potted indoor plant" />
+              <img className="why-shop-plant" src="/p3.png" alt="Potted indoor plant" />
             </div>
           </div>
 
