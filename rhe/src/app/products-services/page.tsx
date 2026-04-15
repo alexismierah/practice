@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 
-
 const services = [
   {
     step: "01",
@@ -46,6 +45,61 @@ export default function ProductsServicesPage() {
     >
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+        /* ── Responsive grid helpers ── */
+        .two-col-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 3.5rem;
+          align-items: center;
+        }
+
+        /* On mobile, collapse to single column */
+        @media (max-width: 768px) {
+          .two-col-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+
+          /* Always put the image cell first on mobile */
+          .two-col-grid .text-cell {
+            order: 2;
+          }
+          .two-col-grid .image-cell {
+            order: 1;
+          }
+
+          /* Tighten section padding */
+          .section-pad {
+            padding: 2.5rem 1.25rem !important;
+          }
+
+          /* Shrink image height on mobile */
+          .product-img-wrap {
+            height: 260px !important;
+          }
+
+          /* Reduce big heading size */
+          .hero-h1 {
+            font-size: 2.2rem !important;
+          }
+
+          /* Feature grid: single column on very small screens */
+          .feature-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .two-col-grid {
+            gap: 1.5rem;
+          }
+          .product-img-wrap {
+            height: 220px !important;
+          }
+        }
+
+        /* ── Existing component styles ── */
         .product-card {
           background: #fff;
           border: 1px solid #e8e8e2;
@@ -86,21 +140,6 @@ export default function ProductsServicesPage() {
           background: #d8f3dc;
           color: #1b4332;
           margin-bottom: 1rem;
-        }
-        .hero-image-float {
-          position: relative;
-          display: inline-block;
-        }
-        .hero-image-float::before {
-          content: '';
-          position: absolute;
-          width: 320px;
-          height: 320px;
-          border-radius: 50%;
-          background: #d8f3dc;
-          top: -30px;
-          right: -30px;
-          z-index: 0;
         }
         .stat-block {
           text-align: center;
@@ -196,25 +235,22 @@ export default function ProductsServicesPage() {
           textAlign: "center",
           backgroundImage: "url('/2.png')",
           backgroundSize: "cover",
-          backgroundPosition: "20% ",
+          backgroundPosition: "20%",
           backgroundRepeat: "no-repeat",
         }}
       >
         <div>
-          <p className="section-eyebrow" 
-          style={{
-            fontWeight: 570,
-            marginTop: 20,
-            marginBottom: 1,
-            color: "#2D5A27"
-          }}>
+          <p
+            className="section-eyebrow"
+            style={{ fontWeight: 570, marginTop: 20, marginBottom: 1, color: "#2D5A27" }}
+          >
             PRODUCT COLLECTIONS
-          
           </p>
           <h1
+            className="hero-h1"
             style={{
               fontFamily: "'Cormorant Garamond', serif",
-              fontSize: "clamp(2.8rem, 5vw, 3.5rem)",
+              fontSize: "clamp(2.2rem, 5vw, 3.5rem)",
               fontWeight: 420,
               lineHeight: 1.12,
               color: "#0d1b0f",
@@ -223,139 +259,101 @@ export default function ProductsServicesPage() {
           >
             Bringing Nature
             <br />
-            <em style={{ fontStyle: "italic", color: "#2D5A27" , fontWeight: 590}}>
+            <em style={{ fontStyle: "italic", color: "#2D5A27", fontWeight: 590 }}>
               Into Your Space
             </em>
           </h1>
         </div>
       </section>
 
-
       {/* ── 1ST INTRO BAND ── */}
       <section
-        style={{
-          background: "#ffffff",
-          padding: "2.5rem 3rem",
-        }}
+        className="section-pad"
+        style={{ background: "#ffffff", padding: "2.5rem 3rem" }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "3.5rem",
-            alignItems: "center",
-          }}
-        >
-          {/* Left: image with floating badge */}
-          <div style={{ position: "relative" }}>
-            <div
-              style={{
-                width: "100%",
-                height: 550,
-                borderRadius: 16,
-              }}
-            >
-              <img
-                src="/p10.png"
-                alt="Potted artificial plants on a wooden bench"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  overflow: "visible",
-                  transform: "translateY(10px) scale(1.03)",
-                  filter: "drop-shadow(0px 1px 1px rgba(95, 91, 91, 0.1))",
-                  objectPosition: "55% 15%",
-                }}
-              />
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="two-col-grid">
+            {/* Image */}
+            <div className="image-cell" style={{ position: "relative" }}>
+              <div
+                className="product-img-wrap"
+                style={{ width: "100%", height: 550, borderRadius: 16, overflow: "hidden" }}
+              >
+                <img
+                  src="/p10.png"
+                  alt="Potted artificial plants on a wooden bench"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    transform: "translateY(10px) scale(1.03)",
+                    filter: "drop-shadow(0px 1px 1px rgba(95,91,91,0.1))",
+                    objectPosition: "55% 15%",
+                  }}
+                />
+              </div>
             </div>
-          </div>
 
-          {/* Right: text */}
-          <div
-            style={{
-              paddingLeft: "0.5rem",
-              paddingTop: 15,
-              position: "relative", // IMPORTANT for leaf positioning
-              
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.72rem",
-                fontWeight: 400,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#6b7f64",
-                marginBottom: "1rem",
-              }}
-            >
-              what do we have?
-            </p>
+            {/* Text */}
+            <div className="text-cell" style={{ paddingTop: 15 }}>
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#6b7f64",
+                  marginBottom: "1rem",
+                }}
+              >
+                what do we have?
+              </p>
 
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2.2rem, 3vw, 3rem)",
-                fontWeight: 500,
-                lineHeight: 1.15,
-                color: "#0d1b0f",
-                marginBottom: "1.5rem",
-              }}
-            >
-              Potted Artificial Plants <br />
-              and Trees
-            </h2>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(2rem, 3vw, 3rem)",
+                  fontWeight: 500,
+                  lineHeight: 1.15,
+                  color: "#0d1b0f",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Potted Artificial Plants <br />
+                and Trees
+              </h2>
 
-            <div
-              style={{
-                width: 50,
-                height: 2,
-                background: "#2d5a27",
-                marginBottom: "1.5rem",
-              }}
-            />
+              <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
 
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "1rem",
-                fontWeight: 300,
-                color: "#4a5568",
-                lineHeight: 1.85,
-                marginBottom: "1.5rem",
-              }}
-            >
-              Rich Have Artificial Garden provides a premium selection of
-              lifelike greenery designed to enhance any interior without the
-              need for watering or sunlight. Ready to display in elegant pots,
-              these maintenance-free solutions offer an instant and sophisticated
-              botanical upgrade for both residential and commercial spaces.
-            </p>
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  color: "#4a5568",
+                  lineHeight: 1.85,
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Rich Have Artificial Garden provides a premium selection of lifelike greenery
+                designed to enhance any interior without the need for watering or sunlight. Ready
+                to display in elegant pots, these maintenance-free solutions offer an instant and
+                sophisticated botanical upgrade for both residential and commercial spaces.
+              </p>
 
-            {/* Feature grid */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "0.85rem 1.5rem",
-                marginBottom: "1.5rem",
-              }}
-            >
-              {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "0.65rem",
-                    }}
-                  >
+              <div
+                className="feature-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.85rem 1.5rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                     <div
                       style={{
                         width: 6,
@@ -377,130 +375,96 @@ export default function ProductsServicesPage() {
                       {item}
                     </span>
                   </div>
-                )
-              )}
-            </div>
+                ))}
+              </div>
 
-            {/* CTA link */}
-            <a
-              href="/products-services"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.9rem",
-                color: "#2d5a27",
-                borderBottom: "1.5px solid #2d5a27",
-                paddingBottom: 2,
-                textDecoration: "none",
-              }}
-            >
-              Explore our services &rarr;
-            </a>
+              <a
+                href="/products-services"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.9rem",
+                  color: "#2d5a27",
+                  borderBottom: "1.5px solid #2d5a27",
+                  paddingBottom: 2,
+                  textDecoration: "none",
+                }}
+              >
+                Explore our services &rarr;
+              </a>
+            </div>
           </div>
         </div>
       </section>
-
 
       {/* ── 2ND INTRO BAND ── */}
       <section
-        style={{
-          background: "#FAFAF8",
-          padding: "4rem 3rem",
-        }}
+        className="section-pad"
+        style={{ background: "#FAFAF8", padding: "4rem 3rem" }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "5rem",
-            alignItems: "center",
-          }}
-        >
-          {/* LEFT: text */}
-          <div
-            style={{
-              paddingLeft: "0.5rem",
-              paddingTop: 15,
-              position: "relative",
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.72rem",
-                fontWeight: 400,
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "#6b7f64",
-                marginBottom: "1rem",
-              }}
-            >
-              what do we have?
-            </p>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="two-col-grid" style={{ gap: "5rem" }}>
+            {/* Text — on desktop: left. On mobile: order 2 (below image) */}
+            <div className="text-cell" style={{ paddingTop: 15 }}>
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#6b7f64",
+                  marginBottom: "1rem",
+                }}
+              >
+                what do we have?
+              </p>
 
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2.2rem, 3vw, 3rem)",
-                fontWeight: 500,
-                lineHeight: 1.15,
-                color: "#0d1b0f",
-                marginBottom: "1.5rem",
-              }}
-            >
-              Artficial Wall Greens <br/>
-              and Hanging Plants
-            </h2>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(2rem, 3vw, 3rem)",
+                  fontWeight: 500,
+                  lineHeight: 1.15,
+                  color: "#0d1b0f",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Artificial Wall Greens <br />
+                and Hanging Plants
+              </h2>
 
-            <div
-              style={{
-                width: 50,
-                height: 2,
-                background: "#2d5a27",
-                marginBottom: "1.5rem",
-              }}
-            />
+              <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
 
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "1rem",
-                fontWeight: 300,
-                color: "#4a5568",
-                lineHeight: 1.85,
-                marginBottom: "1.5rem",
-              }}
-            >
-              Rich Have Artificial Garden provides a premium selection of
-              lifelike greenery designed to enhance any interior without the
-              need for watering or sunlight. Ready to display in elegant pots,
-              these maintenance-free solutions offer an instant and sophisticated
-              botanical upgrade for both residential and commercial spaces.
-            </p>
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  color: "#4a5568",
+                  lineHeight: 1.85,
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Rich Have Artificial Garden provides a premium selection of lifelike greenery
+                designed to enhance any interior without the need for watering or sunlight. Ready
+                to display in elegant pots, these maintenance-free solutions offer an instant and
+                sophisticated botanical upgrade for both residential and commercial spaces.
+              </p>
 
-            {/* Feature grid */}
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "0.85rem 1.5rem",
-                marginBottom: "1.5rem",
-              }}
-            >
-              {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map(
-                (item) => (
-                  <div
-                    key={item}
-                    style={{
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: "0.65rem",
-                    }}
-                  >
+              <div
+                className="feature-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.85rem 1.5rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                     <div
                       style={{
                         width: 6,
@@ -522,131 +486,319 @@ export default function ProductsServicesPage() {
                       {item}
                     </span>
                   </div>
-                )
-              )}
-            </div>
+                ))}
+              </div>
 
-            {/* CTA link */}
-            <a
-              href="/products-services"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "0.9rem",
-                color: "#2d5a27",
-                borderBottom: "1.5px solid #2d5a27",
-                paddingBottom: 2,
-                textDecoration: "none",
-              }}
-            >
-              Explore our services &rarr;
-            </a>
-          </div>
-
-          {/* RIGHT: image */}
-          <div style={{ position: "relative" }}>
-            <div
-              style={{
-                width: "100%",
-                height: 500,
-                borderRadius: 16,
-              }}
-            >
-              <img
-                src="/p14.png"
-                alt="Paneled Wall Greens"
+              <a
+                href="/products-services"
                 style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                  overflow: "visible",
-                  transform: "translateY(10px) scale(1.03)",
-                  filter: "drop-shadow(0px 1px 1px rgba(95, 91, 91, 0.1))",
-                  objectPosition: "50% 10%",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.9rem",
+                  color: "#2d5a27",
+                  borderBottom: "1.5px solid #2d5a27",
+                  paddingBottom: 2,
+                  textDecoration: "none",
                 }}
-              />
+              >
+                Explore our services &rarr;
+              </a>
+            </div>
+
+            {/* Image — on desktop: right. On mobile: order 1 (above text) */}
+            <div className="image-cell" style={{ position: "relative" }}>
+              <div
+                className="product-img-wrap"
+                style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
+              >
+                <img
+                  src="/p14.png"
+                  alt="Paneled Wall Greens"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    transform: "translateY(10px) scale(1.03)",
+                    filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
+                    objectPosition: "50% 10%",
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
-    
-    {/* ── 3RD INTRO BAND ── */}
+
+
+      {/* ── 3RD INTRO BAND ── */}
       <section
-        style={{
-          background: "#FFFFFF",
-          paddingTop: "2rem",
-          paddingBottom: "2rem",
-        }}
+        className="section-pad"
+        style={{ background: "#ffffff", padding: "2.5rem 3rem" }}
       >
-        <div
-          style={{
-            maxWidth: 1200,
-            margin: "0 auto",
-            padding: "3rem 3rem",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "5rem",
-            alignItems: "center",
-            paddingTop: "2.5rem",
-            paddingBottom: "2.5rem",
-          }}
-        >
-          {/* Left: picture */}
-          <div>
-            <h2
-              style={{
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: "clamp(2rem, 3vw, 2.8rem)",
-                fontWeight: 400,
-                lineHeight: 1.2,
-                color: "#0d1b0f",
-                marginBottom: "1.25rem",
-              }}
-            >
-              Nature-Inspired Solutions for Modern Living
-            </h2>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="two-col-grid">
+            {/* Image */}
+            <div className="image-cell" style={{ position: "relative" }}>
+              <div
+                className="product-img-wrap"
+                style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
+              >
+                <img
+                  src="/p16.png"
+                  alt="Potted artificial plants on a wooden bench"
+                  style={{
+                     width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                    display: "block",
+                    transform: "translateY(10px) scale(1.03)",
+                    filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
+                    objectPosition: "55% 15%",
+                  }}
+                />
+              </div>
+            </div>
 
-            <div className="divider-line" />
+            {/* Text */}
+            <div className="text-cell" style={{ paddingTop: 15 }}>
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#6b7f64",
+                  marginBottom: "1rem",
+                }}
+              >
+                what do we have?
+              </p>
 
-            <p
-              style={{
-                fontFamily: "'DM Sans', sans-serif",
-                fontSize: "1rem",
-                fontWeight: 300,
-                color: "#4a5568",
-                lineHeight: 1.8,
-                marginBottom: "1.5rem",
-              }}
-            >
-              We specialize in bringing the outdoors in — supplying and professionally installing turf grass, living wall greens, statement plants, and bespoke planter boxes across residential and commercial properties.
-            </p>
-          </div>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(2rem, 3vw, 3rem)",
+                  fontWeight: 500,
+                  lineHeight: 1.15,
+                  color: "#0d1b0f",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Potted Artificial Plants <br />
+                and Trees
+              </h2>
 
-          {/* Right: text */}
-          <div style={{ position: "relative", height: 350 }}>
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                right: 0,
-                width: "80%",
-                height: "100%",
-                borderRadius: 20,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 80,
-                boxShadow: "0 20px 50px rgba(45,106,79,0.15)",
-              }}
-            >
+              <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
+
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  color: "#4a5568",
+                  lineHeight: 1.85,
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Rich Have Artificial Garden provides a premium selection of lifelike greenery
+                designed to enhance any interior without the need for watering or sunlight. Ready
+                to display in elegant pots, these maintenance-free solutions offer an instant and
+                sophisticated botanical upgrade for both residential and commercial spaces.
+              </p>
+
+              <div
+                className="feature-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.85rem 1.5rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
+                    <div
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: "#2d5a27",
+                        flexShrink: 0,
+                        marginTop: "0.42rem",
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: "1rem",
+                        color: "#4a5568",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/products-services"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.9rem",
+                  color: "#2d5a27",
+                  borderBottom: "1.5px solid #2d5a27",
+                  paddingBottom: 2,
+                  textDecoration: "none",
+                }}
+              >
+                Explore our services &rarr;
+              </a>
             </div>
           </div>
         </div>
       </section>
 
+
+      {/* ──4TH INTRO BAND ── */}
+      <section
+        className="section-pad"
+        style={{ background: "#FAFAF8", padding: "4rem 3rem" }}
+      >
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="two-col-grid" style={{ gap: "5rem" }}>
+            {/* Text — on desktop: left. On mobile: order 2 (below image) */}
+            <div className="text-cell" style={{ paddingTop: 15 }}>
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.72rem",
+                  fontWeight: 400,
+                  letterSpacing: "0.2em",
+                  textTransform: "uppercase",
+                  color: "#6b7f64",
+                  marginBottom: "1rem",
+                }}
+              >
+                what do we have?
+              </p>
+
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', serif",
+                  fontSize: "clamp(2rem, 3vw, 3rem)",
+                  fontWeight: 500,
+                  lineHeight: 1.15,
+                  color: "#0d1b0f",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Artificial Wall Greens <br />
+                and Hanging Plants
+              </h2>
+
+              <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
+
+              <p
+                style={{
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "1rem",
+                  fontWeight: 300,
+                  color: "#4a5568",
+                  lineHeight: 1.85,
+                  marginBottom: "1.5rem",
+                }}
+              >
+                Rich Have Artificial Garden provides a premium selection of lifelike greenery
+                designed to enhance any interior without the need for watering or sunlight. Ready
+                to display in elegant pots, these maintenance-free solutions offer an instant and
+                sophisticated botanical upgrade for both residential and commercial spaces.
+              </p>
+
+              <div
+                className="feature-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.85rem 1.5rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
+                    <div
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: "#2d5a27",
+                        flexShrink: 0,
+                        marginTop: "0.42rem",
+                      }}
+                    />
+                    <span
+                      style={{
+                        fontFamily: "'DM Sans', sans-serif",
+                        fontSize: "1rem",
+                        color: "#4a5568",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {item}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="/products-services"
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  fontFamily: "'DM Sans', sans-serif",
+                  fontSize: "0.9rem",
+                  color: "#2d5a27",
+                  borderBottom: "1.5px solid #2d5a27",
+                  paddingBottom: 2,
+                  textDecoration: "none",
+                }}
+              >
+                Explore our services &rarr;
+              </a>
+            </div>
+
+            {/* Image — on desktop: right. On mobile: order 1 (above text) */}
+            <div className="image-cell" style={{ position: "relative" }}>
+              <div
+                className="product-img-wrap"
+                style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
+              >
+                <img
+                  src="/p14.png"
+                  alt="Paneled Wall Greens"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    display: "block",
+                    transform: "translateY(10px) scale(1.03)",
+                    filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
+                    objectPosition: "50% 10%",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
