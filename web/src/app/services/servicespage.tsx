@@ -362,7 +362,7 @@ export default function ServicesPage() {
           background: var(--blue);
           color: #fff;
           padding: 14px 32px;
-          border-radius: 8px;
+          border-radius: 9999px; /* ✅ fully round */
           font-family: 'Instrument Sans', sans-serif;
           font-size: 0.9rem;
           font-weight: 500;

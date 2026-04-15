@@ -268,10 +268,10 @@ export default function Footer() {
           background: #3a89dd;
           border: none;
           border-radius: 999px;
-          padding: 9px 28px;
+          padding: 11px 28px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 12px;
-          font-weight: 700;
+          font-size: 13px;
+          font-weight: 500;
           letter-spacing: 0.01em;
           text-transform: none;
           color: #fff;
@@ -325,7 +325,7 @@ export default function Footer() {
                 className="social-dot"
                 aria-label="Facebook"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
                   <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
                 </svg>
               </a>
@@ -345,9 +345,9 @@ export default function Footer() {
 
             <p className="col-label" style={{ marginTop: "32px" }}>Contacts</p>
             <ul className="nav-list">
-              <li><a href="mailto:unifixictsolutions01@gmail.com" className="nav-item">unifixictsolutions01@gmail.com</a></li>
-              <li><a href="tel:+63282940531" className="nav-item">(02) 8294 0531</a></li>
-              <li><a href="tel:+639364968421" className="nav-item">+63 936 496 8421</a></li>
+              <li><a className="nav-item">unifixictsolutions01@gmail.com</a></li>
+              <li><a className="nav-item">(02) 8294 0531</a></li>
+              <li><a className="nav-item">+63 936 496 8421</a></li>
             </ul>
           </div>
 
@@ -394,7 +394,7 @@ export default function Footer() {
                 disabled={loading || submitted}
                 className={`submit-btn ${submitted ? "success" : ""}`}
               >
-                {loading ? "Sending..." : submitted ? "✓ Request Sent" : "Submit Request"}
+                {loading ? "Sending..." : submitted ? "Request Sent" : "Submit Request"}
               </button>
             </div>
           </div>

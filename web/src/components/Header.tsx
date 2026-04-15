@@ -350,7 +350,7 @@ export default function Header() {
           background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
           color: #fff;
           padding: 9px 20px;
-          border-radius: 9px;
+          border-radius: 9999px; /* ✅ make it fully round */
           font-family: 'Outfit', sans-serif;
           font-size: 0.85rem;
           font-weight: 500;

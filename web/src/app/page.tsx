@@ -118,19 +118,28 @@ export default function HomePage() {
         }
         .hero h1 {
           font-family: 'Instrument Sans', sans-serif;
-          font-size: clamp(3rem, 6vw, 5.25rem);
-          font-weight: 400; line-height: 1.08; color: #fff;
-          max-width: 16ch; margin-bottom: 1.5rem; letter-spacing: -0.02em;
+          font-size: clamp(2.4rem, 4.6vw, 3.7rem); /* ✅ smaller than before */
+          font-weight: 400;
+          line-height: 1.08;
+          color: #fff;
+          max-width: 16ch;
+          margin-bottom: 1.5rem;
+          letter-spacing: -0.02em;
         }
         .hero h1 em { font-style: italic; color: #93c5fd; }
         .hero-sub {
-          font-size: 1.125rem; color: rgba(255,255,255,0.65);
-          max-width: 42ch; line-height: 1.75; margin-bottom: 2.75rem; font-weight: 300;
+          font-size: 1 rem; 
+          color: rgba(255,255,255,0.65);
+          max-width: 42ch; 
+          line-height: 1.75; 
+          margin-bottom: 2.75rem; 
+          font-weight: 300;
         }
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
         .btn-primary {
           display: inline-block; background: var(--blue); color: #fff;
-          padding: 14px 28px; border-radius: 8px;
+          padding: 14px 28px;
+          border-radius: 9999px;
           font-family: 'Instrument Sans', sans-serif;
           font-size: 0.9rem; font-weight: 500; text-decoration: none;
           transition: background 0.2s, transform 0.15s;
@@ -177,10 +186,16 @@ export default function HomePage() {
         .about h2 em { font-style: italic; color: var(--blue); }
         .about p { font-size: 0.9375rem; color: var(--ink-3); line-height: 1.8; font-weight: 300; margin-bottom: 1rem; }
         .btn-outline {
-          display: inline-block; margin-top: 0.75rem; padding: 12px 24px;
-          border: 1px solid var(--border); border-radius: 8px;
+          display: inline-block;
+          margin-top: 0.75rem;
+          padding: 12px 24px;
+          border: 1px solid var(--border);
+          border-radius: 9999px; /* ✅ make it fully round */
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.875rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
+          font-size: 0.875rem;
+          font-weight: 500;
+          color: var(--ink-2);
+          text-decoration: none;
           transition: border-color 0.2s, background 0.2s;
         }
         .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-xlt); }
@@ -302,10 +317,15 @@ export default function HomePage() {
         }
         .btn-white:hover { background: #e8f2fc; transform: translateY(-1px); }
         .btn-ghost-white2 {
-          display: inline-block; border: 1px solid rgba(255,255,255,0.35);
-          color: rgba(255,255,255,0.85); padding: 14px 28px; border-radius: 8px;
+          display: inline-block;
+          border: 1px solid rgba(255,255,255,0.35);
+          color: rgba(255,255,255,0.85);
+          padding: 14px 28px;
+          border-radius: 9999px; /* ✅ fully round */
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 0.9rem; font-weight: 400; text-decoration: none;
+          font-size: 0.9rem;
+          font-weight: 400;
+          text-decoration: none;
           transition: border-color 0.2s, background 0.2s;
         }
         .btn-ghost-white2:hover { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.08); }

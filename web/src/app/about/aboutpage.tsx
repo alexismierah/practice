@@ -156,7 +156,7 @@ export default function AboutPage() {
           background: var(--blue);
           color: #fff;
           padding: 13px 26px;
-          border-radius: 10px;
+          border-radius: 9999px; /* ✅ fully round */
           font-size: 0.925rem;
           font-weight: 500;
           text-decoration: none;
@@ -192,7 +192,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Strip */}
-        <section className="about-cta-strip">
+        {/*<section className="about-cta-strip">
           <div className="about-cta-strip-inner">
             <h2 className="about-cta-h2">Ready to build something that lasts?</h2>
             <p className="about-cta-p">
@@ -202,7 +202,7 @@ export default function AboutPage() {
               Request a Quote
             </a>
           </div>
-        </section>
+        </section> */}
       </div>
     </>
   )
