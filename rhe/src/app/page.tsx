@@ -17,13 +17,13 @@ const featuredPlants = [
     link: "/products-services/grass",
   },
   {
-    name: "Potted Plants",
+    name: "Potted Plants and Trees",
     sublabel: "Lush Indoor Statement Accent",
     img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
     link: "/products-services/potted-plants",
   },
   {
-    name: "Planter Box",
+    name: "Planter Boxes",
     sublabel: "Vibrant Designer Foliage Collection",
     img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
     link: "/products-services/planter-box",
@@ -865,12 +865,12 @@ export default function Home() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="cta-section" aria-labelledby="cta-title">
+      {/*<section className="cta-section" aria-labelledby="cta-title">
         <p className="cta-eyebrow">Let's get started</p>
         <h2 className="cta-heading" id="cta-title">Ready to bring <em>nature into your space?</em></h2>
         <p className="cta-sub">Whether it's a single room or a full commercial fit-out, we're here to help. Let's make your space greener.</p>
         <Link className="button button-primary" href="/contact">Contact Us</Link>
-      </section>
+      </section>*/}
     </main>
   );
 }
