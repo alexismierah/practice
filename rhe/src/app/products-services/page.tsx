@@ -544,7 +544,7 @@ export default function ProductsServicesPage() {
             <div className="image-cell" style={{ position: "relative" }}>
               <div
                 className="product-img-wrap"
-                style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
+                style={{ width: "100%", height: 550, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
                   src="/p16.png"
