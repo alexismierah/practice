@@ -3,45 +3,30 @@ import Link from "next/link";
 import { CloudSun, Grid2x2, Leaf, ShieldCheck, ChevronDown } from "lucide-react";
 import { useState } from "react";
 
-const stats = [
-  { value: "12+", label: "Years of Expertise", title: "" },
-  { value: "98%", label: "Client Satisfaction", title: "" },
-  { value: "500+", label: "Green Creations", title: "" },
-];
-
 const featuredPlants = [
   {
     name: " Artificial Grass",
     sublabel: "Sports or design spaces",
     img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
     link: "/products-services/grass",
-    onclick: () => {      console.log("Grass clicked");
-    },
-
   },
   {
     name: "Potted Plants and Trees",
     sublabel: "Lush Indoor Statement Accent",
     img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
     link: "/products-services/potted-plants",
-    onclick: () => {      console.log("Potted Plants clicked");
-    },
   },
   {
     name: "Planter Boxes",
     sublabel: "Vibrant Designer Foliage Collection",
     img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
     link: "/products-services/planter-box",
-    onclick: () => {      console.log("Planter Boxes clicked");
-    },
   },
   {
     name: "Wall Greens",
     sublabel: "Low-Maintenance Greenery",
     img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
     link: "/products-services/wall-greens",
-    onclick: () => {      console.log("Wall Greens clicked");
-    },
   },
 ];
 
@@ -127,8 +112,8 @@ export default function Home() {
           display: flex;
           align-items: center;
           background-image: 
-          linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
-          url("/p6 (3).png");
+            linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
+            url("/p62.png");
           background-size: cover;
           background-position: center;
         }
@@ -137,7 +122,7 @@ export default function Home() {
           position: relative;
           z-index: 2;
           max-width: 560px;
-          padding: 72px 56px 196px;
+          padding: 72px 56px;
           color: #fff;
         }
 
@@ -179,101 +164,6 @@ export default function Home() {
         .button-primary { background: #2f6f44; color: #fff; box-shadow: 0 10px 20px rgba(27,56,35,.28); }
         .button-secondary { color: rgba(246,249,246,.95); background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
         .button-primary-dark { background: #2f6f44; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
-
-        /* ── STATS ── */
-        .stats-wrap {
-          position: absolute;
-          inset: auto 36px 24px;
-          display: flex;
-          margin-left: 5px;
-          gap: 8px;
-          z-index: 3;
-          color: #fff;
-          margin-bottom: 30px;
-        }
-
-        .stats-wrap > div {
-          padding: 16px 24px;
-          background: none;
-          border: none;
-        }
-
-        .stats-wrap > div div:nth-child(1) {
-          font-size: 11px;
-          opacity: 0.8;
-        }
-
-        .stats-wrap > div div:nth-child(2) {
-          font-family: "Playfair Display", serif;
-          font-size: 1.75rem;
-          font-weight: 500;
-        }
-
-        .stats-wrap > div div:nth-child(3) {
-          font-size: 13px;
-          opacity: 0.85;
-        }
-
-        .stat-card {
-          background: rgba(255,255,255,.88);
-          border: 1px solid rgba(10,35,20,.07);
-          border-radius: 14px;
-          backdrop-filter: blur(2px);
-          padding: 18px 20px;
-        }
-
-        .stat-title { font-size: 11px; color: #6b796f; margin-bottom: 6px; }
-        .stat-value { margin: 0; font-family: "Playfair Display", serif; font-size: 1.75rem; font-weight: 700; color: #193524; line-height: 1; }
-        .stat-label { margin-top: 6px; font-size: 12px; color: #4a5f52; }
-
-        /* ── ABOUT ── */
-        .about-section {
-          background: #fafbf8;
-          padding: 84px 64px 92px;
-        }
-
-        .about-inner {
-          max-width: 640px;
-          margin: 0 auto;
-          text-align: center;
-        }
-
-        .about-eyebrow {
-          font-size: 11px;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          margin: 0 0 12px;
-        }
-
-        .about-title {
-          margin: 0 0 20px;
-          font-family: "Playfair Display", serif;
-          font-size: clamp(1.8rem, 1.1vw + 1.1rem, 2.5rem);
-          color: #163521;
-          font-weight: 700;
-          line-height: 1.12;
-        }
-
-        .about-title em {
-          font-style: italic;
-          font-weight: 500;
-          color: #3f7a55;
-        }
-
-        .about-desc {
-          color: #4d6258;
-          font-size: 15px;
-          line-height: 1.78;
-          margin: 0 auto 26px;
-          max-width: 34em;
-        }
-
-        .about-inner .ps-explore {
-          align-self: center;
-          justify-content: center;
-          margin: 0 auto;
-        }
 
         /* ── WHY SHOP ── */
         .why-shop {
@@ -653,49 +543,9 @@ export default function Home() {
           padding-bottom: 20px;
         }
 
-        /* ── CTA ── */
-        .cta-section {
-          background: #163521;
-          padding: 96px 64px;
-          text-align: center;
-        }
-
-        .cta-eyebrow {
-          font-size: 11px;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          color: #7ab990;
-          margin: 0 0 14px;
-        }
-
-        .cta-heading {
-          font-family: "Playfair Display", serif;
-          font-size: clamp(1.8rem, 2vw + 1rem, 2.8rem);
-          font-weight: 700;
-          color: #f0f7ed;
-          line-height: 1.12;
-          margin: 0 0 16px;
-        }
-
-        .cta-heading em {
-          font-style: italic;
-          font-weight: 500;
-          color: #82c99a;
-        }
-
-        .cta-sub {
-          font-size: 15px;
-          color: rgba(224,238,224,.72);
-          line-height: 1.75;
-          max-width: 480px;
-          margin: 0 auto 32px;
-        }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-          .hero-content { padding: 48px 30px 240px; }
-          .stats-wrap { grid-template-columns: repeat(2,minmax(0,1fr)); inset: auto 24px 18px; }
-          .about-section { padding: 72px 40px 80px; }
+          .hero-content { padding: 48px 30px; }
           .why-shop { padding: 72px 40px; }
           .why-shop-grid { grid-template-columns: 1fr; gap: 40px; }
           .why-shop-plant-col { order: -1; }
@@ -705,14 +555,11 @@ export default function Home() {
           .ps-header { flex-direction: column; align-items: flex-start; gap: 20px; }
           .svc-header { flex-direction: column; align-items: flex-start; gap: 20px; }
           .faq-section { padding: 72px 40px; }
-          .cta-section { padding: 80px 40px; }
         }
 
         @media (max-width: 640px) {
           .hero { min-height: 88vh; background-position: 62% center; }
-          .hero-content { padding: 30px 16px 310px; }
-          .stats-wrap { grid-template-columns: 1fr; inset: auto 12px 12px; }
-          .about-section { padding: 56px 20px 64px; }
+          .hero-content { padding: 30px 16px; }
           .why-shop { padding: 56px 20px; }
           .why-shop-header { margin-bottom: 48px; }
           .products-section, .services-section { padding: 56px 20px; }
@@ -722,38 +569,26 @@ export default function Home() {
           .svc-card-img { height: 180px; }
           .reason { padding: 20px 16px; }
           .faq-section { padding: 56px 20px; }
-          .cta-section { padding: 64px 20px; }
         }
       `}</style>
 
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-kicker"><em>Breathe Nature into your space</em></p>
-          
-          
-          <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-tight text-white">
-            Rich Haven <br />
-          <span className="italic whitespace-nowrap">
-            Artificial Garden
-          </span>
-        </h1>
-          
-          <p className="hero-copy"><em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home, bringing timeless elegance, refreshing calm, and natural harmony to every corner of your living space.</em></p>
+          <p className="hero-kicker"><em>Rich Haven Artificial Garden</em></p>
+
+            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-white">
+              <span className="block">Transform your space with a touch of natural greenery</span>
+            </h1>
+
+          <p className="hero-copy">
+            <em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home, bringing timeless elegance, refreshing calm, and natural harmony to every corner of your living space.</em>
+          </p>
 
           <div className="hero-actions mt-11">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <Link className="button button-secondary" href="/portfolio">Portfolio</Link>
           </div>
-        </div>
-        <div className="stats-wrap  mb-12">
-          {stats.map((stat) => (
-            <div key={stat.label}>
-              <div>{stat.title}</div>
-              <div>{stat.value}</div>
-              <div>{stat.label}</div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -881,14 +716,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-
-      {/* ── CTA ── */}
-      {/*<section className="cta-section" aria-labelledby="cta-title">
-        <p className="cta-eyebrow">Let's get started</p>
-        <h2 className="cta-heading" id="cta-title">Ready to bring <em>nature into your space?</em></h2>
-        <p className="cta-sub">Whether it's a single room or a full commercial fit-out, we're here to help. Let's make your space greener.</p>
-        <Link className="button button-primary" href="/contact">Contact Us</Link>
-      </section>*/}
     </main>
   );
 }
