@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <main className="landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
 
         .landing, .landing * { box-sizing: border-box; }
 
@@ -110,8 +110,7 @@ export default function Home() {
           min-height: 100vh;
           overflow: hidden;
           display: flex;
-          align-items: center;
-          justify-content: center;
+          align-items: flex-end;
           background-image:
             linear-gradient(
               175deg,
@@ -120,7 +119,7 @@ export default function Home() {
               rgba(8, 26, 16, 0.62) 55%,
               rgba(8, 26, 16, 0.88) 100%
             ),
-            url("/p19 (2).png.jpg");
+            url("/p62.png");
           background-size: cover;
           background-position: center;
         }
@@ -129,38 +128,38 @@ export default function Home() {
           position: relative;
           z-index: 2;
           width: 100%;
-          max-width: 900px;
-          padding: 96px 40px;
+          max-width: 720px;
+          padding: 0 72px 96px;
           color: #fff;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        }
+
+        .hero-spacer {
+          height: 42px;
         }
 
         .hero-title {
           margin: 0;
-          font-family: "Cormorant Garamond", serif;
-          font-weight: 500;
-          font-size: clamp(3rem, 4.5vw + 1rem, 5.6rem);
-          line-height: 1.05;
-          letter-spacing: -.015em;
+          font-family: "Playfair Display", serif;
+          font-weight: 700;
+          font-size: clamp(2.4rem, 3vw + 1rem, 4.2rem);
+          line-height: 1.08;
+          letter-spacing: -.02em;
           color: #fff;
         }
 
         .hero-divider {
           width: 48px;
           height: 1px;
-          background: rgb(212, 200, 200);
-          margin: 36px auto;
+          background: rgba(180, 220, 190, 0.3);
+          margin: 36px 0;
         }
 
         .hero-copy {
-          margin: 0 auto;
+          margin: 0 0 0;
           max-width: 480px;
           font-size: 14px;
           line-height: 1.9;
-          color: rgb(194, 185, 185);
+          color: rgba(210, 230, 216, 0.58);
           font-weight: 300;
           letter-spacing: .015em;
         }
@@ -170,7 +169,6 @@ export default function Home() {
           gap: 14px;
           flex-wrap: wrap;
           margin-top: 44px;
-          justify-content: center;
         }
 
         .button {
@@ -493,7 +491,7 @@ export default function Home() {
         }
 
         .faq-inner {
-          max-width: 790px;
+          max-width: 800px;
           margin: 0 auto;
         }
 
@@ -589,7 +587,7 @@ export default function Home() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-          .hero-content { padding: 72px 32px; }
+          .hero-content { padding: 0 40px 72px; }
           .why-shop { padding: 72px 40px; }
           .why-shop-grid { grid-template-columns: 1fr; gap: 40px; }
           .why-shop-plant-col { order: -1; }
@@ -603,8 +601,8 @@ export default function Home() {
 
         @media (max-width: 640px) {
           .hero { min-height: 100vh; min-height: 100svh; background-position: 62% center; }
-          .hero-content { padding: 56px 24px; }
-          .hero-title { font-size: clamp(2.4rem, 8vw + 0.5rem, 3.6rem); }
+          .hero-content { padding: 0 24px 56px; max-width: 100%; }
+          .hero-title { font-size: clamp(2rem, 6vw + 0.5rem, 3rem); }
           .why-shop { padding: 56px 20px; }
           .why-shop-header { margin-bottom: 48px; }
           .products-section, .services-section { padding: 56px 20px; }
@@ -623,7 +621,7 @@ export default function Home() {
           <div className="hero-spacer" aria-hidden="true" />
 
           <h1 className="hero-title">
-            Rich Haven Artificial Garden
+            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery look
           </h1>
 
           <div className="hero-divider" />
@@ -633,8 +631,8 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-             {/*<Link className="button button-primary" href="/products-services">View Products & Services</Link>*/}
-            {/*<Link className="button button-secondary" href="/portfolio">View Products and Services</Link>*/}
+            <Link className="button button-primary" href="/products-services">View Products & Services</Link>
+            <Link className="button button-secondary" href="/portfolio">Our Portfolio</Link>
           </div>
         </div>
       </section>
@@ -645,7 +643,7 @@ export default function Home() {
           <p className="why-shop-eyebrow">Bring nature to your space</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
-            Rich Haven transforms your space with greenery.
+            From start to finish, Rich Haven transforms your space with greenery.
           </p>
         </div>
 
