@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <main className="landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
 
         .landing, .landing * { box-sizing: border-box; }
 
@@ -119,7 +119,7 @@ export default function Home() {
               rgba(8, 26, 16, 0.62) 55%,
               rgba(8, 26, 16, 0.88) 100%
             ),
-            url("/p62.png");
+            url("/p19 (2).jpg");
           background-size: cover;
           background-position: center;
         }
@@ -139,11 +139,11 @@ export default function Home() {
 
         .hero-title {
           margin: 0;
-          font-family: "Playfair Display", serif;
-          font-weight: 700;
-          font-size: clamp(2.4rem, 3vw + 1rem, 4.2rem);
-          line-height: 1.08;
-          letter-spacing: -.02em;
+          font-family: "Cormorant Garamond", serif;
+          font-weight: 500;
+          font-size: clamp(3rem, 4.5vw + 1rem, 5.6rem);
+          line-height: 1.05;
+          letter-spacing: -.015em;
           color: #fff;
         }
 
@@ -602,7 +602,7 @@ export default function Home() {
         @media (max-width: 640px) {
           .hero { min-height: 100vh; min-height: 100svh; background-position: 62% center; }
           .hero-content { padding: 0 24px 56px; max-width: 100%; }
-          .hero-title { font-size: clamp(2rem, 6vw + 0.5rem, 3rem); }
+          .hero-title { font-size: clamp(2.4rem, 8vw + 0.5rem, 3.6rem); }
           .why-shop { padding: 56px 20px; }
           .why-shop-header { margin-bottom: 48px; }
           .products-section, .services-section { padding: 56px 20px; }
