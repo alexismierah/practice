@@ -48,14 +48,13 @@ export default function Header() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=DM+Sans:wght@300;400;500&display=swap');
 
         :root {
           --forest: #1a2e1a;
           --sage: #4a6741;
           --cream: #f5f0e8;
           --gold: #c9a84c;
-          --gold-light: #e8c97a;
           --white: #ffffff;
           --shadow: 0 4px 32px rgba(26,46,26,0.13);
         }
@@ -154,7 +153,7 @@ export default function Header() {
           position: absolute;
           bottom: 4px; left: 0.9rem; right: 0.9rem;
           height: 1px;
-          background: var(--gold);
+          background: var(--sage);
           transform: scaleX(0);
           transform-origin: left;
           transition: transform 0.3s ease;
@@ -188,7 +187,7 @@ export default function Header() {
           position: absolute;
           bottom: 4px; left: 0.9rem; right: 0.9rem;
           height: 1px;
-          background: var(--gold);
+          background: var(--sage);
           transform: scaleX(0);
           transform-origin: left;
           transition: transform 0.3s ease;
@@ -207,18 +206,19 @@ export default function Header() {
         }
         .rh-chevron.open { transform: rotate(180deg); }
 
-        /* DROPDOWN — soft & light */
+        /* ── DROPDOWN ── */
         .rh-dropdown {
           position: absolute;
           top: calc(100% + 10px);
           left: 50%;
           transform: translateX(-50%) translateY(-4px);
-          background: #fdfcf9;
-          border-radius: 6px;
-          border: 1px solid rgba(201,168,76,0.18);
-          box-shadow: 0 8px 28px rgba(26,46,26,0.08);
-          width: 320px;
-          padding: 0;
+          background: #fdfcfa;
+          border-radius: 10px;
+          border: 1px solid rgba(26, 46, 26, 0.07);
+          box-shadow:
+            0 12px 40px rgba(26, 46, 26, 0.10),
+            0 2px 8px rgba(26, 46, 26, 0.04);
+          width: 240px;
           opacity: 0;
           pointer-events: none;
           transition: opacity 0.18s ease, transform 0.18s ease;
@@ -231,80 +231,64 @@ export default function Header() {
           transform: translateX(-50%) translateY(0);
         }
 
-        /* Soft "View All" banner — warm cream instead of dark forest */
-        .rh-dropdown-banner {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 0.75rem 1.3rem;
-          background: rgba(201,168,76,0.08);
-          border-bottom: 1px solid rgba(201,168,76,0.15);
-          text-decoration: none;
-          transition: background 0.18s;
-        }
-
-        .rh-dropdown-banner:hover {
-          background: rgba(201,168,76,0.14);
-        }
-
-        .rh-dropdown-banner-text {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.76rem;
-          font-weight: 500;
-          letter-spacing: 0.08em;
-          color: var(--sage);
-        }
-
-        .rh-dropdown-banner-arrow {
-          display: flex;
-          align-items: center;
-          gap: 0.35rem;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.72rem;
-          letter-spacing: 0.04em;
-          color: var(--gold);
-        }
-
-        .rh-dropdown-body {
-          padding: 0.6rem 1.3rem 1rem;
+        .rh-dropdown-list {
+          padding: 8px 0;
         }
 
         .rh-dropdown-item {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.55rem 0;
-          text-decoration: none;
-          color: #3a4f3a;
-          font-size: 0.83rem;
-          letter-spacing: 0.02em;
-          font-family: 'DM Sans', sans-serif;
-          transition: color 0.15s;
-          border-bottom: 1px solid rgba(26,46,26,0.04);
-        }
-
-        .rh-dropdown-item:last-child {
-          border-bottom: none;
-        }
-
-        .rh-dropdown-item::before {
-          content: '';
           display: block;
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background: var(--gold);
-          flex-shrink: 0;
-          opacity: 0.45;
-          transition: opacity 0.15s;
+          padding: 10px 22px;
+          text-decoration: none;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.84rem;
+          color: var(--forest);
+          letter-spacing: 0.02em;
+          transition: background 0.12s ease, color 0.12s ease;
+          position: relative;
         }
 
         .rh-dropdown-item:hover {
+          background: rgba(234, 243, 229, 0.5);
           color: var(--sage);
         }
 
-        .rh-dropdown-item:hover::before {
-          opacity: 0.9;
+        .rh-dropdown-divider {
+          height: 1px;
+          background: rgba(26, 46, 26, 0.06);
+          margin: 4px 18px;
+        }
+
+        .rh-dropdown-footer {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 11px 22px;
+          background: var(--forest);
+          text-decoration: none;
+          transition: background 0.18s ease;
+        }
+
+        .rh-dropdown-footer:hover {
+          background: #1f3820;
+        }
+
+        .rh-dropdown-footer-text {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.72rem;
+          font-weight: 500;
+          color: rgba(255, 255, 255, 0.8);
+          letter-spacing: 0.04em;
+        }
+
+        .rh-dropdown-footer svg {
+          width: 12px;
+          height: 12px;
+          color: rgba(255, 255, 255, 0.55);
+          transition: transform 0.18s ease;
+        }
+
+        .rh-dropdown-footer:hover svg {
+          transform: translateX(2px);
         }
 
         /* CTA BUTTON */
@@ -413,8 +397,8 @@ export default function Header() {
           justify-content: space-between;
           padding: 0.55rem 1rem;
           margin-bottom: 0.75rem;
-          background: rgba(201,168,76,0.1);
-          border: 1px solid rgba(201,168,76,0.2);
+          background: rgba(74, 103, 65, 0.08);
+          border: 1px solid rgba(74, 103, 65, 0.15);
           color: var(--sage);
           text-decoration: none;
           font-size: 0.74rem;
@@ -442,7 +426,7 @@ export default function Header() {
           width: 3px;
           height: 3px;
           border-radius: 50%;
-          background: var(--gold);
+          background: var(--sage);
           flex-shrink: 0;
           opacity: 0.45;
         }
@@ -473,7 +457,6 @@ export default function Header() {
       <header className={`rh-header${scrolled ? " scrolled" : ""}`}>
         <div className="rh-inner">
 
-          {/* LOGO */}
           <Link href="/" className="rh-logo">
             <div className="rh-logo-text">
               <span className="rh-logo-main">Rich Haven</span>
@@ -481,7 +464,6 @@ export default function Header() {
             </div>
           </Link>
 
-          {/* DESKTOP NAV */}
           <nav className="rh-nav">
             {navLinks.map((link) =>
               link.dropdown ? (
@@ -498,33 +480,34 @@ export default function Header() {
                   </button>
 
                   <div className={`rh-dropdown${dropdownOpen ? " open" : ""}`} role="menu">
-                    {/* Soft View All banner */}
+                    <div className="rh-dropdown-list">
+                      {link.dropdown.items.map((item, idx) => (
+                        <span key={item.label}>
+                          <Link
+                            href={item.href}
+                            className="rh-dropdown-item"
+                            role="menuitem"
+                            onClick={() => setDropdownOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                          {idx < link.dropdown.items.length - 1 && (
+                            <div className="rh-dropdown-divider" />
+                          )}
+                        </span>
+                      ))}
+                    </div>
                     <Link
                       href={link.href}
-                      className="rh-dropdown-banner"
+                      className="rh-dropdown-footer"
                       role="menuitem"
                       onClick={() => setDropdownOpen(false)}
                     >
-                      <span className="rh-dropdown-banner-text">View All Products & Services</span>
-                      <span className="rh-dropdown-banner-arrow">
-                        Browse all
-
-                      </span>
+                      <span className="rh-dropdown-footer-text">View All</span>
+                      <svg viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8H13M10 5L13 8L10 11" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
                     </Link>
-
-                    <div className="rh-dropdown-body">
-                      {link.dropdown.items.map((item) => (
-                        <Link
-                          key={item.label}
-                          href={item.href}
-                          className="rh-dropdown-item"
-                          role="menuitem"
-                          onClick={() => setDropdownOpen(false)}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
                   </div>
                 </div>
               ) : (
@@ -549,7 +532,6 @@ export default function Header() {
         </div>
       </header>
 
-      {/* MOBILE MENU */}
       <div className={`rh-mobile-menu${mobileOpen ? " open" : ""}`} role="navigation">
         {navLinks.map((link) =>
           link.dropdown ? (
