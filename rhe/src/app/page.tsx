@@ -110,7 +110,8 @@ export default function Home() {
           min-height: 100vh;
           overflow: hidden;
           display: flex;
-          align-items: flex-end;
+          align-items: center;
+          justify-content: center;
           background-image:
             linear-gradient(
               175deg,
@@ -119,7 +120,7 @@ export default function Home() {
               rgba(8, 26, 16, 0.62) 55%,
               rgba(8, 26, 16, 0.88) 100%
             ),
-            url("/p19 (2).jpg");
+            url("/p19 (2).png.jpg");
           background-size: cover;
           background-position: center;
         }
@@ -128,13 +129,13 @@ export default function Home() {
           position: relative;
           z-index: 2;
           width: 100%;
-          max-width: 720px;
-          padding: 0 72px 96px;
+          max-width: 900px;
+          padding: 96px 40px;
           color: #fff;
-        }
-
-        .hero-spacer {
-          height: 42px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
         .hero-title {
@@ -150,16 +151,16 @@ export default function Home() {
         .hero-divider {
           width: 48px;
           height: 1px;
-          background: rgba(180, 220, 190, 0.3);
-          margin: 36px 0;
+          background: rgb(212, 200, 200);
+          margin: 36px auto;
         }
 
         .hero-copy {
-          margin: 0 0 0;
+          margin: 0 auto;
           max-width: 480px;
           font-size: 14px;
           line-height: 1.9;
-          color: rgba(210, 230, 216, 0.58);
+          color: rgb(194, 185, 185);
           font-weight: 300;
           letter-spacing: .015em;
         }
@@ -169,6 +170,7 @@ export default function Home() {
           gap: 14px;
           flex-wrap: wrap;
           margin-top: 44px;
+          justify-content: center;
         }
 
         .button {
@@ -587,7 +589,7 @@ export default function Home() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-          .hero-content { padding: 0 40px 72px; }
+          .hero-content { padding: 72px 32px; }
           .why-shop { padding: 72px 40px; }
           .why-shop-grid { grid-template-columns: 1fr; gap: 40px; }
           .why-shop-plant-col { order: -1; }
@@ -601,7 +603,7 @@ export default function Home() {
 
         @media (max-width: 640px) {
           .hero { min-height: 100vh; min-height: 100svh; background-position: 62% center; }
-          .hero-content { padding: 0 24px 56px; max-width: 100%; }
+          .hero-content { padding: 56px 24px; }
           .hero-title { font-size: clamp(2.4rem, 8vw + 0.5rem, 3.6rem); }
           .why-shop { padding: 56px 20px; }
           .why-shop-header { margin-bottom: 48px; }
@@ -621,7 +623,7 @@ export default function Home() {
           <div className="hero-spacer" aria-hidden="true" />
 
           <h1 className="hero-title">
-            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery
+            Rich Haven Artificial Garden
           </h1>
 
           <div className="hero-divider" />
@@ -631,8 +633,8 @@ export default function Home() {
           </p>
 
           <div className="hero-actions">
-            <Link className="button button-primary" href="/products-services">View Products & Services</Link>
-            <Link className="button button-secondary" href="/portfolio">Our Portfolio</Link>
+             {/*<Link className="button button-primary" href="/products-services">View Products & Services</Link>*/}
+            {/*<Link className="button button-secondary" href="/portfolio">View Products and Services</Link>*/}
           </div>
         </div>
       </section>
