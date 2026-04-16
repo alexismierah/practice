@@ -73,7 +73,7 @@ const faqs = [
   },
   {
     q: "Do you offer installation services?",
-    a: "Absolutely. Our team handles full installation of grass, potted plants, planter boxes, and wall gardens for both residential and commercial spaces.",
+    a: "Absolutely. Our team handles full installation of grass, plants, planter boxes, and wall gardens for both residential and commercial spaces.",
   },
   {
     q: "How long do your products last?",
@@ -92,7 +92,7 @@ export default function Home() {
   return (
     <main className="landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
 
         .landing, .landing * { box-sizing: border-box; }
 
@@ -107,12 +107,18 @@ export default function Home() {
         .hero {
           position: relative;
           width: 100%;
-          min-height: 78vh;
+          min-height: 100vh;
           overflow: hidden;
           display: flex;
-          align-items: center;
-          background-image: 
-            linear-gradient(100deg, rgba(12,33,22,0.78) 0%, rgba(12,33,22,0.48) 35%, rgba(12,33,22,0.1) 65%),
+          align-items: flex-end;
+          background-image:
+            linear-gradient(
+              175deg,
+              rgba(8, 26, 16, 0.18) 0%,
+              rgba(8, 26, 16, 0.32) 25%,
+              rgba(8, 26, 16, 0.62) 55%,
+              rgba(8, 26, 16, 0.88) 100%
+            ),
             url("/p62.png");
           background-size: cover;
           background-position: center;
@@ -121,48 +127,84 @@ export default function Home() {
         .hero-content {
           position: relative;
           z-index: 2;
-          max-width: 560px;
-          padding: 72px 56px;
+          width: 100%;
+          max-width: 720px;
+          padding: 0 72px 96px;
           color: #fff;
         }
 
-        .hero-kicker { font-size: 13px; opacity: .88; margin-bottom: 14px; }
+        .hero-spacer {
+          height: 42px;
+        }
 
         .hero-title {
           margin: 0;
           font-family: "Playfair Display", serif;
           font-weight: 700;
-          font-size: clamp(2rem, 2.4vw + 1rem, 3.65rem);
-          line-height: 1.12;
-          letter-spacing: -.01em;
+          font-size: clamp(2.4rem, 3vw + 1rem, 4.2rem);
+          line-height: 1.08;
+          letter-spacing: -.02em;
+          color: #fff;
+        }
+
+        .hero-divider {
+          width: 48px;
+          height: 1px;
+          background: rgba(180, 220, 190, 0.3);
+          margin: 36px 0;
         }
 
         .hero-copy {
-          margin: 22px 0 30px;
-          max-width: 470px;
-          font-size: 15px;
-          line-height: 1.75;
-          color: rgba(248,250,248,.82);
+          margin: 0 0 0;
+          max-width: 480px;
+          font-size: 14px;
+          line-height: 1.9;
+          color: rgba(210, 230, 216, 0.58);
+          font-weight: 300;
+          letter-spacing: .015em;
         }
 
-        .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero-actions {
+          display: flex;
+          gap: 14px;
+          flex-wrap: wrap;
+          margin-top: 44px;
+        }
 
         .button {
           border: none;
           border-radius: 999px;
-          padding: 11px 20px;
-          font-size: 14px;
-          font-weight: 600;
+          padding: 12px 24px;
+          font-size: 12.5px;
+          font-weight: 500;
           cursor: pointer;
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          transition: transform .2s ease, box-shadow .2s ease;
+          transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
           text-decoration: none;
+          letter-spacing: .06em;
+          text-transform: uppercase;
         }
         .button:hover { transform: translateY(-1px); }
-        .button-primary { background: #2f6f44; color: #fff; box-shadow: 0 10px 20px rgba(27,56,35,.28); }
-        .button-secondary { color: rgba(246,249,246,.95); background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.35); }
+        .button-primary {
+          background: #2f6f44;
+          color: #fff;
+          box-shadow: 0 12px 28px rgba(20, 50, 30, 0.35);
+        }
+        .button-primary:hover {
+          background: #367d4e;
+        }
+        .button-secondary {
+          color: rgba(230, 245, 232, 0.85);
+          background: rgba(255, 255, 255, 0.07);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(4px);
+        }
+        .button-secondary:hover {
+          background: rgba(255, 255, 255, 0.12);
+          border-color: rgba(255, 255, 255, 0.35);
+        }
         .button-primary-dark { background: #2f6f44; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
 
         /* ── WHY SHOP ── */
@@ -449,7 +491,7 @@ export default function Home() {
         }
 
         .faq-inner {
-          max-width: 700px;
+          max-width: 800px;
           margin: 0 auto;
         }
 
@@ -545,7 +587,7 @@ export default function Home() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-          .hero-content { padding: 48px 30px; }
+          .hero-content { padding: 0 40px 72px; }
           .why-shop { padding: 72px 40px; }
           .why-shop-grid { grid-template-columns: 1fr; gap: 40px; }
           .why-shop-plant-col { order: -1; }
@@ -558,8 +600,9 @@ export default function Home() {
         }
 
         @media (max-width: 640px) {
-          .hero { min-height: 88vh; background-position: 62% center; }
-          .hero-content { padding: 30px 16px; }
+          .hero { min-height: 100vh; min-height: 100svh; background-position: 62% center; }
+          .hero-content { padding: 0 24px 56px; max-width: 100%; }
+          .hero-title { font-size: clamp(2rem, 6vw + 0.5rem, 3rem); }
           .why-shop { padding: 56px 20px; }
           .why-shop-header { margin-bottom: 48px; }
           .products-section, .services-section { padding: 56px 20px; }
@@ -575,19 +618,21 @@ export default function Home() {
       {/* ── HERO ── */}
       <section className="hero">
         <div className="hero-content">
-          <p className="hero-kicker"><em>Rich Haven Artificial Garden</em></p>
+          <div className="hero-spacer" aria-hidden="true" />
 
-            <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-white">
-              <span className="block">Transform your space with a touch of natural greenery</span>
-            </h1>
+          <h1 className="hero-title">
+            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery look
+          </h1>
+
+          <div className="hero-divider" />
 
           <p className="hero-copy">
-            <em>From indoor to outdoor spaces, explore beautiful greenery crafted to enhance your home, bringing timeless elegance, refreshing calm, and natural harmony to every corner of your living space.</em>
+            Thoughtfully crafted for homes, offices, and commercial spaces — our premium artificial greenery delivers the quiet beauty of nature without the upkeep, season after season.
           </p>
 
-          <div className="hero-actions mt-11">
+          <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
-            <Link className="button button-secondary" href="/portfolio">Portfolio</Link>
+            <Link className="button button-secondary" href="/portfolio">Our Portfolio</Link>
           </div>
         </div>
       </section>
