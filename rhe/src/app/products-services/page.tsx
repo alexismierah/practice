@@ -516,12 +516,12 @@ export default function ProductsServicesPage() {
                 style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
-                  src="/p14.png"
+                  src="/p19.png"
                   alt="Paneled Wall Greens"
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    objectFit: "contain",
                     display: "block",
                     transform: "translateY(10px) scale(1.03)",
                     filter: "drop-shadow(0px 6px 2px rgba(117, 112, 112, 0.6))",
