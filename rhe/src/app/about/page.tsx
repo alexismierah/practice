@@ -2,10 +2,10 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-gray-800 px-12 md:px-24 py-24">
+    <main className="min-h-screen bg-white text-gray-800 px-2 md:px-24 pt-10 pb-10 md:py-24">
 
       {/* Eyebrow */}
-      <p className="font-sans text-[14px] tracking-[0.18em] text-gray-400 mb-5">
+      <p className="font-sans text-[14px] tracking-[0.18em] text-gray-400 mb-5 px-2">
         Where nature meets permanence
       </p>
 
@@ -16,15 +16,20 @@ export default function AboutPage() {
         <div className="flex-1">
 
           {/* Headline */}
-          <h1 className="font-serif text-3xl md:text-4xl lg:text-6xl font-normal text-gray-900 leading-tight mb-1">
-            Rich Haven
-          </h1>
-          <h1 className="font-serif text-3xl md:text-4xl lg:text-6xl font-normal text-emerald-700 italic leading-tight mb-8">
-            Artificial Garden
-          </h1>
+          <div className="lg:block mb-1 px-2">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-6xl font-normal text-gray-900 leading-tight">
+              Rich Haven
+            </h1>
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-6xl font-normal text-emerald-700 italic leading-tight whitespace-nowrap">
+              Artificial Garden
+            </h1>
+          </div>
+
+          {/* Spacer visible only on mobile after heading block */}
+          <div className="mb-6 lg:hidden" />
 
           {/* Body Copy */}
-          <div className="space-y-6">
+          <div className="space-y-4 px-2">
             <p className="font-serif text-base md:text-lg leading-[1.8] text-gray-500">
               At Rich Haven Artificial Garden, we bring nature-inspired beauty to every
               space — without the maintenance. We specialize in high-quality artificial
@@ -43,8 +48,8 @@ export default function AboutPage() {
 
         </div>
 
-        {/* Right: Image */}
-        <div className="w-full lg:w-[480px] -mt-6 lg:-mt-12 relative">
+        {/* Right: Image — hidden on mobile, visible on lg+ */}
+        <div className="hidden lg:block w-full lg:w-[480px] -mt-6 lg:-mt-12 relative">
 
           {/* Shadow BG Flower */}
           <Image
