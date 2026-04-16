@@ -491,7 +491,7 @@ export default function Home() {
         }
 
         .faq-inner {
-          max-width: 8px;
+          max-width: 790px;
           margin: 0 auto;
         }
 
@@ -621,7 +621,7 @@ export default function Home() {
           <div className="hero-spacer" aria-hidden="true" />
 
           <h1 className="hero-title">
-            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery look
+            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery
           </h1>
 
           <div className="hero-divider" />
