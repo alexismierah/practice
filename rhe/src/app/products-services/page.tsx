@@ -322,7 +322,6 @@ export default function ProductsServicesPage() {
                 }}
               >
                 Potted Artificial Plants <br />
-                and Trees
               </h2>
 
               <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
@@ -337,10 +336,11 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Rich Have Artificial Garden provides a premium selection of lifelike greenery
-                designed to enhance any interior without the need for watering or sunlight. Ready
-                to display in elegant pots, these maintenance-free solutions offer an instant and
-                sophisticated botanical upgrade for both residential and commercial spaces.
+                A premium collection of lifelike plants in pots, thoughtfully designed 
+                to elevate indoor and outdoor spaces. Each piece comes ready for display in stylish 
+                containers, delivering the beauty of natural greenery without the need for 
+                watering or sunlight. Maintenance free potted artificial plants provide an instant, 
+                elegant botanical touch, perfect for both residential and commercial environments.
               </p>
 
               <div
@@ -433,7 +433,6 @@ export default function ProductsServicesPage() {
                 }}
               >
                 Artificial Wall Greens <br />
-                and Hanging Plants
               </h2>
 
               <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
@@ -448,10 +447,12 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Rich Have Artificial Garden provides a premium selection of lifelike greenery
-                designed to enhance any interior without the need for watering or sunlight. Ready
-                to display in elegant pots, these maintenance-free solutions offer an instant and
-                sophisticated botanical upgrade for both residential and commercial spaces.
+                A refined collection of artificial wall greens designed to 
+                bring lush vertical beauty into any space. These carefully 
+                arranged wall plants create the look of a thriving green environment 
+                without the need for watering or sunlight. Ideal for both residential 
+                and commercial settings, providing a clean and elegant backdrop that 
+                enhances interiors while remaining easy to maintain and long lasting.
               </p>
 
               <div
@@ -463,7 +464,7 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                {["Hanging Plants", "Silver Lining", "Decorative Wall Plants"].map((item) => (
                   <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                     <div
                       style={{
@@ -522,7 +523,7 @@ export default function ProductsServicesPage() {
                     objectFit: "cover",
                     display: "block",
                     transform: "translateY(10px) scale(1.03)",
-                    filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
+                    filter: "drop-shadow(0px 6px 2px rgba(117, 112, 112, 0.6))",
                     objectPosition: "50% 10%",
                   }}
                 />
@@ -555,7 +556,7 @@ export default function ProductsServicesPage() {
                     objectFit: "contain",
                     display: "block",
                     transform: "translateY(10px) scale(1.03)",
-                    filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
+                    filter: "drop-shadow(0px 4px 3px rgba(117, 112, 112, 0.4))",
                     objectPosition: "55% 15%",
                   }}
                 />
@@ -588,8 +589,7 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Potted Artificial Plants <br />
-                and Trees
+                Decorative Planter Box
               </h2>
 
               <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
@@ -604,10 +604,11 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Rich Have Artificial Garden provides a premium selection of lifelike greenery
-                designed to enhance any interior without the need for watering or sunlight. Ready
-                to display in elegant pots, these maintenance-free solutions offer an instant and
-                sophisticated botanical upgrade for both residential and commercial spaces.
+                A decorative planter box featuring carefully arranged artificial 
+                plants or styled empty spaces, designed to enhance both indoor 
+                and outdoor environments. Each piece combines structure and greenery to create 
+                a balanced, modern look. Planter boxes provides an instant and refined botanical
+                display, ideal for residential and commercial settings.
               </p>
 
               <div
@@ -619,7 +620,7 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                {[ "Styled Built In Planters", "Artificial Plant Arrangements", "Custom Design Planter Boxes"].map((item) => (
                   <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                     <div
                       style={{
@@ -700,8 +701,7 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Artificial Wall Greens <br />
-                and Hanging Plants
+                Artificial Turf Grass <br />
               </h2>
 
               <div style={{ width: 50, height: 2, background: "#2d5a27", marginBottom: "1.5rem" }} />
@@ -716,10 +716,13 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                Rich Have Artificial Garden provides a premium selection of lifelike greenery
-                designed to enhance any interior without the need for watering or sunlight. Ready
-                to display in elegant pots, these maintenance-free solutions offer an instant and
-                sophisticated botanical upgrade for both residential and commercial spaces.
+                A high quality range of artificial turf grass designed to replicate 
+                the look and feel of natural lawn surfaces. Built for durability and 
+                year round greenery, it provides a clean and uniform finish for both 
+                indoor and outdoor applications without the need for watering, mowing, 
+                or sunlight. These low maintenance turf solutions offer a practical and 
+                visually appealing alternative to natural grass, ideal for residential, 
+                commercial, and recreational spaces.
               </p>
 
               <div
@@ -731,7 +734,7 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                {["Table Plants", "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                {["Indoor Green Flooring Areas", "Sports and Play Areas", "Rooftop and Balcony Grass", "Garden Path and Ground Cover"].map((item) => (
                   <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                     <div
                       style={{
@@ -782,14 +785,14 @@ export default function ProductsServicesPage() {
                 style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
-                  src="/p14.png"
+                  src="/p18.png"
                   alt="Paneled Wall Greens"
                   style={{
                     width: "100%",
                     height: "100%",
-                    objectFit: "cover",
+                    objectFit: "contain",
                     display: "block",
-                    transform: "translateY(10px) scale(1.03)",
+                    transform: "translateY(20px) scale(1.03)",
                     filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
                     objectPosition: "50% 10%",
                   }}
