@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/dist/client/link";
 import { useState } from "react";
 
 const services = [
@@ -378,8 +379,8 @@ export default function ProductsServicesPage() {
                 ))}
               </div>
 
-              <a
-                href="/products-services"
+              <Link
+                href="/products-services/potted-plants"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -393,7 +394,7 @@ export default function ProductsServicesPage() {
                 }}
               >
                 Explore our services &rarr;
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -490,8 +491,8 @@ export default function ProductsServicesPage() {
                 ))}
               </div>
 
-              <a
-                href="/products-services"
+              <Link
+                href="/products-services/wall-greens"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -505,7 +506,7 @@ export default function ProductsServicesPage() {
                 }}
               >
                 Explore our services &rarr;
-              </a>
+              </Link>
             </div>
 
             {/* Image — on desktop: right. On mobile: order 1 (above text) */}
@@ -646,8 +647,8 @@ export default function ProductsServicesPage() {
                 ))}
               </div>
 
-              <a
-                href="/products-services"
+              <Link
+                href="/products-services/planter-box"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -661,7 +662,7 @@ export default function ProductsServicesPage() {
                 }}
               >
                 Explore our services &rarr;
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -760,8 +761,8 @@ export default function ProductsServicesPage() {
                 ))}
               </div>
 
-              <a
-                href="/products-services"
+              <Link
+                href="/products-services/grass"
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -775,7 +776,7 @@ export default function ProductsServicesPage() {
                 }}
               >
                 Explore our services &rarr;
-              </a>
+              </Link>
             </div>
 
             {/* Image — on desktop: right. On mobile: order 1 (above text) */}
