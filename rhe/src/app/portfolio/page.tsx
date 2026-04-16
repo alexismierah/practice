@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const projects = [
   {
@@ -9,6 +9,8 @@ const projects = [
     title: "Alabang Estate — Backyard Sanctuary",
     location: "Muntinlupa City, Metro Manila",
     featured: true,
+    // Replace with your actual video URL
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     svg: (
       <svg className="rh-card-visual" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
         <rect width="640" height="360" fill="#2d4a24"/>
@@ -35,6 +37,7 @@ const projects = [
     title: "BGC Sky Terrace",
     location: "Taguig City",
     featured: false,
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     svg: (
       <svg className="rh-card-visual" viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg">
         <rect width="300" height="225" fill="#3b5e32"/>
@@ -57,6 +60,7 @@ const projects = [
     title: "Pasig Family Garden",
     location: "Pasig City",
     featured: false,
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     svg: (
       <svg className="rh-card-visual" viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg">
         <rect width="300" height="225" fill="#e8d9b8"/>
@@ -79,6 +83,7 @@ const projects = [
     title: "Makati Zen Walkway",
     location: "Makati City",
     featured: false,
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     svg: (
       <svg className="rh-card-visual" viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg">
         <rect width="300" height="225" fill="#2c3e2a"/>
@@ -103,6 +108,7 @@ const projects = [
     title: "Laguna Poolside Retreat — Canlubang",
     location: "Calamba, Laguna",
     featured: true,
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     svg: (
       <svg className="rh-card-visual" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
         <rect width="640" height="360" fill="#1a3a4e"/>
@@ -129,6 +135,7 @@ const projects = [
     title: "QC Office Biophilic Wall",
     location: "Quezon City",
     featured: false,
+    videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     svg: (
       <svg className="rh-card-visual" viewBox="0 0 300 225" xmlns="http://www.w3.org/2000/svg">
         <rect width="300" height="225" fill="#f5f0e8"/>
@@ -146,106 +153,463 @@ const projects = [
   },
 ];
 
-const ArrowIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-    <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+const PlayIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <path d="M6 4.5L13.5 9L6 13.5V4.5Z" fill="currentColor"/>
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M4 4L16 16M16 4L4 16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/>
   </svg>
 );
 
 const LeafDivider = () => (
-  <div className="flex items-center justify-center gap-3 my-8">
-    <div className="w-16 h-px bg-[#7a9e6e] opacity-50" />
-    <div
-      className="w-2.5 h-2.5 rounded-tl-full bg-[#7a9e6e] opacity-70"
-      style={{ transform: "rotate(45deg)", borderRadius: "50% 0" }}
-    />
-    <div className="w-16 h-px bg-[#7a9e6e] opacity-50" />
+  <div className="pf-leaf-divider">
+    <div className="pf-leaf-line" />
+    <div className="pf-leaf-dot" />
+    <div className="pf-leaf-line" />
   </div>
 );
 
 export default function Portfolio() {
   const [hovered, setHovered] = useState<number | null>(null);
+  const [activeProject, setActiveProject] = useState<typeof projects[0] | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Close on Escape key
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeModal(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // Lock scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = activeProject ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [activeProject]);
+
+  const openModal = (project: typeof projects[0]) => {
+    setActiveProject(project);
+    setTimeout(() => videoRef.current?.play(), 100);
+  };
+
+  const closeModal = () => {
+    videoRef.current?.pause();
+    setActiveProject(null);
+  };
 
   return (
-    <main className="min-h-screen px-6 py-20 bg-background">
-      <div className="max-w-6xl mx-auto">
+    <main className="pf-page">
+      <style>{`
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
 
-        {/* Header */}
-        <p
-          className="text-center text-[11px] tracking-[0.25em] uppercase text-[#7a9e6e] mb-3"
-          style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond', Georgia, serif)" }}
-        >
-          Our Work
-        </p>
+        .pf-page, .pf-page * { box-sizing: border-box; }
 
-        <h1
-          className="text-center text-4xl md:text-5xl font-normal leading-tight [font-family:var(--font-playfair)]"
-        >
-          Crafted with{" "}
-          <em className="italic text-[#5a8a4a] not-italic" style={{ fontStyle: "italic" }}>
-            Nature
-          </em>{" "}
-          in Mind
-        </h1>
+        .pf-page {
+          font-family: "Inter", sans-serif;
+          background: #f2f6ef;
+          min-height: 100vh;
+          padding: 80px 64px;
+        }
 
-        <p className="text-center text-muted-foreground mt-4 max-w-xl mx-auto leading-relaxed font-light">
+        .pf-inner { max-width: 1200px; margin: 0 auto; }
+
+        /* ── HEADER ── */
+        .pf-eyebrow {
+          text-align: center;
+          font-family: "Inter", sans-serif;
+          font-size: 11px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #7a8f80;
+          margin: 0 0 14px;
+          font-weight: 400;
+        }
+
+        .pf-title {
+          text-align: center;
+          font-family: "Playfair Display", serif;
+          font-weight: 700;
+          font-size: clamp(2rem, 2vw + 1.2rem, 3.2rem);
+          color: #163521;
+          line-height: 1.1;
+          letter-spacing: -.02em;
+          margin: 0 0 16px;
+        }
+
+        .pf-title em {
+          font-style: italic;
+          font-weight: 500;
+          color: #3f7a55;
+        }
+
+        .pf-subtitle {
+          text-align: center;
+          font-family: "Inter", sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          color: #7a8f80;
+          line-height: 1.75;
+          max-width: 520px;
+          margin: 0 auto;
+          letter-spacing: .015em;
+        }
+
+        /* ── LEAF DIVIDER ── */
+        .pf-leaf-divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          margin: 40px 0;
+        }
+        .pf-leaf-line { width: 64px; height: 1px; background: #7a9e6e; opacity: .5; }
+        .pf-leaf-dot {
+          width: 10px; height: 10px;
+          background: #7a9e6e; opacity: .7;
+          border-radius: 50% 0;
+          transform: rotate(45deg);
+        }
+
+        /* ── GRID ── */
+        .pf-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 20px;
+          margin-top: 8px;
+        }
+
+        /* ── CARD ── */
+        .pf-card {
+          position: relative;
+          border-radius: 16px;
+          border: 1px solid rgba(26, 46, 26, 0.1);
+          overflow: hidden;
+          cursor: pointer;
+          background: #fff;
+          transition: transform .3s ease, border-color .25s ease, box-shadow .3s ease;
+        }
+
+        .pf-card:hover {
+          transform: translateY(-4px);
+          border-color: rgba(47, 111, 68, 0.3);
+          box-shadow: 0 16px 40px rgba(20, 50, 30, 0.14);
+        }
+
+        .pf-card.featured { grid-column: span 2; }
+
+        .rh-card-visual { width: 100%; display: block; }
+
+        /* ── PLAY OVERLAY ── */
+        .pf-card-visual-wrap { position: relative; overflow: hidden; }
+
+        .pf-play-overlay {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(8, 26, 16, 0);
+          transition: background .3s ease;
+        }
+
+        .pf-card:hover .pf-play-overlay { background: rgba(8, 26, 16, 0.38); }
+
+        .pf-play-btn {
+          width: 54px;
+          height: 54px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.94);
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #2f6f44;
+          cursor: pointer;
+          transform: scale(0.65);
+          opacity: 0;
+          transition: transform .35s cubic-bezier(.34,1.56,.64,1), opacity .25s ease;
+          box-shadow: 0 8px 28px rgba(0,0,0,0.22);
+          pointer-events: none;
+        }
+
+        .pf-card:hover .pf-play-btn {
+          transform: scale(1);
+          opacity: 1;
+        }
+
+        /* ── INFO BAR ── */
+        .pf-card-info {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          padding: 16px 20px 18px;
+          background: #fff;
+          border-top: 1px solid rgba(26, 46, 26, 0.06);
+        }
+
+        .pf-card-tag {
+          display: block;
+          font-family: "Inter", sans-serif;
+          font-size: 10px;
+          letter-spacing: .18em;
+          text-transform: uppercase;
+          color: #7a8f80;
+          margin-bottom: 4px;
+          font-weight: 500;
+        }
+
+        .pf-card-title {
+          font-family: "Playfair Display", serif;
+          font-weight: 700;
+          color: #163521;
+          line-height: 1.25;
+          margin: 0 0 3px;
+        }
+
+        .pf-card.featured .pf-card-title { font-size: 1.05rem; }
+        .pf-card:not(.featured) .pf-card-title { font-size: .92rem; }
+
+        .pf-card-location {
+          font-family: "Inter", sans-serif;
+          font-size: 11.5px;
+          font-weight: 300;
+          color: #9aaa9f;
+          letter-spacing: .01em;
+        }
+
+        /* ── WATCH LABEL ── */
+        .pf-watch-label {
+          font-family: "Inter", sans-serif;
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          color: #2f6f44;
+          opacity: 0;
+          transition: opacity .2s ease;
+          white-space: nowrap;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+        }
+
+        .pf-card:hover .pf-watch-label { opacity: 1; }
+
+        .pf-watch-dot {
+          width: 6px; height: 6px;
+          border-radius: 50%;
+          background: #2f6f44;
+          animation: pf-pulse 1.6s ease-in-out infinite;
+        }
+
+        @keyframes pf-pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: .45; transform: scale(0.65); }
+        }
+
+        /* ── MODAL BACKDROP ── */
+        .pf-modal-backdrop {
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 24px;
+          background: rgba(8, 20, 12, 0);
+          backdrop-filter: blur(0px);
+          transition: background .35s ease, backdrop-filter .35s ease;
+          pointer-events: none;
+        }
+
+        .pf-modal-backdrop.open {
+          background: rgba(8, 20, 12, 0.8);
+          backdrop-filter: blur(10px);
+          pointer-events: all;
+        }
+
+        /* ── MODAL BOX ── */
+        .pf-modal {
+          position: relative;
+          width: 100%;
+          max-width: 880px;
+          border-radius: 20px;
+          overflow: hidden;
+          background: #0d1f12;
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: 0 48px 120px rgba(0,0,0,0.55);
+          transform: scale(0.86) translateY(28px);
+          opacity: 0;
+          transition: transform .42s cubic-bezier(.34,1.2,.64,1), opacity .35s ease;
+        }
+
+        .pf-modal-backdrop.open .pf-modal {
+          transform: scale(1) translateY(0);
+          opacity: 1;
+        }
+
+        /* ── MODAL HEADER ── */
+        .pf-modal-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          padding: 18px 24px 16px;
+          border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .pf-modal-tag {
+          font-family: "Inter", sans-serif;
+          font-size: 10px;
+          letter-spacing: .18em;
+          text-transform: uppercase;
+          color: #7ab88a;
+          font-weight: 500;
+          margin: 0 0 4px;
+        }
+
+        .pf-modal-title {
+          font-family: "Playfair Display", serif;
+          font-weight: 700;
+          font-size: 1.08rem;
+          color: #e8f2e8;
+          margin: 0 0 3px;
+          line-height: 1.2;
+        }
+
+        .pf-modal-location {
+          font-family: "Inter", sans-serif;
+          font-size: 11.5px;
+          font-weight: 300;
+          color: rgba(180, 210, 185, 0.5);
+          margin: 0;
+        }
+
+        .pf-modal-close {
+          width: 36px; height: 36px;
+          border-radius: 50%;
+          border: 1px solid rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.06);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          color: rgba(200, 220, 205, 0.65);
+          transition: background .2s, color .2s, border-color .2s;
+          flex-shrink: 0;
+        }
+
+        .pf-modal-close:hover {
+          background: rgba(255,255,255,0.13);
+          border-color: rgba(255,255,255,0.22);
+          color: #fff;
+        }
+
+        /* ── VIDEO ── */
+        .pf-modal-video {
+          width: 100%;
+          display: block;
+          background: #000;
+          max-height: 520px;
+          object-fit: contain;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+          .pf-page { padding: 64px 40px; }
+          .pf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          .pf-card.featured { grid-column: span 2; }
+        }
+
+        @media (max-width: 640px) {
+          .pf-page { padding: 48px 20px; }
+          .pf-grid { grid-template-columns: 1fr; }
+          .pf-card.featured { grid-column: span 1; }
+          .pf-modal-backdrop { padding: 12px; }
+          .pf-modal-header { padding: 14px 16px 12px; }
+        }
+      `}</style>
+
+      <div className="pf-inner">
+        <p className="pf-eyebrow">Our Work</p>
+        <h1 className="pf-title">Crafted with <em>Nature</em> in Mind</h1>
+        <p className="pf-subtitle">
           A curated selection of artificial grass and landscaping transformations — spaces
           reimagined with texture, longevity, and quiet elegance.
         </p>
 
         <LeafDivider />
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-4">
+        <div className="pf-grid">
           {projects.map((project) => (
             <div
               key={project.id}
-              className={[
-                "relative rounded-2xl border border-border/40 overflow-hidden cursor-pointer transition-transform duration-300",
-                project.featured ? "md:col-span-2" : "",
-                hovered === project.id ? "-translate-y-1" : "",
-              ].join(" ")}
+              className={`pf-card${project.featured ? " featured" : ""}`}
+              onClick={() => openModal(project)}
               onMouseEnter={() => setHovered(project.id)}
               onMouseLeave={() => setHovered(null)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Watch video: ${project.title}`}
+              onKeyDown={(e) => e.key === "Enter" && openModal(project)}
             >
-              {/* Illustration */}
-              <div className="w-full">
+              <div className="pf-card-visual-wrap">
                 {project.svg}
+                <div className="pf-play-overlay">
+                  <div className="pf-play-btn">
+                    <PlayIcon />
+                  </div>
+                </div>
               </div>
 
-              {/* Info bar */}
-              <div className="flex items-end justify-between px-4 py-3 bg-background">
+              <div className="pf-card-info">
                 <div>
-                  <span
-                    className="block text-[10px] tracking-[0.18em] uppercase text-[#7a9e6e] mb-0.5"
-                    style={{ fontFamily: "var(--font-cormorant, 'Cormorant Garamond', Georgia, serif)" }}
-                  >
-                    {project.tag}
-                  </span>
-                  <h3
-                    className={[
-                      "font-normal leading-snug [font-family:var(--font-playfair)]",
-                      project.featured ? "text-base md:text-lg" : "text-sm md:text-base",
-                    ].join(" ")}
-                  >
-                    {project.title}
-                  </h3>
-                  <span className="text-xs text-muted-foreground font-light">{project.location}</span>
+                  <span className="pf-card-tag">{project.tag}</span>
+                  <h3 className="pf-card-title">{project.title}</h3>
+                  <span className="pf-card-location">{project.location}</span>
                 </div>
-
-                {/* Arrow — visible on hover */}
-                <div
-                  className={[
-                    "flex-shrink-0 w-7 h-7 rounded-full border border-border/60 flex items-center justify-center bg-background text-muted-foreground transition-opacity duration-200",
-                    hovered === project.id ? "opacity-100" : "opacity-0",
-                  ].join(" ")}
-                >
-                  <ArrowIcon />
+                <div className="pf-watch-label">
+                  <span className="pf-watch-dot" />
+                  Watch
                 </div>
               </div>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ── VIDEO MODAL ── */}
+      <div
+        className={`pf-modal-backdrop${activeProject ? " open" : ""}`}
+        onClick={(e) => e.target === e.currentTarget && closeModal()}
+        aria-modal="true"
+        role="dialog"
+      >
+        {activeProject && (
+          <div className="pf-modal">
+            <div className="pf-modal-header">
+              <div>
+                <p className="pf-modal-tag">{activeProject.tag}</p>
+                <h2 className="pf-modal-title">{activeProject.title}</h2>
+                <p className="pf-modal-location">{activeProject.location}</p>
+              </div>
+              <button className="pf-modal-close" onClick={closeModal} aria-label="Close video">
+                <CloseIcon />
+              </button>
+            </div>
+            <video
+              ref={videoRef}
+              className="pf-modal-video"
+              src={activeProject.videoUrl}
+              controls
+              playsInline
+            />
+          </div>
+        )}
       </div>
     </main>
   );
