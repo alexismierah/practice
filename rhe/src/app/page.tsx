@@ -491,7 +491,7 @@ export default function Home() {
         }
 
         .faq-inner {
-          max-width: 700px;
+          max-width: 800px;
           margin: 0 auto;
         }
 
