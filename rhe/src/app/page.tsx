@@ -621,7 +621,7 @@ export default function Home() {
           <div className="hero-spacer" aria-hidden="true" />
 
           <h1 className="hero-title">
-            Elevate every space <br /> with enduring, nature‑inspired greenery
+            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery look
           </h1>
 
           <div className="hero-divider" />
