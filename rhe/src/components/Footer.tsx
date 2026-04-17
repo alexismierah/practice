@@ -94,7 +94,7 @@ export default function Footer() {
           margin: 0 auto;
           padding: 72px 40px 48px;
           display: grid;
-          grid-template-columns: 1fr 1fr 1.4fr;
+          grid-template-columns: 1fr 1fr 1.8fr;
           gap: 60px;
           align-items: start;
         }
@@ -196,8 +196,9 @@ export default function Footer() {
         .footer-middle {
           display: flex;
           flex-direction: column;
-          gap: 35px;
+          gap: 50px;
           margin-top: 13px;
+          padding-left: 40px;
         }
 
         .footer-nav {
@@ -207,7 +208,7 @@ export default function Footer() {
         }
 
         .footer-nav-label {
-          font-size: 0.66rem;
+          font-size: 0.75rem;
           font-weight: 500;
           letter-spacing: 0.24em;
           text-transform: uppercase;
