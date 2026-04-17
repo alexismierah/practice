@@ -1,23 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
-    subject: "",
+    phone: "",
+    service: "",
+    date: "",
+    location: "",
     message: "",
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
   };
@@ -25,574 +27,440 @@ export default function ContactPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
-        .contact-root *, .contact-root *::before, .contact-root *::after { box-sizing: border-box; }
+        .cp *, .cp *::before, .cp *::after { box-sizing: border-box; }
 
-        .contact-root {
+        .cp {
+          background: #fff;
+          font-family: 'DM Sans', sans-serif;
+          color: #111;
           min-height: 100vh;
-          background: #fff;
-          font-family: 'Inter', sans-serif;
-          color: #163521;
-          display: flex;
-          flex-direction: column;
         }
 
-        /* — Header — */
-        .contact-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 1.5rem 4rem;
-          background: #fff;
-          border-bottom: 1px solid #e4ebe0;
-        }
-        .brand {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.2rem;
-          font-weight: 700;
-          letter-spacing: 0.02em;
-          color: #163521;
-          text-decoration: none;
-        }
-        .header-nav {
-          display: flex;
-          gap: 2.5rem;
-          list-style: none;
-        }
-        .header-nav a {
-          font-size: 12px;
-          font-weight: 500;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-        .header-nav a:hover { color: #163521; }
-        .header-nav a.active { color: #2f6f44; }
-
-        /* — Hero banner — */
-        .contact-hero {
-          background: #1d3d28;
-          padding: 5rem 4rem 4rem;
-          position: relative;
-          overflow: hidden;
-        }
-        .contact-hero::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: radial-gradient(ellipse at 70% 50%, rgba(47,111,68,0.25) 0%, transparent 65%);
-          pointer-events: none;
-        }
-        .hero-eyebrow {
-          font-size: 11px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          margin-bottom: 1rem;
-          font-weight: 400;
-        }
-        .hero-heading {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(2.4rem, 3vw + 1rem, 3.8rem);
-          font-weight: 700;
-          line-height: 1.08;
-          color: #fff;
-          letter-spacing: -0.02em;
-          max-width: 560px;
-        }
-        .hero-heading em {
-          font-style: italic;
-          font-weight: 500;
-          color: #7ab894;
-        }
-        .hero-divider {
-          width: 48px;
-          height: 1px;
-          background: rgba(180, 220, 190, 0.3);
-          margin: 2rem 0;
-        }
-        .hero-desc {
-          font-size: 14px;
-          font-weight: 300;
-          line-height: 1.9;
-          color: rgba(210, 230, 216, 0.65);
-          max-width: 480px;
-          letter-spacing: 0.015em;
-        }
-
-        /* — Main layout — */
-        .contact-main {
-          flex: 1;
+        /* ── Top section ── */
+        .cp-top {
           display: grid;
-          grid-template-columns: 1fr 1.15fr;
-          max-width: 1100px;
+          grid-template-columns: 1.15fr 1fr;
+          gap: 4rem;
+          max-width: 1140px;
           margin: 0 auto;
-          width: 100%;
-          padding: 2.5rem 4rem 5rem;
-          gap: 5rem;
+          padding: 3rem 4rem 2rem;
           align-items: start;
         }
 
-        /* — Left panel — */
-        .contact-left {
-          padding-top: 0.25rem;
-        }
-        .section-eyebrow {
+        /* ── Left ── */
+        .cp-eyebrow {
+          font-family: 'DM Sans', sans-serif;
           font-size: 11px;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #7a8f80;
-          margin-bottom: 0.75rem;
+          color: #888;
           font-weight: 400;
-          margin-top: 2.75rem;
+          margin-bottom: 0.75rem;
         }
-        .section-heading {
+        .cp-heading {
           font-family: 'Playfair Display', serif;
-          font-size: clamp(1.6rem, 1.2vw + 1rem, 2rem);
+          font-size: clamp(2.6rem, 4vw, 3.6rem);
           font-weight: 700;
-          color: #163521;
-          margin-bottom: 1rem;
-          line-height: 1.15;
-        }
-        .section-heading em {
           font-style: italic;
-          font-weight: 500;
-          color: #3f7a55;
-        }
-        .contact-desc {
-          font-size: 13px;
-          font-weight: 300;
-          line-height: 1.85;
-          color: #6b7d72;
-          margin-bottom: 2.75rem;
-          max-width: 360px;
+          line-height: 1.05;
+          color: #047857; /* emerald-700 */
+          margin-bottom: 2.25rem;
+          letter-spacing: -0.01em;
         }
 
-        /* — Contact info — */
-        .info-list {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-        .info-item {
-          display: flex;
-          align-items: flex-start;
+        /* form grid */
+        .cp-form-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
           gap: 1rem;
         }
-        .info-icon {
+        .cp-form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.35rem;
+          margin-bottom: 1rem;
+        }
+        .cp-label {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          color: #888;
+          font-weight: 500;
+        }
+        .cp-input,
+        .cp-select {
+          width: 100%;
+          padding: 0.65rem 1.1rem;
+          border: 1px solid #e0e0e0;
+          border-radius: 999px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          color: #111;
+          background: #f5f5f5;
+          outline: none;
+          transition: border-color 0.2s, background 0.2s;
+          appearance: none;
+        }
+        .cp-input:focus,
+        .cp-select:focus {
+          border-color: #2f6f44;
+          background: #fff;
+        }
+        .cp-input::placeholder { color: #bbb; font-style: italic; }
+        .cp-textarea {
+          width: 100%;
+          padding: 0.75rem 1.1rem;
+          border: 1px solid #e0e0e0;
+          border-radius: 16px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          color: #111;
+          background: #f5f5f5;
+          outline: none;
+          resize: none;
+          min-height: 110px;
+          line-height: 1.75;
+          transition: border-color 0.2s, background 0.2s;
+        }
+        .cp-textarea:focus { border-color: #2f6f44; background: #fff; }
+        .cp-textarea::placeholder { color: #bbb; font-style: italic; }
+
+        .cp-btn-row {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          margin-top: 0.5rem;
+        }
+        .cp-submit {
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+          padding: 0.8rem 1.6rem;
+          background: #047857; /* emerald-700 */
+          color: #fff;
+          border: none;
+          border-radius: 999px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.06em;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.15s;
+        }
+        .cp-submit:hover { background: #2f6f44; transform: translateY(-1px); }
+        .cp-submit:active { transform: scale(0.98); }
+        .cp-submit-icon {
+          width: 28px;
+          height: 28px;
+          background: #fff;
+          border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           flex-shrink: 0;
         }
-        .info-icon svg {
-          width: 18px;
-          height: 18px;
-          stroke: #2f6f44;
+        .cp-submit-icon svg {
+          width: 13px;
+          height: 13px;
+          stroke: #111;
           fill: none;
-          stroke-width: 1.8;
-        }
-        .info-text-label {
-          font-size: 10px;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          font-weight: 500;
-          margin-bottom: 0.2rem;
-        }
-        .info-text-value {
-          font-size: 13px;
-          color: #163521;
-          font-weight: 400;
-          line-height: 1.5;
+          stroke-width: 2.2;
         }
 
-        /* — Divider — */
-        .divider-line {
-          width: 40px;
-          height: 1px;
-          background: #dce8d5;
-          margin: 2.5rem 0;
+        /* ── Right ── */
+        .cp-right {
+          padding-top: 3.75rem;
         }
-        .response-note {
-          font-size: 12px;
-          color: #9aaa9f;
-          font-weight: 300;
-          letter-spacing: 0.03em;
-          line-height: 1.8;
-        }
-
-        /* — Form panel — */
-        .contact-form-wrap {
-          padding: 4.75rem 0;
-        }
-        .form-title {
-          font-family: 'Playfair Display', serif;
-          font-size: clamp(1.8rem, 1.5vw + 1rem, 2.4rem);
-          font-weight: 700;
-          color: #163521;
-          line-height: 1.1;
-          margin-bottom: 0.4rem;
-        }
-        .form-title em {
+        .cp-tagline {
+          font-family: 'DM Sans', serif;
+          font-size: 15px;
           font-style: italic;
-          font-weight: 500;
-          color: #3f7a55;
+          font-weight: 400;
+          line-height: 1.9;
+          color: #666;
+          margin-bottom: 1.75rem;
+          max-width: 340px;
         }
-        .form-subtitle {
-          font-size: 12px;
-          color: #9aaa9f;
-          font-weight: 300;
-          margin-bottom: 2.5rem;
-          letter-spacing: 0.02em;
+        .cp-img-card {
+          position: relative;
+          border-radius: 20px;
+          overflow: hidden;
+          aspect-ratio: 4/5;
+          background: #eee;
+        }
+        .cp-img-card img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .cp-img-badge {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          background: rgba(255,255,255,0.92);
+          backdrop-filter: blur(6px);
+          border-radius: 999px;
+          padding: 0.3rem 0.85rem;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.08em;
+          color: #111;
         }
 
-        .form-row {
+        /* ── Bottom info strip ── */
+        .cp-bottom {
+          border-top: 1px solid #ebebeb;
+          max-width: 1140px;
+          margin: 0 auto;
+          padding: 3rem 4rem 4rem;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-          margin-bottom: 0;
+          grid-template-columns: 1fr 1fr 1fr;
+          gap: 2rem;
         }
-        .form-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          margin-bottom: 0;
-          padding-bottom: 1.75rem;
-        }
-        .form-label {
-          font-size: 10px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          font-weight: 500;
-          margin-bottom: 0.5rem;
-        }
-        .form-input,
-        .form-select {
-          width: 100%;
-          padding: 0.6rem 1.1rem;
-          border: 1px solid #cdddc6;
-          border-radius: 999px;
-          font-family: 'Inter', sans-serif;
-          font-size: 14px;
-          font-weight: 300;
-          color: #163521;
-          background: #f7faf5;
-          outline: none;
-          transition: border-color 0.25s, background 0.25s;
-          appearance: none;
-        }
-        .form-textarea {
-          width: 100%;
-          padding: 0.75rem 1.1rem;
-          border: 1px solid #cdddc6;
-          border-radius: 16px;
-          font-family: 'Inter', sans-serif;
-          font-size: 14px;
-          font-weight: 300;
-          color: #163521;
-          background: #f7faf5;
-          outline: none;
-          transition: border-color 0.25s, background 0.25s;
-        }
-        .form-input:focus,
-        .form-textarea:focus,
-        .form-select:focus {
-          border-color: #2f6f44;
-          background: #fff;
-        }
-        .form-input::placeholder,
-        .form-textarea::placeholder {
-          color: #b0bfb5;
-        }
-        .form-textarea {
-          resize: none;
-          min-height: 100px;
-          line-height: 1.8;
-        }
-
-        .submit-btn {
-          width: auto;
-          padding: 0.85rem 1.5rem;
-          background: #2f6f44;
-          color: #fff;
-          border: none;
-          border-radius: 999px;
-          font-family: 'Inter', sans-serif;
-          font-size: 12px;
-          font-weight: 500;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          cursor: pointer;
-          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-          margin-top: 0.25rem;
-          box-shadow: 0 8px 20px rgba(20,50,30,0.25);
-        }
-        .submit-btn:hover {
-          background: #367d4e;
-          transform: translateY(-1px);
-          box-shadow: 0 12px 28px rgba(20,50,30,0.35);
-        }
-        .submit-btn:active { transform: scale(0.99); }
-
-        /* — Success state — */
-        .success-wrap {
+        .cp-info-col {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
           text-align: center;
-          padding: 3rem 2rem;
-          min-height: 340px;
+          gap: 0.75rem;
         }
-        .success-icon {
-          width: 56px;
-          height: 56px;
-          background: #f2f6ef;
-          border: 1px solid #dce8d5;
+        .cp-info-icon {
+          width: 42px;
+          height: 42px;
+          border: 1px solid #e0e0e0;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 1.5rem;
-          animation: fadeIn 0.5s ease;
+          margin-bottom: 0.25rem;
         }
-        .success-icon svg {
-          width: 22px;
-          height: 22px;
-          stroke: #2f6f44;
+        .cp-info-icon svg {
+          width: 17px;
+          height: 17px;
+          stroke: #444;
           fill: none;
-          stroke-width: 2;
+          stroke-width: 1.6;
         }
-        .success-title {
+        .cp-info-title {
           font-family: 'Playfair Display', serif;
-          font-size: 1.8rem;
-          font-weight: 700;
-          color: #163521;
-          margin-bottom: 0.65rem;
+          font-size: 15px;
+          font-weight: 600;
+          color: #111;
+          letter-spacing: -0.01em;
         }
-        .success-text {
+        .cp-info-line {
+          font-family: 'DM Sans', sans-serif;
           font-size: 13px;
           font-weight: 300;
-          color: #6b7d72;
+          color: #666;
+          line-height: 1.7;
+        }
+
+        /* ── Success ── */
+        .cp-success {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.75rem;
+          padding: 3rem 0;
+        }
+        .cp-success-icon {
+          width: 52px;
+          height: 52px;
+          border: 1px solid #d0e8d6;
+          border-radius: 50%;
+          background: #f2f9f4;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .cp-success-icon svg {
+          width: 20px;
+          height: 20px;
+          stroke: #2f6f44;
+          fill: none;
+          stroke-width: 2.2;
+        }
+        .cp-success h2 {
+          font-family: 'Playfair Display', serif;
+          font-size: 1.9rem;
+          font-style: italic;
+          font-weight: 700;
+          color: #111;
+          letter-spacing: -0.01em;
+          margin-top: 0.5rem;
+        }
+        .cp-success p {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          color: #666;
           line-height: 1.8;
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: scale(0.9); }
-          to { opacity: 1; transform: scale(1); }
-        }
-
-        /* — Footer — */
-        .contact-footer {
-          padding: 1.5rem 4rem;
-          border-top: 1px solid #e4ebe0;
-          background: #fff;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-        .footer-copy {
-          font-size: 12px;
-          color: #9aaa9f;
-          font-weight: 300;
-          letter-spacing: 0.03em;
-        }
-        .footer-social {
-          display: flex;
-          gap: 1.5rem;
-        }
-        .footer-social a {
-          font-size: 11px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #9aaa9f;
-          text-decoration: none;
-          transition: color 0.2s;
-          font-weight: 400;
-        }
-        .footer-social a:hover { color: #163521; }
-
-        @media (max-width: 900px) {
-          .contact-main {
-            grid-template-columns: 1fr;
-            padding: 3rem 1.75rem;
-            gap: 3rem;
-          }
-          .contact-header { padding: 1.25rem 1.75rem; }
-          .contact-hero { padding: 3.5rem 1.75rem 3rem; }
-          .header-nav { display: none; }
-          .form-row { grid-template-columns: 1fr; }
-          .contact-footer { padding: 1.25rem 1.75rem; flex-direction: column; gap: 0.75rem; text-align: center; }
+        @media (max-width: 860px) {
+          .cp-top { grid-template-columns: 1fr; padding: 2rem 1.5rem 1.5rem; gap: 2.5rem; }
+          .cp-right { padding-top: 0; }
+          .cp-img-card { aspect-ratio: 16/9; }
+          .cp-bottom { grid-template-columns: 1fr; padding: 2rem 1.5rem 3rem; }
+          .cp-form-row { grid-template-columns: 1fr; }
         }
       `}</style>
 
-      <div className="contact-root">
-        {/* Header */}
-        
-        {/* Main */}
-        <main className="contact-main">
-          {/* Left */}
-          <div className="contact-left">
-            <p className="section-eyebrow">Reach us directly</p>
-            <h2 className="section-heading">
-              Contact <em>information</em>
-            </h2>
-            <p className="contact-desc">
-              Our team is ready to help you find the perfect greenery solution for your home, office, or commercial space.
-            </p>
+      <div className="cp">
 
-            <div className="info-list">
-              <div className="info-item">
-                <div className="info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                </div>
-              </div>
+        {/* ── Top two-column section ── */}
+        <div className="cp-top">
 
-              <div className="info-item">
-                <div className="info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                </div>
-                <div>
-                  <p className="info-text-label">Location</p>
-                  <p className="info-text-value">Metro Manila, Philippines</p>
-                </div>
-              </div>
+          {/* Left — heading + form */}
+          <div>
+            <p className="cp-eyebrow">Get in Touch</p>
+            <h1 className="cp-heading">Contact Us</h1>
 
-              <div className="info-item">
-                <div className="info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
-                </div>
-                <div>
-                  <p className="info-text-label">Phone</p>
-                  <p className="info-text-value">+63 917 123 4567</p>
-                </div>
-              </div>
-
-              <div className="info-item">
-                <div className="info-icon">
-                  <svg viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                </div>
-                <div>
-                  <p className="info-text-label">Hours</p>
-                  <p className="info-text-value">Mon – Sat, 8:00 AM – 6:00 PM</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="divider-line" />
-
-            <p className="response-note">
-              We respond to all enquiries<br />within one business day.
-            </p>
-          </div>
-
-          {/* Right — Form */}
-          <div className="contact-form-wrap">
             {!submitted ? (
-              <>
-                <h2 className="form-title">Send a <em>message</em></h2>
-                <p className="form-subtitle">All fields are required</p>
-
-                <form onSubmit={handleSubmit}>
-                  <div className="form-row">
-                    <div className="form-group" style={{ marginBottom: 0 }}>
-                      <label className="form-label" htmlFor="firstName">First name</label>
-                      <input
-                        id="firstName"
-                        name="firstName"
-                        type="text"
-                        className="form-input"
-                        placeholder="Juan"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="form-group" style={{ marginBottom: 0 }}>
-                      <label className="form-label" htmlFor="lastName">Last name</label>
-                      <input
-                        id="lastName"
-                        name="lastName"
-                        type="text"
-                        className="form-input"
-                        placeholder="dela Cruz"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="email">Email address</label>
+              <form onSubmit={handleSubmit}>
+                <div className="cp-form-row">
+                  <div className="cp-form-group">
+                    <label className="cp-label" htmlFor="name">Name</label>
                     <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="form-input"
-                      placeholder="juan@example.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
+                      id="name" name="name" type="text"
+                      className="cp-input" placeholder="Your full name"
+                      value={formData.name} onChange={handleChange} required
                     />
                   </div>
+                  <div className="cp-form-group">
+                    <label className="cp-label" htmlFor="email">Email</label>
+                    <input
+                      id="email" name="email" type="email"
+                      className="cp-input" placeholder="you@example.com"
+                      value={formData.email} onChange={handleChange} required
+                    />
+                  </div>
+                </div>
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="subject">Subject</label>
+                <div className="cp-form-row">
+                  <div className="cp-form-group">
+                    <label className="cp-label" htmlFor="phone">Phone Number</label>
+                    <input
+                      id="phone" name="phone" type="tel"
+                      className="cp-input" placeholder="+63 912 345 6789"
+                      value={formData.phone} onChange={handleChange}
+                    />
+                  </div>
+                  <div className="cp-form-group">
+                    <label className="cp-label" htmlFor="service">Select Your Service</label>
                     <select
-                      id="subject"
-                      name="subject"
-                      className="form-select"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
+                      id="service" name="service"
+                      className="cp-select"
+                      value={formData.service} onChange={handleChange} required
                     >
-                      <option value="" disabled>Select a topic</option>
-                      <option value="project">Artificial Grass</option>
-                      <option value="supply">Potted Plants and Trees</option>
-                      <option value="installation">Wall Greens</option>
-                      <option value="consultation">Planter</option>
+                      <option value="">Select a Subject</option>
+                      <option value="artificial-grass">Artificial Grass</option>
+                      <option value="potted-plants">Potted Plants &amp; Trees</option>
+                      <option value="wall-greens">Wall Greens</option>
+                      <option value="planter">Planter</option>
                       <option value="other">Other</option>
                     </select>
                   </div>
+                </div>
 
-                  <div className="form-group">
-                    <label className="form-label" htmlFor="message">Your message</label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      className="form-textarea"
-                      placeholder="Tell us about your space and what you have in mind…"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
+                <div className="cp-form-row">
+                  <div className="cp-form-group">
+                    <label className="cp-label" htmlFor="date">Preferred Date</label>
+                    <input
+                      id="date" name="date" type="date"
+                      className="cp-input"
+                      value={formData.date} onChange={handleChange}
                     />
                   </div>
+                  <div className="cp-form-group">
+                    <label className="cp-label" htmlFor="location">Location / Area</label>
+                    <input
+                      id="location" name="location" type="text"
+                      className="cp-input" placeholder="e.g. Quezon City"
+                      value={formData.location} onChange={handleChange}
+                    />
+                  </div>
+                </div>
 
-                  <button type="submit" className="submit-btn">
-                    Send message
+                <div className="cp-form-group">
+                  <label className="cp-label" htmlFor="message">Message / Special Requests</label>
+                  <textarea
+                    id="message" name="message"
+                    className="cp-textarea"
+                    placeholder="Anything else we should know?"
+                    value={formData.message} onChange={handleChange}
+                  />
+                </div>
+
+                <div className="cp-btn-row">
+                  <button type="submit" className="cp-submit">
+                    Send Message
                   </button>
-                </form>
-              </>
+                </div>
+              </form>
             ) : (
-              <div className="success-wrap">
-                <div className="success-icon">
+              <div className="cp-success">
+                <div className="cp-success-icon">
                   <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
                 </div>
-                <h2 className="success-title">Message received</h2>
-                <p className="success-text">
+                <h2>Message received</h2>
+                <p>
                   Thank you for reaching out to Rich Haven.<br />
-                  We&apos;ll be in touch within one business day.
+                  We&apos;ll confirm your enquiry within one business day.
                 </p>
               </div>
             )}
           </div>
-        </main>
+
+          {/* Right — tagline + image */}
+          <div className="cp-right">
+            <p className="cp-tagline">
+              Tell us what you have in mind, and we'll be with you within 24 hours.
+            </p>
+            <div className="cp-img-card">
+              <Image src="/land2.png" alt="Rich Haven project" fill style={{ objectFit: "cover" }} />
+              <span className="cp-img-badge">Your Space</span>
+            </div>
+          </div>
+
+        </div>
+
+        {/* ── Bottom 3-column contact info ── */}
+        <div className="cp-bottom">
+
+          <div className="cp-info-col">
+            <div className="cp-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+            </div>
+            <p className="cp-info-title">Call &amp; WhatsApp</p>
+            <p className="cp-info-line">+63 917 123 4567<br />+63 953 987 6543</p>
+          </div>
+
+          <div className="cp-info-col">
+            <div className="cp-info-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <p className="cp-info-title">Working Hours</p>
+            <p className="cp-info-line">Mon – Sat: 8am – 6pm<br />Sunday: Closed</p>
+          </div>
+
+          <div className="cp-info-col">
+            <div className="cp-info-icon">
+              <svg viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <p className="cp-info-title">Write to Us</p>
+            <p className="cp-info-line">hello@richhaven.com<br />sales@richhaven.com</p>
+          </div>
+
+        </div>
       </div>
     </>
   );
