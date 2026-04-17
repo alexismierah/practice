@@ -27,41 +27,44 @@ export default function Footer() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
         .footer-root {
-          --sage: #8faa8b;
-          --sage-light: #b5c9b1;
-          --sage-pale: #dde8db;
-          --cream: #f7f4ee;
-          --ivory: #fdfbf7;
-          --stone: #c9c0b0;
-          --stone-mid: #a09584;
-          --blush: #e8d5c4;
-          --terracotta: #c4845a;
-          --moss: #5a7a55;
-          --text-main: #3a3530;
-          --text-soft: #7a706a;
-          --text-muted: #aaa098;
+          --forest: #1e3a2f;
+          --forest-mid: #2d5040;
+          --forest-light: #3d6b54;
+          --forest-pale: #dce8e2;
+          --charcoal: #ffffff;
+          --charcoal-mid: #f4f5f4;
+          --charcoal-soft: #dde3e0;
+          --brass: #2d5040;
+          --brass-light: #3d6b54;
+          --off-white: #1a1f1c;
+          --warm-white: #ffffff;
+          --stone: #5a6a64;
+          --stone-dark: #8a9a94;
+          --text-main: #1a1f1c;
+          --text-soft: #4a5450;
+          --text-muted: #8a9a94;
 
-          font-family: 'Jost', sans-serif;
+          font-family: 'DM Sans', sans-serif;
           background-color: #ffffff;
           color: var(--text-main);
           position: relative;
           overflow: hidden;
         }
 
+        /* Subtle geometric background pattern — replaces botanical */
         .footer-bg-botanical {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          opacity: 0.055;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cellipse cx='210' cy='210' rx='160' ry='50' fill='none' stroke='%238faa8b' stroke-width='1.2'/%3E%3Cellipse cx='210' cy='210' rx='50' ry='160' fill='none' stroke='%238faa8b' stroke-width='1.2'/%3E%3Ccircle cx='210' cy='210' r='130' fill='none' stroke='%238faa8b' stroke-width='0.8'/%3E%3Cpath d='M210 80 Q250 160 210 210 Q170 160 210 80Z' fill='%238faa8b' opacity='.3'/%3E%3Cpath d='M210 340 Q250 260 210 210 Q170 260 210 340Z' fill='%238faa8b' opacity='.3'/%3E%3Cpath d='M80 210 Q160 250 210 210 Q160 170 80 210Z' fill='%238faa8b' opacity='.3'/%3E%3Cpath d='M340 210 Q260 250 210 210 Q260 170 340 210Z' fill='%238faa8b' opacity='.3'/%3E%3C/svg%3E");
-          background-size: 380px 380px;
-          background-position: right -60px bottom -60px;
+          opacity: 0.04;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect x='50' y='50' width='300' height='300' fill='none' stroke='%23b08a4e' stroke-width='1'/%3E%3Crect x='100' y='100' width='200' height='200' fill='none' stroke='%23b08a4e' stroke-width='0.8'/%3E%3Cline x1='50' y1='200' x2='350' y2='200' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Cline x1='200' y1='50' x2='200' y2='350' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23b08a4e' stroke-width='0.7'/%3E%3C/svg%3E");
+          background-size: 360px 360px;
+          background-position: right -40px bottom -40px;
           background-repeat: no-repeat;
         }
-
 
         /* ─── 3-column layout ─── */
         .footer-inner {
@@ -112,44 +115,44 @@ export default function Footer() {
         }
 
         .footer-logo-name {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.65rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.75rem;
           font-weight: 600;
-          color: var(--moss);
-          letter-spacing: 0.01em;
+          color: var(--brass-light);
+          letter-spacing: 0.03em;
         }
 
         .footer-logo-tagline {
-          font-size: 0.72rem;
-          font-weight: 300;
-          letter-spacing: 0.22em;
+          font-size: 0.68rem;
+          font-weight: 400;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--stone-mid);
-          margin-top: 5px;
+          color: var(--stone);
+          margin-top: 6px;
         }
 
         .footer-desc {
-          font-size: 0.88rem;
-          line-height: 1.75;
-          color: var(--text-soft);
+          font-size: 0.87rem;
+          line-height: 1.8;
+          color: var(--stone);
           font-weight: 300;
         }
 
         .footer-socials {
           display: flex;
-          gap: 14px;
+          gap: 12px;
           margin-top: 4px;
         }
 
         .footer-social-btn {
           width: 36px;
           height: 36px;
-          border: 1.5px solid var(--stone-mid);
+          border: 1px solid var(--charcoal-soft);
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--text-main);
+          color: var(--stone);
           text-decoration: none;
           transition: all 0.25s;
           background: transparent;
@@ -157,9 +160,9 @@ export default function Footer() {
         }
 
         .footer-social-btn:hover {
-          border-color: var(--moss);
-          color: var(--moss);
-          background: var(--sage-pale);
+          border-color: var(--brass);
+          color: var(--brass-light);
+          background: rgba(176, 138, 78, 0.08);
           transform: translateY(-2px);
         }
 
@@ -184,28 +187,29 @@ export default function Footer() {
         }
 
         .footer-nav-label {
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 500;
-          letter-spacing: 0.2em;
+          letter-spacing: 0.24em;
           text-transform: uppercase;
-          color: var(--sage);
-          margin-bottom: 6px;
+          color: var(--brass);
+          margin-bottom: 8px;
+
         }
 
         .footer-nav a,
         .footer-nav span.footer-nav-item {
-          font-size: 0.87rem;
-          color: var(--text-soft);
+          font-size: 0.86rem;
+          color: var(--stone);
           text-decoration: none;
           font-weight: 300;
           display: inline-flex;
           align-items: center;
+          transition: color 0.2s;
         }
 
         .footer-nav a:hover {
-          color: var(--moss);
+          color: var(--off-white);
         }
-
 
         /* ─── Right column: Form ─── */
         .footer-form-wrap {
@@ -214,21 +218,21 @@ export default function Footer() {
         }
 
         .footer-form-heading {
-          font-family: 'Playfair Display', serif;
-          font-size: 1.5rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.6rem;
           font-weight: 400;
-          color: var(--text-main);
+          color: var(--off-white);
           margin-bottom: 4px;
         }
 
         .footer-form-heading em {
           font-style: italic;
-          color: var(--moss);
+          color: var(--brass-light);
         }
 
         .footer-form-sub {
           font-size: 0.82rem;
-          color: var(--text-muted);
+          color: var(--stone);
           font-weight: 300;
           letter-spacing: 0.04em;
           margin-bottom: 24px;
@@ -259,23 +263,23 @@ export default function Footer() {
         }
 
         .footer-field label {
-          font-size: 0.68rem;
+          font-size: 0.66rem;
           font-weight: 500;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: var(--stone-mid);
+          color: var(--stone-dark);
         }
 
         .footer-field input,
         .footer-field textarea {
-          background: #ffffff !important;
-          border: 1px solid var(--stone);
+          background: var(--charcoal-mid) !important;
+          border: 1px solid var(--charcoal-soft);
           border-radius: 999px;
-          padding: 11px 20px;
-          font-family: 'Jost', sans-serif;
-          font-size: 0.88rem;
+          padding: 11px 18px;
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.87rem;
           font-weight: 300;
-          color: var(--text-main);
+          color: var(--off-white);
           outline: none;
           transition: border-color 0.2s, box-shadow 0.2s;
           resize: none;
@@ -284,18 +288,18 @@ export default function Footer() {
         .footer-field textarea {
           border-radius: 24px;
           min-height: 90px;
-          padding: 14px 20px;
+          padding: 14px 18px;
         }
 
         .footer-field input::placeholder,
         .footer-field textarea::placeholder {
-          color: var(--text-muted);
+          color: var(--stone-dark);
         }
 
         .footer-field input:focus,
         .footer-field textarea:focus {
-          border-color: var(--sage);
-          box-shadow: 0 0 0 3px rgba(143,170,139,0.12);
+          border-color: var(--brass);
+          box-shadow: 0 0 0 3px rgba(176, 138, 78, 0.1);
         }
 
         /* ─── Submit button ─── */
@@ -304,16 +308,17 @@ export default function Footer() {
           display: flex;
           align-items: center;
           justify-content: center;
+          gap: 8px;
           min-width: 148px;
-          background: var(--moss);
-          color: var(--ivory);
+          background: var(--brass);
+          color: #ffffff;
           border: none;
-          padding: 10px 26px;
-          font-family: 'Jost', sans-serif;
+          padding: 11px 26px;
+          font-family: 'DM Sans', sans-serif;
           font-size: 0.72rem;
           font-weight: 500;
-          letter-spacing: 0.2em;
-          text-transform: capitalize;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
           cursor: pointer;
           transition: background 0.25s, transform 0.2s;
           border-radius: 999px;
@@ -321,6 +326,7 @@ export default function Footer() {
         }
 
         .footer-submit:hover {
+          background: var(--brass-light);
           transform: translateY(-1px);
         }
 
@@ -329,14 +335,15 @@ export default function Footer() {
         }
 
         .footer-submit.sent {
-          background: var(--sage);
+          background: var(--forest-light);
+          color: var(--off-white);
         }
 
         .footer-submit .check-icon {
           display: none;
           width: 14px;
           height: 14px;
-          stroke: var(--ivory);
+          stroke: #ffffff;
           stroke-width: 2.5;
           fill: none;
           flex-shrink: 0;
@@ -350,7 +357,7 @@ export default function Footer() {
         .footer-bottom {
           position: relative;
           z-index: 1;
-          border-top: 1px solid var(--sage-pale);
+          border-top: 1px solid var(--charcoal-soft);
           max-width: 1180px;
           margin: 0 auto;
           padding: 20px 40px;
@@ -370,15 +377,20 @@ export default function Footer() {
         }
 
         .footer-copy {
-          font-size: 0.76rem;
-          color: var(--text-muted);
+          font-size: 0.75rem;
+          color: var(--stone-dark);
           font-weight: 300;
           letter-spacing: 0.04em;
         }
 
         .footer-copy a {
-          color: var(--sage);
+          color: var(--brass);
           text-decoration: none;
+          transition: color 0.2s;
+        }
+
+        .footer-copy a:hover {
+          color: var(--brass-light);
         }
 
         .footer-bottom-links {
@@ -388,7 +400,7 @@ export default function Footer() {
 
         .footer-bottom-links a {
           font-size: 0.74rem;
-          color: var(--text-muted);
+          color: var(--stone-dark);
           text-decoration: none;
           font-weight: 300;
           letter-spacing: 0.06em;
@@ -396,7 +408,7 @@ export default function Footer() {
         }
 
         .footer-bottom-links a:hover {
-          color: var(--moss);
+          color: var(--brass-light);
         }
       `}</style>
 
@@ -438,29 +450,17 @@ export default function Footer() {
 
             <nav className="footer-nav">
               <span className="footer-nav-label">Our Products</span>
-              <a href="/products-services/grass">
-                
-                Artificial Grass
-              </a>
-              <a href="/products-services/potted-plants">
-                
-                Potted Plants & Trees
-              </a>
-              <a href="/products-services/planter-box">
-                
-                Planter Boxes
-              </a>
-              <a href="/products-services/wall-greens">
-                
-                Wall Greens
-              </a>
+              <a href="/products-services/grass">Artificial Grass</a>
+              <a href="/products-services/potted-plants">Potted Plants & Trees</a>
+              <a href="/products-services/planter-box">Planter Boxes</a>
+              <a href="/products-services/wall-greens">Wall Greens</a>
             </nav>
           </div>
 
           {/* ── Col 3: Contact Form ── */}
           <div className="footer-form-wrap">
             <h3 className="footer-form-heading">Get in <em>Touch</em></h3>
-            <p className="footer-form-sub">We'd love make your space greener.</p>
+            <p className="footer-form-sub">We'd love to make your space greener.</p>
 
             <form className="footer-form" onSubmit={handleSubmit}>
               <div className="footer-form-row">
@@ -530,7 +530,7 @@ export default function Footer() {
             © {new Date().getFullYear()} <a href="#">Rich Haven Artificial Garden</a>. All rights reserved.
           </span>
           <div className="footer-bottom-links">
-            <span className="footer-copy"> Make Your Space Green</span>
+            <span className="footer-copy">Make Your Space Green</span>
           </div>
         </div>
       </footer>
