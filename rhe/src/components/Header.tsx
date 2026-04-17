@@ -518,9 +518,14 @@ export default function Header() {
             )}
           </nav>
 
-          <Link href="/contact" className="rh-cta">
+          <button
+            className="rh-cta"
+            onClick={() => {
+              document.getElementById("footer")?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
             <span>Contact Us</span>
-          </Link>
+          </button>
 
           <button
             className={`rh-burger${mobileOpen ? " open" : ""}`}
@@ -589,7 +594,7 @@ export default function Header() {
             </Link>
           )
         )}
-        <Link href="/contact" className="rh-mobile-cta" onClick={() => setMobileOpen(false)}>
+        <Link href="#footer" className="rh-mobile-cta" onClick={() => setMobileOpen(false)}>
           Contact Us
         </Link>
       </div>
