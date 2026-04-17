@@ -167,7 +167,8 @@ export default function Page() {
           <p
             style={{
               fontWeight: 500,
-              marginTop: 5,
+              marginTop: -5,
+              marginBottom: -20,
               color: "#fafafa",
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "15px",
