@@ -10,6 +10,8 @@ export default function Footer() {
     message: "",
   });
   const [btnSent, setBtnSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -17,11 +19,29 @@ export default function Footer() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setBtnSent(true);
-    setTimeout(() => setBtnSent(false), 3000);
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        setError((json as { error?: string }).error ?? "Failed to send. Please try again.");
+        return;
+      }
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setBtnSent(true);
+      setTimeout(() => setBtnSent(false), 3000);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -74,7 +94,7 @@ export default function Footer() {
           margin: 0 auto;
           padding: 72px 40px 48px;
           display: grid;
-          grid-template-columns: 1fr 1fr 1.4fr;
+          grid-template-columns: 1fr 1fr 1.8fr;
           gap: 60px;
           align-items: start;
         }
@@ -176,8 +196,9 @@ export default function Footer() {
         .footer-middle {
           display: flex;
           flex-direction: column;
-          gap: 32px;
-          margin-top: 4px;
+          gap: 50px;
+          margin-top: 13px;
+          padding-left: 40px;
         }
 
         .footer-nav {
@@ -187,7 +208,7 @@ export default function Footer() {
         }
 
         .footer-nav-label {
-          font-size: 0.66rem;
+          font-size: 0.75rem;
           font-weight: 500;
           letter-spacing: 0.24em;
           text-transform: uppercase;
@@ -215,6 +236,7 @@ export default function Footer() {
         .footer-form-wrap {
           padding: 0;
           position: relative;
+          margin-top: -0px;
         }
 
         .footer-form-heading {
@@ -425,14 +447,14 @@ export default function Footer() {
             </div>
 
             <p className="footer-desc">
-              Bringing enduring botanical beauty into every space — our curated collection of lifelike artificial greenery is crafted for those who value the timeless elegance of nature.
+              Bringing enduring botanical beauty into every space, a thoughtfully curated collection of lifelike artificial greenery crafted for those who appreciate the timeless elegance of nature.
             </p>
 
             <div className="footer-socials">
-              <a href="#" className="footer-social-btn" aria-label="Instagram">
+              <a href="https://www.instagram.com/richhavenartificial/" className="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </a>
-              <a href="#" className="footer-social-btn" aria-label="Facebook">
+              <a href="https://www.facebook.com/richhavengarden" className="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </a>
             </div>
@@ -442,10 +464,9 @@ export default function Footer() {
           <div className="footer-middle">
             <nav className="footer-nav">
               <span className="footer-nav-label">Contact Us</span>
-              <span className="footer-nav-item">hello@richhaven.com</span>
-              <span className="footer-nav-item">+1 (234) 567-890</span>
-              <span className="footer-nav-item">123 Greenleaf Ave, Garden City</span>
-              <span className="footer-nav-item">Mon – Sat, 9am – 6pm</span>
+              <span className="footer-nav-item">hello@richhaven.net</span>
+              <span className="footer-nav-item">0916 236 6737</span>
+
             </nav>
 
             <nav className="footer-nav">
@@ -460,7 +481,7 @@ export default function Footer() {
           {/* ── Col 3: Contact Form ── */}
           <div className="footer-form-wrap">
             <h3 className="footer-form-heading">Get in <em>Touch</em></h3>
-            <p className="footer-form-sub">We'd love to make your space greener.</p>
+            <p className="footer-form-sub">Have a question or planning your next space? Get in touch with us.</p>
 
             <form className="footer-form" onSubmit={handleSubmit}>
               <div className="footer-form-row">
@@ -482,7 +503,7 @@ export default function Footer() {
                     id="footer-email"
                     name="email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="hello@gmail.com"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -495,7 +516,7 @@ export default function Footer() {
                   id="footer-phone"
                   name="phone"
                   type="tel"
-                  placeholder="+1 (234) 567-890"
+                  placeholder="09** *** ****"
                   value={formData.phone}
                   onChange={handleChange}
                 />
@@ -505,20 +526,24 @@ export default function Footer() {
                 <textarea
                   id="footer-msg"
                   name="message"
-                  placeholder="Tell us about your space or project…"
+                  placeholder="Tell us what you're looking for…"
                   value={formData.message}
                   onChange={handleChange}
                   required
                 />
               </div>
+              {error && (
+                <p style={{ fontSize: "0.8rem", color: "#c0392b", margin: 0 }}>{error}</p>
+              )}
               <button
                 type="submit"
+                disabled={submitting}
                 className={`footer-submit${btnSent ? " sent" : ""}`}
               >
                 <svg className="check-icon" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                {btnSent ? "Sent!" : "Send Message"}
+                {submitting ? "Sending…" : btnSent ? "Sent" : "Send Message"}
               </button>
             </form>
           </div>
