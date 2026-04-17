@@ -30,6 +30,34 @@ const featuredPlants = [
   },
 ];
 
+const svcItems = [
+  {
+    name: "Artificial Grass Supply",
+    desc: "Premium quality artificial turf for sports courts, residential lawns, rooftop gardens, and commercial spaces — durable, UV-resistant, and always lush.",
+    img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+  },
+  {
+    name: "Potted Plants & Trees",
+    desc: "Bring lush indoor and outdoor statement pieces to any room or corner with our curated range of lifelike potted plants and statement trees.",
+    img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
+  },
+  {
+    name: "Planter Box Design",
+    desc: "Vibrant designer foliage collections arranged in custom planter boxes — perfect for lobbies, offices, balconies, and event installations.",
+    img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
+  },
+  {
+    name: "Wall Greens Installation",
+    desc: "Low-maintenance vertical green walls professionally installed to transform any bare wall into a stunning living-look feature — indoors or outdoors.",
+    img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
+  },
+  {
+    name: "Space Consultation",
+    desc: "Not sure what fits your space? Our team offers on-site or virtual consultations to help you select the right greenery combination and layout.",
+    img: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/598973170_1362085932374200_5536687096599188254_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGT0NG2TUJ5zSjWYQraD6ZFFz_SIjbfnecXP9IiNt-d5_ez5o5kNtzkM5eDqinu72xI0FFPFLKj1zgTFqyBkNJ7&_nc_ohc=p-RKDlyUvKYQ7kNvwHk0n0C&_nc_oc=AdqXMFp0qpigA8hNiov7C0Y9BB1PMllCrpVI-xQFcGk6zoNPmlAfmtueJDfQ5wxPcN4&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=RlRA6aQz6kjKovVCBWNnxQ&_nc_ss=7a3a8&oh=00_Af3Z8g_ZVDiyLRYHXKxfFykMiJt6Us38xM_hF4VPQcX7Vw&oe=69E40501",
+  },
+];
+
 const categories = [
   {
     title: "Supply",
@@ -88,11 +116,12 @@ const faqs = [
 export default function Home() {
   const displayedPlants = featuredPlants.slice(0, 4);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [openSvc, setOpenSvc] = useState<number>(1);
 
   return (
     <main className="landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap");
 
         .landing, .landing * { box-sizing: border-box; }
 
@@ -133,9 +162,7 @@ export default function Home() {
           color: #fff;
         }
 
-        .hero-spacer {
-          height: 42px;
-        }
+        .hero-spacer { height: 42px; }
 
         .hero-title {
           margin: 0;
@@ -192,9 +219,7 @@ export default function Home() {
           color: #fff;
           box-shadow: 0 12px 28px rgba(20, 50, 30, 0.35);
         }
-        .button-primary:hover {
-          background: #367d4e;
-        }
+        .button-primary:hover { background: #367d4e; }
         .button-secondary {
           color: rgba(230, 245, 232, 0.85);
           background: rgba(255, 255, 255, 0.07);
@@ -269,18 +294,12 @@ export default function Home() {
         }
 
         .reason-icon-wrap {
-          width: 44px;
-          height: 44px;
-          border-radius: 12px;
-          background: #eaf3e5;
-          border: 1px solid #d0e8d4;
           display: flex;
-          align-items: center;
-          justify-content: center;
+          align-items: flex-start;
           flex-shrink: 0;
         }
 
-        .reason-icon { width: 18px; height: 18px; color: #2f6f44; }
+        .reason-icon { width: 32px; height: 25px; color: #2f6f44; }
 
         .reason-content { flex: 1; }
 
@@ -317,6 +336,196 @@ export default function Home() {
           position: relative;
           z-index: 1;
           filter: drop-shadow(0 24px 32px rgba(30,57,40,.18));
+        }
+
+        /* ── SERVICES ACCORDION ── */
+        .svc-accordion-section {
+          background: #fafbf8;
+          padding: 96px 64px;
+        }
+
+        .svc-accordion-layout {
+          display: grid;
+          grid-template-columns: 220px 1fr 1.15fr;
+          gap: 40px;
+          align-items: start;
+        }
+
+        .svc-accordion-left { display: flex; flex-direction: column; }
+
+        .svc-accordion-eyebrow {
+          font-size: 11px;
+          letter-spacing: .12em;
+          text-transform: uppercase;
+          color: #7a8f80;
+          margin: 0 0 10px;
+        }
+
+        .svc-accordion-heading {
+          font-family: "Playfair Display", serif;
+          font-weight: 700;
+          font-size: clamp(1.8rem, 2vw + 0.8rem, 2.8rem);
+          color: #163521;
+          line-height: 1.08;
+          margin: 0 0 16px;
+        }
+
+        .svc-accordion-heading em {
+          font-style: italic;
+          font-weight: 500;
+          color: #3f7a55;
+        }
+
+        .svc-accordion-desc {
+          font-size: 13px;
+          line-height: 1.8;
+          color: #7a8f80;
+          margin: 0 0 32px;
+        }
+
+        .svc-view-all {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          background: #2f6f44;
+          color: #fff;
+          border: none;
+          border-radius: 999px;
+          padding: 11px 22px;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: .06em;
+          text-transform: uppercase;
+          cursor: pointer;
+          text-decoration: none;
+          transition: background .2s ease;
+          align-self: flex-start;
+        }
+
+        .svc-view-all:hover { background: #367d4e; }
+
+        .svc-accordion-label {
+          font-size: 10px;
+          letter-spacing: .1em;
+          text-transform: uppercase;
+          color: #b0bfb5;
+          margin-top: 40px;
+          padding-top: 16px;
+          border-top: 1px solid #e4ebe0;
+        }
+
+        .svc-accordion-img-wrap {
+          border-radius: 16px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        .svc-accordion-img {
+          width: 100%;
+          aspect-ratio: 3/4;
+          object-fit: cover;
+          display: block;
+          transition: opacity .35s ease;
+        }
+
+        .svc-accordion-list {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .svc-acc-item {
+          border-bottom: 1px solid #e4ebe0;
+        }
+
+        .svc-acc-item:first-child {
+          border-top: 1px solid #e4ebe0;
+        }
+
+        .svc-acc-trigger {
+          width: 100%;
+          background: none;
+          border: none;
+          padding: 16px 18px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 12px;
+          cursor: pointer;
+          border-radius: 0;
+          transition: background .15s;
+          text-align: left;
+        }
+
+        .svc-acc-trigger.active {
+          background: #1d3d28;
+          border-radius: 10px;
+          margin: 3px 0;
+        }
+
+        .svc-acc-item:has(.active) {
+          border-color: transparent;
+        }
+
+        .svc-acc-name {
+          font-family: "Playfair Display", serif;
+          font-size: .95rem;
+          font-weight: 700;
+          color: #1d3d28;
+          margin: 0;
+          transition: color .15s;
+          line-height: 1.3;
+        }
+
+        .svc-acc-trigger.active .svc-acc-name {
+          color: #fff;
+        }
+
+        .svc-acc-arrow {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: #e8ede5;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: background .15s;
+        }
+
+        .svc-acc-trigger.active .svc-acc-arrow {
+          background: #3f7a55;
+        }
+
+        .svc-acc-arrow svg {
+          width: 10px;
+          height: 10px;
+          color: #2f6f44;
+          transition: color .15s;
+        }
+
+        .svc-acc-trigger.active .svc-acc-arrow svg {
+          color: #fff;
+        }
+
+        .svc-acc-body {
+          overflow: hidden;
+          max-height: 0;
+          opacity: 0;
+          transition: max-height .3s ease, opacity .25s ease;
+          padding: 0 18px;
+        }
+
+        .svc-acc-body.open {
+          max-height: 120px;
+          opacity: 1;
+          padding-bottom: 16px;
+        }
+
+        .svc-acc-desc {
+          font-size: 12.5px;
+          color: #6b7d72;
+          line-height: 1.72;
+          margin: 0;
         }
 
         /* ── PRODUCTS ── */
@@ -413,9 +622,9 @@ export default function Home() {
         .ps-explore:hover { color: #163521; }
         .ps-explore-line { width: 32px; height: 1px; background: currentColor; display: inline-block; }
 
-        /* ── SERVICES ── */
+        /* ── SERVICES (original cards) ── */
         .services-section {
-          background: #fff;
+          background: linear-gradient(180deg, #ffffff 0%, #ffffff 65%, #c8d9cf 100%);
           padding: 96px 64px;
         }
 
@@ -487,7 +696,6 @@ export default function Home() {
         .faq-section {
           background: #fafbf8;
           padding: 80px 64px;
-          border-top: 1px solid #e4ebe0;
         }
 
         .faq-inner {
@@ -518,13 +726,8 @@ export default function Home() {
           color: #3f7a55;
         }
 
-        .faq-item {
-          border-bottom: 1px solid #dce8d5;
-        }
-
-        .faq-item:first-of-type {
-          border-top: 1px solid #dce8d5;
-        }
+        .faq-item { border-bottom: 1px solid #dce8d5; }
+        .faq-item:first-of-type { border-top: 1px solid #dce8d5; }
 
         .faq-trigger {
           width: 100%;
@@ -539,9 +742,7 @@ export default function Home() {
           text-align: left;
         }
 
-        .faq-trigger:hover .faq-q {
-          color: #2f6f44;
-        }
+        .faq-trigger:hover .faq-q { color: #2f6f44; }
 
         .faq-q {
           font-family: "Playfair Display", serif;
@@ -561,9 +762,7 @@ export default function Home() {
           transition: transform .25s ease;
         }
 
-        .faq-chevron.open {
-          transform: rotate(180deg);
-        }
+        .faq-chevron.open { transform: rotate(180deg); }
 
         .faq-body {
           overflow: hidden;
@@ -572,10 +771,7 @@ export default function Home() {
           opacity: 0;
         }
 
-        .faq-body.open {
-          max-height: 200px;
-          opacity: 1;
-        }
+        .faq-body.open { max-height: 200px; opacity: 1; }
 
         .faq-a {
           font-size: 13.5px;
@@ -585,6 +781,152 @@ export default function Home() {
           padding-bottom: 20px;
         }
 
+        /* ── CTA STRIP ── */
+        .cta-strip {
+          background: #c8d9cf;
+          border-top: none;
+          padding: 88px 64px 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .cta-strip::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect x='50' y='50' width='300' height='300' fill='none' stroke='%23b08a4e' stroke-width='1'/%3E%3Crect x='100' y='100' width='200' height='200' fill='none' stroke='%23b08a4e' stroke-width='0.8'/%3E%3Cline x1='50' y1='200' x2='350' y2='200' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Cline x1='200' y1='50' x2='200' y2='350' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23b08a4e' stroke-width='0.7'/%3E%3C/svg%3E");
+          background-size: 360px 360px;
+          background-position: left -60px center, right -60px center;
+          background-repeat: no-repeat;
+          opacity: 0.04;
+          pointer-events: none;
+        }
+
+        .cta-strip-left { position: relative; z-index: 1; }
+
+        .cta-strip-wave {
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          width: 100%;
+          pointer-events: none;
+          z-index: 2;
+          line-height: 0;
+        }
+
+        .cta-strip-wave svg {
+          display: block;
+          width: 100%;
+          height: 64px;
+        }
+
+        .cta-strip-eyebrow {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 0.72rem;
+          letter-spacing: 0.24em;
+          text-transform: uppercase;
+          color: #2d5040;
+          margin: 0 0 12px;
+          font-weight: 500;
+        }
+
+        .cta-strip-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-size: clamp(1.9rem, 1.5vw + 1.1rem, 2.8rem);
+          font-weight: 600;
+          color: #1a3d2b;
+          line-height: 1.1;
+          margin: 0;
+        }
+
+        .cta-strip-heading em {
+          font-style: italic;
+          font-weight: 400;
+          color: #2d5040;
+        }
+
+        .cta-strip-sub {
+          font-family: 'DM Sans', sans-serif;
+          margin: 18px auto 0;
+          font-size: 0.87rem;
+          color: #3d5c4a;
+          line-height: 1.8;
+          max-width: 440px;
+          font-weight: 300;
+        }
+
+        .cta-strip-actions {
+          display: flex;
+          gap: 12px;
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          position: relative;
+          z-index: 1;
+          margin-top: 32px;
+        }
+
+        .cta-strip-btn-outline {
+          font-family: 'DM Sans', sans-serif;
+          border: 1.5px solid #2d5040;
+          color: #2d5040;
+          background: transparent;
+          border-radius: 999px;
+          padding: 11px 26px;
+          font-size: 0.72rem;
+          font-weight: 500;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: background 0.25s, border-color 0.25s;
+        }
+
+        .cta-strip-btn-outline:hover {
+          background: rgba(45,80,64,0.1);
+          border-color: #2d5040;
+        }
+
+        .cta-strip-btn-primary {
+          font-family: 'DM Sans', sans-serif;
+          background: #2d5040;
+          color: #ffffff;
+          border: none;
+          border-radius: 999px;
+          padding: 11px 26px;
+          font-size: 0.72rem;
+          font-weight: 500;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          cursor: pointer;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          transition: background 0.25s, transform 0.2s;
+        }
+
+        .cta-strip-btn-primary:hover {
+          background: #3d6b54;
+          transform: translateY(-1px);
+        }
+
+        @media (max-width: 1024px) {
+          .cta-strip { padding: 60px 40px; }
+        }
+
+        @media (max-width: 640px) {
+          .cta-strip { padding: 48px 20px; flex-direction: column; align-items: center; }
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
           .hero-content { padding: 0 40px 72px; }
@@ -592,6 +934,10 @@ export default function Home() {
           .why-shop-grid { grid-template-columns: 1fr; gap: 40px; }
           .why-shop-plant-col { order: -1; }
           .why-shop-plant { max-width: 260px; }
+          .svc-accordion-section { padding: 72px 40px; }
+          .svc-accordion-layout { grid-template-columns: 1fr; gap: 32px; }
+          .svc-accordion-img { aspect-ratio: 16/9; }
+          .svc-accordion-desc { max-width: 100%; }
           .products-section, .services-section { padding: 72px 40px; }
           .ps-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
           .ps-header { flex-direction: column; align-items: flex-start; gap: 20px; }
@@ -605,6 +951,7 @@ export default function Home() {
           .hero-title { font-size: clamp(2rem, 6vw + 0.5rem, 3rem); }
           .why-shop { padding: 56px 20px; }
           .why-shop-header { margin-bottom: 48px; }
+          .svc-accordion-section { padding: 56px 20px; }
           .products-section, .services-section { padding: 56px 20px; }
           .ps-grid { grid-template-columns: 1fr; }
           .svc-grid { grid-template-columns: 1fr; }
@@ -619,17 +966,13 @@ export default function Home() {
       <section className="hero">
         <div className="hero-content">
           <div className="hero-spacer" aria-hidden="true" />
-
           <h1 className="hero-title">
             Elevate every space <br /> with enduring, nature‑inspired <br/>greenery look
           </h1>
-
           <div className="hero-divider" />
-
           <p className="hero-copy">
             Thoughtfully crafted for homes, offices, and commercial spaces — our premium artificial greenery delivers the quiet beauty of nature without the upkeep, season after season.
           </p>
-
           <div className="hero-actions">
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <Link className="button button-secondary" href="/portfolio">Our Portfolio</Link>
@@ -684,6 +1027,8 @@ export default function Home() {
         </div>
       </section>
 
+
+
       {/* ── PRODUCTS ── */}
       <section className="products-section" aria-labelledby="products-heading">
         <div className="ps-header">
@@ -713,7 +1058,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── SERVICES ── */}
+      {/* ── SERVICES (original supply/installation cards) ── */}
       <section className="services-section" aria-labelledby="services-title">
         <div className="svc-header">
           <div>
@@ -736,7 +1081,7 @@ export default function Home() {
       </section>
 
       {/* ── FAQs ── */}
-      <section className="faq-section" aria-labelledby="faq-title">
+      {/* <section className="faq-section" aria-labelledby="faq-title">
         <div className="faq-inner">
           <p className="faq-eyebrow">Got questions?</p>
           <h2 className="faq-heading" id="faq-title">Frequently <em>Asked Questions</em></h2>
@@ -759,6 +1104,25 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section> */}
+
+      {/* ── CTA STRIP ── */}
+      <section className="cta-strip" aria-label="Call to action">
+        <div className="cta-strip-left">
+          <p className="cta-strip-eyebrow">Let&apos;s work together</p>
+          <h2 className="cta-strip-heading">
+            Ready to transform your <em>space?</em>
+          </h2>
+          <p className="cta-strip-sub">
+            Explore our full range of premium artificial greenery or get in touch — we&apos;re happy to help you find the perfect fit for your space.
+          </p>
+        </div>
+        {/* wave transition into footer */}
+        <div className="cta-strip-wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="#ffffff" />
+          </svg>
         </div>
       </section>
     </main>
