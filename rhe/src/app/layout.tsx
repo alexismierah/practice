@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
 
         {/* Pages render their own <main>; a wrapper <main> here caused nested mains and broken flex layout */}
-        <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col pt-[78px]">{children}</div>
+        <div className="flex min-h-0 w-full min-w-0 flex-1 flex-col pt-[76px]">{children}</div>
 
         <Footer />
       </body>
