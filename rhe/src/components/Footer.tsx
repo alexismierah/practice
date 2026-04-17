@@ -9,7 +9,7 @@ export default function Footer() {
     phone: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [btnSent, setBtnSent] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -19,9 +19,9 @@ export default function Footer() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
     setFormData({ name: "", email: "", phone: "", message: "" });
+    setBtnSent(true);
+    setTimeout(() => setBtnSent(false), 3000);
   };
 
   return (
@@ -51,7 +51,6 @@ export default function Footer() {
           overflow: hidden;
         }
 
-        /* ─── Decorative botanical SVG watermark ─── */
         .footer-bg-botanical {
           position: absolute;
           inset: 0;
@@ -63,13 +62,12 @@ export default function Footer() {
           background-repeat: no-repeat;
         }
 
-        /* ─── Top divider ─── */
         .footer-divider-top {
           height: 3px;
           background: linear-gradient(90deg, transparent, var(--sage-light), var(--blush), var(--sage-light), transparent);
         }
 
-        /* ─── Main layout ─── */
+        /* ─── 3-column layout ─── */
         .footer-inner {
           position: relative;
           z-index: 1;
@@ -77,37 +75,38 @@ export default function Footer() {
           margin: 0 auto;
           padding: 72px 40px 48px;
           display: grid;
-          grid-template-columns: 1fr 1.55fr;
-          gap: 80px;
+          grid-template-columns: 1fr 1fr 1.4fr;
+          gap: 60px;
           align-items: start;
         }
 
-        @media (max-width: 860px) {
+        @media (max-width: 960px) {
           .footer-inner {
-            grid-template-columns: 1fr;
-            gap: 56px;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
             padding: 56px 24px 40px;
+          }
+          .footer-form-wrap {
+            grid-column: 1 / -1;
+            padding: 0 !important;
           }
         }
 
-        /* ─── Left column ─── */
+        @media (max-width: 600px) {
+          .footer-inner {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+          .footer-form-wrap {
+            grid-column: unset;
+          }
+        }
+
+        /* ─── Left column: Brand ─── */
         .footer-brand {
           display: flex;
           flex-direction: column;
-          gap: 28px;
-          padding-left: 40px;
-        }
-
-        .footer-logo {
-          display: flex;
-          align-items: center;
-          gap: 14px;
-        }
-
-        .footer-logo-icon {
-          width: 48px;
-          height: 48px;
-          flex-shrink: 0;
+          gap: 24px;
         }
 
         .footer-logo-text {
@@ -130,48 +129,16 @@ export default function Footer() {
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--stone-mid);
-          margin-top: 4px;
+          margin-top: 5px;
         }
 
         .footer-desc {
-          font-size: 0.9rem;
+          font-size: 0.88rem;
           line-height: 1.75;
           color: var(--text-soft);
           font-weight: 300;
-          max-width: 320px;
         }
 
-        /* ─── Nav links ─── */
-        .footer-nav {
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .footer-nav-label {
-          font-size: 0.68rem;
-          font-weight: 500;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: var(--sage);
-          margin-bottom: 4px;
-        }
-
-        .footer-nav a {
-          font-size: 0.88rem;
-          color: var(--text-soft);
-          text-decoration: none;
-          transition: color 0.2s;
-          font-weight: 300;
-          display: inline-flex;
-          align-items: center;
-        }
-
-        .footer-nav a:hover {
-          color: var(--moss);
-        }
-
-        /* ─── Social ─── */
         .footer-socials {
           display: flex;
           gap: 14px;
@@ -206,9 +173,46 @@ export default function Footer() {
           fill: currentColor;
         }
 
-        /* ─── Right column — Contact form (floating, no container) ─── */
+        /* ─── Center column: Contact + Services ─── */
+        .footer-middle {
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .footer-nav {
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+        }
+
+        .footer-nav-label {
+          font-size: 0.68rem;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--sage);
+          margin-bottom: 6px;
+        }
+
+        .footer-nav a,
+        .footer-nav span.footer-nav-item {
+          font-size: 0.87rem;
+          color: var(--text-soft);
+          text-decoration: none;
+          font-weight: 300;
+          display: inline-flex;
+          align-items: center;
+        }
+
+        .footer-nav a:hover {
+          color: var(--moss);
+        }
+
+
+        /* ─── Right column: Form ─── */
         .footer-form-wrap {
-          padding: 0 60px 0 0;
+          padding: 0;
           position: relative;
         }
 
@@ -230,19 +234,19 @@ export default function Footer() {
           color: var(--text-muted);
           font-weight: 300;
           letter-spacing: 0.04em;
-          margin-bottom: 28px;
+          margin-bottom: 24px;
         }
 
         .footer-form {
           display: flex;
           flex-direction: column;
-          gap: 18px;
+          gap: 16px;
         }
 
         .footer-form-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 16px;
+          gap: 14px;
         }
 
         @media (max-width: 560px) {
@@ -282,7 +286,7 @@ export default function Footer() {
 
         .footer-field textarea {
           border-radius: 24px;
-          min-height: 96px;
+          min-height: 90px;
           padding: 14px 20px;
         }
 
@@ -301,57 +305,49 @@ export default function Footer() {
         /* ─── Submit button ─── */
         .footer-submit {
           align-self: flex-start;
-          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 148px;
           background: var(--moss);
           color: var(--ivory);
           border: none;
-          padding: 9px 24px;
+          padding: 10px 26px;
           font-family: 'Jost', sans-serif;
           font-size: 0.72rem;
           font-weight: 500;
           letter-spacing: 0.2em;
-          text-transform: Capitalize;
+          text-transform: capitalize;
           cursor: pointer;
-          transition: all 0.25s;
+          transition: background 0.25s, transform 0.2s;
           border-radius: 999px;
           overflow: hidden;
-        }
-
-        .footer-submit::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
-          transform: translateX(-100%);
-          transition: transform 0.4s;
         }
 
         .footer-submit:hover {
           transform: translateY(-1px);
         }
 
-
         .footer-submit:active {
           transform: translateY(0);
         }
 
-        /* ─── Success message ─── */
-        .footer-success {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 12px 18px;
-          background: var(--sage-pale);
-          border-left: 3px solid var(--sage);
-          font-size: 0.85rem;
-          color: var(--moss);
-          font-weight: 400;
-          animation: fadeIn 0.3s ease;
+        .footer-submit.sent {
+          background: var(--sage);
         }
 
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(4px); }
-          to   { opacity: 1; transform: translateY(0); }
+        .footer-submit .check-icon {
+          display: none;
+          width: 14px;
+          height: 14px;
+          stroke: var(--ivory);
+          stroke-width: 2.5;
+          fill: none;
+          flex-shrink: 0;
+        }
+
+        .footer-submit.sent .check-icon {
+          display: block;
         }
 
         /* ─── Bottom bar ─── */
@@ -410,124 +406,140 @@ export default function Footer() {
 
       <footer className="footer-root" id="footer">
         <div className="footer-bg-botanical" aria-hidden="true" />
-
+        <div className="footer-divider-top" />
 
         <div className="footer-inner">
-          {/* ── Left: Brand + Nav ── */}
+
+          {/* ── Col 1: Brand ── */}
           <div className="footer-brand">
-            {/* Logo */}
-            <div className="footer-logo">
-              <div className="footer-logo-text">
-                <span className="footer-logo-name">Rich Haven</span>
-                <span className="footer-logo-tagline">Artificial Garden</span>
-              </div>
+            <div className="footer-logo-text">
+              <span className="footer-logo-name">Rich Haven</span>
+              <span className="footer-logo-tagline">Artificial Garden</span>
             </div>
 
             <p className="footer-desc">
               Bringing enduring botanical beauty into every space — our curated collection of lifelike artificial greenery is crafted for those who value the timeless elegance of nature.
             </p>
 
-            {/* Nav */}
-            <nav className="footer-nav">
-              <span className="footer-nav-label">Contact Us</span>
-              <a href="mailto:hello@richhaven.com">hello@richhaven.com</a>
-              <a href="tel:+1234567890">+1 (234) 567-890</a>
-              <a href="#">123 Greenleaf Ave, Garden City</a>
-              <a href="#">Mon – Sat, 9am – 6pm</a>
-            </nav>
-
-            {/* Socials */}
             <div className="footer-socials">
-              {/* Instagram */}
               <a href="#" className="footer-social-btn" aria-label="Instagram">
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </a>
-              {/* Facebook */}
               <a href="#" className="footer-social-btn" aria-label="Facebook">
                 <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </a>
             </div>
           </div>
 
-          {/* ── Right: Contact Form ── */}
+          {/* ── Col 2: Contact + Services ── */}
+          <div className="footer-middle">
+            <nav className="footer-nav">
+              <span className="footer-nav-label">Contact Us</span>
+              <span className="footer-nav-item">hello@richhaven.com</span>
+              <span className="footer-nav-item">+1 (234) 567-890</span>
+              <span className="footer-nav-item">123 Greenleaf Ave, Garden City</span>
+              <span className="footer-nav-item">Mon – Sat, 9am – 6pm</span>
+            </nav>
+
+            <nav className="footer-nav">
+              <span className="footer-nav-label">Our Services</span>
+              <a href="#">
+                
+                Artificial Walls & Panels
+              </a>
+              <a href="#">
+                
+                Indoor Garden Design
+              </a>
+              <a href="#">
+                
+                Outdoor Landscaping
+              </a>
+              <a href="#">
+                
+                Custom Arrangements
+              </a>
+              <a href="#">
+                
+                Corporate Installations
+              </a>
+            </nav>
+          </div>
+
+          {/* ── Col 3: Contact Form ── */}
           <div className="footer-form-wrap">
             <h3 className="footer-form-heading">Get in <em>Touch</em></h3>
             <p className="footer-form-sub">We'd love to help you design your perfect garden space.</p>
 
-            {submitted ? (
-              <div className="footer-success">
-                <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-                Thank you — we'll be in touch shortly.
-              </div>
-            ) : (
-              <form className="footer-form" onSubmit={handleSubmit}>
-                <div className="footer-form-row">
-                  <div className="footer-field">
-                    <label htmlFor="footer-name">Full Name</label>
-                    <input
-                      id="footer-name"
-                      name="name"
-                      type="text"
-                      placeholder="Your name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                  <div className="footer-field">
-                    <label htmlFor="footer-email">Email Address</label>
-                    <input
-                      id="footer-email"
-                      name="email"
-                      type="email"
-                      placeholder="your@email.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-                </div>
+            <form className="footer-form" onSubmit={handleSubmit}>
+              <div className="footer-form-row">
                 <div className="footer-field">
-                  <label htmlFor="footer-phone">Phone Number</label>
+                  <label htmlFor="footer-name">Full Name</label>
                   <input
-                    id="footer-phone"
-                    name="phone"
-                    type="tel"
-                    placeholder="+1 (234) 567-890"
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="footer-field">
-                  <label htmlFor="footer-msg">Your Message</label>
-                  <textarea
-                    id="footer-msg"
-                    name="message"
-                    placeholder="Tell us about your space or project…"
-                    value={formData.message}
+                    id="footer-name"
+                    name="name"
+                    type="text"
+                    placeholder="Your name"
+                    value={formData.name}
                     onChange={handleChange}
                     required
                   />
                 </div>
-                <button type="submit" className="footer-submit">
-                  Send Message
-                </button>
-              </form>
-            )}
+                <div className="footer-field">
+                  <label htmlFor="footer-email">Email Address</label>
+                  <input
+                    id="footer-email"
+                    name="email"
+                    type="email"
+                    placeholder="your@email.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="footer-field">
+                <label htmlFor="footer-phone">Phone Number</label>
+                <input
+                  id="footer-phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+1 (234) 567-890"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="footer-field">
+                <label htmlFor="footer-msg">Your Message</label>
+                <textarea
+                  id="footer-msg"
+                  name="message"
+                  placeholder="Tell us about your space or project…"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className={`footer-submit${btnSent ? " sent" : ""}`}
+              >
+                <svg className="check-icon" viewBox="0 0 24 24">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                {btnSent ? "Sent!" : "Send Message"}
+              </button>
+            </form>
           </div>
         </div>
 
         {/* ── Bottom bar ── */}
         <div className="footer-bottom">
           <span className="footer-copy">
-            © {new Date().getFullYear()} <a href="#">Verdana Studio</a>. All rights reserved.
+            © {new Date().getFullYear()} <a href="#">Rich Haven Artificial Garden</a>. All rights reserved.
           </span>
           <div className="footer-bottom-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-            <a href="#">Shipping Info</a>
+            <span className="footer-copy"> Make Your Space Green</span>
           </div>
         </div>
       </footer>
