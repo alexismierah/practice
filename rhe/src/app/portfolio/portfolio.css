@@ -1,0 +1,116 @@
+@font-face {
+  font-family: 'DidotLP';
+  src: url('/fonts/DidotLPDisplay.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #ffffff;
+  font-family: 'DidotLP', Georgia, serif;
+}
+
+.pf-container { width: 100%; padding-top: 76px; }
+
+.pf-hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.pf-hero-image {
+  object-fit: contain;
+  object-position: center center;
+}
+
+.pf-text {
+  position: absolute;
+  top: 39%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: left;
+}
+
+.pf-eyebrow-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.pf-eyebrow-line {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: #6b9478;
+  flex-shrink: 0;
+}
+
+.pf-subtitle {
+  font-size: clamp(11px, 1.1vw, 15px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #6b9478;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.pf-title {
+  font-size: clamp(72px, 13vw, 190px);
+  color: #1a3d28;
+  line-height: 0.88;
+  font-weight: 400;
+  letter-spacing: -3px;
+}
+
+.pf-rule {
+  width: 44px;
+  height: 2px;
+  background: #3d6e50;
+  margin: 20px 0 18px;
+}
+
+.pf-tagline {
+  font-size: clamp(12px, 1vw, 14px);
+  color: #3d5e4a;
+  line-height: 1.75;
+  font-style: italic;
+  max-width: 280px;
+}
+
+.pf-cta {
+  display: inline-block;
+  margin-top: 24px;
+  font-size: clamp(10px, 0.85vw, 12px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1a3d28;
+  border-bottom: 1px solid #3d6e50;
+  padding-bottom: 3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.pf-cta:hover { opacity: 0.6; }
+
+@media (max-width: 700px) {
+  .pf-hero {
+    aspect-ratio: 4 / 5;
+  }
+
+  .pf-text {
+    top: 40%;
+    left: 50%;
+    text-align: center;
+  }
+
+  .pf-eyebrow-row { justify-content: center; }
+  .pf-rule { margin-left: auto; margin-right: auto; }
+  .pf-tagline { max-width: 100%; }
+}
