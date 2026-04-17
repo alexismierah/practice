@@ -62,10 +62,6 @@ export default function Footer() {
           background-repeat: no-repeat;
         }
 
-        .footer-divider-top {
-          height: 3px;
-          background: linear-gradient(90deg, transparent, var(--sage-light), var(--blush), var(--sage-light), transparent);
-        }
 
         /* ─── 3-column layout ─── */
         .footer-inner {
@@ -406,7 +402,6 @@ export default function Footer() {
 
       <footer className="footer-root" id="footer">
         <div className="footer-bg-botanical" aria-hidden="true" />
-        <div className="footer-divider-top" />
 
         <div className="footer-inner">
 
