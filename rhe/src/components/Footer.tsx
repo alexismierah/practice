@@ -178,6 +178,7 @@ export default function Footer() {
           display: flex;
           flex-direction: column;
           gap: 32px;
+          margin-top: 4px;
         }
 
         .footer-nav {
@@ -293,7 +294,6 @@ export default function Footer() {
         .footer-field input::placeholder,
         .footer-field textarea::placeholder {
           color: var(--text-muted);
-          font-style: italic;
         }
 
         .footer-field input:focus,
@@ -442,26 +442,22 @@ export default function Footer() {
             </nav>
 
             <nav className="footer-nav">
-              <span className="footer-nav-label">Our Services</span>
-              <a href="#">
+              <span className="footer-nav-label">Our Products</span>
+              <a href="/products-services/grass">
                 
-                Artificial Walls & Panels
+                Artificial Grass
               </a>
-              <a href="#">
+              <a href="/products-services/potted-plants">
                 
-                Indoor Garden Design
+                Potted Plants & Trees
               </a>
-              <a href="#">
+              <a href="/products-services/planter-box">
                 
-                Outdoor Landscaping
+                Planter Boxes
               </a>
-              <a href="#">
+              <a href="/products-services/wall-greens">
                 
-                Custom Arrangements
-              </a>
-              <a href="#">
-                
-                Corporate Installations
+                Wall Greens
               </a>
             </nav>
           </div>
