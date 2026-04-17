@@ -10,6 +10,8 @@ export default function Footer() {
     message: "",
   });
   const [btnSent, setBtnSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -17,11 +19,29 @@ export default function Footer() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setBtnSent(true);
-    setTimeout(() => setBtnSent(false), 3000);
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) {
+        const json = await res.json().catch(() => ({}));
+        setError((json as { error?: string }).error ?? "Failed to send. Please try again.");
+        return;
+      }
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setBtnSent(true);
+      setTimeout(() => setBtnSent(false), 3000);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -510,14 +530,18 @@ export default function Footer() {
                   required
                 />
               </div>
+              {error && (
+                <p style={{ fontSize: "0.8rem", color: "#c0392b", margin: 0 }}>{error}</p>
+              )}
               <button
                 type="submit"
+                disabled={submitting}
                 className={`footer-submit${btnSent ? " sent" : ""}`}
               >
                 <svg className="check-icon" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                {btnSent ? "Sent" : "Send Message"}
+                {submitting ? "Sending…" : btnSent ? "Sent" : "Send Message"}
               </button>
             </form>
           </div>

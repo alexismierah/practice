@@ -68,7 +68,7 @@ export default function Header() {
           max-width: 1180px;
           margin: 0 auto;
           padding: 0 40px;
-          height: 81px;
+          height: 80px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -166,7 +166,7 @@ export default function Header() {
 
         .hdr-dropdown {
           position: absolute;
-          top: calc(100% + 31px);
+          top: calc(100% + 30px);
           left: 50%;
           transform: translateX(-50%) translateY(-6px);
           background: #ffffff;
@@ -251,7 +251,7 @@ export default function Header() {
           font-size: 0.78rem;
           font-weight: 500;
           letter-spacing: 0.12em;
-          text-transform: uppercase;
+          text-transform: Capitalize;
           border-radius: 999px;
           cursor: pointer;
           text-decoration: none;
@@ -307,7 +307,7 @@ export default function Header() {
         .hdr-mobile-menu {
           display: none;
           position: fixed;
-          top: 69px;
+          top: 60px;
           left: 0;
           right: 0;
           background: #ffffff;
