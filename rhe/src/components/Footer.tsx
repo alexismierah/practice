@@ -425,7 +425,7 @@ export default function Footer() {
             </div>
 
             <p className="footer-desc">
-              Bringing enduring botanical beauty into every space — our curated collection of lifelike artificial greenery is crafted for those who value the timeless elegance of nature.
+              Bringing enduring botanical beauty into every space, a thoughtfully curated collection of lifelike artificial greenery crafted for those who appreciate the timeless elegance of nature.
             </p>
 
             <div className="footer-socials">
@@ -442,10 +442,9 @@ export default function Footer() {
           <div className="footer-middle">
             <nav className="footer-nav">
               <span className="footer-nav-label">Contact Us</span>
-              <span className="footer-nav-item">hello@richhaven.com</span>
-              <span className="footer-nav-item">+1 (234) 567-890</span>
-              <span className="footer-nav-item">123 Greenleaf Ave, Garden City</span>
-              <span className="footer-nav-item">Mon – Sat, 9am – 6pm</span>
+              <span className="footer-nav-item">hello@richhaven.net</span>
+              <span className="footer-nav-item">0916 236 6737</span>
+
             </nav>
 
             <nav className="footer-nav">
@@ -482,7 +481,7 @@ export default function Footer() {
                     id="footer-email"
                     name="email"
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="hello@gmail.com"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -495,7 +494,7 @@ export default function Footer() {
                   id="footer-phone"
                   name="phone"
                   type="tel"
-                  placeholder="+1 (234) 567-890"
+                  placeholder="09** *** ****"
                   value={formData.phone}
                   onChange={handleChange}
                 />
@@ -505,7 +504,7 @@ export default function Footer() {
                 <textarea
                   id="footer-msg"
                   name="message"
-                  placeholder="Tell us about your space or project…"
+                  placeholder="Tell us what you're looking for…"
                   value={formData.message}
                   onChange={handleChange}
                   required
@@ -518,7 +517,7 @@ export default function Footer() {
                 <svg className="check-icon" viewBox="0 0 24 24">
                   <polyline points="20 6 9 17 4 12" />
                 </svg>
-                {btnSent ? "Sent!" : "Send Message"}
+                {btnSent ? "Sent" : "Send Message"}
               </button>
             </form>
           </div>
