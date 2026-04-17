@@ -459,7 +459,7 @@ export default function Footer() {
           {/* ── Col 3: Contact Form ── */}
           <div className="footer-form-wrap">
             <h3 className="footer-form-heading">Get in <em>Touch</em></h3>
-            <p className="footer-form-sub">We'd love to make your space greener.</p>
+            <p className="footer-form-sub">Have a question or planning your next space? Get in touch with us.</p>
 
             <form className="footer-form" onSubmit={handleSubmit}>
               <div className="footer-form-row">
