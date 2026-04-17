@@ -196,7 +196,7 @@ export default function Footer() {
         .footer-middle {
           display: flex;
           flex-direction: column;
-          gap: 32px;
+          gap: 35px;
           margin-top: 13px;
         }
 
