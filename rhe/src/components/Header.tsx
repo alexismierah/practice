@@ -2,6 +2,15 @@
 
 import { useState, useRef, useEffect } from "react";
 
+function scrollToFooter(e: React.MouseEvent) {
+  e.preventDefault();
+  const footer = document.getElementById("footer");
+  if (footer) {
+    const top = footer.getBoundingClientRect().top + window.scrollY - 80;
+    window.scrollTo({ top, behavior: "smooth" });
+  }
+}
+
 const productLinks = [
   { label: "Artificial Grass", href: "/products-services/grass" },
   { label: "Potted Plants & Trees", href: "/products-services/potted-plants" },
@@ -61,7 +70,7 @@ export default function Header() {
         }
 
         .hdr-root.scrolled {
-          box-shadow: 0 1px 0 var(--charcoal-soft), 0 4px 20px rgba(30,58,47,0.06);
+          box-shadow: 0 4px 20px rgba(30,58,47,0.06);
         }
 
         .hdr-inner {
@@ -311,7 +320,6 @@ export default function Header() {
           left: 0;
           right: 0;
           background: #ffffff;
-          border-top: 1px solid var(--charcoal-soft);
           padding: 16px 24px 24px;
           flex-direction: column;
           gap: 2px;
@@ -458,7 +466,7 @@ export default function Header() {
 
           {/* CTA */}
           <div className="hdr-cta">
-            <a href="#footer" className="hdr-cta-btn">Get in Touch</a>
+            <a href="#footer" className="hdr-cta-btn" onClick={scrollToFooter}>Get in Touch</a>
           </div>
 
           {/* Mobile burger */}
@@ -471,7 +479,6 @@ export default function Header() {
           </button>
         </div>
 
-        <div className="hdr-border" />
 
         {/* Mobile menu */}
         <div className={`hdr-mobile-menu${mobileOpen ? " open" : ""}`}>
@@ -497,7 +504,7 @@ export default function Header() {
           </div>
 
           <a href="/gallery" className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>Gallery</a>
-          <a href="#footer" className="hdr-mobile-cta" onClick={() => setMobileOpen(false)}>Get in Touch</a>
+          <a href="#footer" className="hdr-mobile-cta" onClick={(e) => { scrollToFooter(e); setMobileOpen(false); }}>Get in Touch</a>
         </div>
       </header>
     </>

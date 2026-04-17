@@ -197,7 +197,7 @@ export default function Footer() {
           display: flex;
           flex-direction: column;
           gap: 32px;
-          margin-top: 4px;
+          margin-top: 13px;
         }
 
         .footer-nav {
@@ -235,6 +235,7 @@ export default function Footer() {
         .footer-form-wrap {
           padding: 0;
           position: relative;
+          margin-top: -0px;
         }
 
         .footer-form-heading {
