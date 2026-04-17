@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 export default function AboutPage() {
   return (
     <main className="about-wrap">
@@ -27,68 +25,23 @@ export default function AboutPage() {
           color: #9aaa9f;
           text-transform: uppercase;
           margin: 0 0 20px;
-          padding: 0 8px;
           font-weight: 500;
-        }
-
-        .about-hero {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 64px;
-        }
-
-        @media (min-width: 1024px) {
-          .about-hero {
-            flex-direction: row;
-          }
-        }
-
-        .about-text {
-          flex: 1;
-        }
-
-        .about-heading-block {
-          margin-bottom: 4px;
-          padding: 0 8px;
         }
 
         .about-heading {
           font-family: "Cormorant Garamond", serif;
           font-weight: 500;
-          font-size: clamp(3rem, 4vw + 1rem, 4rem);
+          font-size: clamp(2rem, 3vw + 1rem, 4rem);
           line-height: 0.98;
           letter-spacing: -.02em;
           color: #163521;
-          margin: 0;
-        }
-
-        .about-heading-italic {
-          font-family: "Cormorant Garamond", serif;
-          font-weight: 500;
-          font-style: italic;
-          font-size: clamp(3rem, 4vw + 1rem, 4rem);
-          line-height: 0.98;
-          letter-spacing: -.02em;
-          color: #3f7a55;
-          margin: 0;
+          margin: 0 0 40px;
           white-space: nowrap;
         }
 
-        .about-mobile-spacer {
-          margin-bottom: 24px;
-        }
-
-        @media (min-width: 1024px) {
-          .about-mobile-spacer { display: none; }
-        }
-
-        .about-body {
-          padding: 0 8px;
-          display: flex;
-          flex-direction: column;
-          gap: 20px;
+        .about-heading-italic {
+          font-style: italic;
+          color: #3f7a55;
         }
 
         .about-paragraph {
@@ -99,7 +52,8 @@ export default function AboutPage() {
           color: rgba(26, 50, 30, 0.72);
           margin: 0;
           letter-spacing: .005em;
-          margin-top: 30px;
+          width: 100%;
+          text-align: justify; 
         }
 
         @media (min-width: 768px) {
@@ -107,109 +61,18 @@ export default function AboutPage() {
             font-size: 1.2rem;
           }
         }
-
-        .about-image-wrap {
-          display: none;
-          width: 100%;
-          max-width: 480px;
-          margin-top: -24px;
-          position: relative;
-        }
-
-        @media (min-width: 1024px) {
-          .about-image-wrap {
-            display: block;
-            margin-top: -48px;
-          }
-        }
-
-        .about-image-shadow {
-          position: absolute !important;
-          inset: 0;
-          width: 120% !important;
-          height: auto;
-          object-fit: contain;
-          border-radius: 16px;
-          opacity: 0.13;
-          filter: blur(8px) saturate(0.3) brightness(0.4);
-          top: -14% !important;
-          left: -10% !important;
-        }
-
-        .about-image-main {
-          position: relative;
-          z-index: 10;
-          width: 100%;
-          height: auto;
-          object-fit: contain;
-          border-radius: 16px;
-          display: block;
-        }
       `}</style>
 
-      {/* Eyebrow */}
       <p className="about-eyebrow">Where nature meets permanence</p>
 
-      {/* Hero Section */}
-      <div className="about-hero">
+      <h1 className="about-heading">
+        Rich Haven <span className="about-heading-italic">Artificial Garden</span>
+      </h1>
 
-        {/* Left: Text */}
-        <div className="about-text">
-
-          {/* Headline */}
-          <div className="about-heading-block">
-            <h1 className="about-heading">Rich Haven</h1>
-            <h1 className="about-heading-italic">Artificial Garden</h1>
-          </div>
-
-          {/* Spacer visible only on mobile after heading block */}
-          <div className="about-mobile-spacer" />
-
-          {/* Body Copy */}
-          <div className="about-body">
-            <p className="about-paragraph">
-              At Rich Haven Artificial Garden, we bring nature-inspired beauty to every
-              space — without the maintenance. We specialize in high-quality artificial
-              greenery, including potted plants, wall greens, hanging plants, and
-              artificial turf, thoughtfully designed to enhance homes, offices, and
-              commercial spaces.
-            </p>
-            <p className="about-paragraph">
-              Our products combine realistic aesthetics with durability, offering a
-              lasting green solution that stays fresh and vibrant all year round.
-              Whether you're elevating an interior, transforming an outdoor area, or
-              creating a calming atmosphere, Rich Haven delivers style, quality, and
-              timeless greenery you can rely on.
-            </p>
-          </div>
-
-        </div>
-
-        {/* Right: Image — hidden on mobile, visible on lg+ */}
-        <div className="about-image-wrap">
-
-          {/* Shadow BG */}
-          <Image
-            src="/Untitled design (2).png"
-            alt=""
-            aria-hidden="true"
-            width={800}
-            height={600}
-            className="about-image-shadow"
-          />
-
-          {/* Main Image */}
-          <Image
-            src="/Untitled design (2).png"
-            alt="Rich Haven Artificial Garden"
-            width={800}
-            height={600}
-            className="about-image-main"
-          />
-
-        </div>
-
-      </div>
+      <p className="about-paragraph">
+        At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space—without the maintenance.
+        We specialize in high-quality artificial greenery, including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces. Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you're elevating an interior, transforming an outdoor area, or creating a calming atmosphere, Rich Haven Artificial Garden is committed to delivering style, quality, and timeless greenery you can rely on.
+      </p>
 
     </main>
   );
