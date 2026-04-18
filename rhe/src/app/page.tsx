@@ -1,13 +1,13 @@
 "use client";
 import Link from "next/link";
-import { CloudSun, Grid2x2, Leaf, ShieldCheck, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const featuredPlants = [
   {
     name: "Artificial Grass",
     sublabel: "Sports or design spaces",
-    img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+    img: "landd.png",
     link: "/products-services/grass",
   },
   {
@@ -30,44 +30,49 @@ const featuredPlants = [
   },
 ];
 
-const svcItems = [
+const displayedPlants = [
   {
-    name: "Artificial Grass Supply",
-    desc: "Premium quality artificial turf for sports courts, residential lawns, rooftop gardens, and commercial spaces — durable, UV-resistant, and always lush.",
+    name: "Artificial Grass",
+    sublabel: "Sports or design spaces",
     img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
+    link: "/products-services/grass",
+    tag: "01",
   },
   {
-    name: "Potted Plants & Trees",
-    desc: "Bring lush indoor and outdoor statement pieces to any room or corner with our curated range of lifelike potted plants and statement trees.",
+    name: "Potted Plants and Trees",
+    sublabel: "Lush Indoor Statement Accent",
     img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
+    link: "/products-services/potted-plants",
+    tag: "02",
   },
   {
-    name: "Planter Box Design",
-    desc: "Vibrant designer foliage collections arranged in custom planter boxes — perfect for lobbies, offices, balconies, and event installations.",
+    name: "Planter Boxes",
+    sublabel: "Vibrant Designer Foliage Collection",
     img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
+    link: "/products-services/planter-box",
+    tag: "03",
   },
   {
-    name: "Wall Greens Installation",
-    desc: "Low-maintenance vertical green walls professionally installed to transform any bare wall into a stunning living-look feature — indoors or outdoors.",
+    name: "Wall Greens",
+    sublabel: "Low-Maintenance Greenery",
     img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
-  },
-  {
-    name: "Space Consultation",
-    desc: "Not sure what fits your space? Our team offers on-site or virtual consultations to help you select the right greenery combination and layout.",
-    img: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/598973170_1362085932374200_5536687096599188254_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGT0NG2TUJ5zSjWYQraD6ZFFz_SIjbfnecXP9IiNt-d5_ez5o5kNtzkM5eDqinu72xI0FFPFLKj1zgTFqyBkNJ7&_nc_ohc=p-RKDlyUvKYQ7kNvwHk0n0C&_nc_oc=AdqXMFp0qpigA8hNiov7C0Y9BB1PMllCrpVI-xQFcGk6zoNPmlAfmtueJDfQ5wxPcN4&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=RlRA6aQz6kjKovVCBWNnxQ&_nc_ss=7a3a8&oh=00_Af3Z8g_ZVDiyLRYHXKxfFykMiJt6Us38xM_hF4VPQcX7Vw&oe=69E40501",
+    link: "/products-services/wall-greens",
+    tag: "04",
   },
 ];
 
-const categories = [
+const motVideos = [
   {
-    title: "Supply",
-    desc: "We supply quality grass, potted plants, planter boxes, and wall gardens to enhance your space with ease and a natural touch to any room.",
-    plantImg: "https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/598973170_1362085932374200_5536687096599188254_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGT0NG2TUJ5zSjWYQraD6ZFFz_SIjbfnecXP9IiNt-d5_ez5o5kNtzkM5eDqinu72xI0FFPFLKj1zgTFqyBkNJ7&_nc_ohc=p-RKDlyUvKYQ7kNvwHk0n0C&_nc_oc=AdqXMFp0qpigA8hNiov7C0Y9BB1PMllCrpVI-xQFcGk6zoNPmlAfmtueJDfQ5wxPcN4&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=RlRA6aQz6kjKovVCBWNnxQ&_nc_ss=7a3a8&oh=00_Af3Z8g_ZVDiyLRYHXKxfFykMiJt6Us38xM_hF4VPQcX7Vw&oe=69E40501",
+    label: "Video 1",
+    src: "https://www.facebook.com/reel/1933138787564923",
   },
   {
-    title: "Installation",
-    desc: "Bring your space to life with expert installation of grass, plants, planter boxes, and wall gardens creating a fresh, natural environment that's built to last.",
-    plantImg: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/661958724_1455321336383992_8103217024831523114_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeGWFYPUbrw88s88TgFQYjUVE244JEBz8NoTbjgkQHPw2oki82kse-3lXjyP5wR8JOAne0DzEZws_hu6VimYAZWJ&_nc_ohc=fSU2WOIPwa8Q7kNvwEt0T_w&_nc_oc=AdofztDrpzhClF8hgZ5ivFiHcvMLQdUha7MEIDPJsmUoxusTm6mR3eBfbZI9byTCQ0o&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=J7OgKli0DC-Qel3y6a2xxg&_nc_ss=7a3a8&oh=00_Af2seg98qtQ9QMrHbRGgF6F2N871SG4Mmujv36Hmq27M8g&oe=69E40115",
+    label: "Video 2",
+    src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_2?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID_2",
+  },
+  {
+    label: "Video 3",
+    src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_3?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID_3",
   },
 ];
 
@@ -94,143 +99,249 @@ const shopReasons = [
   },
 ] as const;
 
-const faqs = [
-  {
-    q: "Are your plants completely artificial?",
-    a: "Yes, all our products are made from high-quality artificial materials designed to mimic the look and feel of real plants — no watering, pruning, or sunlight required.",
-  },
-  {
-    q: "Do you offer installation services?",
-    a: "Absolutely. Our team handles full installation of grass, plants, planter boxes, and wall gardens for both residential and commercial spaces.",
-  },
-  {
-    q: "How long do your products last?",
-    a: "With proper care, our artificial plants can last many years. They're UV-resistant and built to retain their color and shape through different weather conditions.",
-  },
-  {
-    q: "Can I use your plants outdoors?",
-    a: "Yes. Our range is suitable for both indoor and outdoor environments, including patios, balconies, offices, and event spaces.",
-  },
-];
-
 export default function Home() {
-  const displayedPlants = featuredPlants.slice(0, 4);
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [openSvc, setOpenSvc] = useState<number>(1);
+  const [motVideoIdx, setMotVideoIdx] = useState(0);
+  const [sliderIdx, setSliderIdx] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const t = setInterval(() => setSliderIdx(i => (i + 1) % featuredPlants.length), 5000);
+    return () => clearInterval(t);
+  }, []);
 
   return (
     <main className="landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&display=swap");
 
-        .landing, .landing * { box-sizing: border-box; }
+        :root {
+          --mist: #c8dac9;
+          --cream: #f5f2ec;
+        }
+
+        .landing, .landing * { box-sizing: border-box; margin: 0; padding: 0; }
 
         .landing {
-          font-family: "Inter", sans-serif;
-          background: #f2f6ef;
+          font-family: "DM Sans", sans-serif;
+          background: var(--cream);
           min-height: 100vh;
-          padding: 0;
         }
 
-        /* ── HERO ── */
+        /* ─────────────────────────────────────────
+           HERO
+        ───────────────────────────────────────── */
         .hero {
           position: relative;
-          width: 100%;
-          min-height: 100vh;
-          overflow: hidden;
+          min-height: 100svh;
           display: flex;
-          align-items: flex-end;
-          background-image:
-            linear-gradient(
-              175deg,
-              rgba(8, 26, 16, 0.18) 0%,
-              rgba(8, 26, 16, 0.32) 25%,
-              rgba(8, 26, 16, 0.62) 55%,
-              rgba(8, 26, 16, 0.88) 100%
-            ),
-            url("/p62.png");
-          background-size: cover;
-          background-position: center;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          text-align: center;
         }
 
-        .hero-content {
-          position: relative;
-          z-index: 2;
+        .hero-img {
+          position: absolute;
+          inset: 0;
           width: 100%;
-          max-width: 720px;
-          padding: 0 72px 96px;
-          color: #fff;
+          height: 100%;
+          object-fit: cover;
+          opacity: 0;
+          transform: scale(1.05);
+          transition: opacity 1s cubic-bezier(.4,0,.2,1), transform 7s ease;
+          z-index: 0;
         }
 
-        .hero-spacer { height: 42px; }
+        .hero-img.active {
+          opacity: 1;
+          transform: scale(1);
+        }
+
+        .hero-img-vignette {
+          position: absolute;
+          inset: 0;
+          background:
+            linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0.18) 100%),
+            radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, transparent 100%);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        .hero-grain {
+          position: absolute;
+          inset: 0;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+          opacity: 0.032;
+          pointer-events: none;
+          z-index: 2;
+        }
+
+        .hero-left {
+          position: relative;
+          z-index: 3;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: flex-start;
+          width: 100%;
+          min-height: 100svh;
+          padding: 110px 48px 100px;
+        }
+
+        .hero-headline-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          max-width: 800px;
+        }
+
+        .hero-eyebrow {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin-bottom: 32px;
+          justify-content: center;
+        }
+
+        .hero-eyebrow-line {
+          width: 36px;
+          height: 1px;
+          background: rgba(200,218,201,0.5);
+        }
+
+        .hero-eyebrow-text {
+          font-size: 10px;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: rgba(200,218,201,0.75);
+          font-weight: 300;
+          font-family: "DM Sans", sans-serif;
+        }
 
         .hero-title {
-          margin: 0;
-          font-family: "Playfair Display", serif;
-          font-weight: 700;
-          font-size: clamp(2.4rem, 3vw + 1rem, 4.2rem);
-          line-height: 1.08;
-          letter-spacing: -.02em;
-          color: #fff;
-        }
-
-        .hero-divider {
-          width: 48px;
-          height: 1px;
-          background: rgba(180, 220, 190, 0.3);
-          margin: 36px 0;
-        }
-
-        .hero-copy {
-          margin: 0;
-          max-width: 480px;
-          font-size: 14px;
-          line-height: 1.9;
-          color: rgba(210, 230, 216, 0.58);
+          font-family: "Cormorant Garamond", serif;
           font-weight: 300;
-          letter-spacing: .015em;
+          font-size: clamp(4rem, 7vw + 1rem, 9rem);
+          line-height: 0.9;
+          letter-spacing: -0.01em;
+          color: #ffffff;
+          margin-bottom: 0;
         }
 
-        .hero-actions {
+        .hero-title-italic {
+          font-style: italic;
+          font-weight: 300;
+          color: rgba(255,255,255,0.85);
+          display: block;
+        }
+
+        .hero-title-bold {
+          font-weight: 600;
+          color: #ffffff;
+          display: block;
+          line-height: 1;
+        }
+
+        .hero-title-accent {
+          font-style: italic;
+          font-weight: 300;
+          color: var(--mist);
+          display: block;
+        }
+
+        .hero-index-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
           display: flex;
-          gap: 14px;
-          flex-wrap: wrap;
-          margin-top: 44px;
+          align-items: center;
+          justify-content: space-between;
+          padding: 28px 56px;
+          z-index: 3;
+          border-top: 1px solid rgba(255,255,255,0.08);
         }
 
-        .button {
-          border: none;
-          border-radius: 999px;
-          padding: 12px 24px;
-          font-size: 12.5px;
-          font-weight: 500;
-          cursor: pointer;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-          text-decoration: none;
-          letter-spacing: .06em;
+        .hero-index-number {
+          font-family: "Cormorant Garamond", serif;
+          font-size: 1.8rem;
+          font-weight: 300;
+          color: rgba(255,255,255,0.18);
+          line-height: 1;
+          letter-spacing: -0.02em;
+          user-select: none;
+          transition: color 0.5s;
+        }
+
+        .hero-slide-label {
+          font-size: 10px;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
+          color: rgba(255,255,255,0.35);
+          font-weight: 300;
         }
-        .button:hover { transform: translateY(-1px); }
-        .button-primary {
-          background: #2f6f44;
-          color: #fff;
-          box-shadow: 0 12px 28px rgba(20, 50, 30, 0.35);
+
+        .hero-nav-dots {
+          display: flex;
+          gap: 8px;
+          align-items: center;
         }
-        .button-primary:hover { background: #367d4e; }
-        .button-secondary {
-          color: rgba(230, 245, 232, 0.85);
-          background: rgba(255, 255, 255, 0.07);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          backdrop-filter: blur(4px);
+
+        .hero-dot {
+          width: 20px;
+          height: 2px;
+          background: rgba(255,255,255,0.2);
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: background 0.3s, width 0.3s cubic-bezier(.4,0,.2,1);
         }
-        .button-secondary:hover {
-          background: rgba(255, 255, 255, 0.12);
-          border-color: rgba(255, 255, 255, 0.35);
+
+        .hero-dot.active {
+          background: rgba(255,255,255,0.85);
+          width: 40px;
         }
-        .button-primary-dark { background: #2f6f44; color: #fff; box-shadow: 0 8px 20px rgba(0,0,0,.25); }
+
+        .hero-progress-line {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: rgba(255,255,255,0.06);
+          z-index: 4;
+        }
+
+        .hero-progress-fill {
+          height: 100%;
+          background: rgba(200,218,201,0.6);
+          animation: lineFill 5s linear forwards;
+          transform-origin: left;
+        }
+
+        @keyframes lineFill {
+          from { width: 0% }
+          to   { width: 100% }
+        }
+
+        .hero-animate .hero-eyebrow { animation: fadeUp 0.7s 0.1s both ease; }
+        .hero-animate .hero-title { animation: fadeUp 0.9s 0.25s both ease; }
+        .hero-animate .hero-desc { animation: fadeUp 0.8s 0.45s both ease; }
+        .hero-animate .hero-actions { animation: fadeUp 0.8s 0.6s both ease; }
+        .hero-animate .hero-index-bar { animation: fadeIn 0.7s 0.75s both ease; }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+          from { opacity: 0; transform: translateY(22px); }
+          to   { opacity: 1; transform: translateY(0); }
+        }
 
         /* ── WHY SHOP ── */
         .why-shop {
@@ -249,7 +360,7 @@ export default function Home() {
           text-transform: uppercase;
           color: #7a8f80;
           margin: 0 0 14px;
-          font-family: "Inter", sans-serif;
+          font-family: "DM Sans", sans-serif;
         }
 
         .why-shop-title {
@@ -338,196 +449,6 @@ export default function Home() {
           filter: drop-shadow(0 24px 32px rgba(30,57,40,.18));
         }
 
-        /* ── SERVICES ACCORDION ── */
-        .svc-accordion-section {
-          background: #fafbf8;
-          padding: 96px 64px;
-        }
-
-        .svc-accordion-layout {
-          display: grid;
-          grid-template-columns: 220px 1fr 1.15fr;
-          gap: 40px;
-          align-items: start;
-        }
-
-        .svc-accordion-left { display: flex; flex-direction: column; }
-
-        .svc-accordion-eyebrow {
-          font-size: 11px;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          margin: 0 0 10px;
-        }
-
-        .svc-accordion-heading {
-          font-family: "Playfair Display", serif;
-          font-weight: 700;
-          font-size: clamp(1.8rem, 2vw + 0.8rem, 2.8rem);
-          color: #163521;
-          line-height: 1.08;
-          margin: 0 0 16px;
-        }
-
-        .svc-accordion-heading em {
-          font-style: italic;
-          font-weight: 500;
-          color: #3f7a55;
-        }
-
-        .svc-accordion-desc {
-          font-size: 13px;
-          line-height: 1.8;
-          color: #7a8f80;
-          margin: 0 0 32px;
-        }
-
-        .svc-view-all {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          background: #2f6f44;
-          color: #fff;
-          border: none;
-          border-radius: 999px;
-          padding: 11px 22px;
-          font-size: 12px;
-          font-weight: 500;
-          letter-spacing: .06em;
-          text-transform: uppercase;
-          cursor: pointer;
-          text-decoration: none;
-          transition: background .2s ease;
-          align-self: flex-start;
-        }
-
-        .svc-view-all:hover { background: #367d4e; }
-
-        .svc-accordion-label {
-          font-size: 10px;
-          letter-spacing: .1em;
-          text-transform: uppercase;
-          color: #b0bfb5;
-          margin-top: 40px;
-          padding-top: 16px;
-          border-top: 1px solid #e4ebe0;
-        }
-
-        .svc-accordion-img-wrap {
-          border-radius: 16px;
-          overflow: hidden;
-          position: relative;
-        }
-
-        .svc-accordion-img {
-          width: 100%;
-          aspect-ratio: 3/4;
-          object-fit: cover;
-          display: block;
-          transition: opacity .35s ease;
-        }
-
-        .svc-accordion-list {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .svc-acc-item {
-          border-bottom: 1px solid #e4ebe0;
-        }
-
-        .svc-acc-item:first-child {
-          border-top: 1px solid #e4ebe0;
-        }
-
-        .svc-acc-trigger {
-          width: 100%;
-          background: none;
-          border: none;
-          padding: 16px 18px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 12px;
-          cursor: pointer;
-          border-radius: 0;
-          transition: background .15s;
-          text-align: left;
-        }
-
-        .svc-acc-trigger.active {
-          background: #1d3d28;
-          border-radius: 10px;
-          margin: 3px 0;
-        }
-
-        .svc-acc-item:has(.active) {
-          border-color: transparent;
-        }
-
-        .svc-acc-name {
-          font-family: "Playfair Display", serif;
-          font-size: .95rem;
-          font-weight: 700;
-          color: #1d3d28;
-          margin: 0;
-          transition: color .15s;
-          line-height: 1.3;
-        }
-
-        .svc-acc-trigger.active .svc-acc-name {
-          color: #fff;
-        }
-
-        .svc-acc-arrow {
-          width: 24px;
-          height: 24px;
-          border-radius: 50%;
-          background: #e8ede5;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          transition: background .15s;
-        }
-
-        .svc-acc-trigger.active .svc-acc-arrow {
-          background: #3f7a55;
-        }
-
-        .svc-acc-arrow svg {
-          width: 10px;
-          height: 10px;
-          color: #2f6f44;
-          transition: color .15s;
-        }
-
-        .svc-acc-trigger.active .svc-acc-arrow svg {
-          color: #fff;
-        }
-
-        .svc-acc-body {
-          overflow: hidden;
-          max-height: 0;
-          opacity: 0;
-          transition: max-height .3s ease, opacity .25s ease;
-          padding: 0 18px;
-        }
-
-        .svc-acc-body.open {
-          max-height: 120px;
-          opacity: 1;
-          padding-bottom: 16px;
-        }
-
-        .svc-acc-desc {
-          font-size: 12.5px;
-          color: #6b7d72;
-          line-height: 1.72;
-          margin: 0;
-        }
-
         /* ── PRODUCTS ── */
         .products-section {
           background: #fafaf8;
@@ -558,9 +479,8 @@ export default function Home() {
           line-height: 1.1;
         }
 
-        .ps-title em { font-style: italic; font-weight: 500; }
+        .ps-title em { font-style: italic; font-weight: 500; color: #2f6f44; }
 
-        /* ── SLAY CARD GRID ── */
         .ps-grid {
           display: grid;
           grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -571,14 +491,20 @@ export default function Home() {
         .ps-card {
           border-radius: 16px;
           overflow: hidden;
-          position: relative;
-          background: #1a2e20;
+          background: #ffffff;
           display: block;
         }
 
         .ps-card a {
-          display: block;
+          display: flex;
+          flex-direction: column;
           text-decoration: none;
+        }
+
+        .ps-card-img-wrap {
+          position: relative;
+          overflow: hidden;
+          border-radius: 16px 16px 0 0;
         }
 
         .ps-card-img {
@@ -593,38 +519,26 @@ export default function Home() {
           transform: scale(1.05);
         }
 
-        .ps-card-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            to top,
-            rgba(10, 28, 16, 0.88) 0%,
-            rgba(10, 28, 16, 0.22) 48%,
-            transparent 100%
-          );
-          pointer-events: none;
-        }
-
         .ps-card-body {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 22px 20px 20px;
+          padding: 16px 18px 18px;
+          background: #ffffff;
+          border: 1px solid #e8ede5;
+          border-top: none;
+          border-radius: 0 0 16px 16px;
         }
 
         .ps-card-name {
-          margin: 0 0 5px;
+          margin: 0 0 4px;
           font-family: "Playfair Display", serif;
-          font-size: 1.05rem;
+          font-size: 1rem;
           font-weight: 700;
-          color: #fff;
+          color: #163521;
           line-height: 1.25;
         }
 
         .ps-card-sub {
           font-size: 11px;
-          color: rgba(200, 230, 210, 0.62);
+          color: #7a8f80;
           margin: 0;
           letter-spacing: .03em;
         }
@@ -646,169 +560,11 @@ export default function Home() {
         .ps-explore:hover { color: #163521; }
         .ps-explore-line { width: 32px; height: 1px; background: currentColor; display: inline-block; }
 
-        /* ── SERVICES (original cards) ── */
-        .services-section {
-          background: linear-gradient(180deg, #ffffff 0%, #ffffff 65%, #c8d9cf 100%);
-          padding: 96px 64px;
-        }
 
-        .svc-header {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          margin-bottom: 56px;
-        }
-
-        .svc-eyebrow {
-          font-size: 11px;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          margin: 0 0 10px;
-        }
-
-        .svc-title {
-          margin: 0;
-          font-family: "Playfair Display", serif;
-          font-weight: 700;
-          font-size: clamp(1.8rem, 1.4vw + 1rem, 2.6rem);
-          color: #163521;
-          line-height: 1.1;
-        }
-
-        .svc-title em { font-style: italic; font-weight: 500; color: #3f7a55; }
-
-        .svc-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0,1fr));
-          gap: 20px;
-        }
-
-        .svc-card {
-          border: 1px solid rgba(26,46,26,0.08);
-          border-radius: 16px;
-          overflow: hidden;
-          display: grid;
-          grid-template-columns: 1fr 160px;
-          min-height: 240px;
-          transition: border-color .2s;
-        }
-
-        .svc-card:hover { border-color: rgba(26,46,26,0.15); }
-
-        .svc-card-body { padding: 36px 32px; display: flex; flex-direction: column; }
-
-        .svc-card-title {
-          margin: 0 0 12px;
-          font-family: "Playfair Display", serif;
-          color: #163521;
-          font-size: 1.35rem;
-          font-weight: 700;
-          line-height: 1.2;
-        }
-
-        .svc-card-desc {
-          margin: 0;
-          color: #7a8f80;
-          font-size: 13px;
-          line-height: 1.7;
-        }
-
-        .svc-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-        /* ── FAQs ── */
-        .faq-section {
-          background: #fafbf8;
-          padding: 80px 64px;
-        }
-
-        .faq-inner {
-          max-width: 800px;
-          margin: 0 auto;
-        }
-
-        .faq-eyebrow {
-          font-size: 11px;
-          letter-spacing: .12em;
-          text-transform: uppercase;
-          color: #7a8f80;
-          margin: 0 0 10px;
-        }
-
-        .faq-heading {
-          font-family: "Playfair Display", serif;
-          font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
-          font-weight: 700;
-          color: #163521;
-          line-height: 1.1;
-          margin: 0 0 40px;
-        }
-
-        .faq-heading em {
-          font-style: italic;
-          font-weight: 500;
-          color: #3f7a55;
-        }
-
-        .faq-item { border-bottom: 1px solid #dce8d5; }
-        .faq-item:first-of-type { border-top: 1px solid #dce8d5; }
-
-        .faq-trigger {
-          width: 100%;
-          background: none;
-          border: none;
-          padding: 20px 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 16px;
-          cursor: pointer;
-          text-align: left;
-        }
-
-        .faq-trigger:hover .faq-q { color: #2f6f44; }
-
-        .faq-q {
-          font-family: "Playfair Display", serif;
-          font-size: 1rem;
-          font-weight: 700;
-          color: #1d3d28;
-          margin: 0;
-          line-height: 1.4;
-          transition: color .15s;
-        }
-
-        .faq-chevron {
-          width: 16px;
-          height: 16px;
-          color: #7a8f80;
-          flex-shrink: 0;
-          transition: transform .25s ease;
-        }
-
-        .faq-chevron.open { transform: rotate(180deg); }
-
-        .faq-body {
-          overflow: hidden;
-          transition: max-height .3s ease, opacity .25s ease;
-          max-height: 0;
-          opacity: 0;
-        }
-
-        .faq-body.open { max-height: 200px; opacity: 1; }
-
-        .faq-a {
-          font-size: 13.5px;
-          color: #6b7d72;
-          line-height: 1.72;
-          margin: 0;
-          padding-bottom: 20px;
-        }
 
         /* ── CTA STRIP ── */
         .cta-strip {
           background: #c8d9cf;
-          border-top: none;
           padding: 88px 64px 120px;
           display: flex;
           align-items: center;
@@ -842,11 +598,7 @@ export default function Home() {
           line-height: 0;
         }
 
-        .cta-strip-wave svg {
-          display: block;
-          width: 100%;
-          height: 64px;
-        }
+        .cta-strip-wave svg { display: block; width: 100%; height: 64px; }
 
         .cta-strip-eyebrow {
           font-family: 'DM Sans', sans-serif;
@@ -867,11 +619,7 @@ export default function Home() {
           margin: 0;
         }
 
-        .cta-strip-heading em {
-          font-style: italic;
-          font-weight: 400;
-          color: #2d5040;
-        }
+        .cta-strip-heading em { font-style: italic; font-weight: 400; color: #2d5040; }
 
         .cta-strip-sub {
           font-family: 'DM Sans', sans-serif;
@@ -883,82 +631,95 @@ export default function Home() {
           font-weight: 300;
         }
 
-        .cta-strip-actions {
+        /* ── MAIL ORDER TREES ── */
+        .mot-section {
+          background: #ffffff;
+          padding: 96px 64px 80px;
+          position: relative;
+          overflow: hidden;
+          text-align: center;
+        }
+
+        .mot-inner {
+          max-width: 900px;
+          margin: 0 auto;
           display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
           position: relative;
           z-index: 1;
-          margin-top: 32px;
         }
 
-        .cta-strip-btn-outline {
-          font-family: 'DM Sans', sans-serif;
-          border: 1.5px solid #2d5040;
-          color: #2d5040;
-          background: transparent;
-          border-radius: 999px;
-          padding: 11px 26px;
-          font-size: 0.72rem;
-          font-weight: 500;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          transition: background 0.25s, border-color 0.25s;
+        .mot-title {
+          font-family: "Playfair Display", serif;
+          font-weight: 700;
+          font-size: clamp(1.9rem, 2vw + 1rem, 2.8rem);
+          color: #163521;
+          line-height: 1.1;
+          margin-bottom: 18px;
         }
 
-        .cta-strip-btn-outline:hover {
-          background: rgba(45,80,64,0.1);
-          border-color: #2d5040;
+        .mot-desc {
+          font-size: 14px;
+          color: #7a8f80;
+          line-height: 1.8;
+          max-width: 520px;
+          margin: 0 auto 40px;
+          font-weight: 300;
         }
 
-        .cta-strip-btn-primary {
-          font-family: 'DM Sans', sans-serif;
-          background: #2d5040;
-          color: #ffffff;
+        .mot-video-wrap {
+          width: 100%;
+          max-width: 680px;
+          margin: 0 auto;
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          background: #1a2e20;
+        }
+
+        .mot-video-iframe {
+          width: 100%;
+          aspect-ratio: 16/9;
           border: none;
-          border-radius: 999px;
-          padding: 11px 26px;
-          font-size: 0.72rem;
-          font-weight: 500;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          cursor: pointer;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          transition: background 0.25s, transform 0.2s;
+          display: block;
         }
 
-        .cta-strip-btn-primary:hover {
-          background: #3d6b54;
-          transform: translateY(-1px);
+        .mot-video-dots {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+          margin-top: 20px;
+        }
+
+        .mot-video-dot {
+          width: 20px;
+          height: 2px;
+          background: #c8dac9;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          transition: background 0.3s, width 0.3s cubic-bezier(.4,0,.2,1);
+        }
+
+        .mot-video-dot.active {
+          background: #2d5a3d;
+          width: 40px;
         }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-          .hero-content { padding: 0 40px 72px; }
+          .hero-top-bar { padding: 28px 36px; }
+          .hero-index-bar { padding: 22px 36px; }
+          .hero-left { padding: 90px 36px 90px; }
           .why-shop { padding: 72px 40px; }
           .why-shop-grid { grid-template-columns: 1fr; gap: 40px; }
           .why-shop-plant-col { order: -1; }
           .why-shop-plant { max-width: 260px; }
-          .svc-accordion-section { padding: 72px 40px; }
-          .svc-accordion-layout { grid-template-columns: 1fr; gap: 32px; }
-          .svc-accordion-img { aspect-ratio: 16/9; }
-          .svc-accordion-desc { max-width: 100%; }
           .products-section, .services-section { padding: 72px 40px; }
           .ps-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-          .svc-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-          .faq-section { padding: 72px 40px; }
           .cta-strip { padding: 60px 40px; }
+          .mot-section { padding: 72px 40px; }
         }
 
         @media (max-width: 768px) {
@@ -966,20 +727,15 @@ export default function Home() {
         }
 
         @media (max-width: 640px) {
-          .hero { min-height: 100vh; min-height: 100svh; background-position: 62% center; }
-          .hero-content { padding: 0 24px 56px; max-width: 100%; }
-          .hero-title { font-size: clamp(2rem, 6vw + 0.5rem, 3rem); }
+          .hero-top-bar { padding: 24px 20px; }
+          .hero-index-bar { padding: 18px 20px; }
+          .hero-left { padding: 76px 24px 80px; }
+          .hero-title { font-size: clamp(3.2rem, 12vw, 5rem); }
           .why-shop { padding: 56px 20px; }
-          .why-shop-header { margin-bottom: 48px; }
-          .svc-accordion-section { padding: 56px 20px; }
           .products-section, .services-section { padding: 56px 20px; }
           .ps-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-          .svc-grid { grid-template-columns: 1fr; }
-          .svc-card { grid-template-columns: 1fr; }
-          .svc-card-img { height: 180px; }
-          .reason { padding: 20px 16px; }
-          .faq-section { padding: 56px 20px; }
           .cta-strip { padding: 48px 20px; flex-direction: column; align-items: center; }
+          .mot-section { padding: 56px 20px; }
         }
 
         @media (max-width: 400px) {
@@ -987,38 +743,116 @@ export default function Home() {
         }
       `}</style>
 
-      {/* ── HERO ── */}
+      {/* ═══════════════════════════════════════════
+          HERO
+      ═══════════════════════════════════════════ */}
       <section className="hero">
-        <div className="hero-content">
-          <div className="hero-spacer" aria-hidden="true" />
-          <h1 className="hero-title">
-            Elevate every space <br /> with enduring, nature‑inspired <br />greenery look
-          </h1>
-          <div className="hero-divider" />
-          <p className="hero-copy">
-            Thoughtfully crafted for homes, offices, and commercial spaces — our premium artificial greenery delivers the quiet beauty of nature without the upkeep, season after season.
-          </p>
-          <div className="hero-actions">
-            <Link className="button button-primary" href="/products-services">View Products & Services</Link>
-            <Link className="button button-secondary" href="/portfolio">Our Portfolio</Link>
+        {featuredPlants.map((plant, i) => (
+          <img
+            key={plant.name}
+            className={`hero-img${i === sliderIdx ? " active" : ""}`}
+            src={plant.img}
+            alt={plant.name}
+          />
+        ))}
+
+        <div className="hero-img-vignette" aria-hidden="true" />
+        <div className="hero-grain" aria-hidden="true" />
+
+        <div className={`hero-left${mounted ? " hero-animate" : ""}`}>
+          <div className="hero-headline-block">
+            <div className="hero-eyebrow">
+              <span className="hero-eyebrow-line" aria-hidden="true" />
+              <span className="hero-eyebrow-text">Rich Haven Artificial Garden</span>
+              <span className="hero-eyebrow-line" aria-hidden="true" />
+            </div>
+
+            <h1 className="hero-title">
+              <span className="hero-title-italic"></span>
+              <span className="hero-title-bold">Greens for</span>
+              <span className="hero-title-bold"> your Space.</span>
+              <span className="hero-title-accent"></span>
+            </h1>
           </div>
+
+          <div className="hero-index-bar">
+            <span className="hero-index-number" aria-hidden="true">
+              {String(sliderIdx + 1).padStart(2, "0")} / {String(featuredPlants.length).padStart(2, "0")}
+            </span>
+            <span className="hero-slide-label">
+              {featuredPlants[sliderIdx].name}
+            </span>
+            <nav className="hero-nav-dots" aria-label="Slide navigation">
+              {featuredPlants.map((plant, i) => (
+                <button
+                  key={plant.name}
+                  className={`hero-dot${i === sliderIdx ? " active" : ""}`}
+                  onClick={() => setSliderIdx(i)}
+                  aria-label={`Show ${plant.name}`}
+                  aria-pressed={i === sliderIdx}
+                />
+              ))}
+            </nav>
+          </div>
+        </div>
+
+        <div className="hero-progress-line" aria-hidden="true">
+          <div key={sliderIdx} className="hero-progress-fill" />
         </div>
       </section>
 
-      {/* ── PRODUCTS ── */}
+      {/* ═══════════════════════════════════════════
+          MAIL ORDER TREES
+      ═══════════════════════════════════════════ */}
+      <section className="mot-section">
+
+
+
+        <div className="mot-inner">
+          <h2 className="mot-title">Rich Haven Artificial Garden</h2>
+          <p className="mot-desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit
+            interdum, ac aliquet odio mattis.
+          </p>
+
+          <div className="mot-video-wrap">
+            <iframe
+              className="mot-video-iframe"
+              src={motVideos[motVideoIdx].src}
+              allow="autoplay; fullscreen"
+              allowFullScreen
+            />
+          </div>
+
+          <nav className="mot-video-dots" aria-label="Video navigation">
+            {motVideos.map((v, i) => (
+              <button
+                key={v.label}
+                className={`mot-video-dot${i === motVideoIdx ? " active" : ""}`}
+                onClick={() => setMotVideoIdx(i)}
+                aria-label={`Show ${v.label}`}
+                aria-pressed={i === motVideoIdx}
+              />
+            ))}
+          </nav>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          PRODUCTS
+      ═══════════════════════════════════════════ */}
       <section className="products-section" aria-labelledby="products-heading">
         <div className="ps-header">
           <div>
             <p className="ps-eyebrow">What we offer</p>
             <h2 className="ps-title" id="products-heading"><em>Green</em> Solutions</h2>
-          <p className="cta-strip-sub">
-           Flexible artificial greenery options available for supply or tailored installation.
-          </p>
+            <p style={{ marginTop: 12, fontSize: 13.5, color: "#7a8f80", lineHeight: 1.7, maxWidth: 380, whiteSpace: "nowrap" }}>
+              Choose your greenery — we can supply it or fully install it based on your space.
+            </p>
           </div>
-
           <Link className="ps-explore" href="/products-services">
             <span className="ps-explore-line" />
-            View all products
+            View all
             <span className="ps-explore-line" />
           </Link>
         </div>
@@ -1027,8 +861,9 @@ export default function Home() {
           {displayedPlants.map((plant) => (
             <article className="ps-card" key={plant.name}>
               <Link href={plant.link}>
-                <img className="ps-card-img" src={plant.img} alt={plant.name} />
-                <div className="ps-card-overlay" />
+                <div className="ps-card-img-wrap">
+                  <img className="ps-card-img" src={plant.img} alt={plant.name} />
+                </div>
                 <div className="ps-card-body">
                   <h3 className="ps-card-name">{plant.name}</h3>
                   <p className="ps-card-sub">{plant.sublabel}</p>
@@ -1039,7 +874,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── WHY SHOP ── */}
+      {/* ═══════════════════════════════════════════
+          WHY SHOP
+      ═══════════════════════════════════════════ */}
       <section className="why-shop" aria-labelledby="why-shop-title">
         <div className="why-shop-header">
           <p className="why-shop-eyebrow">Bring nature to your space</p>
@@ -1054,7 +891,7 @@ export default function Home() {
             {shopReasons.slice(0, 2).map((reason) => (
               <article className="reason" key={reason.title}>
                 <div className="reason-icon-wrap" aria-hidden="true">
-                  <reason.icon className="reason-icon" aria-hidden="true" strokeWidth={1.8} />
+                  <reason.icon className="reason-icon" strokeWidth={1.8} />
                 </div>
                 <div className="reason-content">
                   <h3>{reason.title}</h3>
@@ -1074,7 +911,7 @@ export default function Home() {
             {shopReasons.slice(2).map((reason) => (
               <article className="reason" key={reason.title}>
                 <div className="reason-icon-wrap" aria-hidden="true">
-                  <reason.icon className="reason-icon" aria-hidden="true" strokeWidth={1.8} />
+                  <reason.icon className="reason-icon" strokeWidth={1.8} />
                 </div>
                 <div className="reason-content">
                   <h3>{reason.title}</h3>
@@ -1086,7 +923,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── CTA STRIP ── */}
+      {/* ═══════════════════════════════════════════
+          CTA STRIP
+      ═══════════════════════════════════════════ */}
       <section className="cta-strip" aria-label="Call to action">
         <div className="cta-strip-left">
           <p className="cta-strip-eyebrow">Let&apos;s work together</p>
@@ -1097,6 +936,7 @@ export default function Home() {
             Get in touch with us. We&apos;re ready to help you find the perfect greenery for your space.
           </p>
         </div>
+
         <div className="cta-strip-wave" aria-hidden="true">
           <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="#ffffff" />
