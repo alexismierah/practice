@@ -1115,7 +1115,7 @@ export default function Home() {
             Ready to transform your <em>space?</em>
           </h2>
           <p className="cta-strip-sub">
-            Explore our full range of premium artificial greenery or get in touch — we&apos;re happy to help you find the perfect fit for your space.
+            Explore our full range of premium artificial greenery or get in touch. We&apos;re happy to help you find the perfect fit for your space.
           </p>
         </div>
         {/* wave transition into footer */}
