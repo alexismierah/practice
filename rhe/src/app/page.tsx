@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const featuredPlants = [
   {
-    name: " Artificial Grass",
+    name: "Artificial Grass",
     sublabel: "Sports or design spaces",
     img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
     link: "/products-services/grass",
@@ -182,7 +182,7 @@ export default function Home() {
         }
 
         .hero-copy {
-          margin: 0 0 0;
+          margin: 0;
           max-width: 480px;
           font-size: 14px;
           line-height: 1.9;
@@ -234,7 +234,7 @@ export default function Home() {
 
         /* ── WHY SHOP ── */
         .why-shop {
-          background: #fff;
+          background: linear-gradient(180deg, #ffffff 0%, #ffffff 60%, #c8d9cf 100%);
           padding: 96px 64px;
         }
 
@@ -560,47 +560,71 @@ export default function Home() {
 
         .ps-title em { font-style: italic; font-weight: 500; }
 
+        /* ── SLAY CARD GRID ── */
         .ps-grid {
           display: grid;
-          grid-template-columns: repeat(4, minmax(0,1fr));
-          gap: 1px;
-          background: #e2e8df;
-          border: 1px solid #e2e8df;
-          border-radius: 16px;
-          overflow: hidden;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 14px;
           margin-bottom: 48px;
         }
 
         .ps-card {
-          background: #fff;
-          display: flex;
-          flex-direction: column;
-          transition: background .18s;
-        }
-
-        .ps-card:hover { background: #f8fbf7; }
-
-        .ps-card-img {
-          width: 100%;
-          aspect-ratio: 3/2.6;
-          object-fit: cover;
+          border-radius: 16px;
+          overflow: hidden;
+          position: relative;
+          background: #1a2e20;
           display: block;
         }
 
-        .ps-card-body { padding: 18px 20px 20px; flex: 1; display: flex; flex-direction: column; }
+        .ps-card a {
+          display: block;
+          text-decoration: none;
+        }
+
+        .ps-card-img {
+          width: 100%;
+          aspect-ratio: 3 / 4;
+          object-fit: cover;
+          display: block;
+          transition: transform .45s ease;
+        }
+
+        .ps-card:hover .ps-card-img {
+          transform: scale(1.05);
+        }
+
+        .ps-card-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            to top,
+            rgba(10, 28, 16, 0.88) 0%,
+            rgba(10, 28, 16, 0.22) 48%,
+            transparent 100%
+          );
+          pointer-events: none;
+        }
+
+        .ps-card-body {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 22px 20px 20px;
+        }
 
         .ps-card-name {
-          margin: 0 0 4px;
+          margin: 0 0 5px;
           font-family: "Playfair Display", serif;
-          font-size: 1rem;
+          font-size: 1.05rem;
           font-weight: 700;
-          color: #163521;
+          color: #fff;
           line-height: 1.25;
         }
 
         .ps-card-sub {
           font-size: 11px;
-          color: #9aaa9f;
+          color: rgba(200, 230, 210, 0.62);
           margin: 0;
           letter-spacing: .03em;
         }
@@ -919,14 +943,6 @@ export default function Home() {
           transform: translateY(-1px);
         }
 
-        @media (max-width: 1024px) {
-          .cta-strip { padding: 60px 40px; }
-        }
-
-        @media (max-width: 640px) {
-          .cta-strip { padding: 48px 20px; flex-direction: column; align-items: center; }
-        }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
           .hero-content { padding: 0 40px 72px; }
@@ -939,10 +955,14 @@ export default function Home() {
           .svc-accordion-img { aspect-ratio: 16/9; }
           .svc-accordion-desc { max-width: 100%; }
           .products-section, .services-section { padding: 72px 40px; }
-          .ps-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
           .ps-header { flex-direction: column; align-items: flex-start; gap: 20px; }
           .svc-header { flex-direction: column; align-items: flex-start; gap: 20px; }
           .faq-section { padding: 72px 40px; }
+          .cta-strip { padding: 60px 40px; }
+        }
+
+        @media (max-width: 768px) {
+          .ps-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
         }
 
         @media (max-width: 640px) {
@@ -953,12 +973,17 @@ export default function Home() {
           .why-shop-header { margin-bottom: 48px; }
           .svc-accordion-section { padding: 56px 20px; }
           .products-section, .services-section { padding: 56px 20px; }
-          .ps-grid { grid-template-columns: 1fr; }
+          .ps-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
           .svc-grid { grid-template-columns: 1fr; }
           .svc-card { grid-template-columns: 1fr; }
           .svc-card-img { height: 180px; }
           .reason { padding: 20px 16px; }
           .faq-section { padding: 56px 20px; }
+          .cta-strip { padding: 48px 20px; flex-direction: column; align-items: center; }
+        }
+
+        @media (max-width: 400px) {
+          .ps-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
@@ -967,7 +992,7 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-spacer" aria-hidden="true" />
           <h1 className="hero-title">
-            Elevate every space <br /> with enduring, nature‑inspired <br/>greenery look
+            Elevate every space <br /> with enduring, nature‑inspired <br />greenery look
           </h1>
           <div className="hero-divider" />
           <p className="hero-copy">
@@ -977,6 +1002,40 @@ export default function Home() {
             <Link className="button button-primary" href="/products-services">View Products & Services</Link>
             <Link className="button button-secondary" href="/portfolio">Our Portfolio</Link>
           </div>
+        </div>
+      </section>
+
+      {/* ── PRODUCTS ── */}
+      <section className="products-section" aria-labelledby="products-heading">
+        <div className="ps-header">
+          <div>
+            <p className="ps-eyebrow">What we offer</p>
+            <h2 className="ps-title" id="products-heading"><em>Green</em> Solutions</h2>
+          <p className="cta-strip-sub">
+           Flexible artificial greenery options available for supply or tailored installation.
+          </p>
+          </div>
+
+          <Link className="ps-explore" href="/products-services">
+            <span className="ps-explore-line" />
+            View all products
+            <span className="ps-explore-line" />
+          </Link>
+        </div>
+
+        <div className="ps-grid">
+          {displayedPlants.map((plant) => (
+            <article className="ps-card" key={plant.name}>
+              <Link href={plant.link}>
+                <img className="ps-card-img" src={plant.img} alt={plant.name} />
+                <div className="ps-card-overlay" />
+                <div className="ps-card-body">
+                  <h3 className="ps-card-name">{plant.name}</h3>
+                  <p className="ps-card-sub">{plant.sublabel}</p>
+                </div>
+              </Link>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -1027,98 +1086,17 @@ export default function Home() {
         </div>
       </section>
 
-
-
-      {/* ── PRODUCTS ── */}
-      <section className="products-section" aria-labelledby="products-heading">
-        <div className="ps-header">
-          <div>
-            <p className="ps-eyebrow">What we offer</p>
-            <h2 className="ps-title" id="products-heading">Our <em>Products</em></h2>
-          </div>
-          <Link className="ps-explore" href="/products-services">
-            <span className="ps-explore-line" />
-            View all products
-            <span className="ps-explore-line" />
-          </Link>
-        </div>
-
-        <div className="ps-grid">
-          {displayedPlants.map((plant) => (
-            <article className="ps-card" key={plant.name}>
-              <Link href={plant.link}>
-                <img className="ps-card-img" src={plant.img} alt={plant.name} />
-                <div className="ps-card-body">
-                  <h3 className="ps-card-name">{plant.name}</h3>
-                  <p className="ps-card-sub">{plant.sublabel}</p>
-                </div>
-              </Link>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ── SERVICES (original supply/installation cards) ── */}
-      <section className="services-section" aria-labelledby="services-title">
-        <div className="svc-header">
-          <div>
-            <p className="svc-eyebrow">What we offer</p>
-            <h2 className="svc-title" id="services-title">Our <em>Services</em></h2>
-          </div>
-        </div>
-
-        <div className="svc-grid">
-          {categories.map((cat) => (
-            <article className="svc-card" key={cat.title}>
-              <div className="svc-card-body">
-                <h3 className="svc-card-title">{cat.title}</h3>
-                <p className="svc-card-desc">{cat.desc}</p>
-              </div>
-              <img className="svc-card-img" src={cat.plantImg} alt={cat.title} />
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* ── FAQs ── */}
-      {/* <section className="faq-section" aria-labelledby="faq-title">
-        <div className="faq-inner">
-          <p className="faq-eyebrow">Got questions?</p>
-          <h2 className="faq-heading" id="faq-title">Frequently <em>Asked Questions</em></h2>
-
-          {faqs.map((faq, i) => (
-            <div className="faq-item" key={i}>
-              <button
-                className="faq-trigger"
-                onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                aria-expanded={openFaq === i}
-              >
-                <p className="faq-q">{faq.q}</p>
-                <ChevronDown
-                  className={`faq-chevron${openFaq === i ? " open" : ""}`}
-                  strokeWidth={2}
-                />
-              </button>
-              <div className={`faq-body${openFaq === i ? " open" : ""}`}>
-                <p className="faq-a">{faq.a}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section> */}
-
       {/* ── CTA STRIP ── */}
       <section className="cta-strip" aria-label="Call to action">
         <div className="cta-strip-left">
           <p className="cta-strip-eyebrow">Let&apos;s work together</p>
           <h2 className="cta-strip-heading">
-            Ready to transform your <em>space?</em>
+            Upgrade your space with effortless<em> greenery</em>
           </h2>
           <p className="cta-strip-sub">
-            Explore our full range of premium artificial greenery or get in touch. We&apos;re happy to help you find the perfect fit for your space.
+            Get in touch with us. We&apos;re ready to help you find the perfect greenery for your space.
           </p>
         </div>
-        {/* wave transition into footer */}
         <div className="cta-strip-wave" aria-hidden="true">
           <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="#ffffff" />
