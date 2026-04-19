@@ -27,7 +27,7 @@ export default function Header() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const isTransparent = isHome && !scrolled && !dropdownOpen;
+  const isTransparent = isHome && !scrolled && !dropdownOpen && !mobileOpen;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -354,7 +354,7 @@ export default function Header() {
         .hdr-mobile-menu {
           display: none;
           position: fixed;
-          top: 60px;
+          top: 80px;
           left: 0;
           right: 0;
           background: #ffffff;

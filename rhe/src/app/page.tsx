@@ -707,7 +707,7 @@ export default function Home() {
           .hero-index-bar { padding: 18px 20px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
           .hero-index-number { display: none; }
           .hero-slide-label { font-size: 9px; text-align: center; white-space: normal; max-width: none; overflow: visible; text-overflow: unset; }
-          .hero-left { padding: 76px 24px 80px; }
+          .hero-left { min-height: 35svh; padding: 60px 24px; }
           .hero-title { font-size: clamp(3.2rem, 12vw, 5rem); }
           .why-shop { padding: 56px 20px; }
           .why-shop-title { font-size: clamp(1.5rem, 5vw, 1.8rem); }
