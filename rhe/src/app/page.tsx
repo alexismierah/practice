@@ -1225,6 +1225,39 @@ export default function Home() {
           .hero-title { font-size: clamp(2.6rem, 10vw, 3.5rem); }
           .intro-strip-heading { font-size: clamp(1.4rem, 6vw, 1.7rem); }
         }
+
+        /* ── CTA IMAGE BAND ── */
+        .cta-img-band {
+          padding-right: calc(64px + 340px);
+        }
+        .cta-img-plant {
+          position: absolute;
+          right: 60px;
+          bottom: 0;
+          height: 602px;
+          object-fit: contain;
+          pointer-events: none;
+          z-index: 10;
+        }
+        .cta-img-semi {
+          position: absolute;
+          right: 120px;
+          bottom: 0;
+          height: 200px;
+          width: auto;
+          pointer-events: none;
+          z-index: 5;
+        }
+        @media (max-width: 900px) {
+          .cta-img-band { padding: 48px 32px 48px calc(32px + 240px) !important; }
+          .cta-img-plant { height: 380px !important; right: 24px !important; }
+          .cta-img-semi { height: 130px !important; right: 76px !important; }
+        }
+        @media (max-width: 580px) {
+          .cta-img-band { padding: 200px 24px 40px !important; text-align: center; }
+          .cta-img-plant { height: 260px !important; right: 50% !important; transform: translateX(50%) !important; bottom: auto !important; top: 0 !important; }
+          .cta-img-semi { height: 88px !important; right: 50% !important; transform: translateX(50%) !important; bottom: auto !important; top: 112px !important; }
+        }
       `}</style>
 
       {/* ═══════════════════════════════════════════
@@ -1251,7 +1284,7 @@ export default function Home() {
 
             <h1 className="hero-title">
               <span className="hero-title-bold">Bring</span>{" "}
-              <span className="hero-title-italic">Nature</span>{" "}
+              <span className="hero-title-bold">Nature</span>{" "}
               <span className="hero-title-bold">to</span>
               <span className="hero-title-bold" style={{ display: "block", marginTop: "0" }}>your Space</span>
             </h1>
@@ -1466,8 +1499,8 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <div style={{ background: "#1e3a2a", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
-        <img src="/Overlap.png" alt="Plant" style={{ position: "absolute", right: "0px", bottom: "0px", height: "360px", objectFit: "contain", pointerEvents: "none", zIndex: 10 }} />
+      <div className="cta-img-band" style={{ background: "#2d4a38", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
+        <img className="cta-img-plant" src="/Overlap3.png" alt="Plant" />
         <div style={{ flex: 1 }}>
           <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "16px" }}>Let&apos;s Work Together</p>
           <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>

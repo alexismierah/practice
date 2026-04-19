@@ -354,6 +354,39 @@ export default function AboutPage() {
         }
         .btn-secondary:hover { border-color: var(--white); }
 
+        /* ── CTA IMAGE BAND ── */
+        .cta-img-band {
+          padding-right: calc(64px + 340px);
+        }
+        .cta-img-plant {
+          position: absolute;
+          right: 60px;
+          bottom: 0;
+          height: 602px;
+          object-fit: contain;
+          pointer-events: none;
+          z-index: 10;
+        }
+        .cta-img-semi {
+          position: absolute;
+          right: 120px;
+          bottom: 0;
+          height: 290px;
+          width: auto;
+          pointer-events: none;
+          z-index: 5;
+        }
+        @media (max-width: 900px) {
+          .cta-img-band { padding: 48px 32px 48px calc(32px + 240px) !important; }
+          .cta-img-plant { height: 380px !important; right: 24px !important; }
+          .cta-img-semi { height: 130px !important; right: 76px !important; }
+        }
+        @media (max-width: 580px) {
+          .cta-img-band { padding: 200px 24px 40px !important; text-align: center; }
+          .cta-img-plant { height: 260px !important; right: 50% !important; transform: translateX(50%) !important; bottom: auto !important; top: 0 !important; }
+          .cta-img-semi { height: 88px !important; right: 50% !important; transform: translateX(50%) !important; bottom: auto !important; top: 112px !important; }
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 960px) {
           .hero { grid-template-columns: 1fr; min-height: auto; }
@@ -423,22 +456,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* CTA + TESTIMONIAL */}
-        <div style={{ background: "#1e3a2a", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
-          {/* Plant image overlapping the container */}
-          <img src="/Overlap.png" alt="Plant" style={{ position: "absolute", right: "0px", bottom: "0px", height: "360px", objectFit: "contain", pointerEvents: "none", zIndex: 10 }} />
-          {/* Left — CTA */}
-          <div style={{ flex: 1 }}>
-            <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "16px" }}>Let&apos;s Work Together</p>
-            <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
-              Ready to bring <span style={{ fontWeight: 500 }}>nature</span><br />into your space?
-            </h2>
-            <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-              <a href="/contact" className="btn-primary">Start a Project</a>
-              <a href="/products-services" className="btn-secondary">Browse Collections</a>
-            </div>
-          </div>
-        </div>
 
       </div>
     </>
