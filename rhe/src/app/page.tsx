@@ -1117,7 +1117,7 @@ export default function Home() {
         <div className="intro-strip-divider" aria-hidden="true" />
         <div className="intro-strip-right">
           <p className="intro-strip-body">
-            Rich Haven specializes in artificial wall greens, potted plants, planter boxes, and turf — supplying and installing greenery for homes, offices, and commercial spaces across the Philippines. Every piece is chosen for how it looks, how it holds up, and how little you&apos;ll have to think about it.
+            Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. The company provides high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
           </p>
           <Link className="intro-strip-link" href="/about">
             <span className="intro-strip-link-line" />
