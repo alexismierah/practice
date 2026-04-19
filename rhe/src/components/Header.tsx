@@ -149,14 +149,14 @@ export default function Header() {
 
         .hdr-logo-name {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 1.7rem;
+          font-size: 1.4rem;
           font-weight: 600;
           color: var(--forest-mid);
           letter-spacing: 0.03em;
         }
 
         .hdr-logo-tagline {
-          font-size: 0.6rem;
+          font-size: 0.5rem;
           font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: uppercase;
@@ -472,7 +472,7 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="hdr-logo">
-            <Image src="/logo.png" alt="Rich Haven logo" width={52} height={52} style={{ objectFit: "contain", marginTop: "-24px" }} />
+            <Image src="/logo.png" alt="Rich Haven logo" width={45} height={45} style={{ objectFit: "contain", marginTop: "-25px" }} />
             <div className="hdr-logo-text">
               <span className="hdr-logo-name">Rich Haven</span>
               <span className="hdr-logo-tagline">Artificial Garden</span>
