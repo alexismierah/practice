@@ -53,6 +53,12 @@ const displayedPlants = [
   },
 ];
 
+const projectplants = [
+  { img: "/PottedPlants2.png",  caption: "Potted Plants & Trees",},
+  { img: "/Grass.jpg",  caption: "Artificial Grass",},
+  { img: "/WallGreens.jpg",  caption: "Planter Boxes",},
+  { img: "/PlanterBoxes2.png",  caption: "Planter Boxes",},
+];
 
 const shopReasons = [
   {
@@ -1138,33 +1144,30 @@ export default function Home() {
         <div className="fp-gallery">
           {/* Large hero image — spans full height on left */}
           <div className="fp-gallery-item fp-gallery-item--large">
-            <img className="fp-gallery-img" src="/p1.jpg" alt="Artificial grass installation" />
+            <img className="fp-gallery-img" src={projectplants[0].img} alt={projectplants[0].caption} />
             <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">Artificial Grass</span>
+              <span className="fp-gallery-caption">{projectplants[0].caption}</span>
             </div>
           </div>
 
-          {/* Top right — small */}
           <div className="fp-gallery-item">
-            <img className="fp-gallery-img" src="/p19.jpg" alt="Wall greens project" />
+            <img className="fp-gallery-img" src={projectplants[1].img} alt={projectplants[1].caption} />
             <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">Wall Greens</span>
+              <span className="fp-gallery-caption">{projectplants[1].caption}</span>
             </div>
           </div>
 
-          {/* Top right — small */}
           <div className="fp-gallery-item">
-            <img className="fp-gallery-img" src="/p36.png" alt="Planter box design" />
+            <img className="fp-gallery-img" src={projectplants[2].img} alt={projectplants[2].caption} />
             <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">Planter Boxes</span>
+              <span className="fp-gallery-caption">{projectplants[2].caption}</span>
             </div>
           </div>
 
-          {/* Bottom wide — spans 2 cols */}
           <div className="fp-gallery-item fp-gallery-item--wide">
-            <img className="fp-gallery-img" src="/p10.png" alt="Garden installation" />
+            <img className="fp-gallery-img" src={projectplants[3].img} alt={projectplants[3].caption} />
             <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">Garden Installation</span>
+              <span className="fp-gallery-caption">{projectplants[3].caption}</span>
             </div>
           </div>
         </div>
