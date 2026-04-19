@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 function scrollToFooter(e: React.MouseEvent) {
   e.preventDefault();
@@ -111,6 +112,10 @@ export default function Header() {
           background: #ffffff;
         }
 
+        .hdr-root.transparent .hdr-logo img {
+          filter: brightness(0) invert(1);
+        }
+
         .hdr-inner {
           max-width: 1180px;
           margin: 0 auto;
@@ -128,10 +133,18 @@ export default function Header() {
 
         .hdr-logo {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          align-items: center;
+          gap: 0px;
           line-height: 1;
           text-decoration: none;
           flex-shrink: 0;
+        }
+
+        .hdr-logo-text {
+          display: flex;
+          flex-direction: column;
+          margin-left: -6px;
         }
 
         .hdr-logo-name {
@@ -459,8 +472,11 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="hdr-logo">
-            <span className="hdr-logo-name">Rich Haven</span>
-            <span className="hdr-logo-tagline">Artificial Garden</span>
+            <Image src="/logo.png" alt="Rich Haven logo" width={52} height={52} style={{ objectFit: "contain", marginTop: "-24px" }} />
+            <div className="hdr-logo-text">
+              <span className="hdr-logo-name">Rich Haven</span>
+              <span className="hdr-logo-tagline">Artificial Garden</span>
+            </div>
           </a>
 
           {/* Center nav */}
