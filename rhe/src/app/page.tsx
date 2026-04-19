@@ -56,7 +56,7 @@ const displayedPlants = [
 const projectplants = [
   { img: "/PottedPlants2.png",  caption: "Potted Plants & Trees",},
   { img: "/Grass.jpg",  caption: "Artificial Grass",},
-  { img: "/WallGreens.jpg",  caption: "Planter Boxes",},
+  { img: "/WallGreens.jpg",  caption: "Wall Greens",},
   { img: "/PlanterBoxes2.png",  caption: "Planter Boxes",},
 ];
 
