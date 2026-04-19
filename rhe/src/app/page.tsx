@@ -1096,7 +1096,7 @@ export default function Home() {
           </p>
           <Link className="intro-strip-link" href="/about">
             <span className="intro-strip-link-line" />
-            Learn more about us
+            Learn more
           </Link>
         </div>
       </section>
