@@ -3,6 +3,26 @@ import Link from "next/link";
 import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
 import { useState, useEffect } from "react";
 
+function FAQItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div
+      style={{ cursor: "pointer" }}
+      onClick={() => setOpen(!open)}
+    >
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 32px" }}>
+        <span style={{ fontSize: "16px", fontWeight: 400, color: "#1a2e1a", fontFamily: "'DM Sans', sans-serif" }}>{q}</span>
+        <span style={{ fontSize: "20px", color: "#3f7a55", lineHeight: 1, flexShrink: 0, marginLeft: "16px" }}>{open ? "−" : "+"}</span>
+      </div>
+      {open && (
+        <div style={{ padding: "0 32px 24px", fontSize: "15px", lineHeight: 1.8, color: "#5a6e5a", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}>
+          {a}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const featuredPlants = [
   {
     name: "Artificial Grass",
@@ -1421,6 +1441,31 @@ export default function Home() {
                   <p>{reason.desc}</p>
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          FAQS
+      ═══════════════════════════════════════════ */}
+      <section style={{ background: "#fff", padding: "96px 64px 120px" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "64px" }}>
+            <p style={{ fontSize: "11px", letterSpacing: ".12em", textTransform: "uppercase", color: "#7a8f80", marginBottom: "14px", fontFamily: "'DM Sans', sans-serif" }}>Got Questions?</p>
+            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 300, letterSpacing: "-0.02em", color: "#1a2e1a", lineHeight: 1.15 }}>
+              Frequently Asked <em style={{ fontStyle: "italic", fontWeight: 400, color: "#3f7a55" }}>Questions</em>
+            </h2>
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            {[
+              { q: "Are your plants really realistic?", a: "Yes — our artificial plants are crafted from high-quality materials that closely mimic the texture, color, and form of real plants. Most visitors can't tell the difference at a glance." },
+              { q: "Do your plants require any maintenance?", a: "Minimal. An occasional dusting or wipe-down is all that's needed. No watering, no pruning, no sunlight required." },
+              { q: "Can I use your plants outdoors?", a: "Many of our products are suitable for covered outdoor areas. We'll advise on the best options for your specific space during consultation." },
+              { q: "Do you offer installation services?", a: "Yes. Our team handles delivery and professional installation so every piece is placed and secured exactly right." },
+              { q: "How long do your artificial plants last?", a: "With proper care, our products are built to last for many years without fading or deteriorating — a one-time investment in lasting beauty." },
+            ].map((item, i) => (
+              <FAQItem key={i} q={item.q} a={item.a} />
             ))}
           </div>
         </div>
