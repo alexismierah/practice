@@ -751,9 +751,9 @@ export default function Home() {
         <div className={`hero-left${mounted ? " hero-animate" : ""}`}>
           <div className="hero-headline-block">
             <div className="hero-eyebrow">
-              <span className="hero-eyebrow-line" aria-hidden="true" />
+              {/*<span className="hero-eyebrow-line" aria-hidden="true" />*/}
               <span className="hero-eyebrow-text">Rich Haven Artificial Garden</span>
-              <span className="hero-eyebrow-line" aria-hidden="true" />
+              {/*<span className="hero-eyebrow-line" aria-hidden="true" />*/}
             </div>
 
             <h1 className="hero-title">
