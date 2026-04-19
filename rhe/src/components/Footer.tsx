@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Footer() {
   const [formData, setFormData] = useState({
@@ -128,10 +129,18 @@ export default function Footer() {
           gap: 24px;
         }
 
+        .footer-logo-wrap {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 0px;
+        }
+
         .footer-logo-text {
           display: flex;
           flex-direction: column;
           line-height: 1;
+          margin-left: -6px;
         }
 
         .footer-logo-name {
@@ -441,9 +450,12 @@ export default function Footer() {
 
           {/* ── Col 1: Brand ── */}
           <div className="footer-brand">
-            <div className="footer-logo-text">
-              <span className="footer-logo-name">Rich Haven</span>
-              <span className="footer-logo-tagline">Artificial Garden</span>
+            <div className="footer-logo-wrap">
+              <Image src="/logo.png" alt="Rich Haven logo" width={62} height={62} style={{ objectFit: "contain", marginTop: "-36px" }} />
+              <div className="footer-logo-text">
+                <span className="footer-logo-name">Rich Haven</span>
+                <span className="footer-logo-tagline">Artificial Garden</span>
+              </div>
             </div>
 
             <p className="footer-desc">
