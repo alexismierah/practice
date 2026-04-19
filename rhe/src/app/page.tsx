@@ -179,7 +179,7 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 14px;
-          margin-bottom: 32px;
+          margin-bottom: 16px;
           justify-content: center;
         }
 
