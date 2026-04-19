@@ -96,14 +96,14 @@ export default function Home() {
   return (
     <main className="landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Great+Vibes&display=swap");
 
         :root {
           --mist: #c8dac9;
           --cream: #f5f2ec;
         }
 
-        .landing, .landing * { box-sizing: border-box; margin: 0; padding: 0; }
+        .landing, .landing * { box-sizing: border-box; margin: 0; padding: 0; font-family: "DM Sans", sans-serif !important; }
 
         .landing {
           font-family: "DM Sans", sans-serif;
@@ -207,22 +207,42 @@ export default function Home() {
         .hero-title {
           font-family: "Cormorant Garamond", serif;
           font-weight: 300;
-          font-size: clamp(4rem, 7vw + 1rem, 9rem);
-          line-height: 0.9;
+          font-size: clamp(3.2rem, 6vw + 0.5rem, 7rem);
+          line-height: 1.25;
           letter-spacing: -0.01em;
           color: #ffffff;
           margin-bottom: 0;
         }
 
+        .hero-nature-wrap {
+          position: relative;
+          display: inline-block;
+        }
+
+        .hero-nature-leaves {
+          position: absolute;
+          top: -22px;
+          left: 62%;
+          width: 44px;
+          height: 44px;
+          pointer-events: none;
+        }
+
+        .hero-nature-leaves svg {
+          width: 100%;
+          height: 100%;
+        }
+
         .hero-title-italic {
-          font-style: italic;
-          font-weight: 300;
+          font-family: "Great Vibes", cursive !important;
+          font-style: normal;
+          font-weight: 400;
           color: rgba(255,255,255,0.85);
           display: inline;
         }
 
         .hero-title-bold {
-          font-weight: 600;
+          font-weight: 300;
           color: #ffffff;
           display: inline;
           line-height: 1;
@@ -323,7 +343,7 @@ export default function Home() {
         /* ── INTRO STRIP ── */
         .intro-strip {
           background: #ffffff;
-          padding: 100px 80px;
+          padding: 52px 80px;
           display: grid;
           grid-template-columns: 1fr 1px 1fr;
           gap: 0;
@@ -363,8 +383,8 @@ export default function Home() {
 
         .intro-strip-heading {
           font-family: "Cormorant Garamond", serif;
-          font-size: clamp(2rem, 2vw + 1rem, 3rem);
-          font-weight: 600;
+          font-size: clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem);
+          font-weight: 500;
           color: #163521;
           line-height: 1.15;
           margin: 0;
@@ -409,7 +429,7 @@ export default function Home() {
         .intro-strip-link:hover .intro-strip-link-line { width: 48px; }
 
         @media (max-width: 900px) {
-          .intro-strip { grid-template-columns: 1fr; gap: 0; padding: 72px 40px; }
+          .intro-strip { grid-template-columns: 1fr; gap: 0; padding: 36px 40px; }
           .intro-strip-divider { display: none; }
           .intro-strip-left { padding-right: 0; padding-bottom: 40px; border-bottom: 1px solid #e8ede5; margin-bottom: 40px; }
           .intro-strip-right { padding-left: 0; }
@@ -442,9 +462,9 @@ export default function Home() {
         .why-shop-title {
           margin: 0 0 16px;
           font-family: "Playfair Display", serif;
-          font-size: clamp(1.8rem, 1vw + 1.2rem, 2.6rem);
+          font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
           color: #163521;
-          font-weight: 700;
+          font-weight: 500;
           line-height: 1.1;
         }
 
@@ -553,8 +573,8 @@ export default function Home() {
 
         .fp-title {
           font-family: "Cormorant Garamond", serif;
-          font-size: clamp(1.9rem, 2vw + 1rem, 2.8rem);
-          font-weight: 600;
+          font-size: clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem);
+          font-weight: 500;
           color: #163521;
           margin: 0 0 10px;
           line-height: 1.1;
@@ -708,8 +728,8 @@ export default function Home() {
         .ps-title {
           margin: 0 0 10px;
           font-family: "Cormorant Garamond", serif;
-          font-weight: 600;
-          font-size: clamp(2rem, 2vw + 1rem, 3rem);
+          font-weight: 500;
+          font-size: clamp(1.7rem, 1.8vw + 0.8rem, 2.5rem);
           color: #163521;
           line-height: 1.1;
         }
@@ -864,7 +884,95 @@ export default function Home() {
         .ps-explore-line { width: 32px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
         .ps-explore:hover .ps-explore-line { width: 48px; }
 
+        /* ── SERVICES (below product grid) ── */
+        .ps-services-label {
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #7a8f80;
+          margin-bottom: 1.25rem;
+        }
 
+        .ps-services-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        .ps-scard {
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          height: 110px;
+          transition: transform 0.3s ease;
+        }
+
+        .ps-scard:hover { transform: translateY(-3px); }
+
+        .ps-simg-wrap {
+          position: absolute;
+          inset: 0;
+          background: transparent;
+        }
+
+        .ps-simg {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.5s ease;
+        }
+
+        .ps-scard:hover .ps-simg { transform: scale(1.04); }
+
+        .ps-sbanner-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to right, rgba(15,35,20,0.72) 0%, rgba(15,35,20,0.3) 60%, transparent 100%);
+        }
+
+        .ps-scontent {
+          position: relative;
+          z-index: 1;
+          height: 100%;
+          padding: 0 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 4px;
+        }
+
+        .ps-snum {
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          color: rgba(200,218,201,0.8);
+          margin: 0;
+        }
+
+        .ps-stitle {
+          font-family: "Cormorant Garamond", serif;
+          font-size: 1.5rem;
+          font-weight: 300;
+          color: #ffffff;
+          margin: 0;
+          line-height: 1.1;
+        }
+
+        .ps-sdesc {
+          font-size: 12px;
+          color: rgba(255,255,255,0.6);
+          line-height: 1.6;
+          font-weight: 300;
+          margin: 0;
+          max-width: 380px;
+        }
+
+        @media (max-width: 640px) {
+          .ps-scard { height: 120px; }
+          .ps-stitle { font-size: 1.2rem; }
+        }
 
         /* ── MAIL ORDER TREES ── */
         .mot-section {
@@ -888,7 +996,7 @@ export default function Home() {
         .mot-title {
           font-family: "Playfair Display", serif;
           font-weight: 700;
-          font-size: clamp(1.9rem, 2vw + 1rem, 2.8rem);
+          font-size: clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem);
           color: #163521;
           line-height: 1.1;
           margin-bottom: 18px;
@@ -949,7 +1057,7 @@ export default function Home() {
           .hero-index-bar { padding: 22px 36px; }
           .hero-left { padding: 60px 36px 90px; }
 
-          .intro-strip { padding: 80px 48px; }
+          .intro-strip { padding: 40px 48px; }
 
           .featured-projects { padding: 72px 48px; }
 
@@ -966,7 +1074,7 @@ export default function Home() {
 
         /* ≤900px — tablet portrait */
         @media (max-width: 900px) {
-          .intro-strip { grid-template-columns: 1fr; gap: 0; padding: 64px 40px; }
+          .intro-strip { grid-template-columns: 1fr; gap: 0; padding: 36px 40px; }
           .intro-strip-divider { display: none; }
           .intro-strip-left { padding-right: 0; padding-bottom: 40px; border-bottom: 1px solid #e8ede5; margin-bottom: 40px; }
           .intro-strip-right { padding-left: 0; }
@@ -1002,7 +1110,7 @@ export default function Home() {
           .hero-title { font-size: clamp(3rem, 11vw, 4.5rem); }
           .hero-subtitle { font-size: 13px; max-width: 280px; }
 
-          .intro-strip { padding: 48px 20px; }
+          .intro-strip { padding: 28px 20px; }
           .intro-strip-heading { font-size: clamp(1.6rem, 5vw, 2rem); }
           .intro-strip-body { font-size: 13px; }
 
@@ -1044,6 +1152,59 @@ export default function Home() {
           .ps-grid { grid-template-columns: 1fr 1fr; }
         }
 
+        /* ── CTA STRIP ── */
+        .cta-strip {
+          background: #e8f2ea;
+          border-top: none;
+          padding: 32px 80px;
+        }
+
+        .cta-strip-inner {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 24px;
+          flex-wrap: wrap;
+        }
+
+        .cta-strip-heading {
+          font-size: 1rem;
+          font-weight: 400;
+          color: #163521;
+          margin: 0 0 4px;
+        }
+
+        .cta-strip-sub {
+          font-size: 13px;
+          color: #7a8f80;
+          font-weight: 300;
+          margin: 0;
+        }
+
+        .cta-strip-btn {
+          background: #163521;
+          color: #ffffff;
+          padding: 12px 28px;
+          border-radius: 999px;
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.04em;
+          text-decoration: none;
+          white-space: nowrap;
+          transition: background 0.2s, transform 0.2s;
+          flex-shrink: 0;
+        }
+
+        .cta-strip-btn:hover {
+          background: #2f6f44;
+          transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+          .cta-strip { padding: 28px 20px; }
+          .cta-strip-inner { flex-direction: column; align-items: flex-start; }
+        }
+
         /* ≤380px — very small phone */
         @media (max-width: 380px) {
           .ps-grid { grid-template-columns: 1fr; }
@@ -1075,7 +1236,9 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title">
-              <span className="hero-title-bold">Bring</span> <span className="hero-title-italic">Nature</span> <span className="hero-title-bold">to</span>
+              <span className="hero-title-bold">Bring</span>{" "}
+              <span className="hero-title-italic">Nature</span>{" "}
+              <span className="hero-title-bold">to</span>
               <span className="hero-title-bold" style={{ display: "block", marginTop: "0" }}>your Space</span>
             </h1>
 
@@ -1184,7 +1347,7 @@ export default function Home() {
         <div className="ps-header">
           <div>
             <p className="ps-eyebrow">What we offer</p>
-            <h2 className="ps-title" id="products-heading">Our<em>Products</em> & <em>Services</em></h2>
+            <h2 className="ps-title" id="products-heading">Rich<em> Haven</em> Catalouge</h2>
             <p className="ps-header-sub">
               We supply, install, or both — whatever your space needs.
             </p>
@@ -1211,6 +1374,7 @@ export default function Home() {
             </article>
           ))}
         </div>
+
       </section>
 
       {/* ═══════════════════════════════════════════
@@ -1259,6 +1423,19 @@ export default function Home() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════
+          CTA STRIP
+      ═══════════════════════════════════════════ */}
+      <section className="cta-strip">
+        <div className="cta-strip-inner">
+          <div>
+            <p className="cta-strip-heading">Ready to transform your space?</p>
+            <p className="cta-strip-sub">Get in touch for a custom quote.</p>
+          </div>
+          <Link className="cta-strip-btn" href="#footer">Request a quote →</Link>
         </div>
       </section>
 

@@ -135,7 +135,7 @@ export default function Footer() {
         }
 
         .footer-logo-name {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 1.75rem;
           font-weight: 600;
           color: var(--brass-light);
@@ -240,7 +240,7 @@ export default function Footer() {
         }
 
         .footer-form-heading {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 1.6rem;
           font-weight: 400;
           color: var(--off-white);

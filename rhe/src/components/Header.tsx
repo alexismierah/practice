@@ -135,7 +135,7 @@ export default function Header() {
         }
 
         .hdr-logo-name {
-          font-family: 'Cormorant Garamond', serif;
+          font-family: 'DM Sans', sans-serif;
           font-size: 1.45rem;
           font-weight: 600;
           color: var(--forest-mid);
