@@ -25,28 +25,28 @@ const featuredPlants = [
 const displayedPlants = [
   {
     name: "Artificial Grass",
-    sublabel: "Sports or design spaces",
+    sublabel: "Sports courts, lawns & outdoor decks",
     img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
     link: "/products-services/grass",
     tag: "01",
   },
   {
     name: "Potted Plants and Trees",
-    sublabel: "Lush Indoor Statement Accent",
+    sublabel: "Statement pieces for any interior",
     img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
     link: "/products-services/potted-plants",
     tag: "02",
   },
   {
     name: "Planter Boxes",
-    sublabel: "Vibrant Designer Foliage Collection",
+    sublabel: "Defined edges, curated arrangements",
     img: "p1.jpg",
     link: "/products-services/planter-box",
     tag: "03",
   },
   {
     name: "Wall Greens",
-    sublabel: "Low-Maintenance Greenery",
+    sublabel: "Living-wall look, zero upkeep",
     img: "p19.jpg",
     link: "/products-services/wall-greens",
     tag: "04",
@@ -56,23 +56,23 @@ const displayedPlants = [
 
 const shopReasons = [
   {
-    title: "Low Maintenance",
-    desc: "Enjoy beautiful greenery without watering, trimming, or fertilizing.",
+    title: "No Upkeep Required",
+    desc: "No watering schedules, no wilting, no seasonal replanting. Your greenery stays perfect on its own.",
     icon: Leaf,
   },
   {
-    title: "Long-Lasting Quality",
-    desc: "Made from durable materials that stay vibrant and fresh-looking over time.",
+    title: "Built to Last",
+    desc: "UV-stable materials that resist fading, moisture, and heavy use — indoors or outdoors, year after year.",
     icon: ShieldCheck,
   },
   {
-    title: "All-Weather Friendly",
-    desc: "Suitable for indoor and outdoor spaces, resistant to fading and damage.",
+    title: "Weather-Proof",
+    desc: "Designed to perform in the Philippine climate. Humidity, heat, and rain won't touch the finish.",
     icon: CloudSun,
   },
   {
-    title: "Versatile Design",
-    desc: "Ideal for homes, offices, commercial spaces, events, and decorative projects.",
+    title: "Fits Any Space",
+    desc: "From condo balconies to commercial lobbies — we size, design, and install for exactly your context.",
     icon: Grid2x2,
   },
 ] as const;
@@ -164,7 +164,7 @@ export default function Home() {
           justify-content: flex-start;
           width: 100%;
           min-height: 110svh;
-          padding: 165px 48px 100px;
+          padding: 140px 48px 100px;
         }
 
         .hero-headline-block {
@@ -229,6 +229,17 @@ export default function Home() {
           display: block;
         }
 
+        .hero-subtitle {
+          margin-top: 28px;
+          font-size: 14px;
+          font-weight: 300;
+          color: rgba(255,255,255,0.55);
+          letter-spacing: 0.04em;
+          line-height: 1.7;
+          max-width: 380px;
+          font-family: "DM Sans", sans-serif;
+        }
+
         .hero-index-bar {
           position: absolute;
           bottom: 0;
@@ -288,6 +299,7 @@ export default function Home() {
 
         .hero-animate .hero-eyebrow { animation: fadeUp 0.7s 0.1s both ease; }
         .hero-animate .hero-title { animation: fadeUp 0.9s 0.25s both ease; }
+        .hero-animate .hero-subtitle { animation: fadeUp 0.8s 0.4s both ease; }
         .hero-animate .hero-desc { animation: fadeUp 0.8s 0.45s both ease; }
         .hero-animate .hero-actions { animation: fadeUp 0.8s 0.6s both ease; }
         .hero-animate .hero-index-bar { animation: fadeIn 0.7s 0.75s both ease; }
@@ -918,6 +930,54 @@ export default function Home() {
           font-weight: 300;
         }
 
+        .cta-strip-actions {
+          margin-top: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+
+        .cta-btn-primary {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 14px 32px;
+          background: #163521;
+          color: #ffffff;
+          font-family: "DM Sans", sans-serif;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          text-decoration: none;
+          border-radius: 100px;
+          transition: background 0.2s, transform 0.2s;
+        }
+
+        .cta-btn-primary:hover {
+          background: #0e2416;
+          transform: translateY(-1px);
+        }
+
+        .cta-btn-ghost {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 11px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #163521;
+          font-weight: 500;
+          text-decoration: none;
+          transition: gap 0.2s;
+        }
+
+        .cta-btn-ghost:hover { gap: 16px; }
+        .cta-btn-ghost-line { width: 28px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
+        .cta-btn-ghost:hover .cta-btn-ghost-line { width: 40px; }
+
         /* ── MAIL ORDER TREES ── */
         .mot-section {
           background: #ffffff;
@@ -999,7 +1059,7 @@ export default function Home() {
         /* ≤1024px — tablet landscape */
         @media (max-width: 1024px) {
           .hero-index-bar { padding: 22px 36px; }
-          .hero-left { padding: 90px 36px 90px; }
+          .hero-left { padding: 60px 36px 90px; }
 
           .intro-strip { padding: 80px 48px; }
 
@@ -1055,6 +1115,7 @@ export default function Home() {
           .hero-index-number { display: none; }
           .hero-left { min-height: 100svh; padding: 60px 24px 80px; }
           .hero-title { font-size: clamp(3rem, 11vw, 4.5rem); }
+          .hero-subtitle { font-size: 13px; max-width: 280px; }
 
           .intro-strip { padding: 48px 20px; }
           .intro-strip-heading { font-size: clamp(1.6rem, 5vw, 2rem); }
@@ -1082,6 +1143,7 @@ export default function Home() {
           .cta-strip { padding: 48px 20px 100px; flex-direction: column; align-items: center; }
           .cta-strip-heading { font-size: clamp(1.5rem, 5vw, 1.9rem); }
           .cta-strip-sub { font-size: 0.82rem; }
+          .cta-strip-actions { flex-direction: column; gap: 20px; }
 
           .mot-section { padding: 48px 20px; }
           .mot-title { font-size: clamp(1.5rem, 5vw, 1.9rem); }
@@ -1129,15 +1191,17 @@ export default function Home() {
         <div className={`hero-left${mounted ? " hero-animate" : ""}`}>
           <div className="hero-headline-block">
             <div className="hero-eyebrow">
-              {/*<span className="hero-eyebrow-line" aria-hidden="true" />*/}
               <span className="hero-eyebrow-text">Rich Haven Artificial Garden</span>
-              {/*<span className="hero-eyebrow-line" aria-hidden="true" />*/}
             </div>
 
             <h1 className="hero-title">
               <span className="hero-title-bold">Bring</span> <span className="hero-title-italic">Nature</span> <span className="hero-title-bold">to</span>
               <span className="hero-title-bold" style={{ display: "block", marginTop: "0" }}>your Space</span>
             </h1>
+
+            <p className="hero-subtitle">
+              Artificial greenery designed to look real, last forever, and need nothing from you.
+            </p>
           </div>
 
           <div className="hero-index-bar">
@@ -1167,17 +1231,17 @@ export default function Home() {
         <div className="intro-strip-left">
           <span className="intro-strip-label">Who we are</span>
           <h2 className="intro-strip-heading">
-            Rich Haven offers <em><br />artificial greenery</em> for your spaces
+            We turn <em><br />bare spaces into</em> green ones
           </h2>
         </div>
         <div className="intro-strip-divider" aria-hidden="true" />
         <div className="intro-strip-right">
           <p className="intro-strip-body">
-            Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. The company provides high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
+            Rich Haven specializes in artificial wall greens, potted plants, planter boxes, and turf — supplying and installing greenery for homes, offices, and commercial spaces across the Philippines. Every piece is chosen for how it looks, how it holds up, and how little you&apos;ll have to think about it.
           </p>
           <Link className="intro-strip-link" href="/about">
             <span className="intro-strip-link-line" />
-            Learn more about us
+            Our story
           </Link>
         </div>
       </section>
@@ -1191,8 +1255,7 @@ export default function Home() {
             <p className="fp-label">Our work</p>
             <h2 className="fp-title">Featured <em>Projects</em></h2>
             <p className="fp-desc">
-              Carefully designed artificial gardens crafted to suit our clients&apos; preferences
-              while prioritizing lasting quality.
+              Real installs, real spaces — from residential balconies to commercial lobbies.
             </p>
           </div>
         </div>
@@ -1246,9 +1309,9 @@ export default function Home() {
         <div className="ps-header">
           <div>
             <p className="ps-eyebrow">What we offer</p>
-            <h2 className="ps-title" id="products-heading"><em>Green</em> Solutions</h2>
+            <h2 className="ps-title" id="products-heading">Pick your <em>Greenery</em></h2>
             <p className="ps-header-sub">
-              Choose your greenery — we can supply it or fully install it based on your space.
+              We supply, install, or both — whatever your space needs.
             </p>
           </div>
           <Link className="ps-explore" href="/products-services">
@@ -1280,10 +1343,10 @@ export default function Home() {
       ═══════════════════════════════════════════ */}
       <section className="why-shop" aria-labelledby="why-shop-title">
         <div className="why-shop-header">
-          <p className="why-shop-eyebrow">Bring nature to your space</p>
+          <p className="why-shop-eyebrow">What sets us apart</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
-            From start to finish, Rich Haven transforms your space with greenery.
+            We know what holds up — and what doesn&apos;t.
           </p>
         </div>
 
@@ -1327,13 +1390,14 @@ export default function Home() {
       {/* CTA STRIP */}
       <section className="cta-strip" aria-label="Call to action">
         <div className="cta-strip-left">
-          <p className="cta-strip-eyebrow">Let&apos;s work together</p>
+          <p className="cta-strip-eyebrow">Ready when you are</p>
           <h2 className="cta-strip-heading">
-            Transform your space with effortless greenery
+            Tell us about your space.<br />We&apos;ll handle the rest.
           </h2>
           <p className="cta-strip-sub">
-            Get in touch with us. We&apos;re ready to help you find the perfect greenery for your space.
+            Share a photo or a rough idea — we&apos;ll come back with options that fit your space, budget, and timeline.
           </p>
+
         </div>
 
         <div className="cta-strip-wave" aria-hidden="true">
