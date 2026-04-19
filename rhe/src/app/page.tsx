@@ -415,7 +415,7 @@ export default function Home() {
 
         /* ── WHY SHOP ── */
         .why-shop {
-          background: linear-gradient(180deg, #f7f9f7 0%, #f7f9f7 60%, #c8d9cf 100%);
+          background: #f7f9f7;
           padding: 96px 64px 120px;
         }
 
@@ -861,123 +861,6 @@ export default function Home() {
 
 
 
-        /* ── CTA STRIP ── */
-        .cta-strip {
-          background: #c8d9cf;
-          padding: 88px 64px 120px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cta-strip::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect x='50' y='50' width='300' height='300' fill='none' stroke='%23b08a4e' stroke-width='1'/%3E%3Crect x='100' y='100' width='200' height='200' fill='none' stroke='%23b08a4e' stroke-width='0.8'/%3E%3Cline x1='50' y1='200' x2='350' y2='200' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Cline x1='200' y1='50' x2='200' y2='350' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23b08a4e' stroke-width='0.7'/%3E%3C/svg%3E");
-          background-size: 360px 360px;
-          background-position: left -60px center, right -60px center;
-          background-repeat: no-repeat;
-          opacity: 0.04;
-          pointer-events: none;
-        }
-
-        .cta-strip-left { position: relative; z-index: 1; }
-
-        .cta-strip-wave {
-          position: absolute;
-          bottom: -1px;
-          left: 0;
-          width: 100%;
-          pointer-events: none;
-          z-index: 2;
-          line-height: 0;
-        }
-
-        .cta-strip-wave svg { display: block; width: 100%; height: 64px; }
-
-        .cta-strip-eyebrow {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.72rem;
-          letter-spacing: 0.24em;
-          text-transform: uppercase;
-          color: #2d5040;
-          margin: 0 0 12px;
-          font-weight: 500;
-        }
-
-        .cta-strip-heading {
-          font-family: 'Cormorant Garamond', serif;
-          font-size: clamp(1.9rem, 1.5vw + 1.1rem, 2.8rem);
-          font-weight: 600;
-          color: #1a3d2b;
-          line-height: 1.1;
-          margin: 0;
-        }
-
-        .cta-strip-heading em { font-style: italic; font-weight: 400; color: #2d5040; }
-
-        .cta-strip-sub {
-          font-family: 'DM Sans', sans-serif;
-          margin: 18px auto 0;
-          font-size: 0.87rem;
-          color: #3d5c4a;
-          line-height: 1.8;
-          max-width: 440px;
-          font-weight: 300;
-        }
-
-        .cta-strip-actions {
-          margin-top: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 32px;
-          flex-wrap: wrap;
-        }
-
-        .cta-btn-primary {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          padding: 14px 32px;
-          background: #163521;
-          color: #ffffff;
-          font-family: "DM Sans", sans-serif;
-          font-size: 11px;
-          font-weight: 500;
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          text-decoration: none;
-          border-radius: 100px;
-          transition: background 0.2s, transform 0.2s;
-        }
-
-        .cta-btn-primary:hover {
-          background: #0e2416;
-          transform: translateY(-1px);
-        }
-
-        .cta-btn-ghost {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          font-size: 11px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          color: #163521;
-          font-weight: 500;
-          text-decoration: none;
-          transition: gap 0.2s;
-        }
-
-        .cta-btn-ghost:hover { gap: 16px; }
-        .cta-btn-ghost-line { width: 28px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
-        .cta-btn-ghost:hover .cta-btn-ghost-line { width: 40px; }
-
         /* ── MAIL ORDER TREES ── */
         .mot-section {
           background: #ffffff;
@@ -1073,8 +956,6 @@ export default function Home() {
           .ps-grid { grid-template-columns: repeat(2, 1fr); }
           .ps-header-sub { white-space: normal; }
 
-          .cta-strip { padding: 72px 48px 120px; }
-
           .mot-section { padding: 72px 40px; }
         }
 
@@ -1106,7 +987,6 @@ export default function Home() {
           .ps-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 40px; }
           .ps-header-sub { white-space: normal; }
 
-          .cta-strip { padding: 60px 36px 110px; }
         }
 
         /* ≤640px — phone */
@@ -1139,11 +1019,6 @@ export default function Home() {
           .ps-title { font-size: clamp(1.5rem, 5vw, 1.8rem); }
           .ps-card-name { font-size: 0.85rem; }
           .ps-card-sub { font-size: 10px; }
-
-          .cta-strip { padding: 48px 20px 100px; flex-direction: column; align-items: center; }
-          .cta-strip-heading { font-size: clamp(1.5rem, 5vw, 1.9rem); }
-          .cta-strip-sub { font-size: 0.82rem; }
-          .cta-strip-actions { flex-direction: column; gap: 20px; }
 
           .mot-section { padding: 48px 20px; }
           .mot-title { font-size: clamp(1.5rem, 5vw, 1.9rem); }
@@ -1387,25 +1262,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA STRIP */}
-      <section className="cta-strip" aria-label="Call to action">
-        <div className="cta-strip-left">
-          <p className="cta-strip-eyebrow">Ready when you are</p>
-          <h2 className="cta-strip-heading">
-            Tell us about your space.<br />We&apos;ll handle the rest.
-          </h2>
-          <p className="cta-strip-sub">
-            Share a photo or a rough idea — we&apos;ll come back with options that fit your space, budget, and timeline.
-          </p>
-
-        </div>
-
-        <div className="cta-strip-wave" aria-hidden="true">
-          <svg viewBox="0 0 1440 64" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0,32 C240,64 480,0 720,32 C960,64 1200,0 1440,32 L1440,64 L0,64 Z" fill="#ffffff" />
-          </svg>
-        </div>
-      </section>
     </main>
   );
 }
