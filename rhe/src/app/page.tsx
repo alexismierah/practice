@@ -1426,19 +1426,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-          CTA STRIP
-      ═══════════════════════════════════════════ */}
-      <section className="cta-strip">
-        <div className="cta-strip-inner">
-          <div>
-            <p className="cta-strip-heading">Ready to transform your space?</p>
-            <p className="cta-strip-sub">Get in touch for a custom quote.</p>
-          </div>
-          <Link className="cta-strip-btn" href="#footer">Request a quote →</Link>
-        </div>
-      </section>
-
     </main>
   );
 }
