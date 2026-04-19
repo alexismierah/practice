@@ -178,9 +178,9 @@ export default function Page() {
         style={{
           width: "100%",
           height: "285px",
-          backgroundImage: "url('/pit.png')",
+          backgroundImage: "url('/wall6.webp')",
           backgroundSize: "cover",
-          backgroundPosition: "center 20%",
+          backgroundPosition: "center 45%",
           position: "relative",
           display: "flex",
           alignItems: "center",
@@ -270,6 +270,7 @@ export default function Page() {
               style={{
                 width: "100%",
                 maxWidth: "600px",
+                maxHeight: "600px",
                 borderRadius: "18px",
                 overflow: "hidden",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
@@ -278,7 +279,7 @@ export default function Page() {
               }}
             >
               <img
-                src="/p39.png"
+                src="/wall2.jpeg"
                 alt="Artificial wall plant"
                 style={{
                   width: "100%",

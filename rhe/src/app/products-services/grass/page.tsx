@@ -256,6 +256,7 @@ export default function Page() {
               style={{
                 width: "100%",
                 maxWidth: "600px",
+                maxHeight: "600px",
                 borderRadius: "18px",
                 overflow: "hidden",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
@@ -354,8 +355,7 @@ export default function Page() {
             >
               We supply and install artificial grass based on the client’s preferred surface, 
               whether on cement or soil. Each installation is carefully measured, fitted, and 
-              trimmed to ensure a smooth and seamless finish. Our team also performs precise cutting 
-              and detailing when needed to achieve clean edges and a refined overall appearance.
+              trimmed to ensure a smooth and seamless finish.
             </p>
           </div>
         </div>

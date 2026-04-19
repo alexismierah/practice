@@ -56,6 +56,9 @@ export default function ProductsServicesPage() {
         }
 
         /* On mobile, collapse to single column */
+        @media (max-width: 900px) {
+          .section-pad { padding-left: 2.5rem !important; padding-right: 2.5rem !important; }
+        }
         @media (max-width: 768px) {
           .two-col-grid {
             grid-template-columns: 1fr;
@@ -68,11 +71,6 @@ export default function ProductsServicesPage() {
           }
           .two-col-grid .image-cell {
             order: 1;
-          }
-
-          /* Tighten section padding */
-          .section-pad {
-            padding: 2.5rem 1.25rem !important;
           }
 
           /* Shrink image height on mobile */
@@ -91,6 +89,13 @@ export default function ProductsServicesPage() {
           }
         }
 
+        @media (max-width: 640px) {
+          .section-pad {
+            padding-left: 1.25rem !important;
+            padding-right: 1.25rem !important;
+          }
+        }
+
         @media (max-width: 480px) {
           .two-col-grid {
             gap: 1.5rem;
@@ -98,7 +103,6 @@ export default function ProductsServicesPage() {
           .product-img-wrap {
             height: 220px !important;
           }
-        }
 
         /* ── Existing component styles ── */
         .product-card {
@@ -229,8 +233,9 @@ export default function ProductsServicesPage() {
 
       {/* ── HERO ── */}
       <section
+        className="section-pad"
         style={{
-          padding: "2.5rem 1.5rem",
+          padding: "2.5rem 5rem",
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
@@ -270,9 +275,9 @@ export default function ProductsServicesPage() {
       {/* ── 1ST INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#ffffff", padding: "2.5rem 3rem" }}
+        style={{ background: "#ffffff", padding: "2.5rem 5rem" }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div>
           <div className="two-col-grid">
             {/* Image */}
             <div className="image-cell" style={{ position: "relative" }}>
@@ -339,9 +344,7 @@ export default function ProductsServicesPage() {
               >
                 A premium collection of lifelike plants in pots, thoughtfully designed 
                 to elevate indoor and outdoor spaces. Each piece comes ready for display in stylish 
-                containers, delivering the beauty of natural greenery without the need for 
-                watering or sunlight. Maintenance free potted artificial plants provide an instant, 
-                elegant botanical touch, perfect for both residential and commercial environments.
+                containers, delivering the beauty of natural green perfect for both residential and commercial environments.
               </p>
 
               <div
@@ -403,7 +406,7 @@ export default function ProductsServicesPage() {
       {/* ── 2ND INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#FAFAF8", padding: "4rem 3rem" }}
+        style={{ background: "#FAFAF8", padding: "2.5rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
@@ -449,9 +452,7 @@ export default function ProductsServicesPage() {
                 }}
               >
                 A refined collection of artificial wall greens designed to 
-                bring lush vertical beauty into any space. These carefully 
-                arranged wall plants create the look of a thriving green environment 
-                without the need for watering or sunlight. Ideal for both residential 
+                bring lush vertical beauty into any space. Ideal for both residential 
                 and commercial settings, providing a clean and elegant backdrop that 
                 enhances interiors while remaining easy to maintain and long lasting.
               </p>
@@ -538,7 +539,7 @@ export default function ProductsServicesPage() {
       {/* ── 3RD INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#ffffff", padding: "2.5rem 3rem" }}
+        style={{ background: "#ffffff", padding: "2.5rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid">
@@ -605,10 +606,9 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                A decorative planter box featuring carefully arranged artificial 
-                plants or styled empty spaces, designed to enhance both indoor 
-                and outdoor environments. Each piece combines structure and greenery to create 
-                a balanced, modern look. Planter boxes provides an instant and refined botanical
+                Decorative planter box features carefully arranged and combined artificial 
+                plants on empty spaces, designed to enhance both indoor 
+                and outdoor environments. Provides an instant and refined botanical
                 display, ideal for residential and commercial settings.
               </p>
 
@@ -672,7 +672,7 @@ export default function ProductsServicesPage() {
       {/* ──4TH INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#FAFAF8", padding: "4rem 3rem" }}
+        style={{ background: "#FAFAF8", padding: "2.5rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
@@ -719,9 +719,7 @@ export default function ProductsServicesPage() {
               >
                 A high quality range of artificial turf grass designed to replicate 
                 the look and feel of natural lawn surfaces. Built for durability and 
-                year round greenery, it provides a clean and uniform finish for both 
-                indoor and outdoor applications without the need for watering, mowing, 
-                or sunlight. These low maintenance turf solutions offer a practical and 
+                year round greenery, offering a practical and 
                 visually appealing alternative to natural grass, ideal for residential, 
                 commercial, and recreational spaces.
               </p>
