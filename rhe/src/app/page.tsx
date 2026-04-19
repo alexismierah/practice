@@ -1274,8 +1274,8 @@ export default function Home() {
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "64px" }}>
             <p style={{ fontSize: "11px", letterSpacing: ".12em", textTransform: "uppercase", color: "#7a8f80", marginBottom: "14px", fontFamily: "'DM Sans', sans-serif" }}>Got Questions?</p>
-            <h2 style={{ fontSize: "clamp(28px, 3.5vw, 44px)", fontWeight: 300, letterSpacing: "-0.02em", color: "#1a2e1a", lineHeight: 1.15 }}>
-              Frequently Asked <em style={{ fontStyle: "italic", fontWeight: 400, color: "#3f7a55" }}>Questions</em>
+            <h2 style={{ fontSize: "clamp(28px, 2.8vw, 44px)", fontWeight: 500, letterSpacing: "-0.02em", color: "#1a2e1a", lineHeight: 1.15 }}>
+              Frequently Asked <em style={{ fontStyle: "italic", fontWeight: 500, color: "#3f7a55" }}>Questions</em>
             </h2>
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
