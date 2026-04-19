@@ -757,8 +757,8 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title">
-              <span className="hero-title-italic">Bring</span> <span className="hero-title-bold">Nature</span> <span className="hero-title-italic">to</span>
-              <span className="hero-title-italic" style={{ display: "block", marginTop: "0.3em" }}>your Space</span>
+              <span className="hero-title-bold">Bring</span> <span className="hero-title-italic">Nature</span> <span className="hero-title-bold">to</span>
+              <span className="hero-title-bold" style={{ display: "block", marginTop: "0" }}>your Space</span>
             </h1>
           </div>
 
