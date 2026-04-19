@@ -679,7 +679,7 @@ export default function Home() {
           font-weight: 400;
           color: rgba(255,255,255,0.92);
           letter-spacing: 0.04em;
-          font-style: italic;
+          font-style: normal;
         }
 
         @media (max-width: 900px) {
@@ -1276,9 +1276,9 @@ export default function Home() {
         }
         .cta-img-plant {
           position: absolute;
-          right: 60px;
-          bottom: 0;
-          height: 602px;
+          right: 0px;
+          bottom: 0px;
+          height: 330px;
           object-fit: contain;
           pointer-events: none;
           z-index: 10;
@@ -1562,7 +1562,7 @@ export default function Home() {
 
       {/* CTA */}
       <div className="cta-img-band" style={{ background: "#e2ede3", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
-        <img className="cta-img-plant" src="/Overlap3.png" alt="Plant" />
+        <img className="cta-img-plant" src="/Overlap4.png" alt="Plant" />
         <div style={{ flex: 1 }}>
           <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4a5a4a", marginBottom: "16px" }}>Let&apos;s Work Together</p>
           <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#0a0a0a", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
