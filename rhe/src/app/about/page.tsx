@@ -1,47 +1,5 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-
-function FadeIn({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: React.ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => setVisible(true), delay);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [delay]);
-
-  return (
-    <div
-      ref={ref}
-      className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translateY(0)" : "translateY(24px)",
-        transition: "opacity 0.7s ease, transform 0.7s ease",
-      }}
-    >
-      {children}
-    </div>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -421,13 +379,11 @@ export default function AboutPage() {
         {/* HERO */}
         <section className="hero">
           <div className="hero-left">
-            <FadeIn>
-              <p className="hero-eyebrow">Our Story</p>
-              <h1 className="hero-title">
-                Rich Haven <br /> <em style={{ color: "var(--deep-sage)" }}>Artificial Garden</em>
-              </h1>
-              <p className="hero-tagline">Artificial greenery · Thoughtfully designed · Built to last</p>
-            </FadeIn>
+            <p className="hero-eyebrow">Our Story</p>
+            <h1 className="hero-title">
+              Rich Haven <br /> <em style={{ color: "var(--deep-sage)" }}>Artificial Garden</em>
+            </h1>
+            <p className="hero-tagline">Artificial greenery · Thoughtfully designed · Built to last</p>
           </div>
           <div className="hero-right">
             <div className="hero-image-bg" />
@@ -446,30 +402,23 @@ export default function AboutPage() {
 
         {/* CORE VALUES */}
         <section style={{ background: "var(--white)", padding: "100px 64px" }}>
-          <FadeIn>
-            <div style={{ textAlign: "center", marginBottom: "72px" }}>
-              <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "16px" }}>What Drives Us</p>
-              <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1, color: "var(--charcoal)" }}>
-                Our <em style={{ color: "var(--deep-sage)", fontStyle: "italic" }}>Core Values</em>
-              </h2>
-            </div>
-          </FadeIn>
+          <div style={{ textAlign: "center", marginBottom: "72px" }}>
+            <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "16px" }}>What Drives Us</p>
+            <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1, color: "var(--charcoal)" }}>
+              Our <em style={{ color: "var(--deep-sage)", fontStyle: "italic" }}>Core Values</em>
+            </h2>
+          </div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", maxWidth: "1100px", margin: "0 auto" }}>
             {[
               { n: "01", title: "Our Mission", desc: "Providing artificial gardening services with the most professional workmanship to give customer satisfaction." },
               { n: "02", title: "Our Vision", desc: "Being the most trusted artificial gardening service provider throughout the country." },
             ].map((item, i) => (
-              <FadeIn key={i} delay={i * 120}>
-                <div style={{ background: "#f7f9f7", padding: "52px 48px", height: "100%", display: "flex", flexDirection: "column", gap: "18px", transition: "background 0.25s" }}
-                  onMouseEnter={e => (e.currentTarget.style.background = "var(--cream)")}
-                  onMouseLeave={e => (e.currentTarget.style.background = "#f7f9f7")}
-                >
-                  <span style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", color: "var(--gold)" }}>{item.n}</span>
-                  <div style={{ width: "32px", height: "1px", background: "var(--sage)" }} />
-                  <h3 style={{ fontSize: "24px", fontWeight: 300, color: "var(--charcoal)", letterSpacing: "-0.01em", lineHeight: 1.2 }}>{item.title}</h3>
-                  <p style={{ fontSize: "15px", lineHeight: 1.85, color: "var(--warm-gray)", fontWeight: 300 }}>{item.desc}</p>
-                </div>
-              </FadeIn>
+              <div key={i} style={{ background: "#f7f9f7", padding: "52px 48px", height: "100%", display: "flex", flexDirection: "column", gap: "18px" }}>
+                <span style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", color: "var(--gold)" }}>{item.n}</span>
+                <div style={{ width: "32px", height: "1px", background: "var(--sage)" }} />
+                <h3 style={{ fontSize: "24px", fontWeight: 300, color: "var(--charcoal)", letterSpacing: "-0.01em", lineHeight: 1.2 }}>{item.title}</h3>
+                <p style={{ fontSize: "15px", lineHeight: 1.85, color: "var(--warm-gray)", fontWeight: 300 }}>{item.desc}</p>
+              </div>
             ))}
           </div>
         </section>

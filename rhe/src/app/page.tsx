@@ -343,12 +343,6 @@ export default function Home() {
           to   { width: 100% }
         }
 
-        .hero-animate .hero-eyebrow { animation: fadeUp 0.7s 0.1s both ease; }
-        .hero-animate .hero-title { animation: fadeUp 0.9s 0.25s both ease; }
-        .hero-animate .hero-subtitle { animation: fadeUp 0.8s 0.4s both ease; }
-        .hero-animate .hero-desc { animation: fadeUp 0.8s 0.45s both ease; }
-        .hero-animate .hero-actions { animation: fadeUp 0.8s 0.6s both ease; }
-        .hero-animate .hero-index-bar { animation: fadeIn 0.7s 0.75s both ease; }
 
         @keyframes fadeIn {
           from { opacity: 0; }
@@ -1249,7 +1243,7 @@ export default function Home() {
         <div className="hero-img-vignette" aria-hidden="true" />
         <div className="hero-grain" aria-hidden="true" />
 
-        <div className={`hero-left${mounted ? " hero-animate" : ""}`}>
+        <div className={"hero-left"}>
           <div className="hero-headline-block">
             <div className="hero-eyebrow">
               <span className="hero-eyebrow-text">Rich Haven Artificial Garden</span>
