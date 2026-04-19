@@ -1347,7 +1347,7 @@ export default function Home() {
         <div className="ps-header">
           <div>
             <p className="ps-eyebrow">What we offer</p>
-            <h2 className="ps-title" id="products-heading">Rich<em> Haven</em> Catalouge</h2>
+            <h2 className="ps-title" id="products-heading">Rich Haven <em>Catalog</em></h2>
             <p className="ps-header-sub">
               We supply, install, or both — whatever your space needs.
             </p>
