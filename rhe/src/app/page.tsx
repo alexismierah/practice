@@ -1083,7 +1083,7 @@ export default function Home() {
       ═══════════════════════════════════════════ */}
       <section className="intro-strip">
         <div className="intro-strip-left">
-          <span className="intro-strip-label">Rich Haven</span>
+          <span className="intro-strip-label">Our Story</span>
           <h2 className="intro-strip-heading">
             We turn <em><br />bare spaces into</em> green ones
           </h2>
@@ -1095,7 +1095,7 @@ export default function Home() {
           </p>
           <Link className="intro-strip-link" href="/about">
             <span className="intro-strip-link-line" />
-            Our story
+            Learn more about us
           </Link>
         </div>
       </section>
