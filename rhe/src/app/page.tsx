@@ -1296,7 +1296,7 @@ export default function Home() {
         <div className="fp-header">
           <div className="fp-header-left">
             <p className="fp-label">Our work</p>
-            <h2 className="fp-title">Featured <em>Projects</em></h2>
+            <h2 className="fp-title">Project <em>Highlights</em></h2>
             <p className="fp-desc">Real installs, real spaces — from residential balconies to commercial lobbies.</p>
           </div>
         </div>
