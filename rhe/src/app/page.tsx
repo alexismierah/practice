@@ -566,9 +566,8 @@ export default function Home() {
           font-size: 13.5px;
           color: #7a8f80;
           line-height: 1.8;
-          max-width: 380px;
-          margin: 0 auto;
           font-weight: 300;
+          white-space: nowrap;
         }
 
         .fp-view-link {
@@ -1135,9 +1134,7 @@ export default function Home() {
           <div className="fp-header-left">
             <p className="fp-label">Our work</p>
             <h2 className="fp-title">Featured <em>Projects</em></h2>
-            <p className="fp-desc">
-              Real installs, real spaces — from residential balconies to commercial lobbies.
-            </p>
+            <p className="fp-desc">Real installs, real spaces — from residential balconies to commercial lobbies.</p>
           </div>
         </div>
 
