@@ -498,7 +498,7 @@ export default function Header() {
                   </div>
                 </div>
               </li>
-              <li><a href="/portfolio" className="hdr-nav-link">Gallery</a></li>
+              <li><a href="/projects" className="hdr-nav-link">Projects</a></li>
             </ul>
           </nav>
 
