@@ -7,19 +7,19 @@ const featuredPlants = [
   {
     name: "Artificial Grass",
     sublabel: "Sports or design spaces",
-    img: "landd.png",
+    img: "https://images.unsplash.com/photo-1558904541-efa843a96f01?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     link: "/products-services/grass",
   },
   {
     name: "Potted Plants and Trees",
     sublabel: "Lush Indoor Statement Accent",
-    img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
+    img: "https://images.unsplash.com/photo-1692829271023-014023fd2c41?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     link: "/products-services/potted-plants",
   },
   {
     name: "Planter Boxes",
     sublabel: "Vibrant Designer Foliage Collection",
-    img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
+    img: "landd.png",
     link: "/products-services/planter-box",
   },
   {
@@ -303,23 +303,6 @@ export default function Home() {
         .hero-dot.active {
           background: rgba(255,255,255,0.85);
           width: 40px;
-        }
-
-        .hero-progress-line {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 2px;
-          background: rgba(255,255,255,0.06);
-          z-index: 4;
-        }
-
-        .hero-progress-fill {
-          height: 100%;
-          background: rgba(200,218,201,0.6);
-          animation: lineFill 5s linear forwards;
-          transform-origin: left;
         }
 
         @keyframes lineFill {
@@ -796,9 +779,6 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-progress-line" aria-hidden="true">
-          <div key={sliderIdx} className="hero-progress-fill" />
-        </div>
       </section>
 
       {/* ═══════════════════════════════════════════
