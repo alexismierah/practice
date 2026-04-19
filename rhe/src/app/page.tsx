@@ -1086,7 +1086,7 @@ export default function Home() {
         <div className="intro-strip-left">
           <span className="intro-strip-label">Our Story</span>
           <h2 className="intro-strip-heading">
-            We turn <em><br />bare spaces into</em> green ones
+            Rich Haven <em><br />Arificial Garden</em>
           </h2>
         </div>
         <div className="intro-strip-divider" aria-hidden="true" />
