@@ -10,14 +10,14 @@ export default function AboutPage() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --cream: #F7F4EE;
-          --linen: #EDE8DF;
-          --sage: #8A9E7F;
-          --deep-sage: #5C7253;
-          --moss: #3D5238;
-          --charcoal: #252520;
-          --warm-gray: #7A7770;
-          --gold: #B8965A;
+          --cream: #f5f2ec;
+          --linen: #e2ede3;
+          --sage: #c8dac9;
+          --deep-sage: #3f7a55;
+          --moss: #163521;
+          --charcoal: #163521;
+          --warm-gray: #7a8f80;
+          --gold: #2f6f44;
           --white: #FFFFFF;
         }
 
