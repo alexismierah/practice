@@ -40,33 +40,19 @@ const displayedPlants = [
   {
     name: "Planter Boxes",
     sublabel: "Vibrant Designer Foliage Collection",
-    img: "https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/648424462_1429741828941943_3205555062599595441_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeHhyzcOGd0LQfedLo-WoqEmu1Yra36Dg727VitrfoODveK9MJ3u5DOCxeyGJyr2yOTh7gqQxWA9h8YGxbaf6Rfs&_nc_ohc=LCv9f4tZGZMQ7kNvwGkxkrk&_nc_oc=Adr0hIaMnAmPY779YI914QLOvnDQy8EOCDawkFJF5UFWnR22g8pB2AKUwza8hAnhFJM&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=RqC1R6mFu0mo3iOHrS8Rxw&_nc_ss=7a3a8&oh=00_Af2VVxRrRicsPYUagbkaYIp_QgChOXUp7p_n4gxGEIAGmg&oe=69E3E0BC",
+    img: "p1.jpg",
     link: "/products-services/planter-box",
     tag: "03",
   },
   {
     name: "Wall Greens",
     sublabel: "Low-Maintenance Greenery",
-    img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
+    img: "p19.jpg",
     link: "/products-services/wall-greens",
     tag: "04",
   },
 ];
 
-const motVideos = [
-  {
-    label: "Video 1",
-    src: "https://www.facebook.com/reel/1933138787564923",
-  },
-  {
-    label: "Video 2",
-    src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_2?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID_2",
-  },
-  {
-    label: "Video 3",
-    src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_3?autoplay=1&mute=1&loop=1&playlist=YOUR_VIDEO_ID_3",
-  },
-];
 
 const shopReasons = [
   {
@@ -92,7 +78,6 @@ const shopReasons = [
 ] as const;
 
 export default function Home() {
-  const [motVideoIdx, setMotVideoIdx] = useState(0);
   const [sliderIdx, setSliderIdx] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -797,25 +782,16 @@ export default function Home() {
           </p>
 
           <div className="mot-video-wrap">
-            <iframe
+            <video
               className="mot-video-iframe"
-              src={motVideos[motVideoIdx].src}
-              allow="autoplay; fullscreen"
-              allowFullScreen
+              src="/video.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
             />
           </div>
-
-          <nav className="mot-video-dots" aria-label="Video navigation">
-            {motVideos.map((v, i) => (
-              <button
-                key={v.label}
-                className={`mot-video-dot${i === motVideoIdx ? " active" : ""}`}
-                onClick={() => setMotVideoIdx(i)}
-                aria-label={`Show ${v.label}`}
-                aria-pressed={i === motVideoIdx}
-              />
-            ))}
-          </nav>
         </div>
       </section>
 
@@ -904,9 +880,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════
-          CTA STRIP
-      ═══════════════════════════════════════════ */}
+      {/* CTA STRIP */}
       <section className="cta-strip" aria-label="Call to action">
         <div className="cta-strip-left">
           <p className="cta-strip-eyebrow">Let&apos;s work together</p>
