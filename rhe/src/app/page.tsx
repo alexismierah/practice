@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { CloudSun, Grid2x2, Leaf, ShieldCheck } from "lucide-react";
+import { CloudSun, Grid2x2, Leaf, ShieldCheck, House, Building2, ShoppingBag, Hotel, UtensilsCrossed, CalendarDays } from "lucide-react";
 import { useState, useEffect } from "react";
 
 function FAQItem({ q, a }: { q: string; a: string }) {
@@ -898,6 +898,50 @@ export default function Home() {
         .ps-explore-line { width: 32px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
         .ps-explore:hover .ps-explore-line { width: 48px; }
 
+        /* ── WHERE WE APPLY ── */
+        .apply-section {
+          margin-top: 16px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          width: 100%;
+        }
+
+        .apply-prefix {
+          font-size: 10px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #2f6f44;
+          font-weight: 500;
+          flex-shrink: 0;
+          margin-right: 4px;
+        }
+
+        .apply-chip {
+          flex: 1;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-family: "Cormorant Garamond", serif;
+          font-size: 13.5px;
+          font-weight: 400;
+          font-style: italic;
+          color: #4a6a52;
+          background: transparent;
+          border: none;
+          border-left: 1px solid #d8e8da;
+          border-radius: 0;
+          padding: 4px 16px;
+          letter-spacing: 0.02em;
+          white-space: nowrap;
+          pointer-events: none;
+        }
+
+        .apply-chip:first-of-type { border-left: none; padding-left: 0; }
+
+        .apply-chip-icon { display: none; }
+
         /* ── SERVICES (below product grid) ── */
         .ps-services-label {
           font-size: 10px;
@@ -1394,9 +1438,9 @@ export default function Home() {
         <div className="ps-header">
           <div>
             <p className="ps-eyebrow">What we offer</p>
-            <h2 className="ps-title" id="products-heading">Rich Haven <em>Catalog</em></h2>
+            <h2 className="ps-title" id="products-heading"><em>Products</em> & <em>Services</em></h2>
             <p className="ps-header-sub">
-              We supply, install, or both — whatever your space needs.
+              We <strong>supply, install, or both</strong> — whatever your space needs.
             </p>
           </div>
           <Link className="ps-explore" href="/products-services">
@@ -1419,6 +1463,24 @@ export default function Home() {
                 </div>
               </Link>
             </article>
+          ))}
+        </div>
+
+        {/* WHERE WE APPLY */}
+        <div className="apply-section">
+          <span className="apply-prefix">Available for</span>
+          {[
+            { Icon: House,           name: "Residential Homes" },
+            { Icon: Building2,       name: "Commercial Offices" },
+            { Icon: ShoppingBag,     name: "Retail & Boutiques" },
+            { Icon: Hotel,           name: "Hotels & Resorts" },
+            { Icon: UtensilsCrossed, name: "Restaurants & Cafés" },
+            { Icon: CalendarDays,    name: "Events & Exhibitions" },
+          ].map(({ Icon, name }) => (
+            <span className="apply-chip" key={name}>
+              <Icon className="apply-chip-icon" size={13} strokeWidth={1.6} />
+              {name}
+            </span>
           ))}
         </div>
 
@@ -1499,16 +1561,16 @@ export default function Home() {
       </section>
 
       {/* CTA */}
-      <div className="cta-img-band" style={{ background: "#2d4a38", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
+      <div className="cta-img-band" style={{ background: "#e2ede3", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
         <img className="cta-img-plant" src="/Overlap3.png" alt="Plant" />
         <div style={{ flex: 1 }}>
-          <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "16px" }}>Let&apos;s Work Together</p>
-          <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
-            Ready to bring <span style={{ fontWeight: 500 }}>nature</span><br />into your space?
+          <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4a5a4a", marginBottom: "16px" }}>Let&apos;s Work Together</p>
+          <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#0a0a0a", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
+            Ready to Start a <span style={{ fontWeight: 500 }}><em>Project</em></span> with <br /> <span style={{ fontWeight: 500 }}><em>Rich Haven?</em></span>
           </h2>
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-            <a href="/contact" style={{ padding: "14px 36px", background: "#B8965A", color: "#fff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Start a Project</a>
-            <a href="/products-services" style={{ padding: "14px 36px", background: "transparent", color: "#fff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Browse Collections</a>
+            <a href="/contact" style={{ padding: "10px 24px", background: "#163521", color: "#ffffff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Get in Touch</a>
+            <a href="/products-services" style={{ padding: "10px 24px", background: "transparent", color: "#2a1f10", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(42,31,16,0.25)", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Browse Products</a>
           </div>
         </div>
       </div>
