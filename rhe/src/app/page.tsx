@@ -1569,7 +1569,7 @@ export default function Home() {
             Ready to Start a <span style={{ fontWeight: 500 }}><em>Project</em></span> with <br /> <span style={{ fontWeight: 500 }}><em>Rich Haven?</em></span>
           </h2>
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-            <a href="/contact" style={{ padding: "10px 24px", background: "#163521", color: "#ffffff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Get in Touch</a>
+            <a href="#footer" onClick={(e) => { e.preventDefault(); const footer = document.getElementById("footer"); if (footer) { const top = footer.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: "smooth" }); } }} style={{ padding: "10px 24px", background: "#163521", color: "#ffffff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Get in Touch</a>
             <a href="/products-services" style={{ padding: "10px 24px", background: "transparent", color: "#2a1f10", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(42,31,16,0.25)", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Browse Products</a>
           </div>
         </div>
