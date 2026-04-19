@@ -344,6 +344,7 @@ export default function Home() {
           display: flex;
           align-items: center;
           gap: 10px;
+          margin-bottom: 15px;
         }
 
 
