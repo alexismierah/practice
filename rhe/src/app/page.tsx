@@ -185,10 +185,11 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: flex-start;
+          justify-content: center;
           width: 100%;
           min-height: 110svh;
           padding: 140px 48px 100px;
+          text-align: center;
         }
 
         .hero-headline-block {
@@ -242,6 +243,8 @@ export default function Home() {
           line-height: 1.7;
           max-width: 380px;
           font-family: "DM Sans", sans-serif;
+          margin-left: auto;
+          margin-right: auto;
         }
 
         .hero-index-bar {
@@ -851,6 +854,11 @@ export default function Home() {
         .ps-explore-line { width: 32px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
         .ps-explore:hover .ps-explore-line { width: 48px; }
 
+        @media (max-width: 768px) {
+          .ps-explore--desktop { display: none !important; }
+          .ps-explore--mobile { display: inline-flex !important; width: 100%; justify-content: center; }
+        }
+
         /* ── WHERE WE APPLY ── */
         .apply-section {
           margin-top: 16px;
@@ -895,6 +903,18 @@ export default function Home() {
 
         .apply-chip-icon { display: none; }
 
+        /* ── APPLY SECTION RESPONSIVE ── */
+        @media (max-width: 768px) {
+          .apply-section { flex-wrap: wrap; gap: 4px 0; }
+          .apply-prefix { width: 100%; margin-bottom: 6px; }
+          .apply-chip { flex: 0 0 50%; border: none; padding: 8px 0; justify-content: flex-start; }
+          .apply-chip:nth-child(even) { padding-left: 16px; }
+        }
+
+        @media (max-width: 480px) {
+          .apply-chip { flex: 0 0 100%; padding-left: 0 !important; }
+        }
+
         /* ── RESPONSIVE ── */
 
         /* ≤1024px — tablet landscape */
@@ -935,7 +955,7 @@ export default function Home() {
         /* ≤768px — large phone / small tablet */
         @media (max-width: 768px) {
           .hero-eyebrow-text { font-size: 9px; letter-spacing: 0.18em; }
-          .hero-left { padding: 80px 28px 80px; }
+          .hero-left { padding: 80px 28px 80px; text-align: center; align-items: center; }
 
           .why-shop-grid { grid-template-columns: 1fr; gap: 0; }
           .why-shop-header { margin-bottom: 48px; }
@@ -949,7 +969,7 @@ export default function Home() {
         @media (max-width: 640px) {
           .hero-index-bar { padding: 18px 20px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
           .hero-index-number { display: none; }
-          .hero-left { min-height: 100svh; padding: 60px 24px 80px; }
+          .hero-left { min-height: 100svh; padding: 60px 24px 80px; text-align: center; align-items: center; }
           .hero-title { font-size: clamp(3rem, 11vw, 4.5rem); }
           .hero-subtitle { font-size: 13px; max-width: 280px; }
 
@@ -1015,13 +1035,15 @@ export default function Home() {
           pointer-events: none;
           z-index: 10;
         }
-        @media (max-width: 900px) {
-          .cta-img-band { padding: 48px 32px 48px calc(32px + 240px) !important; }
-          .cta-img-plant { height: 380px !important; right: 24px !important; }
+        @media (max-width: 768px) {
+          .cta-img-band { padding: 48px 32px !important; text-align: center; }
+          .cta-img-plant { display: none !important; }
+          .cta-img-band > div { align-items: center; display: flex; flex-direction: column; }
+          .cta-img-band > div > div { justify-content: center; }
         }
         @media (max-width: 580px) {
-          .cta-img-band { padding: 200px 24px 40px !important; text-align: center; }
-          .cta-img-plant { height: 260px !important; right: 50% !important; transform: translateX(50%) !important; bottom: auto !important; top: 0 !important; }
+          .cta-img-band { padding: 48px 24px 40px !important; text-align: center; }
+          .cta-img-plant { display: none !important; }
         }
       `}</style>
 
@@ -1059,22 +1081,6 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="hero-index-bar">
-            <span className="hero-index-number" aria-hidden="true">
-              {String(sliderIdx + 1).padStart(2, "0")} / {String(featuredPlants.length).padStart(2, "0")}
-            </span>
-            <nav className="hero-nav-dots" aria-label="Slide navigation">
-              {featuredPlants.map((plant, i) => (
-                <button
-                  key={plant.name}
-                  className={`hero-dot${i === sliderIdx ? " active" : ""}`}
-                  onClick={() => setSliderIdx(i)}
-                  aria-label={`Show ${plant.name}`}
-                  aria-pressed={i === sliderIdx}
-                />
-              ))}
-            </nav>
-          </div>
         </div>
 
       </section>
@@ -1164,7 +1170,7 @@ export default function Home() {
               We offer supply, install, or both for any space.
             </p>
           </div>
-          <Link className="ps-explore" href="/products-services">
+          <Link className="ps-explore ps-explore--desktop" href="/products-services">
             <span className="ps-explore-line" />
             View all products
           </Link>
@@ -1186,6 +1192,11 @@ export default function Home() {
             </article>
           ))}
         </div>
+
+        <Link className="ps-explore ps-explore--mobile" href="/products-services" style={{ marginTop: "32px", display: "none" }}>
+          <span className="ps-explore-line" />
+          View all products
+        </Link>
 
         {/* WHERE WE APPLY */}
         <div className="apply-section">
