@@ -1471,6 +1471,21 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CTA */}
+      <div style={{ background: "#1e3a2a", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
+        <img src="/Overlap.png" alt="Plant" style={{ position: "absolute", right: "0px", bottom: "0px", height: "360px", objectFit: "contain", pointerEvents: "none", zIndex: 10 }} />
+        <div style={{ flex: 1 }}>
+          <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "16px" }}>Let&apos;s Work Together</p>
+          <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
+            Ready to bring <span style={{ fontWeight: 500 }}>nature</span><br />into your space?
+          </h2>
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+            <a href="/contact" style={{ padding: "14px 36px", background: "#B8965A", color: "#fff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Start a Project</a>
+            <a href="/products-services" style={{ padding: "14px 36px", background: "transparent", color: "#fff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Browse Collections</a>
+          </div>
+        </div>
+      </div>
+
     </main>
   );
 }

@@ -1,79 +1,497 @@
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+
+function FadeIn({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => setVisible(true), delay);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [delay]);
+
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(24px)",
+        transition: "opacity 0.7s ease, transform 0.7s ease",
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function AboutPage() {
   return (
-    <main className="about-wrap">
+    <>
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap");
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
 
-        .about-wrap, .about-wrap * { box-sizing: border-box; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .about-wrap {
-          font-family: "Inter", sans-serif;
-          background: #fff;
-          color: #163521;
+        :root {
+          --cream: #F7F4EE;
+          --linen: #EDE8DF;
+          --sage: #8A9E7F;
+          --deep-sage: #5C7253;
+          --moss: #3D5238;
+          --charcoal: #252520;
+          --warm-gray: #7A7770;
+          --gold: #B8965A;
+          --white: #FFFFFF;
+        }
+
+        .about-page {
           min-height: 100vh;
-          padding: 40px 8px 40px;
+          background-color: var(--white);
+          font-family: 'DM Sans', sans-serif;
+          color: var(--charcoal);
         }
 
-        @media (min-width: 768px) {
-          .about-wrap { padding: 96px 96px; }
+        /* ── HERO ── */
+        .hero {
+          display: grid;
+          grid-template-columns: 1.2fr 2fr;
+          min-height: 100vh;
+          overflow: hidden;
         }
-
-        .about-eyebrow {
-          font-family: "Inter", sans-serif;
+        .hero-left {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          padding: 120px 64px 48px;
+          background: #f7f9f7;
+        }
+        .hero-eyebrow {
           font-size: 11px;
-          letter-spacing: .18em;
-          color: #9aaa9f;
+          font-weight: 500;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          margin: 0 0 20px;
+          color: var(--gold);
+          margin-bottom: 24px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .hero-eyebrow::before {
+          display: none;
+        }
+        .hero-title {
+          font-size: clamp(38px, 4.2vw, 62px);
+          font-weight: 300;
+          line-height: 1.1;
+          color: var(--charcoal);
+          letter-spacing: -0.02em;
+          margin-bottom: 28px;
+        }
+        .hero-title strong {
           font-weight: 500;
+          color: var(--deep-sage);
+        }
+        .hero-body {
+          font-size: 15.5px;
+          line-height: 1.85;
+          color: var(--warm-gray);
+          max-width: 420px;
+          font-weight: 300;
+          margin-bottom: 40px;
+        }
+        .hero-divider {
+          width: 48px;
+          height: 1px;
+          background: var(--sage);
+          margin-bottom: 24px;
+        }
+        .hero-tagline {
+          font-size: 13px;
+          color: var(--warm-gray);
+          letter-spacing: 0.04em;
+          font-weight: 300;
+        }
+        .hero-right {
+          position: relative;
+          overflow: hidden;
+          background: #f7f9f7;
+        }
+        .hero-image-bg {
+          position: absolute;
+          inset: 0;
+          background: #f7f9f7;
+        }
+        .hero-botanical {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .botanical-svg {
+          width: 420px;
+          height: 420px;
+          opacity: 0.82;
         }
 
-        .about-heading {
-          font-family: "Cormorant Garamond", serif;
+        /* ── STATS STRIP ── */
+        .stats-strip {
+          background: var(--moss);
+          padding: 52px 64px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .stat-item {
+          text-align: center;
+          padding: 0 20px;
+          border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-number {
+          font-size: 44px;
+          font-weight: 300;
+          color: var(--white);
+          line-height: 1;
+          letter-spacing: -0.02em;
+          margin-bottom: 10px;
+        }
+        .stat-label {
+          font-size: 11px;
           font-weight: 500;
-          font-size: clamp(2rem, 3vw + 1rem, 4rem);
-          line-height: 0.98;
-          letter-spacing: -.02em;
-          color: #163521;
-          margin: 0 0 40px;
-          white-space: nowrap;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.5);
         }
 
-        .about-heading-italic {
+        /* ── STORY ── */
+        .story {
+          padding: 110px 64px;
+          display: grid;
+          grid-template-columns: 1fr 1.6fr;
+          gap: 80px;
+          align-items: start;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .story-label {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 20px;
+        }
+        .story-heading {
+          font-size: 36px;
+          font-weight: 300;
+          line-height: 1.25;
+          color: var(--charcoal);
+          letter-spacing: -0.02em;
+          position: sticky;
+          top: 80px;
+        }
+        .story-heading strong {
+          font-weight: 500;
+          color: var(--deep-sage);
+        }
+        .story-content p {
+          font-size: 15.5px;
+          line-height: 1.9;
+          color: var(--warm-gray);
+          font-weight: 300;
+          margin-bottom: 22px;
+        }
+        .story-content p:last-child { margin-bottom: 0; }
+        .story-pull {
+          border-left: 2px solid var(--sage);
+          padding: 18px 24px;
+          margin: 36px 0;
+          font-size: 18px;
+          font-weight: 300;
           font-style: italic;
-          color: #3f7a55;
+          color: var(--deep-sage);
+          line-height: 1.65;
+          letter-spacing: -0.01em;
         }
 
-        .about-paragraph {
-          font-family: "Cormorant Garamond", serif;
+        /* ── PROMISE BAND ── */
+        .promise-band {
+          background: var(--linen);
+          padding: 72px 64px;
+          display: flex;
+          gap: 0;
+          overflow: hidden;
+        }
+        .promise-item {
+          flex: 1;
+          padding: 40px 48px;
+          border-right: 1px solid rgba(90,114,83,0.15);
+          display: flex;
+          flex-direction: column;
+          gap: 14px;
+        }
+        .promise-item:last-child { border-right: none; }
+        .promise-number {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.18em;
+          color: var(--gold);
+        }
+        .promise-title {
+          font-size: 20px;
           font-weight: 400;
-          font-size: 1.1rem;
-          line-height: 1.75;
-          color: rgba(26, 50, 30, 0.72);
-          margin: 0;
-          letter-spacing: .005em;
-          width: 100%;
-          text-align: justify; 
+          color: var(--charcoal);
+          letter-spacing: -0.01em;
+          line-height: 1.3;
+        }
+        .promise-desc {
+          font-size: 14px;
+          line-height: 1.8;
+          color: var(--warm-gray);
+          font-weight: 300;
         }
 
-        @media (min-width: 768px) {
-          .about-paragraph {
-            font-size: 1.2rem;
-          }
+        /* ── VALUES ── */
+        .values {
+          padding: 100px 64px;
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .values-header {
+          margin-bottom: 64px;
+        }
+        .section-label {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--gold);
+          margin-bottom: 14px;
+        }
+        .section-title {
+          font-size: 38px;
+          font-weight: 300;
+          color: var(--charcoal);
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+        }
+        .section-title strong {
+          font-weight: 500;
+          color: var(--deep-sage);
+        }
+        .values-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2px;
+        }
+        .value-card {
+          background: var(--linen);
+          padding: 44px 40px;
+          transition: background 0.25s;
+        }
+        .value-card:hover { background: var(--cream); }
+        .value-icon {
+          color: var(--gold);
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+        .value-title {
+          font-size: 17px;
+          font-weight: 500;
+          color: var(--charcoal);
+          margin-bottom: 12px;
+          letter-spacing: -0.01em;
+        }
+        .value-desc {
+          font-size: 14px;
+          line-height: 1.85;
+          color: var(--warm-gray);
+          font-weight: 300;
+        }
+
+        /* ── CTA BAND ── */
+        .cta-band {
+          background: var(--deep-sage);
+          padding: 88px 64px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 48px;
+        }
+        .cta-left {
+          flex: 1;
+        }
+        .cta-eyebrow {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.5);
+          margin-bottom: 16px;
+        }
+        .cta-text {
+          font-size: 36px;
+          font-weight: 300;
+          color: var(--white);
+          line-height: 1.2;
+          letter-spacing: -0.02em;
+        }
+        .cta-text span { font-weight: 500; }
+        .cta-actions {
+          display: flex;
+          gap: 14px;
+          flex-shrink: 0;
+        }
+        .btn-primary {
+          padding: 14px 36px;
+          background: var(--gold);
+          color: var(--white);
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          border: none;
+          border-radius: 9999px;
+          cursor: pointer;
+          text-decoration: none;
+          transition: opacity 0.2s;
+          display: inline-block;
+        }
+        .btn-primary:hover { opacity: 0.85; }
+        .btn-secondary {
+          padding: 14px 36px;
+          background: transparent;
+          color: var(--white);
+          font-family: 'DM Sans', sans-serif;
+          font-size: 12px;
+          font-weight: 500;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          border: 1px solid rgba(255,255,255,0.3);
+          border-radius: 9999px;
+          cursor: pointer;
+          text-decoration: none;
+          transition: border-color 0.2s;
+          display: inline-block;
+        }
+        .btn-secondary:hover { border-color: var(--white); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
+          .hero { grid-template-columns: 1fr; min-height: auto; }
+          .hero-left { padding: 64px 24px 48px; }
+          .hero-right { height: 300px; }
+          .stats-strip { grid-template-columns: repeat(2,1fr); padding: 40px 24px; gap: 32px; }
+          .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 24px; }
+          .stat-item:nth-child(3), .stat-item:last-child { border-bottom: none; }
+          .story { grid-template-columns: 1fr; padding: 64px 24px; gap: 36px; }
+          .story-heading { position: static; }
+          .promise-band { flex-direction: column; padding: 48px 24px; }
+          .promise-item { border-right: none; border-bottom: 1px solid rgba(90,114,83,0.15); padding: 28px 0; }
+          .promise-item:last-child { border-bottom: none; }
+          .values { padding: 64px 24px; }
+          .values-grid { grid-template-columns: 1fr; }
+          .cta-band { flex-direction: column; padding: 64px 24px; text-align: center; }
+          .cta-actions { justify-content: center; flex-wrap: wrap; }
         }
       `}</style>
 
-      <p className="about-eyebrow">Where nature meets permanence</p>
+      <div className="about-page">
 
-      <h1 className="about-heading">
-        Rich Haven <span className="about-heading-italic">Artificial Garden</span>
-      </h1>
+        {/* HERO */}
+        <section className="hero">
+          <div className="hero-left">
+            <FadeIn>
+              <p className="hero-eyebrow">Our Story</p>
+              <h1 className="hero-title">
+                Rich Haven <br /> <em style={{ color: "var(--deep-sage)" }}>Artificial Garden</em>
+              </h1>
+              <p className="hero-tagline">Artificial greenery · Thoughtfully designed · Built to last</p>
+            </FadeIn>
+          </div>
+          <div className="hero-right">
+            <div className="hero-image-bg" />
+            <div className="hero-botanical">
+              <div style={{ padding: "160px 56px 48px", width: "100%" }}>
+                <p style={{ fontSize: "15.5px", lineHeight: "2.2", color: "var(--warm-gray)", fontWeight: 300, marginBottom: "48px" }}>
+                  At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space — without the maintenance. We specialize in high-quality artificial greenery, including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces.
+                </p>
+                <p style={{ fontSize: "15.5px", lineHeight: "2.2", color: "var(--warm-gray)", fontWeight: 300 }}>
+                  Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you&apos;re elevating an interior, transforming an outdoor area, or creating a calming atmosphere, Rich Haven Artificial Garden is committed to delivering style, quality, and timeless greenery you can rely on.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <p className="about-paragraph">
-        At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space—without the maintenance.
-        We specialize in high-quality artificial greenery, including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces. Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you're elevating an interior, transforming an outdoor area, or creating a calming atmosphere, Rich Haven Artificial Garden is committed to delivering style, quality, and timeless greenery you can rely on.
-      </p>
+        {/* CORE VALUES */}
+        <section style={{ background: "var(--white)", padding: "100px 64px" }}>
+          <FadeIn>
+            <div style={{ textAlign: "center", marginBottom: "72px" }}>
+              <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.22em", textTransform: "uppercase", color: "var(--gold)", marginBottom: "16px" }}>What Drives Us</p>
+              <h2 style={{ fontSize: "clamp(32px, 4vw, 52px)", fontWeight: 300, letterSpacing: "-0.02em", lineHeight: 1.1, color: "var(--charcoal)" }}>
+                Our <em style={{ color: "var(--deep-sage)", fontStyle: "italic" }}>Core Values</em>
+              </h2>
+            </div>
+          </FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", maxWidth: "1100px", margin: "0 auto" }}>
+            {[
+              { n: "01", title: "Our Mission", desc: "Providing artificial gardening services with the most professional workmanship to give customer satisfaction." },
+              { n: "02", title: "Our Vision", desc: "Being the most trusted artificial gardening service provider throughout the country." },
+            ].map((item, i) => (
+              <FadeIn key={i} delay={i * 120}>
+                <div style={{ background: "#f7f9f7", padding: "52px 48px", height: "100%", display: "flex", flexDirection: "column", gap: "18px", transition: "background 0.25s" }}
+                  onMouseEnter={e => (e.currentTarget.style.background = "var(--cream)")}
+                  onMouseLeave={e => (e.currentTarget.style.background = "#f7f9f7")}
+                >
+                  <span style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.18em", color: "var(--gold)" }}>{item.n}</span>
+                  <div style={{ width: "32px", height: "1px", background: "var(--sage)" }} />
+                  <h3 style={{ fontSize: "24px", fontWeight: 300, color: "var(--charcoal)", letterSpacing: "-0.01em", lineHeight: 1.2 }}>{item.title}</h3>
+                  <p style={{ fontSize: "15px", lineHeight: 1.85, color: "var(--warm-gray)", fontWeight: 300 }}>{item.desc}</p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </section>
 
-    </main>
+        {/* CTA + TESTIMONIAL */}
+        <div style={{ background: "#1e3a2a", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
+          {/* Plant image overlapping the container */}
+          <img src="/Overlap.png" alt="Plant" style={{ position: "absolute", right: "0px", bottom: "0px", height: "360px", objectFit: "contain", pointerEvents: "none", zIndex: 10 }} />
+          {/* Left — CTA */}
+          <div style={{ flex: 1 }}>
+            <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginBottom: "16px" }}>Let&apos;s Work Together</p>
+            <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#fff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
+              Ready to bring <span style={{ fontWeight: 500 }}>nature</span><br />into your space?
+            </h2>
+            <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
+              <a href="/contact" className="btn-primary">Start a Project</a>
+              <a href="/products-services" className="btn-secondary">Browse Collections</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </>
   );
 }
