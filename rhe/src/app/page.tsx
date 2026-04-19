@@ -6,27 +6,19 @@ import { useState, useEffect } from "react";
 const featuredPlants = [
   {
     name: "Artificial Grass",
-    sublabel: "Sports or design spaces",
-    img: "https://images.unsplash.com/photo-1558904541-efa843a96f01?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/products-services/grass",
+    img: "https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/488259046_1214367554029587_4385088471884268293_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_ohc=SM4GFcnuc4sQ7kNvwHv-Z66&_nc_oc=AdqOXQPp9nycrWqJNAfI2KNrbl2mEz89gTyQmFOAxJn2lrVHnBZep-spkiwLIe9J0CI&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=KrckpwN1v86Eirt6pydtKQ&_nc_ss=7a3a8&oh=00_Af1J0H9nRbFnXMXVUFhXrJi9LxkcIxzZduK15QaHh9a5Gw&oe=69EA18E8",
   },
   {
     name: "Potted Plants and Trees",
-    sublabel: "Lush Indoor Statement Accent",
-    img: "https://images.unsplash.com/photo-1692829271023-014023fd2c41?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    link: "/products-services/potted-plants",
+    img: "PottedPlants.png",
   },
   {
     name: "Planter Boxes",
-    sublabel: "Vibrant Designer Foliage Collection",
-    img: "landd.png",
-    link: "/products-services/planter-box",
+    img: "PlanterBoxes.png",
   },
   {
     name: "Wall Greens",
-    sublabel: "Low-Maintenance Greenery",
-    img: "https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/659113654_1448920473690745_7788257688503933853_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=107&ccb=1-7&_nc_sid=13d280&_nc_eui2=AeHuX0UmVZuYmexZkqsK2iNwNhtURVi6_bE2G1RFWLr9sU5U7ekWo31swlncyFRazXjq-toVyt2Y4Lc0GeQDvhZQ&_nc_ohc=pbb1ftAlsWIQ7kNvwHYTwyu&_nc_oc=AdotuAxS5AmsfPdBkTQgDxQVT8WSimOgGF_lv5rzK5cKPZJSuqB7ujlEjRfIgMYeZIQ&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=8IR14u51iA4tUCsPo5jdGw&_nc_ss=7a3a8&oh=00_Af0Q7FrK5QwRUqF5qaXbFwmbneWeeYnd3L-i9g3oPOrL2A&oe=69E40C8A",
-    link: "/products-services/wall-greens",
+    img: "https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/481073362_1133880258528103_7469329729455778811_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=7b2446&_nc_ohc=nvVeAdpYkdsQ7kNvwF17N4U&_nc_oc=Adph9AbbCU0nIjKaFfP3czE9AVcaSHgymwhp7V3YEh-AaUTjw-79Ji5ul7JV1tLc89w&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=A9AkfnnSJOKthGWnXleSjg&_nc_ss=7a3a8&oh=00_Af0mvJYUckm7C7UBVbG2M9qcWDSbi6LPpBcn_LECH17l-A&oe=69EA3239",
   },
 ];
 
@@ -163,8 +155,8 @@ export default function Home() {
           position: absolute;
           inset: 0;
           background:
-            linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.3) 45%, rgba(0, 0, 0, 0.18) 100%),
-            radial-gradient(ellipse at center, rgba(0, 0, 0, 0.25) 0%, transparent 100%);
+            linear-gradient(to top, rgba(0, 0, 0, 0.80) 0%, rgba(0, 0, 0, 0.43) 45%, rgba(0, 0, 0, 0.28) 100%),
+            radial-gradient(ellipse at center, rgba(0, 0, 0, 0.32) 0%, transparent 100%);
           z-index: 1;
           pointer-events: none;
         }
@@ -235,13 +227,13 @@ export default function Home() {
           font-style: italic;
           font-weight: 300;
           color: rgba(255,255,255,0.85);
-          display: block;
+          display: inline;
         }
 
         .hero-title-bold {
           font-weight: 600;
           color: #ffffff;
-          display: block;
+          display: inline;
           line-height: 1;
         }
 
@@ -262,7 +254,6 @@ export default function Home() {
           justify-content: space-between;
           padding: 28px 56px;
           z-index: 3;
-          border-top: 1px solid rgba(255,255,255,0.08);
         }
 
         .hero-index-number {
@@ -707,18 +698,33 @@ export default function Home() {
 
         @media (max-width: 768px) {
           .ps-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+          .ps-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+          .hero-eyebrow-text { font-size: 9px; letter-spacing: 0.18em; }
         }
 
         @media (max-width: 640px) {
           .hero-top-bar { padding: 24px 20px; }
-          .hero-index-bar { padding: 18px 20px; }
+          .hero-index-bar { padding: 18px 20px; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
+          .hero-index-number { display: none; }
+          .hero-slide-label { font-size: 9px; text-align: center; white-space: normal; max-width: none; overflow: visible; text-overflow: unset; }
           .hero-left { padding: 76px 24px 80px; }
           .hero-title { font-size: clamp(3.2rem, 12vw, 5rem); }
           .why-shop { padding: 56px 20px; }
+          .why-shop-title { font-size: clamp(1.5rem, 5vw, 1.8rem); }
+          .why-shop-subtitle { font-size: 13px; }
           .products-section, .services-section { padding: 56px 20px; }
           .ps-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+          .ps-title { font-size: clamp(1.5rem, 5vw, 1.8rem); }
+          .ps-card-name { font-size: 0.85rem; }
+          .ps-card-sub { font-size: 10px; }
           .cta-strip { padding: 48px 20px; flex-direction: column; align-items: center; }
+          .cta-strip-heading { font-size: clamp(1.5rem, 5vw, 1.9rem); }
+          .cta-strip-sub { font-size: 0.82rem; }
           .mot-section { padding: 56px 20px; }
+          .mot-title { font-size: clamp(1.5rem, 5vw, 1.9rem); }
+          .mot-desc { font-size: 13px; }
+          .reason h3 { font-size: 0.95rem; }
+          .reason p { font-size: 12.5px; }
         }
 
         @media (max-width: 400px) {
@@ -751,19 +757,14 @@ export default function Home() {
             </div>
 
             <h1 className="hero-title">
-              <span className="hero-title-italic"></span>
-              <span className="hero-title-bold">Greens for</span>
-              <span className="hero-title-bold"> your Space.</span>
-              <span className="hero-title-accent"></span>
+              <span className="hero-title-italic">Bring</span> <span className="hero-title-bold">Nature</span> <span className="hero-title-italic">to</span>
+              <span className="hero-title-italic" style={{ display: "block", marginTop: "0.3em" }}>your Space</span>
             </h1>
           </div>
 
           <div className="hero-index-bar">
             <span className="hero-index-number" aria-hidden="true">
               {String(sliderIdx + 1).padStart(2, "0")} / {String(featuredPlants.length).padStart(2, "0")}
-            </span>
-            <span className="hero-slide-label">
-              {featuredPlants[sliderIdx].name}
             </span>
             <nav className="hero-nav-dots" aria-label="Slide navigation">
               {featuredPlants.map((plant, i) => (
@@ -826,7 +827,7 @@ export default function Home() {
           <div>
             <p className="ps-eyebrow">What we offer</p>
             <h2 className="ps-title" id="products-heading"><em>Green</em> Solutions</h2>
-            <p style={{ marginTop: 12, fontSize: 13.5, color: "#7a8f80", lineHeight: 1.7, maxWidth: 380, whiteSpace: "nowrap" }}>
+            <p style={{ marginTop: 12, fontSize: 13.5, color: "#7a8f80", lineHeight: 1.7, maxWidth: 380 }}>
               Choose your greenery — we can supply it or fully install it based on your space.
             </p>
           </div>
