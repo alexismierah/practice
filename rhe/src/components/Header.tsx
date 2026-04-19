@@ -557,7 +557,6 @@ export default function Header() {
             </a>
           </div>
 
-          <a href="/gallery" className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>Gallery</a>
           <a href="#footer" className="hdr-mobile-cta" onClick={(e) => { scrollToFooter(e); setMobileOpen(false); }}>Get in Touch</a>
         </div>
       </header>
