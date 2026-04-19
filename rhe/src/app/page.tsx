@@ -125,7 +125,7 @@ export default function Home() {
         ───────────────────────────────────────── */
         .hero {
           position: relative;
-          min-height: 100svh;
+          min-height: 110svh;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -178,8 +178,8 @@ export default function Home() {
           align-items: center;
           justify-content: flex-start;
           width: 100%;
-          min-height: 100svh;
-          padding: 110px 48px 100px;
+          min-height: 110svh;
+          padding: 165px 48px 100px;
         }
 
         .hero-headline-block {
@@ -911,7 +911,7 @@ export default function Home() {
         <div className="cta-strip-left">
           <p className="cta-strip-eyebrow">Let&apos;s work together</p>
           <h2 className="cta-strip-heading">
-            Upgrade your space with effortless<em> greenery</em>
+            Transform your space with effortless greenery
           </h2>
           <p className="cta-strip-sub">
             Get in touch with us. We&apos;re ready to help you find the perfect greenery for your space.

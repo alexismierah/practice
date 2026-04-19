@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 function scrollToFooter(e: React.MouseEvent) {
   e.preventDefault();
@@ -24,6 +25,9 @@ export default function Header() {
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isTransparent = isHome && !scrolled && !dropdownOpen;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -66,11 +70,45 @@ export default function Header() {
           right: 0;
           z-index: 100;
           background-color: #ffffff;
-          transition: box-shadow 0.3s;
+          transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .hdr-root.scrolled {
           box-shadow: 0 4px 20px rgba(30,58,47,0.06);
+        }
+
+        .hdr-root.transparent {
+          background-color: transparent;
+        }
+
+        .hdr-root.transparent .hdr-logo-name,
+        .hdr-root.transparent .hdr-nav-link,
+        .hdr-root.transparent .hdr-dropdown-trigger {
+          color: #ffffff;
+        }
+
+        .hdr-root.transparent .hdr-logo-tagline {
+          color: rgba(255,255,255,0.65);
+        }
+
+        .hdr-root.transparent .hdr-nav-link:hover,
+        .hdr-root.transparent .hdr-dropdown-trigger:hover,
+        .hdr-root.transparent .hdr-dropdown-trigger.open {
+          color: rgba(255,255,255,0.75);
+        }
+
+        .hdr-root.transparent .hdr-cta-btn {
+          background: rgba(255,255,255,0.15);
+          border: 1px solid rgba(255,255,255,0.6);
+          color: #ffffff;
+        }
+
+        .hdr-root.transparent .hdr-cta-btn:hover {
+          background: rgba(255,255,255,0.28);
+        }
+
+        .hdr-root.transparent .hdr-burger span {
+          background: #ffffff;
         }
 
         .hdr-inner {
@@ -416,7 +454,7 @@ export default function Header() {
 
       `}</style>
 
-      <header className={`hdr-root${scrolled ? " scrolled" : ""}`}>
+      <header className={`hdr-root${scrolled ? " scrolled" : ""}${isTransparent ? " transparent" : ""}`}>
         <div className="hdr-inner">
 
           {/* Logo */}
