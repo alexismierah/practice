@@ -135,8 +135,8 @@ export default function Header() {
         }
 
         .hdr-logo-name {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 1.45rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.7rem;
           font-weight: 600;
           color: var(--forest-mid);
           letter-spacing: 0.03em;
@@ -148,7 +148,7 @@ export default function Header() {
           letter-spacing: 0.28em;
           text-transform: uppercase;
           color: var(--stone-dark);
-          margin-top: 3px;
+          margin-top: 0px;
         }
 
         .hdr-nav {

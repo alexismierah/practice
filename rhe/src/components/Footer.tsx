@@ -135,8 +135,8 @@ export default function Footer() {
         }
 
         .footer-logo-name {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 1.75rem;
+          font-family: 'Cormorant Garamond', serif;
+          font-size: 1.9rem;
           font-weight: 600;
           color: var(--brass-light);
           letter-spacing: 0.03em;
@@ -148,7 +148,7 @@ export default function Footer() {
           letter-spacing: 0.28em;
           text-transform: uppercase;
           color: var(--stone);
-          margin-top: 6px;
+          margin-top: 0px;
         }
 
         .footer-desc {
