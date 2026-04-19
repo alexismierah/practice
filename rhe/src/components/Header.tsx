@@ -472,7 +472,7 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="hdr-logo">
-            <Image src="/logo.png" alt="Rich Haven logo" width={45} height={45} style={{ objectFit: "contain", marginTop: "-25px" }} />
+            <Image src="/logo.png" alt="Rich Haven logo" width={45} height={45} style={{ objectFit: "contain", marginTop: "-25px", width: "auto" }} />
             <div className="hdr-logo-text">
               <span className="hdr-logo-name">Rich Haven</span>
               <span className="hdr-logo-tagline">Artificial Garden</span>

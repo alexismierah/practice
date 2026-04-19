@@ -451,7 +451,7 @@ export default function Footer() {
           {/* ── Col 1: Brand ── */}
           <div className="footer-brand">
             <div className="footer-logo-wrap">
-              <Image src="/logo.png" alt="Rich Haven logo" width={62} height={62} style={{ objectFit: "contain", marginTop: "-36px" }} />
+              <Image src="/logo.png" alt="Rich Haven logo" width={62} height={62} style={{ objectFit: "contain", marginTop: "-36px", width: "auto" }} />
               <div className="footer-logo-text">
                 <span className="footer-logo-name">Rich Haven</span>
                 <span className="footer-logo-tagline">Artificial Garden</span>

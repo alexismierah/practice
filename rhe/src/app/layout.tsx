@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
         <Header />
-
+        
         {/* Pages render their own <main>; a wrapper <main> here caused nested mains and broken flex layout */}
         <PageWrapper>{children}</PageWrapper>
 
