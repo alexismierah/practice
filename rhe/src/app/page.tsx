@@ -1108,7 +1108,7 @@ export default function Home() {
           <div className="fp-header-left">
             <p className="fp-label">Our work</p>
             <h2 className="fp-title">Project <em>Highlights</em></h2>
-            <p className="fp-desc">Real installs, real spaces — from residential balconies to commercial lobbies.</p>
+            <p className="fp-desc">A showcase of completed projects across real spaces.</p>
           </div>
         </div>
 
@@ -1160,7 +1160,7 @@ export default function Home() {
             <p className="ps-eyebrow">What we offer</p>
             <h2 className="ps-title" id="products-heading"><em>Products</em> & <em>Services</em></h2>
             <p className="ps-header-sub">
-              We <strong>supply, install, or both</strong> — whatever your space needs.
+              We offer supply, install, or both for any space.
             </p>
           </div>
           <Link className="ps-explore" href="/products-services">
@@ -1214,7 +1214,7 @@ export default function Home() {
           <p className="why-shop-eyebrow">What sets us apart</p>
           <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
           <p className="why-shop-subtitle">
-            We know what holds up — and what doesn&apos;t.
+            We know what works, and what truly lasts.
           </p>
         </div>
 
