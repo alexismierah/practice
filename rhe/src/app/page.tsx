@@ -271,7 +271,7 @@ export default function Home() {
 
         .hero-sub {
           font-size: 13px;
-          color: rgba(255,255,255,0.45);
+          color: #ffffff;
           line-height: 1.85;
           font-weight: 300;
           max-width: 240px;
