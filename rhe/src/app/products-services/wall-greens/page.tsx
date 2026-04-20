@@ -176,7 +176,7 @@ export default function Page() {
         style={{
           width: "100%",
           height: "285px",
-          backgroundImage: "url('/wallgreens/wall6.webp')",
+          backgroundImage: "url('/wallgreens/wall9.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center 45%",
           position: "relative",
@@ -203,7 +203,7 @@ export default function Page() {
           <h1
             className={dmSans.className}
             style={{
-              fontSize: "clamp(28px, 2.8vw, 44px)",
+              fontSize: "52px",
               fontWeight: 500,
               lineHeight: 1.1,
               color: "#fafafa",
@@ -276,7 +276,7 @@ export default function Page() {
               }}
             >
               <img
-                src="/wallgreens/wall2.jpeg"
+                src="/wallgreens/wall7.jpg"
                 alt="Artificial wall plant"
                 style={{
                   width: "100%",

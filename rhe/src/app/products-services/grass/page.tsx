@@ -191,7 +191,7 @@ export default function Page() {
           <h1
             className={dmSans.className}
             style={{
-              fontSize: "clamp(28px, 2.8vw, 44px)",
+              fontSize: "52px",
               fontWeight: 500,
               lineHeight: 1.1,
               color: "#fafafa",
