@@ -14,79 +14,6 @@ export default function AboutPage() {
           min-height: 100vh;
         }
 
-        /* ── HERO ── */
-        .about-hero {
-          position: relative;
-          min-height: 70svh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          overflow: hidden;
-          text-align: center;
-        }
-
-        .about-hero-bg {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          z-index: 0;
-        }
-
-        .about-hero-vignette {
-          position: absolute;
-          inset: 0;
-          background:
-            linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.43) 45%, rgba(0,0,0,0.28) 100%),
-            radial-gradient(ellipse at center, rgba(0,0,0,0.32) 0%, transparent 100%);
-          z-index: 1;
-          pointer-events: none;
-        }
-
-        .about-hero-content {
-          position: relative;
-          z-index: 2;
-          padding: 140px 48px 100px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .about-hero-eyebrow {
-          font-size: 13px;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-          color: rgba(200,218,201,0.75);
-          font-weight: 300;
-          margin-bottom: 16px;
-        }
-
-        .about-hero-title {
-          font-family: "Cormorant Garamond", serif;
-          font-weight: 300;
-          font-size: clamp(3.2rem, 5.5vw + 0.5rem, 7rem);
-          line-height: 1.15;
-          letter-spacing: -0.01em;
-          color: #ffffff;
-          margin-bottom: 24px;
-        }
-
-        .about-hero-title em {
-          font-style: italic;
-          font-weight: 300;
-          color: #c8dac9;
-        }
-
-        .about-hero-sub {
-          font-size: 16px;
-          font-weight: 300;
-          color: rgba(255,255,255,0.55);
-          letter-spacing: 0.04em;
-          line-height: 1.7;
-          max-width: 380px;
-        }
-
         /* ── INTRO STRIP ── */
         .about-intro {
           background: #ffffff;
@@ -294,42 +221,17 @@ export default function AboutPage() {
         }
 
         @media (max-width: 768px) {
-          .about-hero-content { padding: 80px 28px 80px; }
           .about-values-cards { grid-template-columns: 1fr; }
           .about-cta { padding: 48px 32px; text-align: center; align-items: center; flex-direction: column; }
           .about-cta-inner { padding-right: 0; display: flex; flex-direction: column; align-items: center; }
         }
 
         @media (max-width: 640px) {
-          .about-hero { min-height: 60svh; }
-          .about-hero-title { font-size: clamp(2.8rem, 10vw, 4rem); }
           .about-intro { padding: 48px 20px; }
           .about-values { padding: 56px 20px; }
           .about-cta { padding: 48px 24px; }
         }
       `}</style>
-
-      {/* ═══════════════════════════════════════════
-          HERO
-      ═══════════════════════════════════════════ */}
-      <section className="about-hero">
-        <img
-          className="about-hero-bg"
-          src="/WallGreens.jpg"
-          alt="Rich Haven artificial greenery"
-        />
-        <div className="about-hero-vignette" aria-hidden="true" />
-        <div className="about-hero-content">
-          <p className="about-hero-eyebrow">Our Story</p>
-          <h1 className="about-hero-title">
-            Rich Haven<br />
-            <em>Artificial Garden</em>
-          </h1>
-          <p className="about-hero-sub">
-            Artificial greenery · Thoughtfully designed · Built to last
-          </p>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════
           INTRO STRIP
