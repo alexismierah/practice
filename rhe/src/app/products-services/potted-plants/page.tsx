@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 
 /* ── FONTS ── */
@@ -14,57 +13,32 @@ const dmSans = DM_Sans({
   weight: ["300", "400", "500", "700"],
 });
 
-<style>{`
-  @media (max-width: 1024px) {
-    .wall-greens-section-padding { padding-left: 2.5rem !important; padding-right: 2.5rem !important; }
-    .wall-greens-grid-padding { padding-left: 40px !important; padding-right: 40px !important; }
-  }
-  @media (max-width: 640px) {
-    .wall-greens-section-padding { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
-    .wall-greens-grid-padding { padding-left: 20px !important; padding-right: 20px !important; }
-  }
-`}</style>
-
-/* ── FILTERS ── */
-const FILTERS = [
-  { label: "All Plants", value: "All" },
-  { label: "50cm x 50cm", value: "80cm" },
-  { label: "100cm x 100cm", value: "100cm" },
-  { label: "100cm x 200cm", value: "120cm" },
-  { label: "50cm x 50cm", value: "140cm" },
-  { label: "100cm x 100cm", value: "150cm" },
-  { label: "100cm x 200cm", value: "170cm" },
-  { label: "100cm x 200cm", value: "180cm" },
-] as const;
-
-type FilterValue = (typeof FILTERS)[number]["value"];
-
 /* ── PRODUCT TYPE ── */
 interface Product {
   id: string;
   name: string;
-  size: Exclude<FilterValue, "All">;
+  size: string;
   image: string;
 }
 
 /* ── PRODUCTS ── */
 const PRODUCTS: Product[] = [
-  { id: "1",  name: "Evergreen",                      size: "80cm",     image: "/pottedplants/pot8.png"   },
-  { id: "2",  name: "Dracaena Fragrans",              size: "150cm",    image: "/pottedplants/pot13.png"  },
-  { id: "3",  name: "Fiddle Leaf Tree",               size: "170cm",    image: "/pottedplants/pot12.png"  },
-  { id: "4",  name: "Monsterra Deliciosa",            size: "100cm",    image: "/pottedplants/pot11.png"  },
-  { id: "5",  name: "Croton Tree",                    size: "120cm",    image: "/pottedplants/pot14.png"  },
-  { id: "6",  name: "Sanseviera Trifasciata Prain",   size: "100cm",    image: "/pottedplants/pot7.png"   },
-  { id: "7",  name: "Palm Tree",                      size: "180cm",    image: "/pottedplants/pot15.png"  },
-  { id: "8",  name: "Bird of Paradise",               size: "140cm",    image: "/pottedplants/pot6.png"   },
-  { id: "9",  name: "Ficus Tree",                     size: "180cm",    image: "/pottedplants/pot10.png"  },
+  { id: "1", name: "Evergreen",                    size: "80cm",  image: "/pottedplants/pot8.png"  },
+  { id: "2", name: "Dracaena Fragrans",            size: "150cm", image: "/pottedplants/pot13.png" },
+  { id: "3", name: "Fiddle Leaf Tree",             size: "170cm", image: "/pottedplants/pot12.png" },
+  { id: "4", name: "Monsterra Deliciosa",          size: "100cm", image: "/pottedplants/pot11.png" },
+  { id: "5", name: "Croton Tree",                  size: "120cm", image: "/pottedplants/pot14.png" },
+  { id: "6", name: "Sanseviera Trifasciata Prain", size: "100cm", image: "/pottedplants/pot7.png"  },
+  { id: "7", name: "Palm Tree",                    size: "180cm", image: "/pottedplants/pot15.png" },
+  { id: "8", name: "Bird of Paradise",             size: "140cm", image: "/pottedplants/pot6.png"  },
+  { id: "9", name: "Ficus Tree",                   size: "180cm", image: "/pottedplants/pot10.png" },
 ];
 
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
-  fontWeight: 500,
-  color: "#2d5040",
+  fontWeight: 300,
+  color: "#000000",
   margin: 0,
   letterSpacing: "0.04em",
 };
@@ -73,17 +47,16 @@ const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
   fontWeight: 300,
-  color: "#2d5040",
+  color: "#000000",
   lineHeight: 1.7,
   marginTop: "-10px",
   letterSpacing: "0.03em",
 };
 
-/* ── SHARED DETAIL TEXT STYLE ── */
 const detailText: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
-  fontWeight: 500,
+  fontWeight: 300,
   lineHeight: 1.55,
   letterSpacing: "0.03em",
   margin: 0,
@@ -93,23 +66,23 @@ const detailText: React.CSSProperties = {
 function ProductCard({ product }: { product: Product }) {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      
-      {/* CARD (UNCHANGED STYLE) */}
+
+      {/* CARD */}
       <div
         className="group cursor-pointer overflow-hidden rounded-2xl"
         style={{
           background: "#fafaf7",
-          boxShadow: "0 5px 2px rgba(0,0,0,0.30)", // ✅ unchanged
+          boxShadow: "0 5px 2px rgba(0,0,0,0.30)",
           transition: "box-shadow 0.25s ease, border-color 0.25s ease",
         }}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.boxShadow = "0 20px 48px rgba(30,80,30,0.30)"; // ✅ unchanged
+          el.style.boxShadow = "0 20px 48px rgba(30,80,30,0.30)";
           el.style.borderColor = "#d1d1d1";
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.boxShadow = "0 2px 8px rgba(0,0,0,0.30)"; // ✅ unchanged
+          el.style.boxShadow = "0 2px 8px rgba(0,0,0,0.30)";
           el.style.borderColor = "#d1d1d1";
         }}
       >
@@ -130,24 +103,19 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      {/* DETAILS (NOW OUTSIDE) */}
+      {/* DETAILS */}
       <div
         style={{
-          padding: "1.2rem 0.85rem 0", // you can adjust spacing here
+          padding: "1.2rem 0.85rem 0",
           textAlign: "center",
           fontSize: "15px",
-          fontWeight: "500",
+          fontWeight: 300,
           fontFamily: "'DM Sans', sans-serif",
-          color: "#21411d",
-
+          color: "#000000",
         }}
       >
-        <p style={{ ...detailText }}>
-          {product.name}
-        </p>
-        <p style={{ ...detailText, marginTop: "-1px" }}>
-          {product.size}
-        </p>
+        <p style={{ ...detailText }}>{product.name}</p>
+        <p style={{ ...detailText, marginTop: "-1px" }}>{product.size}</p>
       </div>
 
     </div>
@@ -156,19 +124,10 @@ function ProductCard({ product }: { product: Product }) {
 
 /* ── PAGE ── */
 export default function Page() {
-  const [activeFilter, setActiveFilter] = useState<FilterValue>("All");
-
-  const filtered =
-    activeFilter === "All"
-      ? PRODUCTS
-      : PRODUCTS.filter((p) => p.size === activeFilter);
-
   return (
     <div className={`${cormorant.className}`}>
 
-      {/* ─────────────────────────────────────────
-          SECTION 1 — HERO: Title & Tagline
-      ───────────────────────────────────────── */}
+      {/* ── SECTION 1 — HERO ── */}
       <section
         style={{
           width: "100%",
@@ -182,7 +141,6 @@ export default function Page() {
           justifyContent: "center",
         }}
       >
-        {/* overlay */}
         <div
           style={{
             position: "absolute",
@@ -195,13 +153,11 @@ export default function Page() {
           className="relative z-10 flex flex-col items-center text-center wall-greens-section-padding"
           style={{ gap: "1.2rem", padding: "0 5rem" }}
         >
-
-          {/* headline */}
           <h1
             className={dmSans.className}
             style={{
               fontSize: "50px",
-              fontWeight: 500,
+              fontWeight: 300,
               lineHeight: 1.1,
               color: "#fafafa",
               margin: 0,
@@ -211,14 +167,13 @@ export default function Page() {
             Potted Artificial Plants
           </h1>
 
-          {/* tagline */}
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "14px",
               fontWeight: 420,
               color: "#f8f8f8",
-              letterSpacing: "0.08em",
+              letterSpacing: "0.02em",
               marginTop: -10,
             }}
           >
@@ -228,16 +183,8 @@ export default function Page() {
       </section>
 
 
-      {/* ─────────────────────────────────────────
-          SECTION 2 — WHAT IS THE PRODUCT
-          Left: image | Right: description
-      ───────────────────────────────────────── */}
-      <section
-        style={{
-          width: "100%",
-          background: "#fafaf7",
-        }}
-      >
+      {/* ── SECTION 2 — ABOUT THE PRODUCT ── */}
+      <section style={{ width: "100%", background: "#fafaf7" }}>
         <div
           style={{
             width: "100%",
@@ -245,7 +192,8 @@ export default function Page() {
             gridTemplateColumns: "1fr 1fr",
             alignItems: "stretch",
             overflow: "hidden",
-            padding: "2.5rem 5rem 2.5rem",
+            padding: "0.5rem 5rem 0.5rem",
+            columnGap: "2rem",
           }}
           className="wall-greens-section-padding"
         >
@@ -259,12 +207,11 @@ export default function Page() {
               minHeight: "600px",
             }}
           >
-            
             <div
               style={{
                 width: "100%",
                 maxWidth: "600px",
-                maxHeight: "600px",
+                maxHeight: "400px",
                 borderRadius: "18px",
                 overflow: "hidden",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
@@ -274,10 +221,10 @@ export default function Page() {
             >
               <img
                 src="/p38.2.png"
-                alt="Artificial wall plant"
+                alt="Potted artificial plant"
                 style={{
                   width: "100%",
-                  height: "450px",
+                  height: "400px",
                   objectFit: "cover",
                   display: "block",
                 }}
@@ -289,81 +236,69 @@ export default function Page() {
           <div
             style={{
               background: "#fafaf7",
-              padding: "4.5rem 3.5rem",
+              padding: "4.5rem 0 4.5rem 3.5rem",
               display: "flex",
               flexDirection: "column",
               justifyContent: "center",
             }}
           >
-            {/* eyebrow */}
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 letterSpacing: "0.02em",
                 textTransform: "uppercase",
-                color: "#2D5040",
+                color: "#000000",
                 margin: "0 0 0.5rem",
               }}
             >
               About the Product
             </p>
 
-            {/* heading */}
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-                fontWeight: 500,
+                fontWeight: 300,
                 lineHeight: 1.2,
-                color: "#2D5040",
-                margin: "0 0 0",
+                color: "#000000",
+                margin: "0 0 1rem",
               }}
             >
               Lifelike Potted Greens
             </h2>
 
-            {/* divider */}
-            <div
-              style={{
-                width: "48px",
-                height: "2px",
-                background: "#2d5040",
-                margin: "1rem 0",
-              }}
-            />
 
-            {/* what it is */}
+
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 fontWeight: 300,
-                color: "#7a8f80",
+                color: "#4a5450",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
             >
-             Our potted artificial plants are created to bring a fresh, natural 
-             atmosphere into any space without the demands of watering, sunlight, or upkeep. 
-             Each piece is carefully designed to mimic the shape, tone, and fullness of real plants, 
-             making them ideal for enhancing homes, offices, lobbies, and commercial interiors with a calm and inviting touch.
+              Our potted artificial plants are created to bring a fresh, natural
+              atmosphere into any space without the demands of watering, sunlight, or upkeep.
+              Each piece is carefully designed to mimic the shape, tone, and fullness of real plants,
+              making them ideal for enhancing homes, offices, lobbies, and commercial interiors with a calm and inviting touch.
             </p>
 
-            {/* how it's installed */}
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 fontWeight: 300,
-                color: "#7a8f80",
+                color: "#4a5450",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
             >
-              Every plant is supplied as a finished arrangement that already includes 
-              its own decorative pot, making it ready for immediate placement upon delivery. 
-              Easy to decorate any space, whether used as single
+              Every plant is supplied as a finished arrangement that already includes
+              its own decorative pot, making it ready for immediate placement upon delivery.
+              Easy to decorate any space, whether used as a single
               accent piece or grouped for a more lush indoor display.
             </p>
           </div>
@@ -371,16 +306,8 @@ export default function Page() {
       </section>
 
 
-      {/* ─────────────────────────────────────────
-          SECTION 3 — PRODUCTS CATALOG with filters
-      ───────────────────────────────────────── */}
-      <section
-        style={{
-          width: "100%",
-          background: "#fff",
-        }}
-      >
-        {/* Section header */}
+      {/* ── SECTION 3 — PRODUCTS CATALOG ── */}
+      <section style={{ width: "100%", background: "#fff" }}>
         <div
           style={{
             padding: "2.5rem 8rem 5rem",
@@ -392,13 +319,13 @@ export default function Page() {
           className="wall-greens-section-padding"
         >
           <p
-             style={{
+            style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "14PX",
-              fontWeight: 500,
+              fontSize: "14px",
+              fontWeight: 300,
               letterSpacing: "0.02em",
               textTransform: "uppercase",
-              color: "#2d5040",
+              color: "#000000",
               marginTop: "50px",
             }}
           >
@@ -408,8 +335,8 @@ export default function Page() {
             style={{
               fontFamily: "'DM Sans', sans-serif",
               fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-              fontWeight: 500,
-              color: "#2d5040",
+              fontWeight: 300,
+              color: "#000000",
               lineHeight: 1.15,
               textTransform: "uppercase",
               marginBottom: "-20px",
@@ -419,15 +346,12 @@ export default function Page() {
           </h2>
         </div>
 
-        {/* Grid */}
         <div
-          style={{
-          padding: "0 8rem 5rem",
-          }}
+          style={{ padding: "0 8rem 5rem" }}
           className="wall-greens-grid-padding"
         >
           <div className="grid grid-cols-8 md:grid-cols-4 gap-x-10 gap-y-10">
-            {filtered.map((product) => (
+            {PRODUCTS.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
@@ -435,129 +359,113 @@ export default function Page() {
       </section>
 
 
-      {/* ─────────────────────────────────────────
-              SECTION — Choose the Perfect Plant
-          ───────────────────────────────────────── */}
-          <section
+      {/* ── SECTION 4 — CHOOSE THE PERFECT PLANT ── */}
+      <section
+        style={{
+          width: "100%",
+          background: "#fafaf7",
+          padding: "88px 20px",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "680px",
+            margin: "0 auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+          }}
+        >
+          <h2
             style={{
-              width: "100%",
-              background: "#fafaf7",
-              padding: "88px 20px",
+              fontFamily: "'DM Sans', sans-serif",
+              fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+              fontWeight: 300,
+              lineHeight: 1.2,
+              margin: "0 0 2.5rem",
             }}
           >
-            <div
-              style={{
-                maxWidth: "680px",
-                margin: "0 auto",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              {/* HEADING */}
-              <h2
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-                  fontWeight: 500,
-                  lineHeight: 1.2,
-                  margin: "0 0 2.5rem",
-                }}
-              >
-                <span style={{ color: "#163521" }}>
-                  Choose the Perfect
-                </span>{" "}
-                <span style={{ color: "#3f7a55" }}>
-                  Greens
-                </span>
-                <br />
-                <span style={{ color: "#163521", fontWeight: 500 }}>
-                  for Your Space
-                </span>
-              </h2>
+            <span style={{ color: "#000000" }}>Choose the Perfect</span>{" "}
+            <span style={{ color: "#000000" }}>Greens</span>
+            <br />
+            <span style={{ color: "#000000", fontWeight: 300 }}>for Your Space</span>
+          </h2>
 
-              {/* GRID */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "2.5rem",
+              width: "100%",
+            }}
+          >
+            {[
+              {
+                label: "No Watering",
+                desc: "Never water, prune, or fertilise.",
+                icon: (
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
+                    <circle cx="16" cy="16" r="13" strokeWidth="1.2" />
+                    <path d="M10 20c2-6 6-9 12-8" strokeWidth="1.2" strokeLinecap="round" />
+                    <path d="M16 22V12M13 15l3-3 3 3" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Pet Friendly",
+                desc: "Non-toxic and safe for all pets.",
+                icon: (
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
+                    <path d="M16 6c-5 4-8 8-8 12a8 8 0 0016 0c0-4-3-8-8-12z" strokeWidth="1.2" strokeLinejoin="round" />
+                    <path d="M16 14v8" strokeWidth="1.2" strokeLinecap="round" />
+                    <path d="M12 18l4-4 4 4" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                ),
+              },
+              {
+                label: "UV Resistant",
+                desc: "Colour-stable in direct sunlight.",
+                icon: (
+                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
+                    <circle cx="16" cy="16" r="7" strokeWidth="1.2" />
+                    <path d="M16 4v4M16 24v4M4 16h4M24 16h4" strokeWidth="1.2" strokeLinecap="round" />
+                    <path d="M7.8 7.8l2.8 2.8M21.4 21.4l2.8 2.8M21.4 10.6l-2.8 2.8M10.6 21.4l-2.8 2.8" strokeWidth="1.2" strokeLinecap="round" />
+                  </svg>
+                ),
+              },
+            ].map((feature) => (
               <div
+                key={feature.label}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  gap: "2.5rem",
-                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: "0.8rem",
                 }}
               >
-                {[
-                  {
-                    label: "No Watering",
-                    desc: "Never water, prune, or fertilise.",
-                    icon: (
-                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
-                        <circle cx="16" cy="16" r="13" strokeWidth="1.2"/>
-                        <path d="M10 20c2-6 6-9 12-8" strokeWidth="1.2" strokeLinecap="round"/>
-                        <path d="M16 22V12M13 15l3-3 3 3" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    ),
-                  },
-                  {
-                    label: "Pet Friendly",
-                    desc: "Non-toxic and safe for all pets.",
-                    icon: (
-                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
-                        <path d="M16 6c-5 4-8 8-8 12a8 8 0 0016 0c0-4-3-8-8-12z" strokeWidth="1.2" strokeLinejoin="round"/>
-                        <path d="M16 14v8" strokeWidth="1.2" strokeLinecap="round"/>
-                        <path d="M12 18l4-4 4 4" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    ),
-                  },
-                  {
-                    label: "UV Resistant",
-                    desc: "Colour-stable in direct sunlight.",
-                    icon: (
-                      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
-                        <circle cx="16" cy="16" r="7" strokeWidth="1.2"/>
-                        <path d="M16 4v4M16 24v4M4 16h4M24 16h4" strokeWidth="1.2" strokeLinecap="round"/>
-                        <path d="M7.8 7.8l2.8 2.8M21.4 21.4l2.8 2.8M21.4 10.6l-2.8 2.8M10.6 21.4l-2.8 2.8" strokeWidth="1.2" strokeLinecap="round"/>
-                      </svg>
-                    ),
-                  },
-                ].map((feature) => (
-                  <div
-                    key={feature.label}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      gap: "0.8rem",
-                    }}
-                  >
-                    {/* ICON CIRCLE */}
-                    <div
-                      style={{
-                        width: "68px",
-                        height: "68px",
-                        borderRadius: "50%",
-                        border: "1px solid #21411d",
-                        background: "#21411d",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
-                    >
-                      {feature.icon}
-                    </div>
+                <div
+                  style={{
+                    width: "68px",
+                    height: "68px",
+                    borderRadius: "50%",
+                    border: "1px solid #000000",
+                    background: "#21411d",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  {feature.icon}
+                </div>
 
-                    <p style={featureLabelStyle}>
-                      {feature.label}
-                    </p>
-
-                    <p style={featureDescStyle}>
-                      {feature.desc}
-                    </p>
-                  </div>
-                ))}
+                <p style={featureLabelStyle}>{feature.label}</p>
+                <p style={featureDescStyle}>{feature.desc}</p>
               </div>
-            </div>
-          </section>
+            ))}
+          </div>
+        </div>
+      </section>
 
     </div>
   );
