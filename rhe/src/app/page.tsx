@@ -836,13 +836,7 @@ export default function Home() {
           gap: 10px;
         }
 
-        .cta-eyebrow::before {
-          content: "";
-          width: 16px;
-          height: 1px;
-          background: var(--mist);
-          opacity: 0.5;
-        }
+        .cta-eyebrow::before { display: none; }
 
         .cta-title {
           font-family: "DM Sans", sans-serif;
@@ -955,7 +949,6 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-left">
             <div className="hero-kicker">
-              <span className="hero-kicker-line" />
               <span className="hero-kicker-text">Rich Haven Artificial Garden</span>
             </div>
             <h1 className="hero-title">
