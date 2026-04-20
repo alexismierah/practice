@@ -1,24 +1,109 @@
 "use client";
 import Link from "next/link";
 import { CloudSun, Grid2x2, Leaf, ShieldCheck, House, Building2, ShoppingBag, Hotel, UtensilsCrossed, CalendarDays } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-function FAQItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false);
+
+function BeforeAfterSlider({
+  before,
+  after,
+  beforeLabel = "Before",
+  afterLabel = "After",
+}: {
+  before: string;
+  after: string;
+  beforeLabel?: string;
+  afterLabel?: string;
+}) {
+  const [pos, setPos] = useState(50);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const dragging = useRef(false);
+
+  const updatePos = (clientX: number) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+    setPos((x / rect.width) * 100);
+  };
+
   return (
     <div
-      style={{ cursor: "pointer" }}
-      onClick={() => setOpen(!open)}
+      ref={containerRef}
+      onMouseDown={(e) => { dragging.current = true; updatePos(e.clientX); }}
+      onMouseMove={(e) => { if (dragging.current) updatePos(e.clientX); }}
+      onMouseUp={() => { dragging.current = false; }}
+      onMouseLeave={() => { dragging.current = false; }}
+      onTouchStart={(e) => { dragging.current = true; updatePos(e.touches[0].clientX); }}
+      onTouchMove={(e) => { if (dragging.current) updatePos(e.touches[0].clientX); }}
+      onTouchEnd={() => { dragging.current = false; }}
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        cursor: "ew-resize",
+        userSelect: "none",
+        borderRadius: "3px",
+        aspectRatio: "16/9",
+        width: "100%",
+        touchAction: "none",
+      }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "16px 32px" }}>
-        <span style={{ fontSize: "16px", fontWeight: 400, color: "#1a2e1a", fontFamily: "'DM Sans', sans-serif" }}>{q}</span>
-        <span style={{ fontSize: "20px", color: "#3f7a55", lineHeight: 1, flexShrink: 0, marginLeft: "16px" }}>{open ? "−" : "+"}</span>
+      {/* After image — base layer */}
+      <img
+        src={after}
+        alt={afterLabel}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none", display: "block" }}
+      />
+      {/* Before image — clipped by slider position */}
+      <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${100 - pos}% 0 0)`, pointerEvents: "none" }}>
+        <img
+          src={before}
+          alt={beforeLabel}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
       </div>
-      {open && (
-        <div style={{ padding: "0 32px 24px", fontSize: "15px", lineHeight: 1.8, color: "#5a6e5a", fontFamily: "'DM Sans', sans-serif", fontWeight: 300 }}>
-          {a}
-        </div>
-      )}
+      {/* Divider line */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          bottom: 0,
+          left: `${pos}%`,
+          transform: "translateX(-50%)",
+          width: "2px",
+          background: "rgba(255,255,255,0.9)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Handle */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: `${pos}%`,
+          transform: "translate(-50%, -50%)",
+          width: "48px",
+          height: "48px",
+          borderRadius: "50%",
+          background: "#ffffff",
+          boxShadow: "0 2px 16px rgba(0,0,0,0.28)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          gap: "4px",
+        }}
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#163521" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+      {/* Labels */}
+      <span style={{ position: "absolute", top: "16px", left: "16px", background: "rgba(0,0,0,0.45)", backdropFilter: "blur(6px)", color: "#fff", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", padding: "5px 12px", borderRadius: "100px", pointerEvents: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, opacity: pos < 20 ? 0 : 1, transition: "opacity 0.25s" }}>
+        {beforeLabel}
+      </span>
+      <span style={{ position: "absolute", top: "16px", right: "16px", background: "rgba(0,0,0,0.45)", backdropFilter: "blur(6px)", color: "#fff", fontSize: "10px", letterSpacing: "0.18em", textTransform: "uppercase", padding: "5px 12px", borderRadius: "100px", pointerEvents: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 500, opacity: pos > 80 ? 0 : 1, transition: "opacity 0.25s" }}>
+        {afterLabel}
+      </span>
     </div>
   );
 }
@@ -118,7 +203,7 @@ export default function Home() {
 
         :root {
           --mist: #c8dac9;
-          --cream: #f5f2ec;
+          --cream: #f5f5f5;
         }
 
         .landing, .landing * { box-sizing: border-box; margin: 0; padding: 0; font-family: "DM Sans", sans-serif !important; }
@@ -312,7 +397,7 @@ export default function Home() {
         /* ── INTRO STRIP ── */
         .intro-strip {
           background: #ffffff;
-          padding: 52px 80px;
+          padding: 80px 80px;
           display: grid;
           grid-template-columns: 1fr 1px 1fr;
           gap: 0;
@@ -335,7 +420,8 @@ export default function Home() {
           padding-left: 64px;
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          justify-content: space-between;
+          gap: 20px;
         }
 
         .intro-strip-label {
@@ -353,10 +439,10 @@ export default function Home() {
 
         .intro-strip-heading {
           font-family: "Cormorant Garamond", serif;
-          font-size: clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem);
+          font-size: clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem);
           font-weight: 500;
           color: #163521;
-          line-height: 1.15;
+          line-height: 1.1;
           margin: 0;
         }
 
@@ -367,9 +453,9 @@ export default function Home() {
         }
 
         .intro-strip-body {
-          font-size: 14px;
+          font-size: 13.5px;
           color: #7a8f80;
-          line-height: 1.85;
+          line-height: 1.8;
           margin: 0;
           font-weight: 300;
         }
@@ -377,26 +463,21 @@ export default function Home() {
         .intro-strip-link {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          font-size: 11px;
-          letter-spacing: 0.16em;
+          width: fit-content;
+          font-size: 10px;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #163521;
+          color: #2f6f44;
           font-weight: 500;
           text-decoration: none;
-          transition: gap 0.2s;
+          background: rgba(47,111,68,0.09);
+          border: none;
+          padding: 13px 20px;
+          border-radius: 9999px;
+          transition: background 0.25s, color 0.25s;
         }
 
-        .intro-strip-link:hover { gap: 16px; }
-
-        .intro-strip-link-line {
-          width: 32px;
-          height: 1px;
-          background: currentColor;
-          transition: width 0.2s;
-        }
-
-        .intro-strip-link:hover .intro-strip-link-line { width: 48px; }
+        .intro-strip-link:hover { background: rgba(47,111,68,0.16); color: #163521; }
 
         @media (max-width: 900px) {
           .intro-strip { grid-template-columns: 1fr; gap: 0; padding: 36px 40px; }
@@ -411,114 +492,107 @@ export default function Home() {
 
         /* ── WHY SHOP ── */
         .why-shop {
-          background: #f7f9f7;
-          padding: 96px 64px 120px;
+          background: #ffffff;
+          padding: 80px 80px;
         }
 
-        .why-shop-header {
-          text-align: center;
-          margin-bottom: 72px;
+        .why-shop-inner {
+          display: grid;
+          grid-template-columns: 240px 1fr;
+          gap: 56px;
+          align-items: center;
+          max-width: 1060px;
+          margin: 0 auto;
         }
+
+        .why-shop-left {}
 
         .why-shop-eyebrow {
-          font-size: 11px;
-          letter-spacing: .12em;
+          font-size: 10px;
+          letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: #7a8f80;
-          margin: 0 0 14px;
-          font-family: "DM Sans", sans-serif;
+          color: #2f6f44;
+          font-weight: 500;
+          margin: 0 0 15px;
         }
 
         .why-shop-title {
-          margin: 0 0 16px;
-          font-family: "Playfair Display", serif;
-          font-size: clamp(1.6rem, 1.2vw + 1rem, 2.2rem);
+          margin: 0 0 10px;
+          font-family: "Cormorant Garamond", serif;
+          font-size: clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem);
           color: #163521;
           font-weight: 500;
           line-height: 1.1;
         }
 
-        .why-shop-title em {
-          font-style: italic;
-          font-weight: 500;
-          color: #3f7a55;
-        }
-
         .why-shop-subtitle {
-          max-width: 460px;
-          margin: 0 auto;
           color: #7a8f80;
-          font-size: 14px;
-          line-height: 1.7;
+          font-size: 13.5px;
+          line-height: 1.8;
+          font-weight: 300;
+          margin: 0 0 20px;
         }
 
-        .why-shop-grid {
+        .why-shop-cta {
+          display: inline-flex;
+          align-items: center;
+          font-size: 10px;
+          font-weight: 500;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: #2f6f44;
+          text-decoration: none;
+          background: rgba(47,111,68,0.09);
+          border: none;
+          padding: 13px 20px;
+          border-radius: 9999px;
+          transition: background 0.25s, color 0.25s;
+        }
+
+        .why-shop-cta:hover { background: rgba(47,111,68,0.16); color: #163521; }
+
+        .why-shop-cards {
           display: grid;
-          grid-template-columns: minmax(0,1fr) minmax(300px,370px) minmax(0,1fr);
-          gap: 48px;
-          align-items: center;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
         }
 
-        .why-shop-column { display: grid; gap: 0; }
-
-        .reason {
-          display: flex;
-          gap: 18px;
-          align-items: flex-start;
-          padding: 28px 24px;
-          border-radius: 16px;
-          position: relative;
+        .reason-card {
+          background: #ffffff;
+          border-radius: 6px;
+          padding: 22px 20px;
+          border: 1px solid #eaefea;
         }
 
-        .reason-icon-wrap {
-          display: flex;
-          align-items: flex-start;
-          flex-shrink: 0;
-        }
-
-        .reason-icon { width: 32px; height: 25px; color: #2f6f44; }
-
-        .reason-content { flex: 1; }
-
-        .reason h3 {
-          margin: 0 0 6px;
-          font-family: "Playfair Display", serif;
-          color: #173523;
-          font-size: 1.05rem;
-          font-weight: 700;
-          line-height: 1.25;
-        }
-
-        .reason p {
-          margin: 0;
-          color: #6b7d72;
-          font-size: 13px;
-          line-height: 1.65;
-        }
-
-        .why-shop-plant-col {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          position: relative;
-        }
-
-        .why-shop-plant-frame { position: relative; width: 100%; }
-
-        .why-shop-plant {
-          width: 100%;
-          max-width: 340px;
-          margin: 0 auto;
+        .reason-card-icon {
+          width: 22px;
+          height: 22px;
+          color: #3f7a55;
+          margin-bottom: 12px;
           display: block;
-          position: relative;
-          z-index: 1;
-          filter: drop-shadow(0 24px 32px rgba(30,57,40,.18));
+        }
+
+        .reason-card h3 {
+          margin: 0 0 6px;
+          font-family: "DM Sans", sans-serif;
+          color: #2a3e2e;
+          font-size: 0.875rem;
+          font-weight: 500;
+          line-height: 1.3;
+        }
+
+        .reason-card p {
+          margin: 0;
+          color: #7a8f80;
+          font-size: 13.5px;
+          line-height: 1.8;
+          font-weight: 300;
         }
 
         /* ── FEATURED PROJECTS ── */
         .featured-projects {
-          background: #f7f9f7;
-          padding: 96px 80px;
+          background: #f5f5f5;
+          padding: 80px 80px;
         }
 
         .fp-header {
@@ -526,8 +600,8 @@ export default function Home() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          margin-bottom: 48px;
-          gap: 20px;
+          margin-bottom: 32px;
+          gap: 10px;
         }
 
         .fp-header-left { width: 100%; }
@@ -538,7 +612,7 @@ export default function Home() {
           text-transform: uppercase;
           color: #2f6f44;
           font-weight: 500;
-          margin-bottom: 14px;
+          margin-bottom: 8px;
         }
 
         .fp-title {
@@ -563,21 +637,22 @@ export default function Home() {
         .fp-view-link {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          font-size: 11px;
-          letter-spacing: 0.16em;
+          font-size: 10px;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #163521;
+          color: #2f6f44;
           font-weight: 500;
           text-decoration: none;
           white-space: nowrap;
-          transition: gap 0.2s;
+          background: rgba(47,111,68,0.09);
+          border: none;
+          padding: 13px 20px;
+          border-radius: 9999px;
           flex-shrink: 0;
+          transition: background 0.25s, color 0.25s;
         }
 
-        .fp-view-link:hover { gap: 16px; }
-        .fp-view-link-line { width: 32px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
-        .fp-view-link:hover .fp-view-link-line { width: 48px; }
+        .fp-view-link:hover { background: rgba(47,111,68,0.16); color: #163521; }
 
         /* Bento gallery grid */
         .fp-gallery {
@@ -640,7 +715,7 @@ export default function Home() {
 
         @media (max-width: 900px) {
           .featured-projects { padding: 72px 40px; }
-          .fp-header { flex-direction: column; align-items: flex-start; }
+          .fp-header { flex-direction: column; align-items: flex-start; gap: 16px; }
           .fp-gallery {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 240px 240px 200px;
@@ -671,14 +746,14 @@ export default function Home() {
         /* ── PRODUCTS ── */
         .products-section {
           background: #ffffff;
-          padding: 100px 80px 96px;
+          padding: 80px 80px;
         }
 
         .ps-header {
           display: flex;
           align-items: flex-end;
           justify-content: space-between;
-          margin-bottom: 64px;
+          margin-bottom: 40px;
           gap: 24px;
         }
 
@@ -699,7 +774,7 @@ export default function Home() {
           margin: 0 0 10px;
           font-family: "Cormorant Garamond", serif;
           font-weight: 500;
-          font-size: clamp(1.7rem, 1.8vw + 0.8rem, 2.5rem);
+          font-size: clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem);
           color: #163521;
           line-height: 1.1;
         }
@@ -709,7 +784,7 @@ export default function Home() {
         .ps-header-sub {
           font-size: 13.5px;
           color: #7a8f80;
-          line-height: 1.75;
+          line-height: 1.8;
           white-space: nowrap;
           margin: 0;
           font-weight: 300;
@@ -722,17 +797,18 @@ export default function Home() {
         }
 
         .ps-card {
-          border-radius: 20px;
+          border-radius: 10px;
           overflow: hidden;
-          background: #f7f9f7;
+          background: #fff;
+          border: 1px solid rgba(22,53,33,0.08);
           display: block;
           position: relative;
-          transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+          transition: border-color 0.3s, box-shadow 0.3s;
         }
 
         .ps-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 20px 48px rgba(22,53,33,0.12);
+          border-color: rgba(22,53,33,0.18);
+          box-shadow: 0 8px 24px rgba(22,53,33,0.07);
         }
 
         .ps-card a {
@@ -745,21 +821,22 @@ export default function Home() {
         .ps-card-img-wrap {
           position: relative;
           overflow: hidden;
-          border-radius: 20px 20px 0 0;
+          border-radius: 10px 10px 0 0;
         }
 
         .ps-card-tag {
           position: absolute;
-          top: 14px;
-          left: 14px;
-          font-family: "Cormorant Garamond", serif;
-          font-size: 0.75rem;
-          font-weight: 400;
-          color: rgba(255,255,255,0.7);
-          letter-spacing: 0.06em;
-          background: rgba(0,0,0,0.22);
+          top: 12px;
+          left: 12px;
+          font-family: "DM Sans", sans-serif;
+          font-size: 9px;
+          font-weight: 500;
+          color: rgba(255,255,255,0.85);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          background: rgba(0,0,0,0.2);
           backdrop-filter: blur(6px);
-          padding: 4px 10px;
+          padding: 3px 9px;
           border-radius: 100px;
           z-index: 2;
         }
@@ -772,12 +849,12 @@ export default function Home() {
           transition: transform .5s cubic-bezier(.4,0,.2,1);
         }
 
-        .ps-card:hover .ps-card-img { transform: scale(1.06); }
+        .ps-card:hover .ps-card-img { transform: scale(1.04); }
 
         .ps-card-img-overlay {
           position: absolute;
           inset: 0;
-          background: linear-gradient(to top, rgba(15,35,20,0.4) 0%, transparent 50%);
+          background: linear-gradient(to top, rgba(15,35,20,0.28) 0%, transparent 50%);
           opacity: 0;
           transition: opacity 0.4s;
         }
@@ -785,18 +862,18 @@ export default function Home() {
         .ps-card:hover .ps-card-img-overlay { opacity: 1; }
 
         .ps-card-body {
-          padding: 18px 20px 22px;
+          padding: 14px 16px 18px;
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 5px;
+          gap: 4px;
         }
 
         .ps-card-name {
           margin: 0;
-          font-family: "Playfair Display", serif;
+          font-family: "Cormorant Garamond", serif;
           font-size: 1rem;
-          font-weight: 700;
+          font-weight: 500;
           color: #163521;
           line-height: 1.25;
         }
@@ -811,8 +888,8 @@ export default function Home() {
 
         .ps-card-arrow {
           margin-top: auto;
-          padding-top: 14px;
-          font-size: 10px;
+          padding-top: 12px;
+          font-size: 9px;
           letter-spacing: 0.18em;
           text-transform: uppercase;
           color: #2f6f44;
@@ -828,31 +905,32 @@ export default function Home() {
         .ps-card:hover .ps-card-arrow { opacity: 1; transform: translateY(0); }
 
         .ps-card-arrow-line {
-          width: 22px;
+          width: 18px;
           height: 1px;
           background: currentColor;
           transition: width 0.2s;
         }
 
-        .ps-card:hover .ps-card-arrow-line { width: 32px; }
+        .ps-card:hover .ps-card-arrow-line { width: 28px; }
 
         .ps-explore {
           display: inline-flex;
           align-items: center;
-          gap: 10px;
-          font-size: 11px;
-          letter-spacing: 0.16em;
+          font-size: 10px;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #163521;
+          color: #2f6f44;
           font-weight: 500;
           text-decoration: none;
           white-space: nowrap;
-          transition: gap 0.2s;
+          background: rgba(47,111,68,0.09);
+          border: none;
+          padding: 13px 20px;
+          border-radius: 9999px;
+          transition: background 0.25s, color 0.25s;
         }
 
-        .ps-explore:hover { gap: 16px; }
-        .ps-explore-line { width: 32px; height: 1px; background: currentColor; display: inline-block; transition: width 0.2s; }
-        .ps-explore:hover .ps-explore-line { width: 48px; }
+        .ps-explore:hover { background: rgba(47,111,68,0.16); color: #163521; }
 
         @media (max-width: 768px) {
           .ps-explore--desktop { display: none !important; }
@@ -922,15 +1000,16 @@ export default function Home() {
           .hero-index-bar { padding: 22px 36px; }
           .hero-left { padding: 60px 36px 90px; }
 
-          .intro-strip { padding: 40px 48px; }
+          .intro-strip { padding: 64px 48px; }
 
           .featured-projects { padding: 72px 48px; }
 
-          .why-shop { padding: 72px 40px 100px; }
-          .why-shop-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-          .why-shop-plant-col { display: none; }
+          .why-shop { padding: 72px 48px; }
+          .why-shop-inner { grid-template-columns: 1fr; gap: 48px; }
+          .why-shop-left { text-align: center; }
+          .why-shop-cta { margin: 0 auto; }
 
-          .products-section { padding: 72px 40px; }
+          .products-section { padding: 72px 48px; }
           .ps-grid { grid-template-columns: repeat(2, 1fr); }
           .ps-header-sub { white-space: normal; }
         }
@@ -942,7 +1021,7 @@ export default function Home() {
           .intro-strip-left { padding-right: 0; padding-bottom: 40px; border-bottom: 1px solid #e8ede5; margin-bottom: 40px; }
           .intro-strip-right { padding-left: 0; }
 
-          .featured-projects { padding: 64px 40px; }
+          .featured-projects { padding: 72px 40px; }
           .fp-header { flex-direction: column; align-items: center; }
           .fp-gallery {
             grid-template-columns: 1fr 1fr;
@@ -957,8 +1036,7 @@ export default function Home() {
           .hero-eyebrow-text { font-size: 9px; letter-spacing: 0.18em; }
           .hero-left { padding: 80px 28px 80px; text-align: center; align-items: center; }
 
-          .why-shop-grid { grid-template-columns: 1fr; gap: 0; }
-          .why-shop-header { margin-bottom: 48px; }
+          .why-shop-cards { grid-template-columns: 1fr 1fr; }
 
           .ps-header { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 40px; }
           .ps-header-sub { white-space: normal; }
@@ -973,24 +1051,25 @@ export default function Home() {
           .hero-title { font-size: clamp(3rem, 11vw, 4.5rem); }
           .hero-subtitle { font-size: 13px; max-width: 280px; }
 
-          .intro-strip { padding: 28px 20px; }
+          .intro-strip { padding: 48px 20px; }
           .intro-strip-heading { font-size: clamp(1.6rem, 5vw, 2rem); }
           .intro-strip-body { font-size: 13px; }
 
-          .featured-projects { padding: 48px 20px; }
+          .featured-projects { padding: 56px 20px; }
           .fp-gallery {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 180px 140px 140px;
           }
 
-          .why-shop { padding: 56px 20px 88px; }
-          .why-shop-title { font-size: clamp(1.5rem, 5vw, 1.8rem); }
+          .why-shop { padding: 56px 20px; }
+          .why-shop-title { font-size: clamp(1.3rem, 5vw, 1.6rem); }
           .why-shop-subtitle { font-size: 13px; }
-          .reason { padding: 20px 16px; }
-          .reason h3 { font-size: 0.95rem; }
-          .reason p { font-size: 12.5px; }
+          .why-shop-cards { gap: 12px; }
+          .reason-card { padding: 20px 16px; }
+          .reason-card h3 { font-size: 0.9rem; }
+          .reason-card p { font-size: 12px; }
 
-          .products-section { padding: 48px 20px; }
+          .products-section { padding: 56px 20px; }
           .ps-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
           .ps-title { font-size: clamp(1.5rem, 5vw, 1.8rem); }
           .ps-card-name { font-size: 0.85rem; }
@@ -1020,6 +1099,14 @@ export default function Home() {
           .ps-grid { grid-template-columns: 1fr; }
           .hero-title { font-size: clamp(2.6rem, 10vw, 3.5rem); }
           .intro-strip-heading { font-size: clamp(1.4rem, 6vw, 1.7rem); }
+        }
+
+        /* ── BEFORE/AFTER SECTION RESPONSIVE ── */
+        @media (max-width: 1024px) {
+          .ba-section { padding: 72px 48px !important; }
+        }
+        @media (max-width: 640px) {
+          .ba-section { padding: 56px 20px !important; }
         }
 
         /* ── CTA IMAGE BAND ── */
@@ -1090,9 +1177,9 @@ export default function Home() {
       ═══════════════════════════════════════════ */}
       <section className="intro-strip">
         <div className="intro-strip-left">
-          <span className="intro-strip-label">Our Story</span>
+          <span className="intro-strip-label">About Us</span>
           <h2 className="intro-strip-heading">
-            We turn <br/> bare spaces into <em>green ones</em>
+            We turn <br/> bare spaces into green ones<em></em>
           </h2>
         </div>
         <div className="intro-strip-divider" aria-hidden="true" />
@@ -1100,10 +1187,7 @@ export default function Home() {
           <p className="intro-strip-body">
             Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. The company provides high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
           </p>
-          <Link className="intro-strip-link" href="/about">
-            <span className="intro-strip-link-line" />
-            Learn more
-          </Link>
+          <Link className="intro-strip-link" href="/about">Learn more</Link>
         </div>
       </section>
 
@@ -1114,7 +1198,7 @@ export default function Home() {
         <div className="fp-header">
           <div className="fp-header-left">
             <p className="fp-label">Our work</p>
-            <h2 className="fp-title">Project <em>Highlights</em></h2>
+            <h2 className="fp-title">Project Highlights<em></em></h2>
             <p className="fp-desc">A showcase of completed projects across real spaces.</p>
           </div>
         </div>
@@ -1150,11 +1234,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "center", marginTop: "80px" }}>
-          <Link className="fp-view-link" href="/projects">
-            <span className="fp-view-link-line" />
-            View all projects
-          </Link>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "32px" }}>
+          <Link className="fp-view-link" href="/projects">View all projects</Link>
         </div>
       </section>
 
@@ -1165,15 +1246,12 @@ export default function Home() {
         <div className="ps-header">
           <div>
             <p className="ps-eyebrow">What we offer</p>
-            <h2 className="ps-title" id="products-heading"><em>Products</em> & <em>Services</em></h2>
+            <h2 className="ps-title" id="products-heading">Products and Services</h2>
             <p className="ps-header-sub">
               We offer supply, install, or both for any space.
             </p>
           </div>
-          <Link className="ps-explore ps-explore--desktop" href="/products-services">
-            <span className="ps-explore-line" />
-            View all products
-          </Link>
+          <Link className="ps-explore ps-explore--desktop" href="/products-services">View all products</Link>
         </div>
 
         <div className="ps-grid">
@@ -1193,10 +1271,7 @@ export default function Home() {
           ))}
         </div>
 
-        <Link className="ps-explore ps-explore--mobile" href="/products-services" style={{ marginTop: "32px", display: "none" }}>
-          <span className="ps-explore-line" />
-          View all products
-        </Link>
+        <Link className="ps-explore ps-explore--mobile" href="/products-services" style={{ marginTop: "32px", display: "none" }}>View all products</Link>
 
         {/* WHERE WE APPLY */}
         <div className="apply-section">
@@ -1219,90 +1294,67 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          WHY SHOP
+          BEFORE / AFTER SLIDER
       ═══════════════════════════════════════════ */}
-      <section className="why-shop" aria-labelledby="why-shop-title">
-        <div className="why-shop-header">
-          <p className="why-shop-eyebrow">What sets us apart</p>
-          <h2 className="why-shop-title" id="why-shop-title">Why Choose <em>Rich Haven?</em></h2>
-          <p className="why-shop-subtitle">
-            We know what works, and what truly lasts.
-          </p>
-        </div>
-
-        <div className="why-shop-grid">
-          <div className="why-shop-column">
-            {shopReasons.slice(0, 2).map((reason) => (
-              <article className="reason" key={reason.title}>
-                <div className="reason-icon-wrap" aria-hidden="true">
-                  <reason.icon className="reason-icon" strokeWidth={1.8} />
-                </div>
-                <div className="reason-content">
-                  <h3>{reason.title}</h3>
-                  <p>{reason.desc}</p>
-                </div>
-              </article>
-            ))}
+      <section className="ba-section" style={{ background: "#f5f5f5", padding: "80px 80px" }}>
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "24px" }}>
+            <p style={{ fontSize: "10px", letterSpacing: "0.28em", textTransform: "uppercase", color: "#2f6f44", fontWeight: 500, marginBottom: "12px", fontFamily: "'DM Sans', sans-serif" }}>
+              The Transformation
+            </p>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem)", fontWeight: 500, color: "#163521", margin: 0, lineHeight: 1.1 }}>
+              See the Difference<em style={{ fontStyle: "italic", fontWeight: 400, color: "#3f7a55" }}></em>
+            </h2>
+            <p style={{ marginTop: "12px", fontSize: "13.5px", color: "#7a8f80", lineHeight: 1.8, fontWeight: 300, fontFamily: "'DM Sans', sans-serif" }}>
+              Drag the handle to compare before and after.
+            </p>
           </div>
-
-          <div className="why-shop-plant-col">
-            <div className="why-shop-plant-frame">
-              <img className="why-shop-plant" src="/p3.png" alt="Potted indoor plant" />
-            </div>
-          </div>
-
-          <div className="why-shop-column">
-            {shopReasons.slice(2).map((reason) => (
-              <article className="reason" key={reason.title}>
-                <div className="reason-icon-wrap" aria-hidden="true">
-                  <reason.icon className="reason-icon" strokeWidth={1.8} />
-                </div>
-                <div className="reason-content">
-                  <h3>{reason.title}</h3>
-                  <p>{reason.desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+          <BeforeAfterSlider
+            before="/Grass.jpg"
+            after="/WallGreens.jpg"
+            beforeLabel="Before"
+            afterLabel="After"
+          />
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════
-          FAQS
+          WHY SHOP
       ═══════════════════════════════════════════ */}
-      <section style={{ background: "#fff", padding: "96px 64px 120px" }}>
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "64px" }}>
-            <p style={{ fontSize: "11px", letterSpacing: ".12em", textTransform: "uppercase", color: "#7a8f80", marginBottom: "14px", fontFamily: "'DM Sans', sans-serif" }}>Got Questions?</p>
-            <h2 style={{ fontSize: "clamp(28px, 2.8vw, 44px)", fontWeight: 500, letterSpacing: "-0.02em", color: "#1a2e1a", lineHeight: 1.15 }}>
-              Frequently Asked <em style={{ fontStyle: "italic", fontWeight: 500, color: "#3f7a55" }}>Questions</em>
-            </h2>
+      <section className="why-shop" aria-labelledby="why-shop-title">
+        <div className="why-shop-inner">
+          <div className="why-shop-left">
+            <p className="why-shop-eyebrow">What sets us apart</p>
+            <h2 className="why-shop-title" id="why-shop-title">Why Choose Rich Haven<em style={{ fontStyle: "italic", fontWeight: 400, color: "#3f7a55" }}></em></h2>
+            <p className="why-shop-subtitle">
+              We know what works, and what truly lasts — greenery that looks perfect from day one and stays that way.
+            </p>
+            
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-            {[
-              { q: "Are your plants really realistic?", a: "Yes — our artificial plants are crafted from high-quality materials that closely mimic the texture, color, and form of real plants. Most visitors can't tell the difference at a glance." },
-              { q: "Do your plants require any maintenance?", a: "Minimal. An occasional dusting or wipe-down is all that's needed. No watering, no pruning, no sunlight required." },
-              { q: "Can I use your plants outdoors?", a: "Many of our products are suitable for covered outdoor areas. We'll advise on the best options for your specific space during consultation." },
-              { q: "Do you offer installation services?", a: "Yes. Our team handles delivery and professional installation so every piece is placed and secured exactly right." },
-              { q: "How long do your artificial plants last?", a: "With proper care, our products are built to last for many years without fading or deteriorating — a one-time investment in lasting beauty." },
-            ].map((item, i) => (
-              <FAQItem key={i} q={item.q} a={item.a} />
+
+          <div className="why-shop-cards">
+            {shopReasons.map((reason) => (
+              <article className="reason-card" key={reason.title}>
+                <reason.icon className="reason-card-icon" strokeWidth={1.5} />
+                <h3>{reason.title}</h3>
+                <p>{reason.desc}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <div className="cta-img-band" style={{ background: "#e2ede3", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
+      <div className="cta-img-band" style={{ background: "#163521", padding: "48px 64px", display: "flex", alignItems: "center", gap: "80px", position: "relative", overflow: "visible" }}>
         <img className="cta-img-plant" src="/Overlap4.png" alt="Plant" />
         <div style={{ flex: 1 }}>
-          <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "#4a5a4a", marginBottom: "16px" }}>Let&apos;s Work Together</p>
-          <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#0a0a0a", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
-            Ready to Start a <span style={{ fontWeight: 500 }}><em>Project</em></span> with <br /> <span style={{ fontWeight: 500 }}><em>Rich Haven?</em></span>
+          <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,218,201,0.7)", marginBottom: "16px" }}>Let&apos;s Work Together</p>
+          <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#ffffff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
+            Ready to Start a <span style={{ fontWeight: 300 }}>Project</span> with <br /> <span style={{ fontWeight: 300 }}>Rich Haven</span>
           </h2>
           <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-            <a href="#footer" onClick={(e) => { e.preventDefault(); const footer = document.getElementById("footer"); if (footer) { const top = footer.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: "smooth" }); } }} style={{ padding: "10px 24px", background: "#163521", color: "#ffffff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Get in Touch</a>
-            <a href="/products-services" style={{ padding: "10px 24px", background: "transparent", color: "#2a1f10", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(42,31,16,0.25)", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Browse Products</a>
+            <a href="#footer" onClick={(e) => { e.preventDefault(); const footer = document.getElementById("footer"); if (footer) { const top = footer.getBoundingClientRect().top + window.scrollY - 80; window.scrollTo({ top, behavior: "smooth" }); } }} style={{ padding: "10px 24px", background: "#ffffff", color: "#163521", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Get in Touch</a>
+            <a href="/products-services" style={{ padding: "10px 24px", background: "transparent", color: "#ffffff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.35)", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>Browse Products</a>
           </div>
         </div>
       </div>
