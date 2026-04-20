@@ -46,24 +46,24 @@ interface Product {
 
 /* ── PRODUCTS ── */
 const PRODUCTS: Product[] = [
-  { id: "1",  name: "Lawn Grass",     size: "25m×2m",   price: "$20.00", oldPrice: "$34.00", image: "/turf10.png"    },
-  { id: "2",  name: "Golf Grass",    size: "25m×2m", price: "$20.00", oldPrice: "$34.00", image: "/turf9.png"     },
+  { id: "1",  name: "Lawn Grass",     size: "25m×2m",   price: "$20.00", oldPrice: "$34.00", image: "/turfgrass/turf10.png"    },
+  { id: "2",  name: "Golf Grass",    size: "25m×2m", price: "$20.00", oldPrice: "$34.00", image: "/turfgrass/turf9.png"     },
 ];
 
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "1.15rem",
+  fontSize: "14px",
   fontWeight: 500,
-  color: "#21411d",
+  color: "#2d5040",
   margin: 0,
   letterSpacing: "0.04em",
 };
 
 const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "0.85rem",
+  fontSize: "14px",
   fontWeight: 300,
-  color: "#21411d",
+  color: "#2d5040",
   lineHeight: 1.7,
   marginTop: "-10px",
   letterSpacing: "0.03em",
@@ -72,8 +72,8 @@ const featureDescStyle: React.CSSProperties = {
 /* ── SHARED DETAIL TEXT STYLE ── */
 const detailText: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "0.9rem",
-  fontWeight: 400,
+  fontSize: "14px",
+  fontWeight: 500,
   lineHeight: 1.55,
   letterSpacing: "0.03em",
   margin: 0,
@@ -164,7 +164,7 @@ export default function Page() {
         style={{
           width: "100%",
           height: "285px",
-          backgroundImage: "url('/turf6.webp')",
+          backgroundImage: "url('/turfgrass/turf6.webp')",
           backgroundSize: "cover",
           backgroundPosition: "center 80%",
           position: "relative",
@@ -191,8 +191,8 @@ export default function Page() {
           <h1
             className={dmSans.className}
             style={{
-              fontSize: "65px",
-              fontWeight: 300,
+              fontSize: "clamp(28px, 2.8vw, 44px)",
+              fontWeight: 500,
               lineHeight: 1.1,
               color: "#fafafa",
               margin: 0,
@@ -206,7 +206,7 @@ export default function Page() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "15px",
+              fontSize: "14px",
               fontWeight: 420,
               color: "#f8f8f8",
               letterSpacing: "0.08em",
@@ -265,7 +265,7 @@ export default function Page() {
               }}
             >
               <img
-                src="/turf5.jpg"
+                src="/turfgrass/turf5.jpg"
                 alt="Artificial wall plant"
                 style={{
                   width: "100%",
@@ -291,10 +291,10 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "15px",
-                letterSpacing: "0.22em",
+                fontSize: "14px",
+                letterSpacing: "0.02em",
                 textTransform: "uppercase",
-                color: "#21411d",
+                color: "#2D5040",
                 margin: "0 0 0.5rem",
               }}
             >
@@ -305,10 +305,10 @@ export default function Page() {
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(2rem, 3.5vw, 2.9rem)",
-                fontWeight: 300,
+                fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+                fontWeight: 500,
                 lineHeight: 1.2,
-                color: "#21411d",
+                color: "#2D5040",
                 margin: "0 0 0",
               }}
             >
@@ -318,9 +318,9 @@ export default function Page() {
             {/* divider */}
             <div
               style={{
-                width: "36px",
-                height: "1px",
-                background: "#21411d",
+                width: "48px",
+                height: "2px",
+                background: "#2D5040",
                 margin: "1rem 0",
               }}
             />
@@ -329,9 +329,9 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "1rem",
+                fontSize: "14px",
                 fontWeight: 300,
-                color: "#4a5568",
+                color: "#7a8f80",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
@@ -346,9 +346,9 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "1rem",
+                fontSize: "14px",
                 fontWeight: 300,
-                color: "#4a5568",
+                color: "#7a8f80",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
@@ -385,11 +385,11 @@ export default function Page() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "15PX",
+              fontSize: "14PX",
               fontWeight: 500,
-              letterSpacing: "0.22em",
+              letterSpacing: "0.02em",
               textTransform: "uppercase",
-              color: "#21411d",
+              color: "#2d5040",
               marginTop: "50px",
             }}
           >
@@ -398,9 +398,9 @@ export default function Page() {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.8rem, 3vw, 2.6rem)",
-              fontWeight: 420,
-              color: "#21411d",
+              fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+              fontWeight: 500,
+              color: "#2d5040",
               lineHeight: 1.15,
               textTransform: "uppercase",
               marginBottom: "-20px",
@@ -452,20 +452,25 @@ export default function Page() {
                 textAlign: "center",
               }}
             >
-              {/* HEADING */}
               <h2
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(2rem, 4vw, 3rem)",
-                  fontWeight: 300,
+                  fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+                  fontWeight: 500,
                   lineHeight: 1.2,
-                  color: "#21411d",
                   margin: "0 0 2.5rem",
                 }}
               >
-                Choose the Perfect Grass
+                <span style={{ color: "#163521" }}>
+                  Choose the Perfect
+                </span>{" "}
+                <span style={{ color: "#3f7a55" }}>
+                  Greens
+                </span>
                 <br />
-                <em>for Your Space</em>
+                <span style={{ color: "#163521", fontWeight: 500 }}>
+                  for Your Space
+                </span>
               </h2>
 
               {/* GRID */}
