@@ -494,7 +494,7 @@ export default function Home() {
           display: grid;
           grid-template-columns: 1.6fr 1fr 1fr;
           grid-template-rows: 340px 220px;
-          gap: 3px;
+          gap: 0px;
         }
 
         .fp-gallery-item {

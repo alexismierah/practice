@@ -1,347 +1,433 @@
-"use client";
-import Link from "next/link";
-
 export default function AboutPage() {
   return (
-    <main className="about-landing">
+    <main className="rh-about">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500&display=swap");
 
-        .about-landing, .about-landing * { box-sizing: border-box; margin: 0; padding: 0; font-family: "DM Sans", sans-serif !important; }
-
-        .about-landing {
-          background: #f5f5f5;
-          min-height: 100vh;
+        :root {
+          --forest:   #0f2318;
+          --fern:     #1c4a2e;
+          --sage:     #3a7a52;
+          --mist:     #b8d4bc;
+          --cream:    #f5f5f5;
+          --ivory:    #ffffff;
+          --stone:    #9aaa9d;
+          --border:   rgba(26,61,40,0.12);
+          --border-l: rgba(26,61,40,0.07);
         }
 
-        /* ── INTRO STRIP ── */
-        .about-intro {
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        .rh-about {
+          font-family: "DM Sans", sans-serif;
           background: #ffffff;
-          padding: 80px 80px;
-          display: grid;
-          grid-template-columns: 1fr 1px 1fr;
-          gap: 0;
-          align-items: center;
+          color: var(--forest);
+          overflow-x: hidden;
         }
 
-        .about-intro-left {
-          padding-right: 64px;
-        }
-
-        .about-intro-divider {
-          width: 1px;
-          height: 120px;
-          background: linear-gradient(to bottom, transparent, #c8dac9, transparent);
-          align-self: center;
-        }
-
-        .about-intro-right {
-          padding-left: 64px;
+        /* ─── HERO ─────────────────────────────── */
+        .about-hero {
+          position: relative;
+          height: 56vh;
+          min-height: 380px;
+          overflow: hidden;
           display: flex;
-          flex-direction: column;
-          gap: 20px;
+          align-items: flex-end;
         }
 
-        .section-label {
-          font-size: 10px;
-          letter-spacing: 0.28em;
+        .about-hero-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center 40%;
+          filter: brightness(0.55) saturate(0.85);
+        }
+
+        .about-hero-scrim {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(10,25,15,0.88) 0%, rgba(10,25,15,0.3) 60%, transparent 100%);
+        }
+
+        .about-hero-content {
+          position: relative;
+          z-index: 2;
+          padding: 0 80px 64px;
+          width: 100%;
+        }
+
+        .about-hero-kicker {
+          font-size: 9px;
+          letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: #2f6f44;
+          color: var(--mist);
           font-weight: 500;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 15px;
+          margin-bottom: 16px;
+          opacity: 0.8;
         }
 
-        .section-heading {
-          font-family: "Cormorant Garamond", serif;
-          font-size: clamp(1.6rem, 1.8vw + 0.8rem, 2.4rem);
-          font-weight: 500;
-          color: #163521;
-          line-height: 1.1;
-          margin: 0;
+        .about-hero-title {
+          font-family: "DM Sans", sans-serif;
+          font-weight: 300;
+          font-size: clamp(2.8rem, 5vw + 0.5rem, 5.5rem);
+          line-height: 1.06;
+          color: #fff;
+          letter-spacing: -0.03em;
+          max-width: 680px;
         }
 
-        .section-heading em {
+        .about-hero-title em {
           font-style: italic;
-          font-weight: 400;
-          color: #3f7a55;
-        }
-
-        .section-body {
-          font-size: 13.5px;
-          color: #7a8f80;
-          line-height: 1.8;
-          margin: 0;
+          color: var(--mist);
           font-weight: 300;
         }
 
-        /* ── VALUES ── */
-        .about-values {
-          background: #f5f5f5;
-          padding: 80px 80px;
+        /* ─── SPLIT SECTION ─────────────────────── */
+        .about-split {
+          display: grid;
+          grid-template-columns: 1fr 1px 1.35fr;
+          min-height: 520px;
         }
 
-        .about-values-header {
+        .about-split-left {
+          padding: 88px 72px 88px 80px;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
-          margin-bottom: 48px;
+          justify-content: flex-start; /* ← fixed: was center, now aligns to top like right side */
+          position: sticky;
+          top: 80px;
+          align-self: start;
+        }
+
+        .about-split-divider {
+          background: linear-gradient(to bottom, transparent, var(--border), transparent);
+          align-self: stretch;
+        }
+
+        .about-split-right {
+          padding: 167px 80px 88px 72px;
+          display: flex;
+          flex-direction: column;
+          gap: 40px;
+        }
+
+        .company-eyebrow {
+          font-size: 9px;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: var(--sage);
+          font-weight: 600;
+          margin-bottom: 20px;
+          margin-top: -4px; /* ← matches story-eyebrow negative offset so both eyebrows sit at the same baseline */
+        }
+
+        .company-name {
+          font-family: "DM Sans", sans-serif;
+          font-weight: 300;
+          font-size: clamp(2rem, 3vw + 0.5rem, 3.4rem);
+          line-height: 1.1;
+          letter-spacing: -0.025em;
+          color: var(--forest);
+        }
+
+        .company-name em {
+          font-style: italic;
+          color: var(--sage);
+          font-weight: 300;
+        }
+
+        .company-tagline {
+          margin-top: 28px;
+          font-size: 13px;
+          color: var(--stone);
+          line-height: 1.85;
+          font-weight: 300;
+          max-width: 260px;
+        }
+
+        .company-since {
+          margin-top: 36px;
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .company-since-year {
+          font-family: "DM Sans", sans-serif;
+          font-size: clamp(2.8rem, 4vw, 4.5rem);
+          font-weight: 200;
+          color: var(--forest);
+          letter-spacing: -0.04em;
+          line-height: 1;
+        }
+
+        .company-since-label {
+          font-size: 9px;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: var(--stone);
+          font-weight: 500;
+        }
+
+        /* ─── STORY ─────────────────────────────── */
+        .story-block {
+          display: flex;
+          flex-direction: column;
           gap: 10px;
         }
 
-        .about-values-grid {
-          display: grid;
-          grid-template-columns: 240px 1fr;
-          gap: 56px;
-          align-items: start;
-          max-width: 1060px;
-          margin: 0 auto;
+        .story-eyebrow {
+          font-size: 9px;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: var(--sage);
+          font-weight: 600;
+          margin-bottom: 6px;
         }
 
-        .about-values-left {}
+        .story-heading {
+          font-family: "DM Sans", sans-serif;
+          font-weight: 300;
+          font-size: clamp(1.5rem, 1.8vw + 0.5rem, 2rem);
+          color: var(--forest);
+          line-height: 1.18;
+          letter-spacing: -0.02em;
+          margin-bottom: 16px;
+        }
 
-        .about-values-cards {
+        .story-heading em {
+          font-style: italic;
+          color: var(--sage);
+          font-weight: 300;
+        }
+
+        .story-body {
+          font-size: 14.5px;
+          color: var(--stone);
+          line-height: 1.9;
+          font-weight: 300;
+        }
+
+        .story-divider {
+          width: 40px;
+          height: 1px;
+          background: var(--border);
+          margin: 8px 0;
+        }
+
+        /* ─── STATS ROW ─────────────────────────── */
+        .about-stats {
+          background: #fafafa;
+          border-top: 1px solid var(--border-l);
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 14px;
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .stat-item {
+          padding: 64px 48px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          border-right: 1px solid var(--border-l);
+        }
+
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number {
+          font-family: "DM Sans", sans-serif;
+          font-size: clamp(2.8rem, 4vw, 4rem);
+          font-weight: 200;
+          color: var(--forest);
+          letter-spacing: -0.04em;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: 11px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--stone);
+          font-weight: 500;
+        }
+
+        .stat-desc {
+          font-size: 13px;
+          color: var(--stone);
+          line-height: 1.7;
+          font-weight: 300;
+          margin-top: 4px;
+        }
+
+        /* ─── VALUES STRIP ──────────────────────── */
+        .about-values {
+          padding: 96px 80px;
+          background: #ffffff;
+        }
+
+        .values-header {
+          text-align: center;
+          margin-bottom: 56px;
+        }
+
+        .values-eyebrow {
+          font-size: 9px;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: var(--sage);
+          font-weight: 600;
+          margin-bottom: 16px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+        }
+
+        .values-heading {
+          font-family: "DM Sans", sans-serif;
+          font-weight: 300;
+          font-size: clamp(1.7rem, 2.2vw + 0.5rem, 2.6rem);
+          color: var(--forest);
+          line-height: 1.14;
+          letter-spacing: -0.02em;
+        }
+
+        .values-heading em {
+          font-style: italic;
+          color: var(--sage);
+        }
+
+        .values-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1px;
+          background: var(--border-l);
+          border: 1px solid var(--border-l);
         }
 
         .value-card {
-          background: #ffffff;
-          border-radius: 6px;
-          padding: 32px 28px;
-          border: 1px solid #eaefea;
+          background: #fff;
+          padding: 40px 36px;
           display: flex;
           flex-direction: column;
-          gap: 14px;
+          gap: 12px;
         }
 
-        .value-card-num {
-          font-size: 10px;
-          letter-spacing: 0.18em;
-          color: #2f6f44;
+        .value-number {
+          font-size: 9px;
+          letter-spacing: 0.24em;
+          color: var(--stone);
           font-weight: 500;
+          opacity: 0.6;
         }
 
-        .value-card-rule {
-          width: 28px;
-          height: 1px;
-          background: #c8dac9;
-        }
-
-        .value-card h3 {
-          margin: 0;
-          font-family: "Cormorant Garamond", serif;
-          font-size: 1.25rem;
+        .value-title {
+          font-family: "DM Sans", sans-serif;
+          font-size: 1rem;
           font-weight: 500;
-          color: #163521;
-          line-height: 1.2;
+          color: var(--fern);
+          letter-spacing: -0.01em;
         }
 
-        .value-card p {
-          margin: 0;
-          color: #7a8f80;
-          font-size: 13.5px;
-          line-height: 1.8;
+        .value-desc {
+          font-size: 13px;
+          color: var(--stone);
+          line-height: 1.85;
           font-weight: 300;
         }
 
-        /* ── CTA BAND ── */
-        .about-cta {
-          background: #163521;
-          padding: 48px 64px;
-          display: flex;
-          align-items: center;
-          gap: 80px;
-          position: relative;
-          overflow: visible;
-        }
-
-        .about-cta-plant {
-          position: absolute;
-          right: 0px;
-          bottom: 0px;
-          height: 330px;
-          object-fit: contain;
-          pointer-events: none;
-          z-index: 10;
-        }
-
-        .about-cta-inner {
-          flex: 1;
-          padding-right: calc(64px + 340px);
-        }
-
-        .pill-link {
-          display: inline-flex;
-          align-items: center;
-          font-size: 10px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: #2f6f44;
-          font-weight: 500;
-          text-decoration: none;
-          background: rgba(47,111,68,0.09);
-          border: none;
-          padding: 13px 20px;
-          border-radius: 9999px;
-          transition: background 0.25s, color 0.25s;
-          width: fit-content;
-        }
-
-        .pill-link:hover { background: rgba(47,111,68,0.16); color: #163521; }
-
-        /* ── RESPONSIVE ── */
+        /* ─── RESPONSIVE ────────────────────────── */
         @media (max-width: 1024px) {
-          .about-intro { padding: 64px 48px; }
-          .about-values { padding: 72px 48px; }
-          .about-values-grid { grid-template-columns: 1fr; gap: 48px; }
-          .about-values-left { text-align: center; }
-          .about-cta { padding: 72px 48px; }
-          .about-cta-inner { padding-right: 0; }
-          .about-cta-plant { display: none; }
+          .about-hero-content { padding: 0 48px 52px; }
+          .about-split-left { padding: 72px 48px 72px 48px; }
+          .about-split-right { padding: 72px 48px; }
+          .about-values { padding: 80px 48px; }
+          .stat-item { padding: 56px 36px; }
         }
 
         @media (max-width: 900px) {
-          .about-intro {
-            grid-template-columns: 1fr;
-            padding: 56px 40px;
+          .about-split { grid-template-columns: 1fr; }
+          .about-split-divider { display: none; }
+          .about-split-left {
+            position: static;
+            padding: 64px 40px 40px;
+            border-bottom: 1px solid var(--border-l);
           }
-          .about-intro-divider { display: none; }
-          .about-intro-left {
-            padding-right: 0;
-            padding-bottom: 40px;
-            border-bottom: 1px solid #e8ede5;
-            margin-bottom: 40px;
-          }
-          .about-intro-right { padding-left: 0; }
+          .about-split-right { padding: 40px 40px 64px; }
+          .company-tagline { max-width: 100%; }
+          .about-stats { grid-template-columns: 1fr 1fr; }
+          .stat-item:nth-child(2) { border-right: none; }
+          .stat-item:nth-child(3) { border-top: 1px solid var(--border-l); grid-column: 1 / 3; }
+          .values-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
-          .about-values-cards { grid-template-columns: 1fr; }
-          .about-cta { padding: 48px 32px; text-align: center; align-items: center; flex-direction: column; }
-          .about-cta-inner { padding-right: 0; display: flex; flex-direction: column; align-items: center; }
-        }
-
-        @media (max-width: 640px) {
-          .about-intro { padding: 48px 20px; }
-          .about-values { padding: 56px 20px; }
-          .about-cta { padding: 48px 24px; }
+          .about-hero-content { padding: 0 28px 44px; }
+          .about-split-left, .about-split-right { padding: 48px 28px; }
+          .about-values { padding: 64px 28px; }
+          .stat-item { padding: 44px 28px; }
+          .about-stats { grid-template-columns: 1fr; }
+          .stat-item { border-right: none; border-top: 1px solid var(--border-l); }
+          .stat-item:first-child { border-top: none; }
+          .stat-item:nth-child(3) { grid-column: auto; }
         }
       `}</style>
 
-      {/* ═══════════════════════════════════════════
-          INTRO STRIP
-      ═══════════════════════════════════════════ */}
-      <section className="about-intro">
-        <div className="about-intro-left">
-          <span className="section-label">Who We Are</span>
-          <h2 className="section-heading">
-            Bringing <em>nature</em><br />to every space
-          </h2>
-        </div>
-        <div className="about-intro-divider" aria-hidden="true" />
-        <div className="about-intro-right">
-          <p className="section-body">
-            At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space — without the maintenance. Established in 2014, we specialize in high-quality artificial greenery including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces.
-          </p>
-          <p className="section-body">
-            Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you&apos;re elevating an interior, transforming an outdoor area, or creating a calming atmosphere — Rich Haven is committed to delivering style, quality, and timeless greenery you can rely on.
-          </p>
-        </div>
-      </section>
+      {/* ═══ HERO ══════════════════════════════════════ */}
 
-      {/* ═══════════════════════════════════════════
-          CORE VALUES
-      ═══════════════════════════════════════════ */}
-      <section className="about-values">
-        <div className="about-values-grid">
-          <div className="about-values-left">
-            <p className="section-label">What drives us</p>
-            <h2 className="section-heading" style={{ marginBottom: "12px" }}>
-              Our <em>Core Values</em>
-            </h2>
-            <p className="section-body" style={{ marginBottom: "24px" }}>
-              The principles that guide every installation we do and every product we deliver.
+      {/* ═══ SPLIT: NAME LEFT · STORY RIGHT ════════════ */}
+      <section className="about-split">
+        <div className="about-split-left">
+          <p className="company-eyebrow">Who We Are</p>
+          <h2 className="company-name">
+            Rich Haven<br /><em>Artificial</em><br />Garden
+          </h2>
+          <p className="company-tagline">
+            Greenery designed to look real, last forever, and need nothing from you.
+          </p>
+          <div className="company-since">
+            <span className="company-since-year">2014</span>
+            <span className="company-since-label">Est. Philippines</span>
+          </div>
+        </div>
+
+        <div className="about-split-divider" aria-hidden="true" />
+
+        <div className="about-split-right">
+          <div className="story-block">
+            <p className="story-eyebrow">Our Company</p>
+            <h3 className="story-heading">From a single idea to <em>countless green spaces</em></h3>
+            <p className="story-body">
+              At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space—without the maintenance.
+              We specialize in high-quality artificial greenery, including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces.
             </p>
-            <Link className="pill-link" href="/products-services">Browse our products</Link>
+            <p className="story-body">
+              Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you're elevating an interior, transforming an outdoor area, or creating a calming atmosphere, Rich Haven Artificial Garden is committed to delivering style, quality, and timeless greenery you can rely on.
+            </p>
           </div>
 
-          <div className="about-values-cards">
-            {[
-              {
-                n: "01",
-                title: "Our Mission",
-                desc: "Providing artificial gardening services with the most professional workmanship to give customer satisfaction.",
-              },
-              {
-                n: "02",
-                title: "Our Vision",
-                desc: "Being the most trusted artificial gardening service provider throughout the country.",
-              },
-              {
-                n: "03",
-                title: "Quality First",
-                desc: "UV-stable, moisture-resistant materials that look real and last for years — indoors or outdoors.",
-              },
-              {
-                n: "04",
-                title: "Built for Any Space",
-                desc: "From condo balconies to commercial lobbies, we size, design, and install for exactly your context.",
-              },
-            ].map((item) => (
-              <article className="value-card" key={item.n}>
-                <span className="value-card-num">{item.n}</span>
-                <div className="value-card-rule" />
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </article>
-            ))}
+          <div className="story-divider" />
+
+          <div className="story-block">
+            <p className="story-eyebrow">What We Do</p>
+            <h3 className="story-heading">Supply, and <em>install</em> — end to end</h3>
+            <p className="story-body">
+              Today we specialize in artificial wall greens, potted plants and trees, planter boxes, and turf — for homes, commercial offices, retail spaces, hotels, restaurants, and events. Every installation is sized, designed, and fitted for the specific space. We handle everything from the first consultation to the final nail, using UV-stable, humidity-resistant materials built for the Philippine climate.
+            </p>
+          </div>
+
+          <div className="story-divider" />
+
+          <div className="story-block">
+            <p className="story-eyebrow">Our Promise</p>
+            <h3 className="story-heading">Greenery that looks <em>perfect</em> from day one</h3>
+            <p className="story-body">
+              No wilting. No watering schedules. No seasonal replanting. What we install on day one is what you&apos;ll see year after year. We stand behind the quality of every product and every installation — because our reputation is built one space at a time.
+            </p>
           </div>
         </div>
       </section>
-
-      {/* ═══════════════════════════════════════════
-          CTA
-      ═══════════════════════════════════════════ */}
-      <div className="about-cta">
-        <img className="about-cta-plant" src="/Overlap4.png" alt="Plant" />
-        <div className="about-cta-inner">
-          <p style={{ fontSize: "11px", fontWeight: 500, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,218,201,0.7)", marginBottom: "16px" }}>
-            Let&apos;s Work Together
-          </p>
-          <h2 style={{ fontSize: "36px", fontWeight: 300, color: "#ffffff", lineHeight: 1.2, letterSpacing: "-0.02em", marginBottom: "32px" }}>
-            Ready to Start a <span style={{ fontWeight: 500 }}><em>Project</em></span> with{" "}
-            <br /><span style={{ fontWeight: 500 }}><em>Rich Haven?</em></span>
-          </h2>
-          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap" }}>
-            <a
-              href="#footer"
-              onClick={(e) => {
-                e.preventDefault();
-                const footer = document.getElementById("footer");
-                if (footer) {
-                  const top = footer.getBoundingClientRect().top + window.scrollY - 80;
-                  window.scrollTo({ top, behavior: "smooth" });
-                }
-              }}
-              style={{ padding: "10px 24px", background: "#ffffff", color: "#163521", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "none", borderRadius: "9999px", cursor: "pointer", textDecoration: "none", display: "inline-block" }}
-            >
-              Get in Touch
-            </a>
-            <Link
-              href="/products-services"
-              style={{ padding: "10px 24px", background: "transparent", color: "#ffffff", fontFamily: "inherit", fontSize: "12px", fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.35)", borderRadius: "9999px", textDecoration: "none", display: "inline-block" }}
-            >
-              Browse Products
-            </Link>
-          </div>
-        </div>
-      </div>
-
     </main>
   );
 }
