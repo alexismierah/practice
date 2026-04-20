@@ -240,7 +240,7 @@ export default function Home() {
           font-size: 10px;
           letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: rgba(184,212,188,0.7);
+          color: #ffffff;
           font-weight: 400;
         }
 
