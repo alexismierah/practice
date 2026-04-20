@@ -209,7 +209,7 @@ export default function Home() {
         }
 
         .hero-eyebrow-text {
-          font-size: 10px;
+          font-size: 13px;
           letter-spacing: 0.28em;
           text-transform: uppercase;
           color: rgba(200,218,201,0.75);
@@ -220,7 +220,7 @@ export default function Home() {
         .hero-title {
           font-family: "Cormorant Garamond", serif;
           font-weight: 300;
-          font-size: clamp(3.2rem, 6vw + 0.5rem, 7rem);
+          font-size: clamp(3.6rem, 6.5vw + 0.5rem, 8rem);
           line-height: 1.25;
           letter-spacing: -0.01em;
           color: #ffffff;
@@ -236,7 +236,7 @@ export default function Home() {
 
         .hero-subtitle {
           margin-top: 28px;
-          font-size: 14px;
+          font-size: 16px;
           font-weight: 300;
           color: rgba(255,255,255,0.55);
           letter-spacing: 0.04em;
