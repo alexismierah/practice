@@ -117,10 +117,10 @@ export default function AboutPage() {
           font-size: 9px;
           letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: var(--sage);
+          color: black ;
           font-weight: 600;
           margin-bottom: 20px;
-          margin-top: -4px; /* ← matches story-eyebrow negative offset so both eyebrows sit at the same baseline */
+          margin-top: -3px; /* ← matches story-eyebrow negative offset so both eyebrows sit at the same baseline */
         }
 
         .company-name {
@@ -182,7 +182,7 @@ export default function AboutPage() {
           font-size: 9px;
           letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: var(--sage);
+          color: black;
           font-weight: 600;
           margin-bottom: 6px;
         }
@@ -381,7 +381,7 @@ export default function AboutPage() {
         <div className="about-split-left">
           <p className="company-eyebrow">Who We Are</p>
           <h2 className="company-name">
-            Rich Haven<br /><em>Artificial</em><br />Garden
+            Rich Haven<br /> Artificial<em></em> Garden
           </h2>
           <p className="company-tagline">
             Greenery designed to look real, last forever, and need nothing from you.
@@ -397,7 +397,7 @@ export default function AboutPage() {
         <div className="about-split-right">
           <div className="story-block">
             <p className="story-eyebrow">Our Company</p>
-            <h3 className="story-heading">From a single idea to <em>countless green spaces</em></h3>
+            <h3 className="story-heading">From a single idea to countless green spaces<em></em></h3>
             <p className="story-body">
               At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space—without the maintenance.
               We specialize in high-quality artificial greenery, including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces.
@@ -410,18 +410,8 @@ export default function AboutPage() {
           <div className="story-divider" />
 
           <div className="story-block">
-            <p className="story-eyebrow">What We Do</p>
-            <h3 className="story-heading">Supply, and <em>install</em> — end to end</h3>
-            <p className="story-body">
-              Today we specialize in artificial wall greens, potted plants and trees, planter boxes, and turf — for homes, commercial offices, retail spaces, hotels, restaurants, and events. Every installation is sized, designed, and fitted for the specific space. We handle everything from the first consultation to the final nail, using UV-stable, humidity-resistant materials built for the Philippine climate.
-            </p>
-          </div>
-
-          <div className="story-divider" />
-
-          <div className="story-block">
             <p className="story-eyebrow">Our Promise</p>
-            <h3 className="story-heading">Greenery that looks <em>perfect</em> from day one</h3>
+            <h3 className="story-heading">Greenery that looks perfect<em></em> from day one</h3>
             <p className="story-body">
               No wilting. No watering schedules. No seasonal replanting. What we install on day one is what you&apos;ll see year after year. We stand behind the quality of every product and every installation — because our reputation is built one space at a time.
             </p>
