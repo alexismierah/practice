@@ -765,7 +765,7 @@ export default function Home() {
         .reason-card-icon {
           width: 20px;
           height: 20px;
-          color: var(--sage);
+          color: black;
           margin-bottom: 14px;
           display: block;
         }
@@ -996,7 +996,7 @@ export default function Home() {
       </section>
 
       {/* ═══ PROJECT GALLERY ════════════════════════════ */}
-      <section className="projects-section">
+      {/*<section className="projects-section">
         <div className="section-header">
           <div className="section-header-left">
             <p className="eyebrow" style={{ justifyContent: "center" }}>Our Work</p>
@@ -1037,7 +1037,7 @@ export default function Home() {
         <div className="section-cta-row">
           <Link href="/projects" className="pill-link">View all projects</Link>
         </div>
-      </section>
+      </section>*/}
 
       {/* ═══ PRODUCTS ════════════════════════════════════ */}
       <section className="products-section" aria-labelledby="products-heading">
