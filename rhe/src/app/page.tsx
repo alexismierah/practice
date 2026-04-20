@@ -75,32 +75,32 @@ const featuredPlants = [
 
 const displayedPlants = [
   {
+    number: "01",
     name: "Artificial Grass",
     sublabel: "Sports courts, lawns & outdoor decks",
     img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
     link: "/products-services/grass",
-    tag: "01",
   },
   {
+    number: "02",
     name: "Potted Plants & Trees",
     sublabel: "Statement pieces for any interior",
     img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
     link: "/products-services/potted-plants",
-    tag: "02",
   },
   {
+    number: "03",
     name: "Planter Boxes",
     sublabel: "Defined edges, curated arrangements",
     img: "p1.jpg",
     link: "/products-services/planter-box",
-    tag: "03",
   },
   {
+    number: "04",
     name: "Wall Greens",
     sublabel: "Living-wall look, zero upkeep",
     img: "p19.jpg",
     link: "/products-services/wall-greens",
-    tag: "04",
   },
 ];
 
@@ -121,6 +121,7 @@ const shopReasons = [
 export default function Home() {
   const [sliderIdx, setSliderIdx] = useState(0);
   const [scrolled, setScrolled] = useState(false);
+  const servicesSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const t = setInterval(() => setSliderIdx(i => (i + 1) % featuredPlants.length), 5000);
@@ -131,6 +132,23 @@ export default function Home() {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Intersection observer for service cards
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("sc-visible");
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    const cards = servicesSectionRef.current?.querySelectorAll(".sc-card");
+    cards?.forEach((card) => observer.observe(card));
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -573,105 +591,146 @@ export default function Home() {
 
         .pill-link--light:hover { border-color: rgba(184,212,188,0.55); background: rgba(184,212,188,0.07); }
 
-        /* ─── PRODUCTS ─────────────────────────── */
-        .products-section {
+        /* ─── SERVICES MOSAIC ──────────────────── */
+        .services-mosaic-section {
           background: #ffffff;
-          padding: 96px 80px;
+          padding: 100px 80px 100px;
+          overflow: hidden;
         }
 
-        .ps-grid {
+        .sm-header {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 20px;
-          margin-top: 48px;
+          grid-template-columns: 1fr 1fr;
+          gap: 60px;
+          align-items: start;
+          margin-bottom: 72px;
         }
 
-        .ps-card {
-          border-radius: 4px;
-          overflow: hidden;
-          background: var(--ivory);
-          border: 1px solid var(--border-l);
-          display: block;
-          position: relative;
-          transition: border-color 0.3s, box-shadow 0.35s, transform 0.35s;
-        }
-
-        .ps-card:hover {
-          border-color: var(--border);
-          box-shadow: 0 16px 48px rgba(15,35,24,0.1);
-          transform: translateY(-3px);
-        }
-
-        .ps-card a {
-          display: flex;
-          flex-direction: column;
-          text-decoration: none;
-          height: 100%;
-        }
-
-        .ps-card-img-wrap {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .ps-tag {
-          position: absolute;
-          top: 14px;
-          left: 14px;
-          font-size: 8px;
-          font-weight: 600;
-          color: rgba(255,255,255,0.8);
-          letter-spacing: 0.18em;
-          text-transform: uppercase;
-          background: rgba(0,0,0,0.22);
-          backdrop-filter: blur(6px);
-          padding: 4px 10px;
-          border-radius: 100px;
-          z-index: 2;
-        }
-
-        .ps-card-img {
-          width: 100%;
-          aspect-ratio: 3/4;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.55s cubic-bezier(.4,0,.2,1);
-          filter: brightness(0.93);
-        }
-
-        .ps-card:hover .ps-card-img { transform: scale(1.05); filter: brightness(1); }
-
-        .ps-card-img-scrim {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(15,35,20,0.25), transparent 55%);
-          opacity: 0;
-          transition: opacity 0.4s;
-        }
-
-        .ps-card:hover .ps-card-img-scrim { opacity: 1; }
-
-        .ps-card-body {
-          padding: 16px 18px 20px;
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
-
-        .ps-card-name {
+        .sm-label {
           font-family: "DM Sans", sans-serif;
-          font-size: 0.95rem;
-          font-weight: 500;
-          color: var(--forest);
-          line-height: 1.25;
-          letter-spacing: -0.01em;
+          font-size: 9px;
+          font-weight: 300;
+          letter-spacing: 0.32em;
+          text-transform: uppercase;
+          color: #111111;
+          margin-bottom: 14px;
         }
 
-        .ps-card-sub {
-          font-size: 11.5px;
+        .sm-heading {
+          font-family: "DM Sans", sans-serif;
+          font-size: clamp(1.7rem, 5vw + 0.6rem, 2.8rem);
+          font-weight: 300;
+          color: #111111;
+          line-height: 1.15;
+          margin: 0;
+          letter-spacing: -0.02em;
+        }
+
+        .sm-heading em {
+          font-style: italic;
+          color: #111111;
+        }
+
+        .sm-description {
+          font-family: "DM Sans", sans-serif;
+          font-size: 14px;
+          line-height: 1.85;
           color: var(--stone);
           font-weight: 300;
-          letter-spacing: 0.01em;
+          padding-top: 32px;
+        }
+
+        .sm-mosaic {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          column-gap: 24px;
+          align-items: start;
+        }
+
+        .sc-card {
+          display: flex;
+          flex-direction: column;
+          opacity: 0;
+          transform: translateY(28px);
+          transition: opacity 0.65s ease, transform 0.65s ease;
+          text-decoration: none;
+          color: inherit;
+        }
+
+        .sc-card.sc-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .sc-card:nth-child(odd)  { margin-top: 0; }
+
+        .sc-card:nth-child(1) { transition-delay: 0s; }
+        .sc-card:nth-child(2) { transition-delay: 0.1s; }
+        .sc-card:nth-child(3) { transition-delay: 0.05s; }
+        .sc-card:nth-child(4) { transition-delay: 0.15s; }
+
+        .sc-number {
+          font-family: "DM Sans", sans-serif;
+          font-size: 78px;
+          font-weight: 300;
+          color: #d4d4d4;
+          line-height: 1;
+          letter-spacing: -3px;
+          display: block;
+          margin-bottom: -10px;
+          user-select: none;
+        }
+
+        .sc-title {
+          font-family: "DM Sans", sans-serif;
+          font-size: 15.5px;
+          font-weight: 300;
+          color: #111111;
+          margin: 0 0 6px 0;
+          line-height: 1.3;
+        }
+
+        .sc-sub {
+          font-family: "DM Sans", sans-serif;
+          font-size: 12px;
+          color: var(--stone);
+          font-weight: 300;
+          margin: 0 0 14px 0;
+          line-height: 1.6;
+        }
+
+        .sc-img-wrap {
+          width: 100%;
+          aspect-ratio: 1 / 1.06;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #e5e5e5;
+          position: relative;
+          flex-shrink: 0;
+        }
+
+        .sc-img-wrap::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.18) 100%);
+          pointer-events: none;
+        }
+
+        .sc-img-wrap img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .sc-card:hover .sc-img-wrap img { transform: scale(1.06); }
+
+        .sm-cta-row {
+          display: flex;
+          justify-content: center;
+          margin-top: 48px;
         }
 
         /* ─── WHERE WE APPLY ───────────────────── */
@@ -728,7 +787,7 @@ export default function Home() {
 
         /* ─── WHY RICH HAVEN ───────────────────── */
         .why-section {
-          background: #ffffff;
+          background: #fafafa;
           padding: 96px 80px;
         }
 
@@ -774,7 +833,7 @@ export default function Home() {
           font-family: "DM Sans", sans-serif;
           font-size: 13px;
           font-weight: 600;
-          color: var(--fern);
+          color: black;
           margin-bottom: 8px;
           letter-spacing: 0.02em;
         }
@@ -804,12 +863,20 @@ export default function Home() {
           background: radial-gradient(ellipse at 80% 50%, rgba(58,122,82,0.4) 0%, transparent 65%);
           pointer-events: none;
         }
+          html, body {
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
 
         .cta-band-plant {
           position: absolute;
           right: 0;
           bottom: 0;
-          height: 335px;
+          height: 339px;
           top: -50px;
           object-fit: contain;
           pointer-events: none;
@@ -871,9 +938,9 @@ export default function Home() {
           .hero-content { padding: 0 48px 56px; }
           .about-strip-left { padding: 64px 48px 64px 48px; }
           .about-strip-right { padding: 64px 48px; }
-          .projects-section, .products-section, .ba-section, .why-section { padding: 80px 48px; }
+          .projects-section, .ba-section, .why-section { padding: 80px 48px; }
+          .services-mosaic-section { padding: 80px 48px 180px; }
           .cta-band { padding: 36px 48px; }
-          .ps-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 900px) {
@@ -894,6 +961,14 @@ export default function Home() {
           .hero-content { flex-direction: column; align-items: flex-start; gap: 24px; }
           .hero-right { align-items: flex-start; }
           .hero-sub { text-align: left; }
+
+          .sm-mosaic {
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 20px;
+          }
+          .sc-card:nth-child(even) { margin-top: 140px; }
+          .sm-header { grid-template-columns: 1fr; gap: 16px; }
+          .sm-description { padding-top: 0; }
         }
 
         @media (max-width: 768px) {
@@ -901,21 +976,30 @@ export default function Home() {
           .hero-title { font-size: clamp(2.8rem, 10vw, 4.2rem); }
           .about-strip-left, .about-strip-right { padding: 48px 28px; }
 
-          .projects-section, .products-section, .ba-section, .why-section { padding: 64px 28px; }
+          .projects-section, .ba-section, .why-section { padding: 64px 28px; }
+          .services-mosaic-section { padding: 64px 28px 80px; }
           .cta-band { padding: 32px 28px; text-align: center; }
           .cta-band-plant { display: none; }
           .cta-band-content { max-width: 100%; }
           .cta-eyebrow, .cta-buttons { justify-content: center; }
 
-          .ps-grid { gap: 14px; }
           .why-cards { gap: 12px; }
 
           .apply-bar { flex-wrap: wrap; gap: 0; }
           .apply-chip { flex: 0 0 50%; border-left: none; padding-left: 0; border-top: 1px solid var(--border-l); padding-top: 10px; margin-top: 8px; }
         }
 
+        @media (max-width: 600px) {
+          .sm-mosaic {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+          }
+          .sc-card:nth-child(even) { margin-top: 0; }
+          .sc-img-wrap { aspect-ratio: 4/3; }
+        }
+
         @media (max-width: 580px) {
-          .ps-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
           .fp-gallery {
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 180px 140px 140px;
@@ -926,7 +1010,6 @@ export default function Home() {
           .fp-gallery { grid-template-columns: 1fr; grid-template-rows: auto; }
           .fp-gallery-item { aspect-ratio: 4/3; height: auto; }
           .fp-gallery-item--large, .fp-gallery-item--wide { grid-column: 1; grid-row: auto; }
-          .ps-grid { grid-template-columns: 1fr; }
           .why-cards { grid-template-columns: 1fr; }
         }
       `}</style>
@@ -978,22 +1061,67 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ ABOUT STRIP ═══════════════════════════════ */}
-      <section className="about-strip">
-        <div className="about-strip-left">
-          <p className="eyebrow">About Us</p>
-          <h2 className="section-heading">
-            We turn bare spaces<br />into green ones
-          </h2>
-        </div>
-        <div className="about-strip-divider" aria-hidden="true" />
-        <div className="about-strip-right">
-          <p className="body-text">
-            Rich Haven Artificial Garden, established in 2014, specializes in artificial wall greens, potted plants, and artificial turf. We provide high-quality, low-maintenance greenery solutions designed to enhance residential and commercial spaces with a fresh, natural look all year round.
-          </p>
-          <Link href="/about" className="pill-link">Learn more</Link>
+      {/* ═══ BEFORE / AFTER ════════════════════════════ */}
+      <section className="ba-section">
+        <div className="ba-inner">
+          <div className="ba-header">
+            <p className="eyebrow" style={{ justifyContent: "center" }}>The Transformation</p>
+            <h2 className="section-heading" style={{ textAlign: "center" }}>
+              We turn bare spaces into green ones
+            </h2>
+            <p className="body-text" style={{ textAlign: "center", marginTop: "10px" }}>
+              Drag the handle to compare before and after.
+            </p>
+          </div>
+          <BeforeAfterSlider
+            before="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2012/7/25/5/RX-HGMAG004_Yes-Thats-the-Same-House-096-a_s4x3.jpg.rend.hgtvcom.791.594.85.suffix/1400972392314.webp"
+            after="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2012/7/25/5/RX-HGMAG004_Yes-Thats-the-Same-House-096-b_s4x3.jpg.rend.hgtvcom.791.594.85.suffix/1400972415145.webp"
+            beforeLabel="Before"
+            afterLabel="After"
+          />
         </div>
       </section>
+
+      {/* ═══ SERVICES MOSAIC ═══════════════════════════ */}
+      <section className="services-mosaic-section" ref={servicesSectionRef} aria-labelledby="services-heading">
+        <div className="sm-header">
+          <div>
+            <p className="sm-label">What We Offer</p>
+            <h2 className="sm-heading" id="services-heading">
+              We propose <br/>the best services 
+            </h2>
+
+          </div>
+          <p className="sm-description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry&apos;s standard dummy
+              text ever since the 1500s, when an unknown printer took a galley
+              of type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into electronic
+              typesetting, remaining essentially unchanged.
+          </p>
+        </div>
+
+        <div className="sm-mosaic">
+          {displayedPlants.map((plant) => (
+            <Link href={plant.link} className="sc-card" key={plant.number}>
+              <span className="sc-number">{plant.number}</span>
+              <h3 className="sc-title">{plant.name}</h3>
+              <p className="sc-sub">{plant.sublabel}</p>
+              <div className="sc-img-wrap">
+                <img src={plant.img} alt={plant.name} loading="lazy" />
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="sm-cta-row">
+          <Link href="/products-services" className="pill-link">View all products</Link>
+        </div>
+
+      </section>
+
+
 
       {/* ═══ PROJECT GALLERY ════════════════════════════ */}
       {/*<section className="projects-section">
@@ -1038,76 +1166,6 @@ export default function Home() {
           <Link href="/projects" className="pill-link">View all projects</Link>
         </div>
       </section>*/}
-
-      {/* ═══ PRODUCTS ════════════════════════════════════ */}
-      <section className="products-section" aria-labelledby="products-heading">
-        <div className="section-header">
-          <div>
-            <p className="eyebrow">What We Offer</p>
-            <h2 className="section-heading" id="products-heading">
-              Products &amp; Services
-            </h2>
-            <p className="body-text" style={{ marginTop: "8px" }}>We supply, install, or both — for any space.</p>
-          </div>
-          <Link href="/products-services" className="pill-link" style={{ flexShrink: 0 }}>View all products</Link>
-        </div>
-
-        <div className="ps-grid">
-          {displayedPlants.map((plant) => (
-            <article className="ps-card" key={plant.name}>
-              <Link href={plant.link}>
-                <div className="ps-card-img-wrap">
-                  <span className="ps-tag">{plant.tag}</span>
-                  <img className="ps-card-img" src={plant.img} alt={plant.name} />
-                  <div className="ps-card-img-scrim" />
-                </div>
-                <div className="ps-card-body">
-                  <h3 className="ps-card-name">{plant.name}</h3>
-                  <p className="ps-card-sub">{plant.sublabel}</p>
-                </div>
-              </Link>
-            </article>
-          ))}
-        </div>
-
-        <div className="apply-bar">
-          <span className="apply-label">Available for</span>
-          {[
-            { Icon: House, name: "Residential Homes" },
-            { Icon: Building2, name: "Commercial Offices" },
-            { Icon: ShoppingBag, name: "Retail & Boutiques" },
-            { Icon: Hotel, name: "Hotels & Resorts" },
-            { Icon: UtensilsCrossed, name: "Restaurants & Cafés" },
-            { Icon: CalendarDays, name: "Events & Exhibitions" },
-          ].map(({ Icon, name }) => (
-            <span className="apply-chip" key={name}>
-              <Icon className="apply-chip-icon" size={12} strokeWidth={1.5} />
-              {name}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      {/* ═══ BEFORE / AFTER ═════════════════════════════ */}
-      <section className="ba-section">
-        <div className="ba-inner">
-          <div className="ba-header">
-            <p className="eyebrow" style={{ justifyContent: "center" }}>The Transformation</p>
-            <h2 className="section-heading" style={{ textAlign: "center" }}>
-              See the Difference
-            </h2>
-            <p className="body-text" style={{ textAlign: "center", marginTop: "10px" }}>
-              Drag the handle to compare before and after.
-            </p>
-          </div>
-          <BeforeAfterSlider
-            before="/Grass.jpg"
-            after="/WallGreens.jpg"
-            beforeLabel="Before"
-            afterLabel="After"
-          />
-        </div>
-      </section>
 
       {/* ═══ WHY RICH HAVEN ══════════════════════════════ */}
       <section className="why-section" aria-labelledby="why-title">
