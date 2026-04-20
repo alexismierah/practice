@@ -231,7 +231,7 @@ export default function Page() {
                 alt="Artificial wall plant"
                 style={{
                   width: "100%",
-                  height: "450px",
+                  height: "400px",
                   objectFit: "cover",
                   display: "block",
                 }}
