@@ -30,7 +30,7 @@ const featuredPlants = [
   },
   {
     name: "Potted Plants and Trees",
-    img: "PottedPlants.png",
+    img: "https://images.unsplash.com/photo-1606146350185-09f9bf15f5c1?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
     name: "Planter Boxes",
