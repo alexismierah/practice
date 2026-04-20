@@ -311,7 +311,7 @@ export default function Header() {
           font-size: 0.78rem;
           font-weight: 500;
           letter-spacing: 0.12em;
-          text-transform: Capitalize;
+          text-transform: uppercase;
           border-radius: 999px;
           cursor: pointer;
           text-decoration: none;
