@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 
 /* ── FONTS ── */
@@ -23,29 +24,29 @@ interface Product {
 
 /* ── PRODUCTS ── */
 const PRODUCTS: Product[] = [
-  { id: "1",  name: "Pachysandra",   size: "50cm×50cm",   image: "/wallgreens/pachy.png"    },
-  { id: "2",  name: "Gardenia",      size: "50cm×50cm",   image: "/wallgreens/gard.png"     },
-  { id: "3",  name: "Multi-Element", size: "50cm×50cm",   image: "/wallgreens/multi.png"    },
-  { id: "4",  name: "Spring Leaves", size: "50cm×50cm",   image: "/wallgreens/spring.png"   },
-  { id: "5",  name: "Lush Forest",   size: "50cm×50cm",   image: "/wallgreens/lushh.png"    },
-  { id: "6",  name: "Rhein Jardin",  size: "50cm×50cm",   image: "/wallgreens/rheinb.png"   },
-  { id: "7",  name: "Daffodil Smile",size: "50cm×50cm",   image: "/wallgreens/daff.png"     },
-  { id: "8",  name: "Flourish Yard", size: "50cm×50cm",   image: "/wallgreens/flourish.png" },
-  { id: "9",  name: "Deluxe Fern",   size: "100cm×100cm", image: "/wallgreens/del.png"      },
-  { id: "10", name: "Amazon World",  size: "100cm×100cm", image: "/wallgreens/aw.png"       },
-  { id: "11", name: "Pittoso",       size: "50cm×50cm",   image: "/wallgreens/pitoo.png"    },
-  { id: "12", name: "Cymbidium",     size: "50cm×50cm",   image: "/wallgreens/cym.png"      },
-  { id: "13", name: "Gentle Breeze", size: "100cm×100cm", image: "/wallgreens/breeze.png"   },
-  { id: "14", name: "The Jungle",    size: "100cm×100cm", image: "/wallgreens/jungle.png"   },
-  { id: "15", name: "Orchid Park",   size: "100cm×100cm", image: "/wallgreens/orchid.png"   },
-  { id: "16", name: "Green Jewelry", size: "100cm×100cm", image: "/wallgreens/jewel.png"    },
+  { id: "1",  name: "Pachysandra",    size: "50cm×50cm",   image: "/wallgreens/pachy.png"    },
+  { id: "2",  name: "Gardenia",       size: "50cm×50cm",   image: "/wallgreens/gard.png"     },
+  { id: "3",  name: "Multi-Element",  size: "50cm×50cm",   image: "/wallgreens/multi.png"    },
+  { id: "4",  name: "Spring Leaves",  size: "50cm×50cm",   image: "/wallgreens/spring.png"   },
+  { id: "5",  name: "Lush Forest",    size: "50cm×50cm",   image: "/wallgreens/lushh.png"    },
+  { id: "6",  name: "Rhein Jardin",   size: "50cm×50cm",   image: "/wallgreens/rheinb.png"   },
+  { id: "7",  name: "Daffodil Smile", size: "50cm×50cm",   image: "/wallgreens/daff.png"     },
+  { id: "8",  name: "Flourish Yard",  size: "50cm×50cm",   image: "/wallgreens/flourish.png" },
+  { id: "9",  name: "Deluxe Fern",    size: "100cm×100cm", image: "/wallgreens/del.png"      },
+  { id: "10", name: "Amazon World",   size: "100cm×100cm", image: "/wallgreens/aw.png"       },
+  { id: "11", name: "Pittoso",        size: "50cm×50cm",   image: "/wallgreens/pitoo.png"    },
+  { id: "12", name: "Cymbidium",      size: "50cm×50cm",   image: "/wallgreens/cym.png"      },
+  { id: "13", name: "Gentle Breeze",  size: "100cm×100cm", image: "/wallgreens/breeze.png"   },
+  { id: "14", name: "The Jungle",     size: "100cm×100cm", image: "/wallgreens/jungle.png"   },
+  { id: "15", name: "Orchid Park",    size: "100cm×100cm", image: "/wallgreens/orchid.png"   },
+  { id: "16", name: "Green Jewelry",  size: "100cm×100cm", image: "/wallgreens/jewel.png"    },
 ];
 
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
   fontWeight: 300,
-  color: "#000000",
+  color: "#4a5450",
   margin: 0,
   letterSpacing: "0.02em",
 };
@@ -54,7 +55,7 @@ const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
   fontWeight: 300,
-  color: "#000000",
+  color: "#4a5450",
   lineHeight: 1.7,
   marginTop: "-10px",
   letterSpacing: "0.03em",
@@ -70,13 +71,14 @@ const detailText: React.CSSProperties = {
 };
 
 /* ── PRODUCT CARD ── */
-function ProductCard({ product }: { product: Product }) {
+function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
-
-      {/* CARD */}
+    <div
+      style={{ display: "flex", flexDirection: "column", cursor: "pointer" }}
+      onClick={onClick}
+    >
       <div
-        className="group cursor-pointer overflow-hidden rounded-2xl"
+        className="group overflow-hidden rounded-2xl"
         style={{
           background: "#fafaf7",
           boxShadow: "0 5px 2px rgba(0,0,0,0.30)",
@@ -93,7 +95,6 @@ function ProductCard({ product }: { product: Product }) {
           el.style.borderColor = "#d1d1d1";
         }}
       >
-        {/* IMAGE */}
         <div style={{ aspectRatio: "1/1", overflow: "hidden" }}>
           <img
             src={product.image}
@@ -110,7 +111,6 @@ function ProductCard({ product }: { product: Product }) {
         </div>
       </div>
 
-      {/* DETAILS */}
       <div
         style={{
           padding: "1.2rem 0.85rem 0",
@@ -124,30 +124,326 @@ function ProductCard({ product }: { product: Product }) {
         <p style={{ ...detailText }}>{product.name}</p>
         <p style={{ ...detailText, marginTop: "-1px" }}>{product.size}</p>
       </div>
+    </div>
+  );
+}
 
+/* ── PRODUCT MODAL ── */
+function ProductModal({ product, onClose }: { product: Product; onClose: () => void }) {
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "rgba(20, 28, 20, 0.70)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 1000,
+        animation: "fadeIn 0.2s ease",
+      }}
+    >
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes slideUp {
+          from { opacity: 0; transform: scale(0.93) translateY(12px); }
+          to   { opacity: 1; transform: scale(1)    translateY(0);    }
+        }
+      `}</style>
+
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "#fafaf7",
+          borderRadius: "22px",
+          padding: "2rem",
+          maxWidth: "500px",
+          width: "90%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "1rem",
+          position: "relative",
+          animation: "slideUp 0.25s ease",
+        }}
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          style={{
+            position: "absolute",
+            top: "1rem",
+            right: "1rem",
+            background: "none",
+            border: "1px solid #ccc",
+            borderRadius: "50%",
+            width: "34px",
+            height: "34px",
+            cursor: "pointer",
+            fontSize: "16px",
+            color: "#444",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            lineHeight: 1,
+            transition: "background 0.15s",
+          }}
+          onMouseEnter={(e) =>
+            ((e.currentTarget as HTMLButtonElement).style.background = "#e8e8e4")
+          }
+          onMouseLeave={(e) =>
+            ((e.currentTarget as HTMLButtonElement).style.background = "none")
+          }
+        >
+          ✕
+        </button>
+
+        {/* Product image */}
+        <div
+          style={{
+            width: "100%",
+            borderRadius: "14px",
+            overflow: "hidden",
+            background: "#f0f0eb",
+          }}
+        >
+          <img
+            src={product.image}
+            alt={product.name}
+            style={{
+              width: "100%",
+              maxHeight: "400px",
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
+        </div>
+
+        {/* Product info */}
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "18px",
+            fontWeight: 400,
+            color: "#000",
+            margin: 0,
+            letterSpacing: "0.02em",
+          }}
+        >
+          {product.name}
+        </p>
+        <p
+          style={{
+            fontFamily: "'DM Sans', sans-serif",
+            fontSize: "14px",
+            fontWeight: 300,
+            color: "#4a5450",
+            margin: "-0.5rem 0 0",
+          }}
+        >
+          {product.size}
+        </p>
+      </div>
     </div>
   );
 }
 
 /* ── PAGE ── */
 export default function Page() {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+
   return (
     <div className={`${cormorant.className}`}>
 
+      {/* ── GLOBAL RESPONSIVE STYLES ── */}
+      <style>{`
+        /* ── HERO ── */
+        .wg-hero {
+          width: 100%;
+          height: 285px;
+          background-image: url('/wallgreens/wall9.jpg');
+          background-size: cover;
+          background-position: center 45%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        .wg-hero-inner {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          gap: 1.2rem;
+          padding: 0 5rem;
+        }
+        .wg-hero-title {
+          font-size: 52px;
+          font-weight: 300;
+          line-height: 1.1;
+          color: #fafafa;
+          margin: 0;
+          letter-spacing: 0.02em;
+        }
+        .wg-hero-subtitle {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 420;
+          color: #f8f8f8;
+          letter-spacing: 0.02em;
+          margin-top: -10px;
+        }
+
+        /* ── ABOUT SECTION ── */
+        .wg-about-grid {
+          width: 100%;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          align-items: stretch;
+          overflow: hidden;
+          padding: 0.5rem 5rem;
+          column-gap: 2rem;
+        }
+        .wg-about-img-wrap {
+          background: #fafaf7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 600px;
+        }
+        .wg-about-text {
+          background: #fafaf7;
+          padding: 4.5rem 0 4.5rem 3.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        /* ── CATALOG ── */
+        .wg-catalog-header {
+          padding: 2.5rem 8rem 5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+        .wg-catalog-grid-wrap {
+          padding: 0 8rem 5rem;
+        }
+        .wg-products-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 2.5rem;
+        }
+
+        /* ── FEATURES ── */
+        .wg-features-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2.5rem;
+          width: 100%;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+          .wg-hero {
+            height: 220px;
+          }
+          .wg-hero-inner {
+            padding: 0 1.5rem;
+            gap: 0.8rem;
+          }
+          .wg-hero-title {
+            font-size: 30px;
+          }
+          .wg-hero-subtitle {
+            font-size: 11px;
+          }
+
+          .wg-about-grid {
+            grid-template-columns: 1fr;
+            padding: 0;
+            row-gap: 0;
+          }
+          .wg-about-img-col {
+            order: 1;
+          }
+          .wg-about-text-col {
+            order: 2;
+          }
+          .wg-about-img-wrap {
+            min-height: unset;
+            padding: 1.5rem 1.5rem 0;
+          }
+          .wg-about-img-wrap > div {
+            max-width: 100% !important;
+            max-height: unset !important;
+          }
+          .wg-about-img-wrap > div img {
+            height: 260px !important;
+          }
+          .wg-about-text {
+            padding: 2rem 1.5rem 2.5rem;
+          }
+
+          .wg-catalog-header {
+            padding: 2rem 1.5rem 1.5rem;
+          }
+          .wg-catalog-grid-wrap {
+            padding: 0 1.5rem 3rem;
+          }
+          .wg-products-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem;
+          }
+
+          .wg-features-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+          }
+          .wg-features-section {
+            padding: 56px 24px !important;
+          }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .wg-hero-inner {
+            padding: 0 2rem;
+          }
+          .wg-hero-title {
+            font-size: 38px;
+          }
+          .wg-about-grid {
+            padding: 0.5rem 2.5rem;
+            column-gap: 1.5rem;
+          }
+          .wg-about-img-wrap {
+            min-height: 400px;
+          }
+          .wg-about-text {
+            padding: 3rem 0 3rem 2rem;
+          }
+          .wg-catalog-header {
+            padding: 2rem 3rem 3rem;
+          }
+          .wg-catalog-grid-wrap {
+            padding: 0 3rem 4rem;
+          }
+          .wg-products-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+          }
+        }
+      `}</style>
+
       {/* ── SECTION 1 — HERO ── */}
-      <section
-        style={{
-          width: "100%",
-          height: "285px",
-          backgroundImage: "url('/wallgreens/wall9.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center 45%",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <section className="wg-hero">
         <div
           style={{
             position: "absolute",
@@ -155,35 +451,11 @@ export default function Page() {
             background: "rgba(20, 28, 20, 0.50)",
           }}
         />
-
-        <div
-          className="relative z-10 flex flex-col items-center text-center wall-greens-section-padding"
-          style={{ gap: "1.2rem", padding: "0 5rem" }}
-        >
-          <h1
-            className={dmSans.className}
-            style={{
-              fontSize: "52px",
-              fontWeight: 300,
-              lineHeight: 1.1,
-              color: "#fafafa",
-              margin: 0,
-              letterSpacing: "0.02em",
-            }}
-          >
+        <div className="wg-hero-inner">
+          <h1 className={`${dmSans.className} wg-hero-title`}>
             Artificial Wall Greens
           </h1>
-
-          <p
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "14px",
-              fontWeight: 420,
-              color: "#f8f8f8",
-              letterSpacing: "0.02em",
-              marginTop: -10,
-            }}
-          >
+          <p className="wg-hero-subtitle">
             TRANSFORM BLANK WALLS INTO LUSH VERTICAL GARDEN FOR TIMELESS ELEGANCE.
           </p>
         </div>
@@ -192,28 +464,10 @@ export default function Page() {
 
       {/* ── SECTION 2 — ABOUT THE PRODUCT ── */}
       <section style={{ width: "100%", background: "#fafaf7" }}>
-        <div
-          style={{
-            width: "100%",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            alignItems: "stretch",
-            overflow: "hidden",
-            padding: "0.5rem 5rem 0.5rem",
-            columnGap: "2rem", 
-          }}
-          className="wall-greens-section-padding"
-        >
-          {/* LEFT — image */}
-          <div
-            style={{
-              background: "#fafaf7",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              minHeight: "600px",
-            }}
-          >
+        <div className="wg-about-grid">
+
+          {/* IMAGE */}
+          <div className="wg-about-img-col wg-about-img-wrap">
             <div
               style={{
                 width: "100%",
@@ -239,16 +493,8 @@ export default function Page() {
             </div>
           </div>
 
-          {/* RIGHT — text panel */}
-          <div
-            style={{
-              background: "#fafaf7",
-              padding: "4.5rem 0 4.5rem 3.5rem",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
+          {/* TEXT */}
+          <div className="wg-about-text-col wg-about-text">
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
@@ -265,7 +511,7 @@ export default function Page() {
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+                fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
                 fontWeight: 300,
                 lineHeight: 1.2,
                 color: "#000000",
@@ -274,8 +520,6 @@ export default function Page() {
             >
               Designed to Look Real
             </h2>
-
-
 
             <p
               style={{
@@ -315,16 +559,7 @@ export default function Page() {
 
       {/* ── SECTION 3 — PRODUCTS CATALOG ── */}
       <section style={{ width: "100%", background: "#fff" }}>
-        <div
-          style={{
-            padding: "2.5rem 8rem 5rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "0.5rem",
-            textAlign: "center",
-          }}
-          className="wall-greens-section-padding"
-        >
+        <div className="wg-catalog-header">
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
@@ -341,7 +576,7 @@ export default function Page() {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+              fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
               fontWeight: 300,
               color: "#000000",
               lineHeight: 1.15,
@@ -353,13 +588,14 @@ export default function Page() {
           </h2>
         </div>
 
-        <div
-          style={{ padding: "0 8rem 5rem" }}
-          className="wall-greens-grid-padding"
-        >
-          <div className="grid grid-cols-8 md:grid-cols-4 gap-x-10 gap-y-10">
+        <div className="wg-catalog-grid-wrap">
+          <div className="wg-products-grid">
             {PRODUCTS.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={product.id}
+                product={product}
+                onClick={() => setSelectedProduct(product)}
+              />
             ))}
           </div>
         </div>
@@ -368,6 +604,7 @@ export default function Page() {
 
       {/* ── SECTION 4 — CHOOSE THE PERFECT PLANT ── */}
       <section
+        className="wg-features-section"
         style={{
           width: "100%",
           background: "#fafaf7",
@@ -387,7 +624,7 @@ export default function Page() {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
+              fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
               fontWeight: 300,
               lineHeight: 1.2,
               margin: "0 0 2.5rem",
@@ -399,23 +636,14 @@ export default function Page() {
             <span style={{ color: "#000000", fontWeight: 300 }}>for Your Space</span>
           </h2>
 
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gap: "2.5rem",
-              width: "100%",
-            }}
-          >
+          <div className="wg-features-grid">
             {[
               {
                 label: "No Watering",
                 desc: "Never water, prune, or fertilise.",
                 icon: (
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
-                    <circle cx="16" cy="16" r="13" strokeWidth="1.2" />
-                    <path d="M10 20c2-6 6-9 12-8" strokeWidth="1.2" strokeLinecap="round" />
-                    <path d="M16 22V12M13 15l3-3 3 3" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M16 5C16 5 8 14 8 19a8 8 0 0016 0c0-5-8-14-8-14z" strokeWidth="2" strokeLinejoin="round" />
                   </svg>
                 ),
               },
@@ -423,10 +651,20 @@ export default function Page() {
                 label: "Pet Friendly",
                 desc: "Non-toxic and safe for all pets.",
                 icon: (
-                  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
-                    <path d="M16 6c-5 4-8 8-8 12a8 8 0 0016 0c0-4-3-8-8-12z" strokeWidth="1.2" strokeLinejoin="round" />
-                    <path d="M16 14v8" strokeWidth="1.2" strokeLinecap="round" />
-                    <path d="M12 18l4-4 4 4" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    width="50"
+                    height="50"
+                    viewBox="0 2 32 32"
+                    fill="none"
+                    stroke="#ffffff"
+                    strokeWidth="1.3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <ellipse cx="10.5" cy="15" rx="1.6" ry="1.5" />
+                    <ellipse cx="16" cy="13.5" rx="1.8" ry="1.7" />
+                    <ellipse cx="21.5" cy="15" rx="1.6" ry="1.5" />
+                    <path d="M12 21c0-2 1.8-3.2 4-3.2s4 1.2 4 3.2c0 2.2-1.8 3.8-4 3.8s-4-1.6-4-3.8z" />
                   </svg>
                 ),
               },
@@ -435,9 +673,9 @@ export default function Page() {
                 desc: "Colour-stable in direct sunlight.",
                 icon: (
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style={{ stroke: "#ffffff" }}>
-                    <circle cx="16" cy="16" r="7" strokeWidth="1.2" />
-                    <path d="M16 4v4M16 24v4M4 16h4M24 16h4" strokeWidth="1.2" strokeLinecap="round" />
-                    <path d="M7.8 7.8l2.8 2.8M21.4 21.4l2.8 2.8M21.4 10.6l-2.8 2.8M10.6 21.4l-2.8 2.8" strokeWidth="1.2" strokeLinecap="round" />
+                    <circle cx="16" cy="16" r="5.5" strokeWidth="2" />
+                    <path d="M16 4v3M16 25v3M4 16h3M25 16h3" strokeWidth="2" strokeLinecap="round" />
+                    <path d="M7.8 7.8l2.1 2.1M22.1 22.1l2.1 2.1M22.1 9.9l-2.1 2.1M9.9 22.1l-2.1 2.1" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 ),
               },
@@ -456,16 +694,16 @@ export default function Page() {
                     width: "68px",
                     height: "68px",
                     borderRadius: "50%",
-                    border: "1px solid #000000",
-                    background: "#21411d",
+                    border: "1px solid #4a5450",
+                    background: "#2d5040",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    flexShrink: 0,
                   }}
                 >
                   {feature.icon}
                 </div>
-
                 <p style={featureLabelStyle}>{feature.label}</p>
                 <p style={featureDescStyle}>{feature.desc}</p>
               </div>
@@ -473,6 +711,14 @@ export default function Page() {
           </div>
         </div>
       </section>
+
+      {/* ── PRODUCT MODAL ── */}
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
 
     </div>
   );
