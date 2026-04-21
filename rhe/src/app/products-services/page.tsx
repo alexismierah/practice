@@ -90,10 +90,10 @@ export default function ProductsServicesPage() {
               marginBottom: "1.5rem",
             }}
           >
-            Bringing Nature
+            Crafting Beauty
             <br />
             <em style={{ fontStyle: "normal", color: "#000000", fontWeight: 300 }}>
-              Into Your Space
+              For Every Space
             </em>
           </h1>
         </div>
