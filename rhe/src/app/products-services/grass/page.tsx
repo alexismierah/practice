@@ -64,12 +64,13 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
       onClick={onClick}
     >
       <div
-        className="group overflow-hidden rounded-2xl"
+        className="group overflow-hidden "
         style={{
           width: "100%",
           background: "#fafaf7",
           boxShadow: "0 5px 2px rgba(0,0,0,0.30)",
           transition: "box-shadow 0.25s ease, border-color 0.25s ease",
+          borderRadius: "6px",
         }}
         onMouseEnter={(e) => {
           const el = e.currentTarget as HTMLDivElement;
@@ -146,7 +147,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "#fafaf7",
-          borderRadius: "22px",
+          borderRadius: "6px",
           padding: "2rem",
           maxWidth: "500px",
           width: "90%",
@@ -167,7 +168,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
             right: "1rem",
             background: "none",
             border: "1px solid #ccc",
-            borderRadius: "50%",
+            borderRadius: "6px",
             width: "34px",
             height: "34px",
             cursor: "pointer",
@@ -193,7 +194,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         <div
           style={{
             width: "100%",
-            borderRadius: "14px",
+            borderRadius: "6px",
             overflow: "hidden",
             background: "#f0f0eb",
           }}
@@ -454,7 +455,7 @@ export default function Page() {
                 width: "100%",
                 maxWidth: "600px",
                 maxHeight: "400px",
-                borderRadius: "18px",
+                borderRadius: "6px",
                 overflow: "hidden",
                 boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
                 border: "1px solid #e0ede0",
