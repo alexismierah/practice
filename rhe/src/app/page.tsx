@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { CloudSun, Grid2x2, Leaf, ShieldCheck, House, Building2, ShoppingBag, Hotel, UtensilsCrossed, CalendarDays } from "lucide-react";
+import { CloudSun, Grid2x2, Leaf, ShieldCheck, House, Building2, ShoppingBag, Hotel, UtensilsCrossed } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 function BeforeAfterSlider({
@@ -21,8 +21,7 @@ function BeforeAfterSlider({
   const updatePos = (clientX: number) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
-    setPos((x / rect.width) * 100);
+    setPos((Math.max(0, Math.min(clientX - rect.left, rect.width)) / rect.width) * 100);
   };
 
   return (
@@ -35,25 +34,16 @@ function BeforeAfterSlider({
       onTouchStart={(e) => { dragging.current = true; updatePos(e.touches[0].clientX); }}
       onTouchMove={(e) => { if (dragging.current) updatePos(e.touches[0].clientX); }}
       onTouchEnd={() => { dragging.current = false; }}
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        cursor: "ew-resize",
-        userSelect: "none",
-        borderRadius: "2px",
-        aspectRatio: "16/9",
-        width: "100%",
-        touchAction: "none",
-      }}
+      style={{ position: "relative", overflow: "hidden", cursor: "ew-resize", userSelect: "none", borderRadius: "2px", aspectRatio: "16/9", width: "100%", touchAction: "none" }}
     >
-      <img src={after} alt={afterLabel} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none", display: "block" }} />
+      <img src={after} alt={afterLabel} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }} />
       <div style={{ position: "absolute", inset: 0, clipPath: `inset(0 ${100 - pos}% 0 0)`, pointerEvents: "none" }}>
         <img src={before} alt={beforeLabel} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
       </div>
       <div style={{ position: "absolute", top: 0, bottom: 0, left: `${pos}%`, transform: "translateX(-50%)", width: "1px", background: "rgba(255,255,255,0.7)", pointerEvents: "none" }} />
       <div style={{ position: "absolute", top: "50%", left: `${pos}%`, transform: "translate(-50%, -50%)", width: "44px", height: "44px", borderRadius: "50%", background: "#fff", boxShadow: "0 4px 24px rgba(0,0,0,0.22)", display: "flex", alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
         <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
-          <path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#1a3d28" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M7 5l-4 5 4 5M13 5l4 5-4 5" stroke="#1a3d28" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
         </svg>
       </div>
       <span style={{ position: "absolute", top: "14px", left: "14px", background: "rgba(0,0,0,0.38)", backdropFilter: "blur(8px)", color: "#fff", fontSize: "9px", letterSpacing: "0.22em", textTransform: "uppercase", padding: "5px 12px", borderRadius: "100px", pointerEvents: "none", fontWeight: 500, opacity: pos < 18 ? 0 : 1, transition: "opacity 0.25s" }}>
@@ -67,48 +57,14 @@ function BeforeAfterSlider({
 }
 
 const featuredPlants = [
-  {
-    name: "Artificial Grass",
-    img: "https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/488259046_1214367554029587_4385088471884268293_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_ohc=SM4GFcnuc4sQ7kNvwHv-Z66&_nc_oc=AdqOXQPp9nycrWqJNAfI2KNrbl2mEz89gTyQmFOAxJn2lrVHnBZep-spkiwLIe9J0CI&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=KrckpwN1v86Eirt6pydtKQ&_nc_ss=7a3a8&oh=00_Af1J0H9nRbFnXMXVUFhXrJi9LxkcIxzZduK15QaHh9a5Gw&oe=69EA18E8",
-  },
+  { name: "Artificial Grass", img: "planterbox/box8.jpeg" },
 ];
 
 const displayedPlants = [
-  {
-    number: "01",
-    name: "Artificial Grass",
-    sublabel: "Sports courts, lawns & outdoor decks",
-    img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
-    link: "/products-services/grass",
-  },
-  {
-    number: "02",
-    name: "Potted Plants & Trees",
-    sublabel: "Statement pieces for any interior",
-    img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg",
-    link: "/products-services/potted-plants",
-  },
-  {
-    number: "03",
-    name: "Planter Boxes",
-    sublabel: "Defined edges, curated arrangements",
-    img: "p1.jpg",
-    link: "/products-services/planter-box",
-  },
-  {
-    number: "04",
-    name: "Wall Greens",
-    sublabel: "Living-wall look, zero upkeep",
-    img: "p19.jpg",
-    link: "/products-services/wall-greens",
-  },
-];
-
-const projectplants = [
-  { img: "/PottedPlants2.png", caption: "Potted Plants & Trees" },
-  { img: "/Grass.jpg", caption: "Artificial Grass" },
-  { img: "/WallGreens.jpg", caption: "Wall Greens" },
-  { img: "/PlanterBoxes2.png", caption: "Planter Boxes" },
+  { number: "01", name: "Artificial Grass", sublabel: "Sports courts, lawns & outdoor decks", img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp", link: "/products-services/grass" },
+  { number: "02", name: "Potted Plants & Trees", sublabel: "Statement pieces for any interior", img: "https://theplantsproject.com.au/cdn/shop/files/Bird_of_Paradise_Plant_Styled_Photo_3_sizes.jpg", link: "/products-services/potted-plants" },
+  { number: "03", name: "Planter Boxes", sublabel: "Defined edges, curated arrangements", img: "p1.jpg", link: "/products-services/planter-box" },
+  { number: "04", name: "Wall Greens", sublabel: "Living-wall look, zero upkeep", img: "p19.jpg", link: "/products-services/wall-greens" },
 ];
 
 const shopReasons = [
@@ -120,7 +76,6 @@ const shopReasons = [
 
 export default function Home() {
   const [sliderIdx, setSliderIdx] = useState(0);
-  const [scrolled, setScrolled] = useState(false);
   const servicesSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -129,56 +84,42 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Intersection observer for service cards
-  useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("sc-visible");
-          }
-        });
-      },
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("sc-visible"); }),
       { threshold: 0.08 }
     );
-    const cards = servicesSectionRef.current?.querySelectorAll(".sc-card");
-    cards?.forEach((card) => observer.observe(card));
+    servicesSectionRef.current?.querySelectorAll(".sc-card").forEach(c => observer.observe(c));
     return () => observer.disconnect();
   }, []);
 
   return (
     <main className="rh-landing">
       <style>{`
-        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&display=swap");
 
         :root {
-          --forest:   #0f2318;
-          --fern:     #1c4a2e;
-          --sage:     #3a7a52;
-          --mist:     #b8d4bc;
-          --cream:    #f5f5f5;
-          --ivory:    #ffffff;
-          --bark:     #2e1f14;
-          --stone:    #9aaa9d;
-          --border:   rgba(26,61,40,0.12);
+          --forest: #0f2318;
+          --fern:   #1c4a2e;
+          --sage:   #3a7a52;
+          --mist:   #b8d4bc;
+          --stone:  #9aaa9d;
+          --border: rgba(26,61,40,0.12);
           --border-l: rgba(26,61,40,0.07);
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+        html, body { overflow-x: hidden; scrollbar-width: none; }
+        ::-webkit-scrollbar { display: none; }
+
         .rh-landing {
           font-family: "DM Sans", sans-serif;
-          background: #ffffff;
+          background: #fff;
           color: var(--forest);
           overflow-x: hidden;
         }
 
-        /* ─── HERO ─────────────────────────────── */
+        /* ── HERO ── */
         .hero {
           position: relative;
           height: 100svh;
@@ -188,48 +129,25 @@ export default function Home() {
           overflow: hidden;
         }
 
-        .hero-bg {
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-        }
-
         .hero-img {
           position: absolute;
           inset: 0;
-          width: 100%;
-          height: 100%;
+          width: 100%; height: 100%;
           object-fit: cover;
           opacity: 0;
           transform: scale(1.06);
           transition: opacity 1.2s ease, transform 8s ease;
         }
-
-        .hero-img.active {
-          opacity: 1;
-          transform: scale(1);
-        }
+        .hero-img.active { opacity: 1; transform: scale(1); }
 
         .hero-scrim {
-          position: absolute;
-          inset: 0;
-          background:
-            linear-gradient(to top, rgba(10,25,15,0.92) 0%, rgba(10,25,15,0.50) 50%, rgba(10,25,15,0.28) 100%);
+          position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(10,25,15,0.9) 0%, rgba(10,25,15,0.45) 50%, rgba(10,25,15,0.2) 100%);
           z-index: 1;
         }
 
-        .hero-noise {
-          position: absolute;
-          inset: 0;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-          opacity: 0.04;
-          z-index: 2;
-          pointer-events: none;
-        }
-
         .hero-content {
-          position: relative;
-          z-index: 3;
+          position: relative; z-index: 2;
           width: 100%;
           padding: 0 72px 72px;
           display: flex;
@@ -238,69 +156,39 @@ export default function Home() {
           gap: 32px;
         }
 
-        .hero-left {}
-
         .hero-kicker {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          margin-bottom: 22px;
-        }
-
-        .hero-kicker-line {
-          width: 28px;
-          height: 1px;
-          background: var(--mist);
-          opacity: 0.6;
-        }
-
-        .hero-kicker-text {
           font-size: 10px;
           letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: #ffffff;
+          color: rgba(255,255,255,0.6);
           font-weight: 400;
+          margin-bottom: 20px;
         }
 
         .hero-title {
-          font-family: "DM Sans", sans-serif;
           font-weight: 300;
           font-size: clamp(3.2rem, 6vw + 0.5rem, 7rem);
           line-height: 1.08;
           color: #fff;
           letter-spacing: -0.03em;
-          max-width: 600px;
-        }
-
-        .hero-title em {
-          font-style: italic;
-          color: var(--mist);
-          font-weight: 300;
+          max-width: 580px;
         }
 
         .hero-right {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          gap: 28px;
+          gap: 24px;
           flex-shrink: 0;
-          padding-bottom: 6px;
         }
 
         .hero-sub {
           font-size: 13px;
-          color: #ffffff;
-          line-height: 1.85;
+          color: rgba(255,255,255,0.7);
+          line-height: 1.8;
           font-weight: 300;
-          max-width: 240px;
+          max-width: 230px;
           text-align: right;
-          letter-spacing: 0.02em;
-        }
-
-        .hero-cta-row {
-          display: flex;
-          gap: 12px;
-          align-items: center;
         }
 
         .btn-primary {
@@ -310,292 +198,36 @@ export default function Home() {
           padding: 11px 26px;
           background: #fff;
           color: var(--forest);
-          font-family: "DM Sans", sans-serif;
           font-size: 10px;
           font-weight: 600;
           letter-spacing: 0.2em;
           text-transform: uppercase;
           text-decoration: none;
           border-radius: 9999px;
-          transition: background 0.25s, color 0.25s;
+          transition: background 0.25s;
         }
-
         .btn-primary:hover { background: var(--mist); }
 
-        .btn-ghost {
-          display: inline-flex;
-          align-items: center;
-          padding: 11px 26px;
-          background: transparent;
-          color: rgba(255,255,255,0.7);
-          font-family: "DM Sans", sans-serif;
-          font-size: 10px;
-          font-weight: 500;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          text-decoration: none;
-          border-radius: 9999px;
-          border: 1px solid rgba(255,255,255,0.25);
-          transition: border-color 0.25s, color 0.25s;
-        }
-
-        .btn-ghost:hover { border-color: rgba(255,255,255,0.55); color: #fff; }
-
-        .hero-scroll-hint {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 8px;
-          position: absolute;
-          bottom: 72px;
-          left: 50%;
-          transform: translateX(-50%);
-          z-index: 4;
-          opacity: 0.35;
-          animation: scrollBob 2s ease-in-out infinite;
-        }
-
-        .hero-scroll-hint span {
-          font-size: 8px;
-          letter-spacing: 0.28em;
-          text-transform: uppercase;
-          color: #fff;
-          font-weight: 400;
-        }
-
-        .hero-scroll-line {
-          width: 1px;
-          height: 36px;
-          background: linear-gradient(to bottom, #fff, transparent);
-        }
-
-        @keyframes scrollBob {
-          0%, 100% { transform: translateX(-50%) translateY(0); }
-          50% { transform: translateX(-50%) translateY(6px); }
-        }
-
-        /* ─── ABOUT STRIP ──────────────────────── */
-        .about-strip {
-          background: #ffffff;
-          display: grid;
-          grid-template-columns: 1fr 1px 1fr;
-          gap: 0;
-        }
-
-        .about-strip-left {
-          padding: 80px 72px 80px 80px;
-          border-right: none;
-        }
-
-        .about-strip-divider {
-          background: linear-gradient(to bottom, transparent, var(--border), transparent);
-          align-self: stretch;
-        }
-
-        .about-strip-right {
-          padding: 80px 80px 80px 72px;
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-          justify-content: center;
-        }
-
-        .eyebrow {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 9px;
-          letter-spacing: 0.32em;
-          text-transform: uppercase;
-          color: #000000;
-          font-weight: 600;
-          margin-bottom: 18px;
-        }
-
-        .eyebrow::before { display: none; }
-
-        .section-heading {
-          font-family: "DM Sans", sans-serif;
-          font-weight: 300;
-          font-size: clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem);
-          color: var(--forest);
-          line-height: 1.12;
-          letter-spacing: -0.02em;
-        }
-
-        .section-heading em {
-          font-style: italic;
-          color: var(--sage);
-          font-weight: 300;
-        }
-
-        .body-text {
-          font-size: 14px;
-          color: var(--stone);
-          line-height: 1.85;
-          font-weight: 300;
-        }
-
-        .pill-link {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          width: fit-content;
-          font-size: 9px;
-          font-weight: 600;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: var(--fern);
-          text-decoration: none;
-          padding: 11px 22px;
-          border-radius: 9999px;
-          background: rgba(28,74,46,0.08);
-          transition: background 0.25s, color 0.25s;
-        }
-
-        .pill-link:hover { background: rgba(28,74,46,0.14); }
-
-        /* ─── PROJECT GALLERY ──────────────────── */
-        .projects-section {
+        /* ── BEFORE / AFTER ── */
+        .ba-section {
           background: #fafafa;
           padding: 96px 80px;
         }
 
-        .section-header {
-          display: flex;
-          align-items: flex-end;
-          justify-content: space-between;
-          margin-bottom: 48px;
-          gap: 24px;
+        .ba-inner {
+          max-width: 740px;
+          margin: 0 auto;
         }
 
-        .section-header-left { text-align: center; width: 100%; }
-
-        .section-heading--light {
-          font-family: "DM Sans", sans-serif;
-          font-weight: 300;
-          font-size: clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem);
-          color: var(--ivory);
-          line-height: 1.12;
-          letter-spacing: -0.02em;
+        .ba-header {
+          text-align: center;
+          margin-bottom: 32px;
         }
 
-        .section-heading--light em {
-          font-style: italic;
-          color: var(--mist);
-          font-weight: 300;
-        }
-
-        .body-text--light {
-          font-size: 13.5px;
-          color: rgba(184,212,188,0.5);
-          line-height: 1.8;
-          font-weight: 300;
-          margin-top: 8px;
-        }
-
-        .eyebrow--light {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          font-size: 9px;
-          letter-spacing: 0.32em;
-          text-transform: uppercase;
-          color: #000000;
-          font-weight: 500;
-          margin-bottom: 16px;
-        }
-
-        .eyebrow--light::before { display: none; }
-
-        .fp-gallery {
-          display: grid;
-          grid-template-columns: 1.6fr 1fr 1fr;
-          grid-template-rows: 340px 220px;
-          gap: 0px;
-        }
-
-        .fp-gallery-item {
-          position: relative;
-          overflow: hidden;
-          cursor: pointer;
-        }
-
-        .fp-gallery-item--large {
-          grid-column: 1;
-          grid-row: 1 / 3;
-        }
-
-        .fp-gallery-item--wide {
-          grid-column: 2 / 4;
-          grid-row: 2;
-        }
-
-        .fp-gallery-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.7s cubic-bezier(.4,0,.2,1);
-          filter: brightness(0.88) saturate(0.9);
-        }
-
-        .fp-gallery-item:hover .fp-gallery-img {
-          transform: scale(1.06);
-          filter: brightness(0.95) saturate(1);
-        }
-
-        .fp-gallery-overlay {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to top, rgba(10,25,15,0.7) 0%, transparent 60%);
-          opacity: 0;
-          transition: opacity 0.4s;
-          display: flex;
-          align-items: flex-end;
-          padding: 22px 24px;
-        }
-
-        .fp-gallery-item:hover .fp-gallery-overlay { opacity: 1; }
-
-        .fp-gallery-caption {
-          font-family: "DM Sans", sans-serif;
-          font-size: 0.95rem;
-          font-weight: 400;
-          color: rgba(255,255,255,0.9);
-          letter-spacing: 0.03em;
-        }
-
-        .section-cta-row {
-          display: flex;
-          justify-content: center;
-          margin-top: 40px;
-        }
-
-        .pill-link--light {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          width: fit-content;
-          font-size: 9px;
-          font-weight: 600;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          color: var(--mist);
-          text-decoration: none;
-          padding: 11px 24px;
-          border-radius: 9999px;
-          border: 1px solid rgba(184,212,188,0.25);
-          transition: border-color 0.25s, color 0.25s, background 0.25s;
-        }
-
-        .pill-link--light:hover { border-color: rgba(184,212,188,0.55); background: rgba(184,212,188,0.07); }
-
-        /* ─── SERVICES MOSAIC ──────────────────── */
-        .services-mosaic-section {
-          background: #ffffff;
-          padding: 100px 80px 100px;
-          overflow: hidden;
+        /* ── SERVICES ── */
+        .services-section {
+          background: #fff;
+          padding: 100px 80px;
         }
 
         .sm-header {
@@ -606,38 +238,31 @@ export default function Home() {
           margin-bottom: 72px;
         }
 
-        .sm-label {
-          font-family: "DM Sans", sans-serif;
+        .eyebrow {
           font-size: 9px;
-          font-weight: 300;
+          font-weight: 500;
           letter-spacing: 0.32em;
           text-transform: uppercase;
-          color: #111111;
+          color: #111;
           margin-bottom: 14px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
-        .sm-heading {
-          font-family: "DM Sans", sans-serif;
-          font-size: clamp(1.7rem, 5vw + 0.6rem, 2.8rem);
+        .section-heading {
           font-weight: 300;
-          color: #111111;
-          line-height: 1.15;
-          margin: 0;
+          font-size: clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem);
+          color: var(--forest);
+          line-height: 1.12;
           letter-spacing: -0.02em;
         }
 
-        .sm-heading em {
-          font-style: italic;
-          color: #111111;
-        }
-
-        .sm-description {
-          font-family: "DM Sans", sans-serif;
+        .body-text {
           font-size: 14px;
-          line-height: 1.85;
           color: var(--stone);
+          line-height: 1.85;
           font-weight: 300;
-          padding-top: 32px;
         }
 
         .sm-mosaic {
@@ -656,46 +281,35 @@ export default function Home() {
           text-decoration: none;
           color: inherit;
         }
-
-        .sc-card.sc-visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-
-        .sc-card:nth-child(odd)  { margin-top: 0; }
-
+        .sc-card.sc-visible { opacity: 1; transform: translateY(0); }
         .sc-card:nth-child(1) { transition-delay: 0s; }
         .sc-card:nth-child(2) { transition-delay: 0.1s; }
         .sc-card:nth-child(3) { transition-delay: 0.05s; }
         .sc-card:nth-child(4) { transition-delay: 0.15s; }
 
         .sc-number {
-          font-family: "DM Sans", sans-serif;
           font-size: 78px;
           font-weight: 300;
           color: #d4d4d4;
           line-height: 1;
           letter-spacing: -3px;
-          display: block;
           margin-bottom: -10px;
           user-select: none;
         }
 
         .sc-title {
-          font-family: "DM Sans", sans-serif;
           font-size: 15.5px;
           font-weight: 300;
-          color: #111111;
-          margin: 0 0 6px 0;
+          color: #111;
+          margin: 0 0 6px;
           line-height: 1.3;
         }
 
         .sc-sub {
-          font-family: "DM Sans", sans-serif;
           font-size: 12px;
           color: var(--stone);
           font-weight: 300;
-          margin: 0 0 14px 0;
+          margin: 0 0 14px;
           line-height: 1.6;
         }
 
@@ -706,26 +320,37 @@ export default function Home() {
           overflow: hidden;
           background: #e5e5e5;
           position: relative;
-          flex-shrink: 0;
         }
-
         .sc-img-wrap::after {
           content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.18) 100%);
+          position: absolute; inset: 0;
+          background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.15) 100%);
           pointer-events: none;
         }
-
         .sc-img-wrap img {
-          width: 100%;
-          height: 100%;
+          width: 100%; height: 100%;
           object-fit: cover;
           display: block;
-          transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
         }
-
         .sc-card:hover .sc-img-wrap img { transform: scale(1.06); }
+
+        .pill-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          font-size: 9px;
+          font-weight: 600;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--fern);
+          text-decoration: none;
+          padding: 11px 22px;
+          border-radius: 9999px;
+          background: rgba(28,74,46,0.08);
+          transition: background 0.25s;
+        }
+        .pill-link:hover { background: rgba(28,74,46,0.14); }
 
         .sm-cta-row {
           display: flex;
@@ -733,59 +358,7 @@ export default function Home() {
           margin-top: 48px;
         }
 
-        /* ─── WHERE WE APPLY ───────────────────── */
-        .apply-bar {
-          margin-top: 20px;
-          display: flex;
-          align-items: center;
-          gap: 0;
-          flex-wrap: wrap;
-        }
-
-        .apply-label {
-          font-size: 9px;
-          letter-spacing: 0.26em;
-          text-transform: uppercase;
-          color: #000000;
-          font-weight: 500;
-          padding-right: 24px;
-          flex-shrink: 0;
-        }
-
-        .apply-chip {
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 12px;
-          color: #000000;
-          font-weight: 300;
-          font-style: italic;
-          font-family: "DM Sans", sans-serif;
-          padding: 4px 16px;
-          border-left: 1px solid var(--border);
-          letter-spacing: 0.02em;
-          white-space: nowrap;
-        }
-
-        .apply-chip-icon { color: #000000; opacity: 0.7; }
-
-        /* ─── BEFORE / AFTER ───────────────────── */
-        .ba-section {
-          background: #fafafa;
-          padding: 96px 80px;
-        }
-
-        .ba-inner {
-          max-width: 740px;
-          margin: 0 auto;
-        }
-
-        .ba-header {
-          text-align: center;
-          margin-bottom: 32px;
-        }
-
-        /* ─── WHY RICH HAVEN ───────────────────── */
+        /* ── WHY ── */
         .why-section {
           background: #fafafa;
           padding: 96px 80px;
@@ -800,8 +373,6 @@ export default function Home() {
           margin: 0 auto;
         }
 
-        .why-left {}
-
         .why-cards {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -809,31 +380,28 @@ export default function Home() {
         }
 
         .reason-card {
-          background: var(--ivory);
+          background: #fff;
           border: 1px solid var(--border-l);
           border-radius: 4px;
           padding: 26px 22px;
           transition: border-color 0.3s, box-shadow 0.3s;
         }
-
         .reason-card:hover {
           border-color: var(--border);
           box-shadow: 0 8px 24px rgba(15,35,24,0.06);
         }
 
         .reason-card-icon {
-          width: 20px;
-          height: 20px;
-          color: black;
+          width: 20px; height: 20px;
+          color: #111;
           margin-bottom: 14px;
           display: block;
         }
 
         .reason-card h3 {
-          font-family: "DM Sans", sans-serif;
           font-size: 13px;
           font-weight: 600;
-          color: black;
+          color: #111;
           margin-bottom: 8px;
           letter-spacing: 0.02em;
         }
@@ -845,39 +413,29 @@ export default function Home() {
           font-weight: 300;
         }
 
-        /* ─── CTA BAND ─────────────────────────── */
+        /* ── CTA BAND ── */
         .cta-band {
           background: var(--fern);
-          padding: 44px 80px;
+          padding: 48px 80px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 48px;
           position: relative;
+          overflow: hidden;
         }
-
         .cta-band::before {
           content: "";
-          position: absolute;
-          inset: 0;
+          position: absolute; inset: 0;
           background: radial-gradient(ellipse at 80% 50%, rgba(58,122,82,0.4) 0%, transparent 65%);
           pointer-events: none;
         }
-          html, body {
-  overflow-x: hidden;
-  scrollbar-width: none;
-}
-
-::-webkit-scrollbar {
-  display: none;
-}
 
         .cta-band-plant {
           position: absolute;
-          right: 0;
-          bottom: 0;
-          height: 339px;
-          top: -50px;
+          right: 0; bottom: 0;
+          height: 300px;
+          top: -57px;
           object-fit: contain;
           pointer-events: none;
           z-index: 1;
@@ -885,8 +443,7 @@ export default function Home() {
         }
 
         .cta-band-content {
-          position: relative;
-          z-index: 2;
+          position: relative; z-index: 2;
           flex: 1;
           max-width: 520px;
         }
@@ -898,212 +455,109 @@ export default function Home() {
           color: rgba(184,212,188,0.55);
           font-weight: 500;
           margin-bottom: 18px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
         }
 
-        .cta-eyebrow::before { display: none; }
-
         .cta-title {
-          font-family: "DM Sans", sans-serif;
           font-size: clamp(1.8rem, 2.5vw + 0.5rem, 2.8rem);
           font-weight: 300;
           color: #fff;
           line-height: 1.18;
           letter-spacing: -0.02em;
-          margin-bottom: 36px;
         }
+        .cta-title em { font-style: italic; color: var(--mist); font-weight: 300; }
 
-        .cta-title em {
-          font-style: italic;
-          color: var(--mist);
-          font-weight: 300;
-        }
-
-        .cta-buttons {
-          display: flex;
-          gap: 14px;
-          flex-wrap: wrap;
-        }
-
-        /* ─── RESPONSIVE ───────────────────────── */
-        @media (max-width: 1100px) {
-          .why-inner { grid-template-columns: 1fr; gap: 48px; }
-          .why-left { text-align: center; }
-          .why-left .eyebrow { justify-content: center; }
-        }
-
+        /* ── RESPONSIVE ── */
         @media (max-width: 1024px) {
-          .hero-content { padding: 0 48px 56px; }
-          .about-strip-left { padding: 64px 48px 64px 48px; }
-          .about-strip-right { padding: 64px 48px; }
-          .projects-section, .ba-section, .why-section { padding: 80px 48px; }
-          .services-mosaic-section { padding: 80px 48px 180px; }
-          .cta-band { padding: 36px 48px; }
+          .hero-content, .ba-section, .services-section, .why-section, .cta-band { padding-left: 48px; padding-right: 48px; }
         }
 
         @media (max-width: 900px) {
-          .about-strip { grid-template-columns: 1fr; }
-          .about-strip-divider { display: none; }
-          .about-strip-left { padding: 56px 40px; border-bottom: 1px solid var(--border-l); }
-          .about-strip-right { padding: 40px 40px 56px; }
-
-          .fp-gallery {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 240px 240px 200px;
-          }
-          .fp-gallery-item--large { grid-column: 1 / 3; grid-row: 1; }
-          .fp-gallery-item--wide { grid-column: 1 / 3; grid-row: 3; }
-
-          .section-header { flex-direction: column; align-items: flex-start; }
-
           .hero-content { flex-direction: column; align-items: flex-start; gap: 24px; }
           .hero-right { align-items: flex-start; }
           .hero-sub { text-align: left; }
-
-          .sm-mosaic {
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 20px;
-          }
+          .sm-mosaic { grid-template-columns: repeat(2, 1fr); column-gap: 20px; }
           .sc-card:nth-child(even) { margin-top: 140px; }
           .sm-header { grid-template-columns: 1fr; gap: 16px; }
-          .sm-description { padding-top: 0; }
+          .why-inner { grid-template-columns: 1fr; gap: 48px; }
         }
 
         @media (max-width: 768px) {
           .hero-content { padding: 0 28px 48px; }
-          .hero-title { font-size: clamp(2.8rem, 10vw, 4.2rem); }
-          .about-strip-left, .about-strip-right { padding: 48px 28px; }
-
-          .projects-section, .ba-section, .why-section { padding: 64px 28px; }
-          .services-mosaic-section { padding: 64px 28px 80px; }
-          .cta-band { padding: 32px 28px; text-align: center; }
+          .ba-section, .services-section, .why-section { padding: 64px 28px; }
+          .cta-band { padding: 36px 28px; text-align: center; flex-direction: column; }
           .cta-band-plant { display: none; }
-          .cta-band-content { max-width: 100%; }
-          .cta-eyebrow, .cta-buttons { justify-content: center; }
-
           .why-cards { gap: 12px; }
-
-          .apply-bar { flex-wrap: wrap; gap: 0; }
-          .apply-chip { flex: 0 0 50%; border-left: none; padding-left: 0; border-top: 1px solid var(--border-l); padding-top: 10px; margin-top: 8px; }
         }
 
         @media (max-width: 600px) {
-          .sm-mosaic {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-          }
+          .sm-mosaic { display: flex; flex-direction: column; gap: 40px; }
           .sc-card:nth-child(even) { margin-top: 0; }
           .sc-img-wrap { aspect-ratio: 4/3; }
         }
 
-        @media (max-width: 580px) {
-          .fp-gallery {
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 180px 140px 140px;
-          }
-        }
-
         @media (max-width: 420px) {
-          .fp-gallery { grid-template-columns: 1fr; grid-template-rows: auto; }
-          .fp-gallery-item { aspect-ratio: 4/3; height: auto; }
-          .fp-gallery-item--large, .fp-gallery-item--wide { grid-column: 1; grid-row: auto; }
           .why-cards { grid-template-columns: 1fr; }
         }
       `}</style>
 
-      {/* ═══ HERO ══════════════════════════════════════ */}
+      {/* HERO */}
       <section className="hero">
-        <div className="hero-bg">
-          {featuredPlants.map((plant, i) => (
-            <img
-              key={plant.name}
-              className={`hero-img${i === sliderIdx ? " active" : ""}`}
-              src={plant.img}
-              alt={plant.name}
-            />
-          ))}
-          <div className="hero-scrim" />
-          <div className="hero-noise" />
-        </div>
+        {featuredPlants.map((plant, i) => (
+          <img key={plant.name} className={`hero-img${i === sliderIdx ? " active" : ""}`} src={plant.img} alt={plant.name} />
+        ))}
+        <div className="hero-scrim" />
 
         <div className="hero-content">
-          <div className="hero-left">
-            <div className="hero-kicker">
-              <span className="hero-kicker-text">Rich Haven Artificial Garden</span>
-            </div>
-            <h1 className="hero-title">
-              Bring Nature<br />to your Space
-            </h1>
+          <div>
+            <p className="hero-kicker">Rich Haven Artificial Garden</p>
+            <h1 className="hero-title">Bring Nature<br />to your Space</h1>
           </div>
-
           <div className="hero-right">
-            <p className="hero-sub">
-              Artificial greenery designed to look real, last forever, and need nothing from you.
-            </p>
-            <div className="hero-cta-row">
-              <a
-                href="#footer"
-                className="btn-primary"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const el = document.getElementById("footer");
-                  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
-                }}
-              >
-                Get in Touch
-              </a>
-              <Link href="/products-services" className="btn-ghost">Browse</Link>
-            </div>
+            <p className="hero-sub">Artificial greenery designed to look real, last forever, and require no maintenance.</p>
+            <a
+              href="#footer"
+              className="btn-primary"
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById("footer");
+                if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
+              }}
+            >
+              Browse
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ═══ BEFORE / AFTER ════════════════════════════ */}
+      {/* BEFORE / AFTER */}
       <section className="ba-section">
         <div className="ba-inner">
           <div className="ba-header">
             <p className="eyebrow" style={{ justifyContent: "center" }}>The Transformation</p>
-            <h2 className="section-heading" style={{ textAlign: "center" }}>
-              We turn bare spaces into green ones
-            </h2>
-            <p className="body-text" style={{ textAlign: "center", marginTop: "10px" }}>
-              Drag the handle to compare before and after.
-            </p>
+            <h2 className="section-heading" style={{ textAlign: "center" }}>We turn bare spaces into green ones</h2>
+            <p className="body-text" style={{ textAlign: "center", marginTop: "10px" }}>Drag the handle to compare before and after.</p>
           </div>
           <BeforeAfterSlider
             before="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2012/7/25/5/RX-HGMAG004_Yes-Thats-the-Same-House-096-a_s4x3.jpg.rend.hgtvcom.791.594.85.suffix/1400972392314.webp"
             after="https://hgtvhome.sndimg.com/content/dam/images/hgtv/fullset/2012/7/25/5/RX-HGMAG004_Yes-Thats-the-Same-House-096-b_s4x3.jpg.rend.hgtvcom.791.594.85.suffix/1400972415145.webp"
-            beforeLabel="Before"
-            afterLabel="After"
           />
         </div>
       </section>
 
-      {/* ═══ SERVICES MOSAIC ═══════════════════════════ */}
-      <section className="services-mosaic-section" ref={servicesSectionRef} aria-labelledby="services-heading">
+      {/* SERVICES */}
+      <section className="services-section" ref={servicesSectionRef} aria-labelledby="services-heading">
         <div className="sm-header">
           <div>
-            <p className="sm-label">What We Offer</p>
-            <h2 className="sm-heading" id="services-heading">
-              We propose <br/>the best services 
-            </h2>
-
+            <p className="eyebrow">What We Offer</p>
+            <h2 className="section-heading" id="services-heading">Our Products<br />&amp; Services</h2>
           </div>
-          <p className="sm-description">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry&apos;s standard dummy
-              text ever since the 1500s, when an unknown printer took a galley
-              of type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into electronic
-              typesetting, remaining essentially unchanged.
+          <p className="body-text" style={{ paddingTop: "32px" }}>
+            From lush potted trees to seamless wall panels, every product is crafted to look indistinguishable from the real thing — and designed to stay that way.
           </p>
         </div>
 
         <div className="sm-mosaic">
-          {displayedPlants.map((plant) => (
+          {displayedPlants.map(plant => (
             <Link href={plant.link} className="sc-card" key={plant.number}>
               <span className="sc-number">{plant.number}</span>
               <h3 className="sc-title">{plant.name}</h3>
@@ -1118,70 +572,20 @@ export default function Home() {
         <div className="sm-cta-row">
           <Link href="/products-services" className="pill-link">View all products</Link>
         </div>
-
       </section>
 
-
-
-      {/* ═══ PROJECT GALLERY ════════════════════════════ */}
-      {/*<section className="projects-section">
-        <div className="section-header">
-          <div className="section-header-left">
-            <p className="eyebrow" style={{ justifyContent: "center" }}>Our Work</p>
-            <h2 className="section-heading">
-              Project Highlights
-            </h2>
-            <p className="body-text" style={{ marginTop: "8px" }}>A showcase of completed installations across real spaces.</p>
-          </div>
-        </div>
-
-        <div className="fp-gallery">
-          <div className="fp-gallery-item fp-gallery-item--large">
-            <img className="fp-gallery-img" src={projectplants[0].img} alt={projectplants[0].caption} />
-            <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">{projectplants[0].caption}</span>
-            </div>
-          </div>
-          <div className="fp-gallery-item">
-            <img className="fp-gallery-img" src={projectplants[1].img} alt={projectplants[1].caption} />
-            <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">{projectplants[1].caption}</span>
-            </div>
-          </div>
-          <div className="fp-gallery-item">
-            <img className="fp-gallery-img" src={projectplants[2].img} alt={projectplants[2].caption} />
-            <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">{projectplants[2].caption}</span>
-            </div>
-          </div>
-          <div className="fp-gallery-item fp-gallery-item--wide">
-            <img className="fp-gallery-img" src={projectplants[3].img} alt={projectplants[3].caption} />
-            <div className="fp-gallery-overlay">
-              <span className="fp-gallery-caption">{projectplants[3].caption}</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="section-cta-row">
-          <Link href="/projects" className="pill-link">View all projects</Link>
-        </div>
-      </section>*/}
-
-      {/* ═══ WHY RICH HAVEN ══════════════════════════════ */}
+      {/* WHY RICH HAVEN */}
       <section className="why-section" aria-labelledby="why-title">
         <div className="why-inner">
-          <div className="why-left">
+          <div>
             <p className="eyebrow">What Sets Us Apart</p>
-            <h2 className="section-heading" id="why-title">
-              Why Choose<br />Rich Haven
-            </h2>
+            <h2 className="section-heading" id="why-title">Why Choose<br />Rich Haven</h2>
             <p className="body-text" style={{ marginTop: "14px" }}>
-              We know what works, and what truly lasts — greenery that looks perfect from day one and stays that way.
+              Greenery that looks perfect from day one and stays that way — no effort required.
             </p>
           </div>
-
           <div className="why-cards">
-            {shopReasons.map((reason) => (
+            {shopReasons.map(reason => (
               <article className="reason-card" key={reason.title}>
                 <reason.icon className="reason-card-icon" strokeWidth={1.4} />
                 <h3>{reason.title}</h3>
@@ -1192,7 +596,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ CTA BAND ════════════════════════════════════ */}
+      {/* CTA BAND */}
       <div className="cta-band">
         <img className="cta-band-plant" src="/Overlap4.png" alt="" aria-hidden="true" />
         <div className="cta-band-content">
@@ -1200,23 +604,8 @@ export default function Home() {
           <h2 className="cta-title">
             Ready to start a project<br />with Rich Haven?
           </h2>
-          <div className="cta-buttons">
-            <a
-              href="#footer"
-              className="btn-primary"
-              onClick={(e) => {
-                e.preventDefault();
-                const el = document.getElementById("footer");
-                if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 80, behavior: "smooth" });
-              }}
-            >
-              Get in Touch
-            </a>
-            <Link href="/products-services" className="btn-ghost">Browse Products</Link>
-          </div>
         </div>
       </div>
-
     </main>
   );
 }
