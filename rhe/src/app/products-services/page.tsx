@@ -71,10 +71,10 @@ export default function ProductsServicesPage() {
               fontWeight: 300,
               marginTop: 20,
               marginBottom: 1,
-              color: "#000000",
+              color: "#4a5450",
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "15px",
-              letterSpacing: "0.02em",
+              fontSize: "12px",
+              letterSpacing: "0.30em",
             }}
           >
             PRODUCT COLLECTIONS
@@ -86,13 +86,13 @@ export default function ProductsServicesPage() {
               fontSize: "52px",
               fontWeight: 300,
               lineHeight: 1.12,
-              color: "#0f2318",
+              color: "#313131",
               marginBottom: "1.5rem",
             }}
           >
             Crafting Beauty
             <br />
-            <em style={{ fontStyle: "normal", color: "#000000", fontWeight: 300 }}>
+            <em style={{ fontStyle: "normal", color: "#313131", fontWeight: 300 }}>
               For Every Space
             </em>
           </h1>
@@ -131,11 +131,11 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "12px",
                   fontWeight: 300,
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.30em",
                   textTransform: "uppercase",
-                  color: "#00000",
+                  color: "#4a5450",
                   marginBottom: "1rem",
                 }}
               >
@@ -149,7 +149,7 @@ export default function ProductsServicesPage() {
                   fontWeight: 300,
                   lineHeight: 1.15,
                   color: "#0d1b0f",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 Potted Artificial Plants
@@ -239,11 +239,11 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "12px",
                   fontWeight: 300,
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.30em",
                   textTransform: "uppercase",
-                  color: "#000000",
+                  color: "#4a5450",
                   marginBottom: "1rem",
                 }}
               >
@@ -257,7 +257,7 @@ export default function ProductsServicesPage() {
                   fontWeight: 300,
                   lineHeight: 1.15,
                   color: "#0d1b0f",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 Artificial Wall Greens
@@ -389,11 +389,11 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "12px",
                   fontWeight: 300,
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.30em",
                   textTransform: "uppercase",
-                  color: "#000000",
+                  color: "#4a5450",
                   marginBottom: "1rem",
                 }}
               >
@@ -496,11 +496,11 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "12px",
                   fontWeight: 300,
-                  letterSpacing: "0.02em",
+                  letterSpacing: "0.30em",
                   textTransform: "uppercase",
-                  color: "#000000",
+                  color: "#4a5450",
                   marginBottom: "1rem",
                 }}
               >
