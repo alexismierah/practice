@@ -44,8 +44,8 @@ export default function AboutPage() {
         }
 
         .hero-headline em {
-          font-style: italic;
-          font-weight: 400;
+          font-style: normal;
+          font-weight: 300;
           color: black;
         }
 
