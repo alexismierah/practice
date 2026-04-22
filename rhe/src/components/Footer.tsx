@@ -567,7 +567,6 @@ export default function Footer() {
             © {new Date().getFullYear()} <a href="#">Rich Haven Artificial Garden</a>. All rights reserved.
           </span>
           <div className="footer-bottom-links">
-            <span className="footer-copy">Make Your Space Green</span>
           </div>
         </div>
       </footer>
