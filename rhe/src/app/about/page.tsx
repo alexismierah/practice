@@ -16,13 +16,13 @@ export default function AboutPage() {
         /* ── Hero ── */
         .hero {
           padding: 120px 48px 80px;
-          max-width: 960px;
+          max-width: 950px;
           margin: 0 auto;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 80px;
           align-items: end;
-          border-bottom: 1px solid #D4CFBF;
+          border-bottom: 1px solid #ebe9e3;
         }
 
         .hero-label {
