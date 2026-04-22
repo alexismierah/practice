@@ -37,7 +37,7 @@ const PRODUCTS: Product[] = [
 
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "14px",
+  fontSize: "15px",
   fontWeight: 300,
   color: "#4a5450",
   margin: 0,
@@ -46,7 +46,7 @@ const featureLabelStyle: React.CSSProperties = {
 
 const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "14px",
+  fontSize: "15px",
   fontWeight: 300,
   color: "#4a5450",
   lineHeight: 1.7,
@@ -56,7 +56,7 @@ const featureDescStyle: React.CSSProperties = {
 
 const detailText: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "14px",
+  fontSize: "15px",
   fontWeight: 300,
   lineHeight: 1.55,
   letterSpacing: "0.03em",
@@ -233,7 +233,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         <p
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "14px",
+            fontSize: "15px",
             fontWeight: 300,
             color: "#4a5450",
             margin: "-0.5rem 0 0",
@@ -489,7 +489,7 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "14px",
+                fontSize: "15px",
                 letterSpacing: "0.02em",
                 textTransform: "uppercase",
                 color: "#000000",
@@ -515,7 +515,7 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "14px",
+                fontSize: "15px",
                 fontWeight: 300,
                 color: "#4a5450",
                 lineHeight: 1.85,
@@ -531,7 +531,7 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "14px",
+                fontSize: "15px",
                 fontWeight: 300,
                 color: "#4a5450",
                 lineHeight: 1.85,
@@ -554,7 +554,7 @@ export default function Page() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "14px",
+              fontSize: "15px",
               fontWeight: 300,
               letterSpacing: "0.02em",
               textTransform: "uppercase",

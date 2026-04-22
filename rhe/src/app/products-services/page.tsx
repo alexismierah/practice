@@ -73,7 +73,7 @@ export default function ProductsServicesPage() {
               marginBottom: 1,
               color: "#000000",
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "14px",
+              fontSize: "15px",
               letterSpacing: "0.02em",
             }}
           >
@@ -102,21 +102,21 @@ export default function ProductsServicesPage() {
       {/* ── 1ST INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#ffffff", padding: "2.5rem 5rem" }}
+        style={{ background: "#ffffff", padding: "2rem 5rem" }}
       >
         <div>
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
               <div
                 className="product-img-wrap"
-                style={{ width: "100%", height: 550, borderRadius: 16, overflow: "hidden" }}
+                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
                   src="/p10.png"
                   alt="Potted artificial plants on a wooden bench"
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "450px",
                     objectFit: "cover",
                     display: "block",
                     transform: "translateY(10px) scale(1.03)",
@@ -127,11 +127,11 @@ export default function ProductsServicesPage() {
               </div>
             </div>
 
-            <div className="text-cell" style={{ paddingTop: 15 }}>
+            <div className="text-cell" style={{ paddingTop: 5 }}>
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
@@ -160,7 +160,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -196,7 +196,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
+                        fontSize: "15px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -214,7 +214,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -231,15 +231,15 @@ export default function ProductsServicesPage() {
       {/* ── 2ND INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#FAFAF8", padding: "2.5rem 5rem" }}
+        style={{ background: "#FAFAF8", padding: "2rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
-            <div className="text-cell" style={{ paddingTop: 15 }}>
+            <div className="text-cell" style={{ paddingTop: 5 }}>
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
@@ -267,7 +267,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -304,7 +304,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
+                        fontSize: "15px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -322,7 +322,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -336,14 +336,14 @@ export default function ProductsServicesPage() {
             <div className="image-cell" style={{ position: "relative" }}>
               <div
                 className="product-img-wrap"
-                style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
+                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
                   src="/p19.png"
                   alt="Paneled Wall Greens"
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "450px",
                     objectFit: "contain",
                     display: "block",
                     transform: "translateY(10px) scale(1.03)",
@@ -360,21 +360,21 @@ export default function ProductsServicesPage() {
       {/* ── 3RD INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#ffffff", padding: "2.5rem 5rem" }}
+        style={{ background: "#ffffff", padding: "2rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
               <div
                 className="product-img-wrap"
-                style={{ width: "100%", height: 550, borderRadius: 16, overflow: "hidden" }}
+                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
                   src="/p16.png"
                   alt="Decorative planter box"
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "450px",
                     objectFit: "contain",
                     display: "block",
                     transform: "translateY(10px) scale(1.03)",
@@ -385,11 +385,11 @@ export default function ProductsServicesPage() {
               </div>
             </div>
 
-            <div className="text-cell" style={{ paddingTop: 15 }}>
+            <div className="text-cell" style={{ paddingTop: 5 }}>
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
@@ -416,7 +416,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -453,7 +453,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
+                        fontSize: "15px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -471,7 +471,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -488,15 +488,15 @@ export default function ProductsServicesPage() {
       {/* ── 4TH INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#FAFAF8", padding: "2.5rem 5rem" }}
+        style={{ background: "#FAFAF8", padding: "2rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
-            <div className="text-cell" style={{ paddingTop: 15 }}>
+            <div className="text-cell" style={{ paddingTop: 5 }}>
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   letterSpacing: "0.02em",
                   textTransform: "uppercase",
@@ -523,7 +523,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -561,7 +561,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
+                        fontSize: "15px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -579,7 +579,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
+                  fontSize: "15px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -593,14 +593,14 @@ export default function ProductsServicesPage() {
             <div className="image-cell" style={{ position: "relative" }}>
               <div
                 className="product-img-wrap"
-                style={{ width: "100%", height: 500, borderRadius: 16, overflow: "hidden" }}
+                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
               >
                 <img
                   src="/p18.png"
                   alt="Artificial turf grass"
                   style={{
                     width: "100%",
-                    height: "100%",
+                    height: "450px",
                     objectFit: "contain",
                     display: "block",
                     transform: "translateY(20px) scale(1.03)",
