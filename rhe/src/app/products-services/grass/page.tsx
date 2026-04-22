@@ -30,7 +30,7 @@ const PRODUCTS: Product[] = [
 
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "15px",
+  fontSize: "14px",
   fontWeight: 300,
   color: "#4a5450",
   margin: 0,
@@ -39,7 +39,7 @@ const featureLabelStyle: React.CSSProperties = {
 
 const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "15px",
+  fontSize: "14px",
   fontWeight: 300,
   color: "#4a5450",
   lineHeight: 1.7,
@@ -49,8 +49,8 @@ const featureDescStyle: React.CSSProperties = {
 
 const detailText: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "15px",
-  fontWeight: 300,
+  fontSize: "14px",
+  fontWeight: 500,
   lineHeight: 1.55,
   letterSpacing: "0.03em",
   margin: 0,
@@ -68,7 +68,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         style={{
           width: "100%",
           background: "#fafaf7",
-          boxShadow: "0 5px 2px rgba(0,0,0,0.30)",
+          boxShadow: "0 0px 2px rgba(0,0,0,0.30)",
           transition: "box-shadow 0.25s ease, border-color 0.25s ease",
           borderRadius: "6px",
         }}
@@ -79,7 +79,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         }}
         onMouseLeave={(e) => {
           const el = e.currentTarget as HTMLDivElement;
-          el.style.boxShadow = "0 2px 8px rgba(0,0,0,0.30)";
+          el.style.boxShadow = "0 0px 2px rgba(0,0,0,0.30)";
           el.style.borderColor = "#d1d1d1";
         }}
       >
@@ -103,14 +103,22 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         style={{
           padding: "1.2rem 0.85rem 0",
           textAlign: "center",
-          fontSize: "15px",
+          fontSize: "14px",
           fontWeight: 300,
           fontFamily: "'DM Sans', sans-serif",
           color: "#000",
         }}
       >
         <p style={{ ...detailText }}>{product.name}</p>
-        <p style={{ ...detailText, marginTop: "-1px" }}>{product.size}</p>
+        <p
+            style={{
+              fontSize: "12px",
+              marginTop: "-1px",
+              color: "#4a5450",
+            }}
+          >
+            {product.size}
+          </p>
       </div>
     </div>
   );
@@ -138,7 +146,7 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           to   { opacity: 1; }
         }
         @keyframes slideUp {
-          from { opacity: 0; transform: scale(0.93) translateY(12px); }
+          from { opacity: 0; transform: scale(0.93) translateY(14px); }
           to   { opacity: 1; transform: scale(1)    translateY(0);    }
         }
       `}</style>
@@ -227,10 +235,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         <p
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: "15px",
+            fontSize: "14px",
             fontWeight: 300,
             color: "#4a5450",
-            margin: "-0.5rem 0 0",
+            marginTop: "-20px",
           }}
         >
           {product.size}
@@ -273,7 +281,7 @@ export default function Page() {
         }
         .tg-hero-title {
           font-size: 52px;
-          font-weight: 300;
+          font-weight: 450;
           line-height: 1.1;
           color: #fafafa;
           margin: 0;
@@ -398,7 +406,7 @@ export default function Page() {
         }
 
         /* ── TABLET ── */
-        @media (min-width: 769px) and (max-width: 1024px) {
+        @media (min-width: 7614px) and (max-width: 1024px) {
           .tg-hero-inner {
             padding: 0 2rem;
           }
@@ -475,8 +483,9 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "15px",
-                letterSpacing: "0.02em",
+                fontSize: "12px",
+                fontWeight : 500,
+                letterSpacing: "0.32em",
                 textTransform: "uppercase",
                 color: "#000000",
                 margin: "0 0 0.5rem",
@@ -488,9 +497,9 @@ export default function Page() {
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
-                fontWeight: 300,
-                lineHeight: 1.2,
+                fontSize: "clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem)",
+                fontWeight: 400,
+                lineHeight: 1.12,
                 color: "#000000",
                 margin: "0 0 1rem",
               }}
@@ -501,33 +510,26 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "15px",
+                fontSize: "14px",
                 fontWeight: 300,
                 color: "#4a5450",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
             >
-              Our artificial grass is designed for versatile turf applications that deliver a natural,
-              well-maintained look without the upkeep of real grass. It is suitable for both indoor and outdoor
-              spaces, providing a consistent green surface ideal for residential lawns, commercial areas, recreational
-              grounds, and even specialized spaces like golf putting greens.
+            Our artificial grass is crafted to bring the lush, natural beauty of real grass into your space without the demands of constant maintenance.   It remains vibrant, clean, and perfectly groomed throughout the year, making it an ideal choice for homes, commercial environments, play areas, and golf putting greens, both indoors and outdoors.
             </p>
-
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "15px",
+                fontSize: "14px",
                 fontWeight: 300,
                 color: "#4a5450",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
             >
-              We supply and install artificial grass based on the client's preferred surface,
-              whether on cement or soil. Each installation is carefully measured, fitted, and
-              trimmed to ensure a smooth and seamless finish.
-            </p>
+              We supply and professionally install artificial grass tailored to your chosen surface, whether cement or soil. Each project is carefully measured, precisely fitted, and expertly trimmed to achieve a smooth, seamless, and naturally refined finish. With proper alignment and clean edging, we ensure every installation achieves a polished, high-quality appearance for more naturally looking grass. </p>
           </div>
         </div>
       </section>
@@ -539,9 +541,9 @@ export default function Page() {
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "15px",
-              fontWeight: 300,
-              letterSpacing: "0.02em",
+              fontSize: "14px",
+              fontWeight: 500,
+              letterSpacing: "0.32em",
               textTransform: "uppercase",
               color: "#000000",
               marginTop: "50px",
@@ -552,8 +554,8 @@ export default function Page() {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
-              fontWeight: 300,
+              fontSize: "clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem)",
+              fontWeight: 500,
               color: "#000000",
               lineHeight: 1.15,
               textTransform: "uppercase",

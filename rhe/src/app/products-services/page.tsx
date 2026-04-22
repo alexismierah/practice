@@ -15,6 +15,7 @@ export default function ProductsServicesPage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
+        /* ── EXISTING GRID (UNCHANGED) ── */
         .two-col-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -22,6 +23,58 @@ export default function ProductsServicesPage() {
           align-items: center;
         }
 
+        /* ── HERO (TURF STRUCTURE, NO OVERLAY, ORIGINAL COLORS) ── */
+        .craft-hero {
+          width: 100%;
+          height: 285px;
+          background-image: url('/2.png');
+          background-size: cover;
+          background-position: 20%;
+          background-repeat: no-repeat;
+
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+
+        .craft-hero-inner {
+          position: relative;
+          z-index: 10;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0 5rem;
+        }
+
+        /* KEEP YOUR ORIGINAL TEXT COLORS */
+        .craft-eyebrow {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 14px;
+          font-weight: 300;
+          letter-spacing: 0.30em;
+          color: #4a5450; /* ORIGINAL */
+          margin: 0;
+        }
+
+        .craft-title {
+          font-family: 'DM Sans', sans-serif;
+          font-size: 52px;
+          font-weight: 300;
+          line-height: 1.12;
+          color: #313131; /* ORIGINAL */
+          margin: 0;
+        }
+
+        .craft-title em {
+          font-style: normal;
+          color: #313131; /* ORIGINAL */
+          font-weight: 300;
+        }
+
+        /* ── RESPONSIVE (UNCHANGED + HERO FIX) ── */
         @media (max-width: 900px) {
           .section-pad { padding-left: 2.5rem !important; padding-right: 2.5rem !important; }
         }
@@ -36,6 +89,12 @@ export default function ProductsServicesPage() {
           .product-img-wrap { height: 260px !important; }
           .hero-h1 { font-size: 2.2rem !important; }
           .feature-grid { grid-template-columns: 1fr !important; }
+
+          /* HERO MOBILE */
+          .craft-hero { height: 220px; }
+          .craft-hero-inner { padding: 0 1.5rem; }
+          .craft-title { font-size: 28px; }
+          .craft-eyebrow { font-size: 11px; }
         }
 
         @media (max-width: 640px) {
@@ -51,50 +110,15 @@ export default function ProductsServicesPage() {
         }
       `}</style>
 
-      {/* ── HERO ── */}
-      <section
-        className="section-pad"
-        style={{
-          padding: "2.5rem 5rem",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          backgroundImage: "url('/2.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "20%",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
-        <div>
-          <p
-            style={{
-              fontWeight: 300,
-              marginTop: 20,
-              marginBottom: 1,
-              color: "#4a5450",
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "12px",
-              letterSpacing: "0.30em",
-            }}
-          >
-            PRODUCT COLLECTIONS
-          </p>
-          <h1
-            className="hero-h1"
-            style={{
-              fontFamily: "'DM Sans', sans-serif",
-              fontSize: "52px",
-              fontWeight: 300,
-              lineHeight: 1.12,
-              color: "#313131",
-              marginBottom: "1.5rem",
-            }}
-          >
+      {/* ── HERO (NO OVERLAY, ORIGINAL TEXT COLORS) ── */}
+      <section className="craft-hero">
+        <div className="craft-hero-inner">
+          <p className="craft-eyebrow">PRODUCT COLLECTIONS</p>
+
+          <h1 className="craft-title">
             Crafting Beauty
             <br />
-            <em style={{ fontStyle: "normal", color: "#313131", fontWeight: 300 }}>
-              For Every Space
-            </em>
+            <em>For Every Space</em>
           </h1>
         </div>
       </section>
@@ -131,7 +155,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "12px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   letterSpacing: "0.30em",
                   textTransform: "uppercase",
@@ -160,7 +184,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -196,7 +220,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "15px",
+                        fontSize: "14px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -214,7 +238,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -239,7 +263,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "12px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   letterSpacing: "0.30em",
                   textTransform: "uppercase",
@@ -267,7 +291,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -304,7 +328,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "15px",
+                        fontSize: "14px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -322,7 +346,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -389,7 +413,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "12px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   letterSpacing: "0.30em",
                   textTransform: "uppercase",
@@ -416,7 +440,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -453,7 +477,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "15px",
+                        fontSize: "14px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -471,7 +495,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
@@ -496,7 +520,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "12px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   letterSpacing: "0.30em",
                   textTransform: "uppercase",
@@ -523,7 +547,7 @@ export default function ProductsServicesPage() {
               <p
                 style={{
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   fontWeight: 300,
                   color: "#4a5450",
                   lineHeight: 1.85,
@@ -561,7 +585,7 @@ export default function ProductsServicesPage() {
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "15px",
+                        fontSize: "14px",
                         color: "#4a5450",
                         lineHeight: 1.4,
                       }}
@@ -579,7 +603,7 @@ export default function ProductsServicesPage() {
                   alignItems: "center",
                   gap: "0.5rem",
                   fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "15px",
+                  fontSize: "14px",
                   color: "#2d5040",
                   borderBottom: "1.5px solid #2d5040",
                   paddingBottom: 2,
