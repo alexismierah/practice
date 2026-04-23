@@ -49,35 +49,38 @@ export default function Header() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
+        /* ── TOKEN MATCH: same as page.tsx + Footer.tsx ── */
         .hdr-root {
-          --forest: #1e3a2f;
-          --forest-mid: #2d5040;
-          --forest-light: #3d6b54;
-          --forest-pale: #dce8e2;
-          --charcoal-mid: #f4f5f4;
-          --charcoal-soft: #dde3e0;
-          --stone: #5a6a64;
-          --stone-dark: #8a9a94;
-          --text-main: #1a1f1c;
-          --text-soft: #4a5450;
-          --text-muted: #8a9a94;
+          --sage: #8fa882;
+          --forest: #2d4a27;
+          --deep: #1a2e16;
+          --cream: #f7f5f0;
+          --warm-white: #fafaf7;
+          --text: #1c1e19;
+          --text-muted: #6b7060;
+          --text-faint: #a8ad9e;
+          --border: rgba(45,74,39,0.12);
+          --gold: #c9a96e;
+          --font: "DM Sans", sans-serif;
 
-          font-family: 'DM Sans', sans-serif;
+          font-family: var(--font);
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           z-index: 100;
-          background-color: #ffffff;
-          transition: background-color 0.3s, box-shadow 0.3s;
+          background-color: var(--warm-white);
+          transition: background-color 0.35s, box-shadow 0.35s;
         }
 
+        /* Subtle shadow on scroll — matches homepage section depth */
         .hdr-root.scrolled {
-          box-shadow: 0 4px 20px rgba(30,58,47,0.06);
+          box-shadow: 0 4px 24px rgba(45,74,39,0.07);
         }
 
+        /* ── Transparent state (home hero) ── */
         .hdr-root.transparent {
           background-color: transparent;
         }
@@ -89,7 +92,7 @@ export default function Header() {
         }
 
         .hdr-root.transparent .hdr-logo-tagline {
-          color: rgba(255,255,255,0.65);
+          color: rgba(255,255,255,0.55);
         }
 
         .hdr-root.transparent .hdr-nav-link:hover,
@@ -98,14 +101,17 @@ export default function Header() {
           color: rgba(255,255,255,0.75);
         }
 
+        /* CTA pill — ghost style matching .btn-ghost-hero on homepage */
         .hdr-root.transparent .hdr-cta-btn {
-          background: rgba(255,255,255,0.15);
-          border: 1px solid rgba(255,255,255,0.6);
-          color: #ffffff;
+          background: rgba(255,255,255,0.08);
+          border: 0.5px solid rgba(255,255,255,0.2);
+          color: rgba(255,255,255,0.85);
         }
 
         .hdr-root.transparent .hdr-cta-btn:hover {
-          background: rgba(255,255,255,0.28);
+          background: rgba(255,255,255,0.15);
+          border-color: rgba(255,255,255,0.35);
+          color: #fff;
         }
 
         .hdr-root.transparent .hdr-burger span {
@@ -116,10 +122,11 @@ export default function Header() {
           filter: brightness(0) invert(1);
         }
 
+        /* ── Inner layout ── */
         .hdr-inner {
           max-width: 1180px;
           margin: 0 auto;
-          padding: 0 40px;
+          padding: 0 60px;
           height: 80px;
           display: flex;
           align-items: center;
@@ -128,9 +135,10 @@ export default function Header() {
         }
 
         @media (max-width: 768px) {
-          .hdr-inner { padding: 0 24px; }
+          .hdr-inner { padding: 0 28px; }
         }
 
+        /* ── Logo — matches footer logo style ── */
         .hdr-logo {
           display: flex;
           flex-direction: row;
@@ -147,23 +155,26 @@ export default function Header() {
           margin-left: -6px;
         }
 
+        /* Cormorant + forest color — matches .footer-logo-name */
         .hdr-logo-name {
           font-family: 'Cormorant Garamond', serif;
           font-size: 1.4rem;
-          font-weight: 600;
-          color: var(--forest-mid);
-          letter-spacing: 0.03em;
+          font-weight: 500;
+          color: var(--forest);
+          letter-spacing: 0.02em;
         }
 
+        /* Matches .footer-logo-tagline */
         .hdr-logo-tagline {
           font-size: 0.5rem;
           font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--stone-dark);
-          margin-top: 0px;
+          color: var(--text-faint);
+          margin-top: 2px;
         }
 
+        /* ── Desktop nav ── */
         .hdr-nav {
           display: flex;
           align-items: center;
@@ -177,44 +188,47 @@ export default function Header() {
           .hdr-nav { display: none; }
         }
 
+        /* Nav links — matches .learn-more-link / .view-all-link style */
         .hdr-nav-link {
-          font-size: 0.84rem;
+          font-size: 10px;
           font-weight: 400;
-          color: var(--text-soft);
+          color: var(--text-muted);
           text-decoration: none;
-          letter-spacing: 0.02em;
-          transition: color 0.2s;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          transition: color 0.25s;
           white-space: nowrap;
         }
 
-        .hdr-nav-link:hover { color: var(--forest-mid); }
+        .hdr-nav-link:hover { color: var(--forest); }
 
-        /* ─── Dropdown ─── */
+        /* ── Dropdown ── */
         .hdr-dropdown-wrap { position: relative; }
 
         .hdr-dropdown-trigger {
           display: flex;
           align-items: center;
           gap: 5px;
-          font-size: 0.84rem;
+          font-size: 10px;
           font-weight: 400;
-          color: var(--text-soft);
-          letter-spacing: 0.02em;
+          color: var(--text-muted);
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
           cursor: pointer;
           background: none;
           border: none;
           padding: 0;
-          font-family: 'DM Sans', sans-serif;
-          transition: color 0.2s;
+          font-family: var(--font);
+          transition: color 0.25s;
           white-space: nowrap;
         }
 
         .hdr-dropdown-trigger:hover,
-        .hdr-dropdown-trigger.open { color: var(--forest-mid); }
+        .hdr-dropdown-trigger.open { color: var(--forest); }
 
         .hdr-dropdown-trigger svg {
-          width: 12px;
-          height: 12px;
+          width: 11px;
+          height: 11px;
           stroke: currentColor;
           fill: none;
           stroke-width: 2;
@@ -224,15 +238,17 @@ export default function Header() {
 
         .hdr-dropdown-trigger.open svg { transform: rotate(180deg); }
 
+        /* Dropdown panel — warm-white bg, thin border matches --border token */
         .hdr-dropdown {
           position: absolute;
-          top: calc(100% + 30px);
+          top: calc(100% + 28px);
           left: 50%;
           transform: translateX(-50%) translateY(-6px);
-          background: #ffffff;
-          border-radius: 0;
-          min-width: 200px;
-          box-shadow: 0 8px 24px rgba(30,58,47,0.08);
+          background: var(--warm-white);
+          border: 1px solid var(--border);
+          border-radius: 4px;
+          min-width: 210px;
+          box-shadow: 0 12px 40px rgba(45,74,39,0.1);
           opacity: 0;
           pointer-events: none;
           transition: opacity 0.18s, transform 0.18s;
@@ -247,53 +263,64 @@ export default function Header() {
         }
 
         .hdr-dropdown-links {
-          padding: 6px;
+          padding: 8px;
           display: flex;
           flex-direction: column;
         }
 
+        /* Dropdown items match .footer-nav a style */
         .hdr-dropdown-links a {
-          font-size: 0.85rem;
-          font-weight: 400;
-          color: var(--text-soft);
+          font-size: 0.83rem;
+          font-weight: 300;
+          color: var(--text-muted);
           text-decoration: none;
           padding: 9px 12px;
-          border-radius: 6px;
-          transition: color 0.15s;
+          border-radius: 4px;
+          transition: color 0.2s, background 0.2s;
           white-space: nowrap;
+          letter-spacing: 0.01em;
         }
 
-        .hdr-dropdown-links a:hover { color: var(--forest-mid); }
+        .hdr-dropdown-links a:hover {
+          color: var(--forest);
+          background: rgba(45,74,39,0.04);
+        }
 
+        /* Dropdown footer — matches --border separator in footer */
         .hdr-dropdown-footer {
-          border-top: 1px solid var(--charcoal-soft);
-          padding: 6px;
+          border-top: 1px solid var(--border);
+          padding: 6px 8px;
         }
 
         .hdr-dropdown-view-all {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          font-size: 0.8rem;
-          font-weight: 500;
-          color: var(--forest-mid);
+          font-size: 10px;
+          font-weight: 400;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--forest);
           text-decoration: none;
           padding: 8px 12px;
-          border-radius: 6px;
-          transition: color 0.15s;
+          border-radius: 4px;
+          transition: color 0.2s, background 0.2s;
         }
 
-        .hdr-dropdown-view-all:hover { color: var(--forest); }
+        .hdr-dropdown-view-all:hover {
+          color: var(--deep);
+          background: rgba(45,74,39,0.04);
+        }
 
         .hdr-dropdown-view-all svg {
-          width: 12px;
-          height: 12px;
+          width: 11px;
+          height: 11px;
           stroke: currentColor;
           fill: none;
           stroke-width: 2;
         }
 
-        /* ─── CTA ─── */
+        /* ── CTA button — matches .cta-btn-primary / footer-submit ── */
         .hdr-cta {
           flex-shrink: 0;
           display: flex;
@@ -303,30 +330,33 @@ export default function Header() {
         @media (max-width: 860px) { .hdr-cta { display: none; } }
 
         .hdr-cta-btn {
-          background: var(--forest-mid);
+          background: var(--deep);
           color: #ffffff;
           border: none;
           padding: 10px 22px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.78rem;
+          font-family: var(--font);
+          font-size: 10px;
           font-weight: 500;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
-          border-radius: 999px;
+          border-radius: 9999px;
           cursor: pointer;
           text-decoration: none;
-          transition: background 0.22s, transform 0.18s;
+          transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
           white-space: nowrap;
+          display: inline-flex;
+          align-items: center;
         }
 
         .hdr-cta-btn:hover {
-          background: var(--forest-light);
-          transform: translateY(-1px);
+          background: var(--forest);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(0,0,0,0.12);
         }
 
-        .hdr-cta-btn:active { transform: translateY(0); }
+        .hdr-cta-btn:active { transform: translateY(0); box-shadow: none; }
 
-        /* ─── Mobile burger ─── */
+        /* ── Mobile burger ── */
         .hdr-burger {
           display: none;
           flex-direction: column;
@@ -342,14 +372,14 @@ export default function Header() {
           transition: background 0.2s;
         }
 
-        .hdr-burger:hover { background: var(--charcoal-mid); }
+        .hdr-burger:hover { background: rgba(45,74,39,0.06); }
 
         @media (max-width: 860px) { .hdr-burger { display: flex; } }
 
         .hdr-burger span {
           display: block;
           height: 1.5px;
-          background: var(--text-main);
+          background: var(--text-muted);
           border-radius: 2px;
           transition: transform 0.25s, opacity 0.25s, width 0.25s;
           transform-origin: center;
@@ -363,18 +393,19 @@ export default function Header() {
         .hdr-burger.open span:nth-child(2) { opacity: 0; }
         .hdr-burger.open span:nth-child(3) { width: 22px; transform: translateY(-6.5px) rotate(-45deg); }
 
-        /* ─── Mobile menu ─── */
+        /* ── Mobile menu — cream bg matches homepage sections ── */
         .hdr-mobile-menu {
           display: none;
           position: fixed;
           top: 80px;
           left: 0;
           right: 0;
-          background: #ffffff;
-          padding: 16px 24px 24px;
+          background: var(--warm-white);
+          border-top: 1px solid var(--border);
+          padding: 16px 28px 28px;
           flex-direction: column;
-          gap: 2px;
-          box-shadow: 0 12px 32px rgba(30,58,47,0.08);
+          gap: 0;
+          box-shadow: 0 16px 40px rgba(45,74,39,0.08);
           z-index: 99;
         }
 
@@ -382,42 +413,49 @@ export default function Header() {
 
         @media (min-width: 861px) { .hdr-mobile-menu { display: none !important; } }
 
+        /* Mobile links — matches .footer-nav a style */
         .hdr-mobile-link {
-          font-size: 0.92rem;
+          font-size: 10px;
           font-weight: 400;
-          color: var(--text-soft);
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--text-muted);
           text-decoration: none;
-          padding: 12px 4px;
-          border-bottom: 1px solid var(--charcoal-soft);
+          padding: 14px 4px;
+          border-bottom: 1px solid var(--border);
           transition: color 0.2s;
+          display: flex;
+          align-items: center;
         }
 
-        .hdr-mobile-link:hover { color: var(--forest-mid); }
+        .hdr-mobile-link:hover { color: var(--forest); }
 
         .hdr-mobile-products-toggle {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          font-size: 0.92rem;
+          font-size: 10px;
           font-weight: 400;
-          color: var(--text-soft);
-          padding: 12px 4px;
-          border-bottom: 1px solid var(--charcoal-soft);
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          padding: 14px 4px;
+          border-bottom: 1px solid var(--border);
           cursor: pointer;
           background: none;
           border-left: none;
           border-right: none;
           border-top: none;
-          font-family: 'DM Sans', sans-serif;
+          font-family: var(--font);
           text-align: left;
           width: 100%;
           transition: color 0.2s;
         }
 
-        .hdr-mobile-products-toggle:hover { color: var(--forest-mid); }
+        .hdr-mobile-products-toggle:hover { color: var(--forest); }
 
         .hdr-mobile-products-toggle svg {
-          width: 12px; height: 12px;
+          width: 11px; height: 11px;
           stroke: currentColor; fill: none; stroke-width: 2;
           transition: transform 0.22s;
         }
@@ -428,43 +466,64 @@ export default function Header() {
           display: none;
           flex-direction: column;
           padding-left: 16px;
+          background: rgba(45,74,39,0.02);
         }
 
         .hdr-mobile-sub.open { display: flex; }
 
         .hdr-mobile-sub a {
-          font-size: 0.86rem;
+          font-size: 0.82rem;
           font-weight: 300;
-          color: var(--stone);
+          color: var(--text-muted);
           text-decoration: none;
-          padding: 10px 4px;
-          border-bottom: 1px solid var(--charcoal-soft);
+          padding: 11px 4px;
+          border-bottom: 1px solid var(--border);
           transition: color 0.2s;
+          letter-spacing: 0.01em;
         }
 
         .hdr-mobile-sub a:last-child { border-bottom: none; }
-        .hdr-mobile-sub a:hover { color: var(--forest-mid); }
+        .hdr-mobile-sub a:hover { color: var(--forest); }
 
+        /* Mobile CTA — matches .cta-btn-primary */
         .hdr-mobile-cta {
-          margin-top: 12px;
-          background: var(--forest-mid);
+          margin-top: 20px;
+          background: var(--deep);
           color: #ffffff;
           border: none;
-          padding: 12px 22px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.78rem;
+          padding: 13px 22px;
+          font-family: var(--font);
+          font-size: 10px;
           font-weight: 500;
-          letter-spacing: 0.12em;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
-          border-radius: 999px;
+          border-radius: 9999px;
           cursor: pointer;
           text-decoration: none;
           text-align: center;
-          transition: background 0.22s;
+          transition: background 0.3s, transform 0.25s;
+          display: block;
         }
 
-        .hdr-mobile-cta:hover { background: var(--forest-light); }
+        .hdr-mobile-cta:hover {
+          background: var(--forest);
+          transform: translateY(-1px);
+        }
 
+        /* Bottom rule inside header — matches footer's gold top rule */
+        .hdr-bottom-rule {
+          position: absolute;
+          bottom: 0;
+          left: 60px;
+          right: 60px;
+          height: 1px;
+          background: var(--border);
+          opacity: 0;
+          transition: opacity 0.35s;
+        }
+
+        .hdr-root.scrolled .hdr-bottom-rule { opacity: 0; }
+        .hdr-root:not(.transparent):not(.scrolled) .hdr-bottom-rule { opacity: 1; }
       `}</style>
 
       <header className={`hdr-root${scrolled ? " scrolled" : ""}${isTransparent ? " transparent" : ""}`}>
@@ -472,14 +531,20 @@ export default function Header() {
 
           {/* Logo */}
           <a href="/" className="hdr-logo">
-            <Image src="/logo.png" alt="Rich Haven logo" width={45} height={45} style={{ objectFit: "contain", marginTop: "-25px", width: "auto" }} />
+            <Image
+              src="/logo.png"
+              alt="Rich Haven logo"
+              width={45}
+              height={45}
+              style={{ objectFit: "contain", marginTop: "-25px", width: "auto" }}
+            />
             <div className="hdr-logo-text">
               <span className="hdr-logo-name">Rich Haven</span>
               <span className="hdr-logo-tagline">Artificial Garden</span>
             </div>
           </a>
 
-          {/* Center nav */}
+          {/* Desktop nav */}
           <nav>
             <ul className="hdr-nav">
               <li><a href="/" className="hdr-nav-link">Home</a></li>
@@ -508,7 +573,10 @@ export default function Header() {
                     <div className="hdr-dropdown-footer">
                       <a href="/products-services" className="hdr-dropdown-view-all" onClick={() => setDropdownOpen(false)}>
                         View All
-                        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                        <svg viewBox="0 0 24 24">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
                       </a>
                     </div>
                   </div>
@@ -533,6 +601,8 @@ export default function Header() {
           </button>
         </div>
 
+        {/* Subtle bottom separator when not scrolled */}
+        <div className="hdr-bottom-rule" aria-hidden="true" />
 
         {/* Mobile menu */}
         <div className={`hdr-mobile-menu${mobileOpen ? " open" : ""}`}>
@@ -546,18 +616,29 @@ export default function Header() {
             Products &amp; Services
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" /></svg>
           </button>
+
           <div className={`hdr-mobile-sub${mobileProductsOpen ? " open" : ""}`}>
             {productLinks.map((link) => (
               <a key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>
                 {link.label}
               </a>
             ))}
-            <a href="/products-services" onClick={() => setMobileOpen(false)} style={{ fontWeight: 500, color: "var(--forest-mid)" }}>
+            <a
+              href="/products-services"
+              onClick={() => setMobileOpen(false)}
+              style={{ fontWeight: 500, color: "var(--forest)", letterSpacing: "0.04em" }}
+            >
               View All →
             </a>
           </div>
 
-          <a href="#footer" className="hdr-mobile-cta" onClick={(e) => { scrollToFooter(e); setMobileOpen(false); }}>Get in Touch</a>
+          <a
+            href="#footer"
+            className="hdr-mobile-cta"
+            onClick={(e) => { scrollToFooter(e); setMobileOpen(false); }}
+          >
+            Get in Touch
+          </a>
         </div>
       </header>
     </>

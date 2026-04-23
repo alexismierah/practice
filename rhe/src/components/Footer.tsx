@@ -48,43 +48,62 @@ export default function Footer() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
+        /* ── TOKEN MATCH: same as page.tsx :root ── */
         .footer-root {
-          --forest: #1e3a2f;
-          --forest-mid: #2d5040;
-          --forest-light: #3d6b54;
-          --forest-pale: #dce8e2;
-          --charcoal: #ffffff;
-          --charcoal-mid: #f4f5f4;
-          --charcoal-soft: #dde3e0;
-          --brass: #2d5040;
-          --brass-light: #3d6b54;
-          --off-white: #1a1f1c;
-          --warm-white: #ffffff;
-          --stone: #5a6a64;
-          --stone-dark: #8a9a94;
-          --text-main: #1a1f1c;
-          --text-soft: #4a5450;
-          --text-muted: #8a9a94;
+          --sage: #8fa882;
+          --forest: #2d4a27;
+          --deep: #1a2e16;
+          --cream: #f7f5f0;
+          --warm-white: #fafaf7;
+          --text: #1c1e19;
+          --text-muted: #6b7060;
+          --text-faint: #a8ad9e;
+          --border: rgba(45,74,39,0.12);
+          --gold: #c9a96e;
+          --font: "DM Sans", sans-serif;
 
-          font-family: 'DM Sans', sans-serif;
-          background-color: #ffffff;
-          color: var(--text-main);
+          font-family: var(--font);
+          background: var(--cream);
+          color: var(--text);
           position: relative;
           overflow: hidden;
         }
 
-        /* Subtle geometric background pattern — replaces botanical */
-        .footer-bg-botanical {
+        /* Grain texture — matches .hero-grain on homepage */
+        .footer-grain {
           position: absolute;
           inset: 0;
           pointer-events: none;
-          opacity: 0.04;
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect x='50' y='50' width='300' height='300' fill='none' stroke='%23b08a4e' stroke-width='1'/%3E%3Crect x='100' y='100' width='200' height='200' fill='none' stroke='%23b08a4e' stroke-width='0.8'/%3E%3Cline x1='50' y1='200' x2='350' y2='200' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Cline x1='200' y1='50' x2='200' y2='350' stroke='%23b08a4e' stroke-width='0.6'/%3E%3Ccircle cx='200' cy='200' r='100' fill='none' stroke='%23b08a4e' stroke-width='0.7'/%3E%3C/svg%3E");
-          background-size: 360px 360px;
-          background-position: right -40px bottom -40px;
-          background-repeat: no-repeat;
+          z-index: 0;
+          opacity: 0.025;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+          background-size: 200px 200px;
+        }
+
+        /* Faint "Haven" watermark — mirrors .cta-bg-text */
+        .footer-watermark {
+          position: absolute;
+          top: 50%;
+          right: -4vw;
+          transform: translateY(-50%);
+          font-family: var(--font);
+          font-size: 18vw;
+          font-weight: 300;
+          color: rgba(45,74,39,0.035);
+          white-space: nowrap;
+          pointer-events: none;
+          user-select: none;
+          line-height: 1;
+          z-index: 0;
+        }
+
+        /* ─── Top divider line — gold, like homepage section separators ─── */
+        .footer-top-rule {
+          height: 1px;
+          background: linear-gradient(to right, transparent, var(--gold), transparent);
+          opacity: 0.35;
         }
 
         /* ─── 3-column layout ─── */
@@ -93,7 +112,7 @@ export default function Footer() {
           z-index: 1;
           max-width: 1180px;
           margin: 0 auto;
-          padding: 72px 40px 48px;
+          padding: 72px 60px 48px;
           display: grid;
           grid-template-columns: 1fr 1fr 1.8fr;
           gap: 60px;
@@ -104,7 +123,7 @@ export default function Footer() {
           .footer-inner {
             grid-template-columns: 1fr 1fr;
             gap: 48px;
-            padding: 56px 24px 40px;
+            padding: 56px 28px 40px;
           }
           .footer-form-wrap {
             grid-column: 1 / -1;
@@ -116,6 +135,7 @@ export default function Footer() {
           .footer-inner {
             grid-template-columns: 1fr;
             gap: 40px;
+            padding: 48px 28px 36px;
           }
           .footer-form-wrap {
             grid-column: unset;
@@ -143,142 +163,160 @@ export default function Footer() {
           margin-left: -6px;
         }
 
+        /* Uses Cormorant — matches homepage's italic em style */
         .footer-logo-name {
           font-family: 'Cormorant Garamond', serif;
           font-size: 1.9rem;
-          font-weight: 600;
-          color: var(--brass-light);
-          letter-spacing: 0.03em;
+          font-weight: 500;
+          color: var(--forest);
+          letter-spacing: 0.02em;
         }
 
         .footer-logo-tagline {
-          font-size: 0.68rem;
+          font-size: 0.63rem;
           font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--stone);
-          margin-top: 0px;
+          color: var(--text-faint);
+          margin-top: 2px;
         }
 
         .footer-desc {
-          font-size: 0.87rem;
-          line-height: 1.8;
-          color: var(--stone);
+          font-size: 0.85rem;
+          line-height: 1.85;
+          color: var(--text-muted);
           font-weight: 300;
+          max-width: 280px;
         }
 
         .footer-socials {
           display: flex;
-          gap: 12px;
+          gap: 10px;
           margin-top: 4px;
         }
 
+        /* Ghost circle buttons — matches .btn-ghost-hero pill style */
         .footer-social-btn {
           width: 36px;
           height: 36px;
-          border: 1px solid var(--charcoal-soft);
+          border: 0.5px solid var(--border);
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
-          color: var(--stone);
+          color: var(--text-muted);
           text-decoration: none;
-          transition: all 0.25s;
+          transition: all 0.3s;
           background: transparent;
           cursor: pointer;
         }
 
         .footer-social-btn:hover {
-          border-color: var(--brass);
-          color: var(--brass-light);
-          background: rgba(176, 138, 78, 0.08);
+          border-color: var(--forest);
+          color: var(--forest);
+          background: rgba(45,74,39,0.06);
           transform: translateY(-2px);
         }
 
         .footer-social-btn svg {
-          width: 15px;
-          height: 15px;
+          width: 14px;
+          height: 14px;
           fill: currentColor;
         }
 
-        /* ─── Center column: Contact + Services ─── */
+        /* ─── Center column: Contact + Nav ─── */
         .footer-middle {
           display: flex;
           flex-direction: column;
-          gap: 50px;
-          margin-top: 13px;
-          padding-left: 40px;
+          gap: 48px;
+          margin-top: 10px;
+          padding-left: 32px;
         }
 
         .footer-nav {
           display: flex;
           flex-direction: column;
-          gap: 9px;
+          gap: 8px;
         }
 
+        /* Section label — matches .section-eyebrow exactly */
         .footer-nav-label {
-          font-size: 0.75rem;
-          font-weight: 500;
-          letter-spacing: 0.24em;
+          font-size: 10px;
+          font-weight: 400;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--brass);
-          margin-bottom: 8px;
+          color: var(--sage);
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
 
+        .footer-nav-label::before {
+          content: "";
+          width: 22px;
+          height: 1px;
+          background: var(--sage);
+          display: block;
         }
 
         .footer-nav a,
         .footer-nav span.footer-nav-item {
-          font-size: 0.86rem;
-          color: var(--stone);
+          font-size: 0.85rem;
+          color: var(--text-muted);
           text-decoration: none;
           font-weight: 300;
           display: inline-flex;
           align-items: center;
-          transition: color 0.2s;
+          transition: color 0.25s;
+          letter-spacing: 0.01em;
         }
 
         .footer-nav a:hover {
-          color: var(--off-white);
+          color: var(--forest);
         }
 
         /* ─── Right column: Form ─── */
         .footer-form-wrap {
           padding: 0;
           position: relative;
-          margin-top: -0px;
         }
 
+        /* Heading matches .section-headline weight + .cta-headline sizing */
         .footer-form-heading {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 1.6rem;
-          font-weight: 400;
-          color: var(--off-white);
-          margin-bottom: 4px;
+          font-family: var(--font);
+          font-size: clamp(1.5rem, 2.2vw, 2rem);
+          font-weight: 300;
+          color: var(--text);
+          margin-bottom: 6px;
+          line-height: 1.1;
+          letter-spacing: -0.01em;
         }
 
         .footer-form-heading em {
           font-style: italic;
-          color: var(--brass-light);
+          color: var(--forest);
         }
 
         .footer-form-sub {
           font-size: 0.82rem;
-          color: var(--stone);
+          color: var(--text-muted);
           font-weight: 300;
-          letter-spacing: 0.04em;
-          margin-bottom: 24px;
+          letter-spacing: 0.02em;
+          margin-bottom: 28px;
+          line-height: 1.7;
         }
 
         .footer-form {
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 14px;
         }
 
         .footer-form-row {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 14px;
+          gap: 12px;
         }
 
         @media (max-width: 560px) {
@@ -293,81 +331,89 @@ export default function Footer() {
           gap: 6px;
         }
 
+        /* Label matches .section-eyebrow micro-text style */
         .footer-field label {
-          font-size: 0.66rem;
-          font-weight: 500;
-          letter-spacing: 0.2em;
+          font-size: 10px;
+          font-weight: 400;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--stone-dark);
+          color: var(--text-faint);
         }
 
+        /* Inputs — subtle cream background, forest focus ring */
         .footer-field input,
         .footer-field textarea {
-          background: var(--charcoal-mid) !important;
-          border: 1px solid var(--charcoal-soft);
+          background: var(--cream) !important;
+          border: 1px solid var(--border);
           border-radius: 999px;
           padding: 11px 18px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.87rem;
+          font-family: var(--font);
+          font-size: 0.86rem;
           font-weight: 300;
-          color: var(--off-white);
+          color: var(--text);
           outline: none;
-          transition: border-color 0.2s, box-shadow 0.2s;
+          transition: border-color 0.25s, box-shadow 0.25s;
           resize: none;
         }
 
         .footer-field textarea {
-          border-radius: 24px;
+          border-radius: 18px;
           min-height: 90px;
           padding: 14px 18px;
         }
 
         .footer-field input::placeholder,
         .footer-field textarea::placeholder {
-          color: var(--stone-dark);
+          color: var(--text-faint);
         }
 
         .footer-field input:focus,
         .footer-field textarea:focus {
-          border-color: var(--brass);
-          box-shadow: 0 0 0 3px rgba(176, 138, 78, 0.1);
+          border-color: var(--sage);
+          box-shadow: 0 0 0 3px rgba(143,168,130,0.15);
         }
 
-        /* ─── Submit button ─── */
+        /* ─── Submit button — matches .cta-btn-primary exactly ─── */
         .footer-submit {
           align-self: flex-start;
-          display: flex;
+          display: inline-flex;
           align-items: center;
           justify-content: center;
           gap: 8px;
           min-width: 148px;
-          background: var(--brass);
-          color: #ffffff;
+          background: var(--deep);
+          color: #fff;
           border: none;
-          padding: 11px 26px;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.72rem;
+          padding: 12px 28px;
+          font-family: var(--font);
+          font-size: 10px;
           font-weight: 500;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.2em;
           text-transform: uppercase;
           cursor: pointer;
-          transition: background 0.25s, transform 0.2s;
-          border-radius: 999px;
+          transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
+          border-radius: 9999px;
           overflow: hidden;
         }
 
         .footer-submit:hover {
-          background: var(--brass-light);
-          transform: translateY(-1px);
+          background: var(--forest);
+          transform: translateY(-2px);
+          box-shadow: 0 10px 28px rgba(0,0,0,0.15);
         }
 
         .footer-submit:active {
           transform: translateY(0);
         }
 
+        .footer-submit:disabled {
+          opacity: 0.65;
+          cursor: not-allowed;
+          transform: none;
+        }
+
         .footer-submit.sent {
-          background: var(--forest-light);
-          color: var(--off-white);
+          background: var(--sage);
         }
 
         .footer-submit .check-icon {
@@ -388,10 +434,10 @@ export default function Footer() {
         .footer-bottom {
           position: relative;
           z-index: 1;
-          border-top: 1px solid var(--charcoal-soft);
+          border-top: 1px solid var(--border);
           max-width: 1180px;
           margin: 0 auto;
-          padding: 20px 40px;
+          padding: 20px 60px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -403,25 +449,27 @@ export default function Footer() {
           .footer-bottom {
             flex-direction: column;
             align-items: flex-start;
-            padding: 20px 24px;
+            padding: 20px 28px;
           }
         }
 
+        /* Copy text matches .about-foot-sub style */
         .footer-copy {
-          font-size: 0.75rem;
-          color: var(--stone-dark);
+          font-size: 10px;
+          color: var(--text-faint);
           font-weight: 300;
-          letter-spacing: 0.04em;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
         }
 
         .footer-copy a {
-          color: var(--brass);
+          color: var(--text-muted);
           text-decoration: none;
           transition: color 0.2s;
         }
 
         .footer-copy a:hover {
-          color: var(--brass-light);
+          color: var(--forest);
         }
 
         .footer-bottom-links {
@@ -430,43 +478,73 @@ export default function Footer() {
         }
 
         .footer-bottom-links a {
-          font-size: 0.74rem;
-          color: var(--stone-dark);
+          font-size: 10px;
+          color: var(--text-faint);
           text-decoration: none;
           font-weight: 300;
-          letter-spacing: 0.06em;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
           transition: color 0.2s;
         }
 
         .footer-bottom-links a:hover {
-          color: var(--brass-light);
+          color: var(--forest);
+        }
+
+        /* Est. badge — matches .about-foot-sub style */
+        .footer-est {
+          font-size: 10px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--text-faint);
+          margin-top: 2px;
         }
       `}</style>
 
       <footer className="footer-root" id="footer">
-        <div className="footer-bg-botanical" aria-hidden="true" />
+        <div className="footer-grain" aria-hidden="true" />
 
         <div className="footer-inner">
 
           {/* ── Col 1: Brand ── */}
           <div className="footer-brand">
             <div className="footer-logo-wrap">
-              <Image src="/logo.png" alt="Rich Haven logo" width={62} height={62} style={{ objectFit: "contain", marginTop: "-36px", width: "auto" }} />
+              <Image
+                src="/logo.png"
+                alt="Rich Haven logo"
+                width={62}
+                height={62}
+                style={{ objectFit: "contain", marginTop: "-36px", width: "auto" }}
+              />
               <div className="footer-logo-text">
                 <span className="footer-logo-name">Rich Haven</span>
                 <span className="footer-logo-tagline">Artificial Garden</span>
               </div>
             </div>
 
+            <p className="footer-est">Est. 2014</p>
+
             <p className="footer-desc">
-              Bringing enduring botanical beauty into every space, a thoughtfully curated collection of lifelike artificial greenery crafted for those who appreciate the timeless elegance of nature.
+              Bringing enduring botanical beauty into every space — a thoughtfully curated collection of lifelike artificial greenery crafted for those who appreciate the timeless elegance of nature.
             </p>
 
             <div className="footer-socials">
-              <a href="https://www.instagram.com/richhavenartificial/" className="footer-social-btn" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/richhavenartificial/"
+                className="footer-social-btn"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
               </a>
-              <a href="https://www.facebook.com/richhavengarden" className="footer-social-btn" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.facebook.com/richhavengarden"
+                className="footer-social-btn"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               </a>
             </div>
@@ -478,13 +556,12 @@ export default function Footer() {
               <span className="footer-nav-label">Contact Us</span>
               <span className="footer-nav-item">hello@richhaven.net</span>
               <span className="footer-nav-item">0916 236 6737</span>
-
             </nav>
 
             <nav className="footer-nav">
               <span className="footer-nav-label">Our Products</span>
               <a href="/products-services/grass">Artificial Grass</a>
-              <a href="/products-services/potted-plants">Potted Plants & Trees</a>
+              <a href="/products-services/potted-plants">Potted Plants &amp; Trees</a>
               <a href="/products-services/planter-box">Planter Boxes</a>
               <a href="/products-services/wall-greens">Wall Greens</a>
             </nav>
@@ -492,8 +569,8 @@ export default function Footer() {
 
           {/* ── Col 3: Contact Form ── */}
           <div className="footer-form-wrap">
-            <h3 className="footer-form-heading">Get in Touch<em></em></h3>
-            <p className="footer-form-sub">Have a question or planning your next space? Get in touch with us.</p>
+            <h3 className="footer-form-heading">Get in <em>Touch</em></h3>
+            <p className="footer-form-sub">Have a question or planning your next space? We'd love to hear from you.</p>
 
             <form className="footer-form" onSubmit={handleSubmit}>
               <div className="footer-form-row">
