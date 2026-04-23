@@ -586,7 +586,7 @@ export default function Home() {
         <section className="cta-section">
           <div className="cta-bg-text">Haven</div>
           <div className="cta-inner">
-            <p className="cta-\eyebrow">Transform Your Space</p>
+            <p className="cta-eyebrow">Transform Your Space</p>
             <h2 className="cta-headline">
               Let's bring <em>greenery</em><br />to your space
             </h2>
