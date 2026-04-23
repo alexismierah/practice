@@ -14,7 +14,7 @@ export default function Home() {
       desc: "Low-maintenance turf for lobbies and sports areas.",
       img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
       tag: "Turf & Lawn",
-      href: "/products-services/artificial-grass",
+      href: "/products-services/grass",
     },
     {
       num: "02",
@@ -38,7 +38,7 @@ export default function Home() {
       desc: "Elegant greenery for offices and conference rooms.",
       img: "/services-overview/p1.jpg",
       tag: "Custom Boxes",
-      href: "/products-services/planter-boxes",
+      href: "/products-services/planter-box",
     },
   ];
 
@@ -210,11 +210,11 @@ export default function Home() {
           font-weight: 300; line-height: 1.7;
           color: var(--text-muted); max-width: 900px;
           text-align: center;
+          font-style: italic;
         }
         .about-quote em { font-style: normal; font-weight: 500; color: var(--text); }
         .about-foot {
           margin-top: 36px; padding-top: 24px;
-          border-top: 1px solid var(--border);
           display: flex; align-items: center; justify-content: space-between;
         }
         .about-foot-left { display: flex; flex-direction: column; gap: 4px; }
@@ -478,8 +478,8 @@ export default function Home() {
             </p>
             <div className="about-foot">
               <div className="about-foot-left">
-                <span className="about-foot-name">Rich Haven Artificial Garden</span>
-                <span className="about-foot-sub">Est. 2014</span>
+                {/*<span className="about-foot-name">Rich Haven Artificial Garden</span>
+                <span className="about-foot-sub">Est. 2014</span>*/}
               </div>
               <a href="/about" className="learn-more-link">Learn more</a>
             </div>
@@ -586,9 +586,9 @@ export default function Home() {
         <section className="cta-section">
           <div className="cta-bg-text">Haven</div>
           <div className="cta-inner">
-            <p className="cta-eyebrow">Transform Your Space</p>
+            <p className="cta-\eyebrow">Transform Your Space</p>
             <h2 className="cta-headline">
-              Let's bring <em>greenery</em><br />to your world
+              Let's bring <em>greenery</em><br />to your space
             </h2>
             <p className="cta-sub">
               Whether it's a cozy home corner or a full commercial lobby — we'll design, source, and install the perfect greenery for you.
