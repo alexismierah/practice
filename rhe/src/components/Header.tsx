@@ -127,7 +127,7 @@ export default function Header() {
           max-width: 1180px;
           margin: 0 auto;
           padding: 0 60px;
-          height: 80px;
+          height: 70px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -600,9 +600,6 @@ export default function Header() {
             <span /><span /><span />
           </button>
         </div>
-
-        {/* Subtle bottom separator when not scrolled */}
-        <div className="hdr-bottom-rule" aria-hidden="true" />
 
         {/* Mobile menu */}
         <div className={`hdr-mobile-menu${mobileOpen ? " open" : ""}`}>

@@ -204,7 +204,7 @@ export default function Home() {
         }
         .about-tag::before { content: ""; width: 22px; height: 1px; background: var(--sage); display: block; }
         .about-quote {
-          font-size: clamp(1rem, 6vw, 2rem);
+          font-size: clamp(1rem, 3vw, 1.8rem);
           font-weight: 300; line-height: 1.7;
           color: var(--text-muted); max-width: 900px;
           
