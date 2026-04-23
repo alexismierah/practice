@@ -71,6 +71,7 @@ export default function Header() {
           left: 0;
           right: 0;
           z-index: 100;
+          height: 70px;
           background-color: var(--warm-white);
           transition: background-color 0.35s, box-shadow 0.35s;
         }

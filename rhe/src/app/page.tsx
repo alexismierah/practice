@@ -96,18 +96,18 @@ export default function Home() {
     },
   ];
 
-  const getPos = (e, el) => {
+  const getPos = (e: MouseEvent | TouchEvent, el: HTMLElement) => {
     const rect = el.getBoundingClientRect();
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientX = (e as TouchEvent).touches ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
     const pct = ((clientX - rect.left) / rect.width) * 100;
     return Math.min(Math.max(pct, 2), 98);
   };
 
-  const onSliderMouseDown = useCallback((e) => {
+  const onSliderMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
     e.preventDefault();
     isDragging.current = true;
     const el = sliderRef.current;
-    const onMove = (ev) => { if (isDragging.current) setSliderPos(getPos(ev, el)); };
+    const onMove = (ev: MouseEvent | TouchEvent) => { if (isDragging.current) setSliderPos(getPos(ev, el!)); };
     const onUp = () => {
       isDragging.current = false;
       window.removeEventListener("mousemove", onMove);
