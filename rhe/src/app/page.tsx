@@ -207,6 +207,7 @@ export default function Home() {
           font-size: clamp(1rem, 3vw, 1.8rem);
           font-weight: 300; line-height: 1.7;
           color: var(--text-muted); max-width: 900px;
+          text-align: center;
           
           
         }
