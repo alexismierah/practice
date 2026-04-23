@@ -126,7 +126,7 @@ export default function Header() {
         .hdr-inner {
           max-width: 1180px;
           margin: 0 auto;
-          padding: 0 60px;
+          padding: 0 20px;
           height: 70px;
           display: flex;
           align-items: center;
