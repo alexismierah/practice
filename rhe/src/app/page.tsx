@@ -14,6 +14,7 @@ export default function Home() {
       desc: "Low-maintenance turf for lobbies and sports areas.",
       img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
       tag: "Turf & Lawn",
+      href: "/products-services/artificial-grass",
     },
     {
       num: "02",
@@ -21,6 +22,7 @@ export default function Home() {
       desc: "Curated planters for balconies, entrances, and lobbies.",
       img: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1719266906-live-majesty-palm-plant-w-grow-pot-xl-6679ee546c94b.jpg?crop=0.803xw:1.00xh;0.0994xw,0&resize=980:",
       tag: "Indoor / Outdoor",
+      href: "/products-services/potted-plants",
     },
     {
       num: "03",
@@ -28,6 +30,7 @@ export default function Home() {
       desc: "Vertical gardens for homes, restaurants, and offices.",
       img: "/services-overview/p19.jpg",
       tag: "Vertical Gardens",
+      href: "/products-services/wall-greens",
     },
     {
       num: "04",
@@ -35,6 +38,7 @@ export default function Home() {
       desc: "Elegant greenery for offices and conference rooms.",
       img: "/services-overview/p1.jpg",
       tag: "Custom Boxes",
+      href: "/products-services/planter-boxes",
     },
   ];
 
@@ -172,7 +176,6 @@ export default function Home() {
           color: var(--gold); font-weight: 400; margin-bottom: 15px;
           animation: fadeUp 1s ease 0.2s both;
         }
-        .hero-eyebrow::before { content: ""; display: block; width: 28px; height: 1px; background: var(--gold); }
         .hero-grid { display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 48px; }
         .hero-title {
           font-family: "DM Sans", serif;
@@ -202,14 +205,11 @@ export default function Home() {
           font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
           color: var(--sage); margin-bottom: 20px; font-weight: 400;
         }
-        .about-tag::before { content: ""; width: 22px; height: 1px; background: var(--sage); display: block; }
         .about-quote {
           font-size: clamp(1rem, 3vw, 1.8rem);
           font-weight: 300; line-height: 1.7;
           color: var(--text-muted); max-width: 900px;
           text-align: center;
-          
-          
         }
         .about-quote em { font-style: normal; font-weight: 500; color: var(--text); }
         .about-foot {
@@ -238,7 +238,6 @@ export default function Home() {
           color: var(--sage); margin-bottom: 10px; font-weight: 400;
           display: flex; align-items: center; gap: 10px;
         }
-        .section-eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--sage); display: block; }
         .section-headline {
           font-family: "DM Sans", serif;
           font-size: clamp(1.6rem, 2.8vw, 2.2rem);
@@ -344,7 +343,6 @@ export default function Home() {
           color: var(--sage); margin-bottom: 12px; font-weight: 400;
           display: flex; align-items: center; gap: 10px;
         }
-        .why-eyebrow::before { content: ""; width: 22px; height: 1px; background: var(--sage); display: block; }
         .why-headline {
           font-family: "DM Sans", serif;
           font-size: clamp(1.6rem, 2.8vw, 2.2rem);
@@ -499,7 +497,7 @@ export default function Home() {
           </div>
           <div className="rh-s-grid">
             {services.map((s, i) => (
-              <a key={i} href="/products-services" className="rh-s-card">
+              <a key={i} href={s.href} className="rh-s-card">
                 <img className="rh-s-card-img" src={s.img} alt={s.name} />
                 <div className="rh-s-card-body">
                   <span className="rh-s-card-num">{s.num}</span>
