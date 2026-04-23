@@ -15,15 +15,15 @@ export default function AboutPage() {
 
         /* ── Hero ── */
         .hero {
-          padding: 120px 48px 80px;
-          max-width: 950px;
+          padding: 120px 60px 80px;
+          max-width: 1100px;
           margin: 0 auto;
           display: grid;
           grid-template-columns: 1fr 1fr;
           gap: 80px;
           align-items: end;
         }
-          /* add a new separator element after the hero section */
+
         .hero-divider {
           display: flex;
           align-items: center;
@@ -75,9 +75,9 @@ export default function AboutPage() {
 
         /* ── Story ── */
         .story {
-          max-width: 960px;
+          max-width: 1100px;
           margin: 0 auto;
-          padding: 80px 48px;
+          padding: 80px 60px;
           display: grid;
           grid-template-columns: 200px 1fr;
           gap: 80px;
@@ -141,9 +141,9 @@ export default function AboutPage() {
 
         /* ── Products strip ── */
         .products {
-          max-width: 960px;
+          max-width: 1100px;
           margin: 0 auto 80px;
-          padding: 0 48px;
+          padding: 0 60px;
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 12px;
@@ -165,12 +165,12 @@ export default function AboutPage() {
         .closing {
           background: #fafaf7;
           color: #F5F2EC;
-          padding: 100px 48px;
+          padding: 100px 60px;
           text-align: center;
         }
 
         .closing-inner {
-          max-width: 640px;
+          max-width: 680px;
           margin: 0 auto;
         }
 
@@ -226,7 +226,7 @@ export default function AboutPage() {
         <div>
           <p className="hero-label">About us</p>
           <h1 className="hero-headline">
-            Nature&apos;s beauty,<br /><em>without</em> the upkeep.
+            Nature&apos;s beauty,<br /><em>without</em> the <br/> upkeep.
           </h1>
         </div>
         <p className="hero-body">
@@ -235,6 +235,7 @@ export default function AboutPage() {
           offices, and commercial spaces that stays fresh and vibrant all year round.
         </p>
       </section>
+
       {/* Separator */}
       <div className="hero-divider">
         <span className="hero-divider-line" />
@@ -251,7 +252,7 @@ export default function AboutPage() {
       {/* Story */}
       <section className="story">
         <nav className="story-nav" aria-label="Story sections">
-          <span className="story-nav-item active">What we do</span>
+          <span className="story-nav-item">What we do</span>
           <span className="story-nav-item">How we do it</span>
           <span className="story-nav-item">Our promise</span>
         </nav>
