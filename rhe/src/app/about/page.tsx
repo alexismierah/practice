@@ -22,7 +22,23 @@ export default function AboutPage() {
           grid-template-columns: 1fr 1fr;
           gap: 80px;
           align-items: end;
-          border-bottom: 1px solid #ebe9e3;
+        }
+          /* add a new separator element after the hero section */
+        .hero-divider {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          max-width: 260px;
+          margin: 0 auto;
+          padding: 32px 0;
+        }
+
+        .hero-divider-line {
+          display: block;
+          width: 32px;
+          height: 1px;
+          background: #C8D2B8;
         }
 
         .hero-label {
@@ -219,6 +235,18 @@ export default function AboutPage() {
           offices, and commercial spaces that stays fresh and vibrant all year round.
         </p>
       </section>
+      {/* Separator */}
+      <div className="hero-divider">
+        <span className="hero-divider-line" />
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="10" cy="10" r="2" fill="#7A8C6E"/>
+          <path d="M10 4 C10 4 8 7 10 10 C12 7 10 4 10 4Z" fill="#7A8C6E" opacity="0.6"/>
+          <path d="M10 16 C10 16 8 13 10 10 C12 13 10 16 10 16Z" fill="#7A8C6E" opacity="0.6"/>
+          <path d="M4 10 C4 10 7 8 10 10 C7 12 4 10 4 10Z" fill="#7A8C6E" opacity="0.6"/>
+          <path d="M16 10 C16 10 13 8 10 10 C13 12 16 10 16 10Z" fill="#7A8C6E" opacity="0.6"/>
+        </svg>
+        <span className="hero-divider-line" />
+      </div>
 
       {/* Story */}
       <section className="story">
