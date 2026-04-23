@@ -239,7 +239,7 @@ export default function Footer() {
           gap: 8px;
         }
 
-        /* Section label — matches .section-eyebrow exactly */
+        /* Section label — no line on the left */
         .footer-nav-label {
           font-size: 10px;
           font-weight: 400;
@@ -250,14 +250,6 @@ export default function Footer() {
           display: flex;
           align-items: center;
           gap: 10px;
-        }
-
-        .footer-nav-label::before {
-          content: "";
-          width: 22px;
-          height: 1px;
-          background: var(--sage);
-          display: block;
         }
 
         .footer-nav a,
@@ -521,8 +513,6 @@ export default function Footer() {
                 <span className="footer-logo-tagline">Artificial Garden</span>
               </div>
             </div>
-
-            <p className="footer-est">Est. 2014</p>
 
             <p className="footer-desc">
               Bringing enduring botanical beauty into every space — a thoughtfully curated collection of lifelike artificial greenery crafted for those who appreciate the timeless elegance of nature.
