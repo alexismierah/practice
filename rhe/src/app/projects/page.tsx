@@ -1,757 +1,559 @@
 "use client";
 
-import { useState, KeyboardEvent } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 interface Project {
   id: number;
   title: string;
   location: string;
-  industry: string;
-  service: string;
+  category: string;
+  desc: string;
+  area: string;
   images: string[];
 }
+
+const PROJECTS: Project[] = [
+  {
+    id: 1,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj1.jpeg", "/projects/proj2.jpeg", "/projects/proj3.jpeg"],
+  },
+  {
+    id: 2,
+    title: "BGC Corporate Tower",
+    location: "Bonifacio Global City",
+    category: "Commercial",
+    desc: "Rooftop terrace turf installation with premium artificial grass",
+    area: "180 sqm",
+    images: ["/projects/proj4.jpeg", "/projects/proj5.jpeg", "/projects/proj6.jpeg"],
+  },
+  {
+    id: 3,
+    title: "Serene Garden Villa",
+    location: "Alabang",
+    category: "Residential",
+    desc: "Curated collection of potted tropicals for indoor and poolside areas",
+    area: "Assorted",
+    images: ["/projects/proj15.jpeg", "/projects/proj16.jpeg", "/projects/proj17.jpeg"],
+  },
+  {
+    id: 4,
+    title: "Eastwood Mall Atrium",
+    location: "Quezon City",
+    category: "Commercial",
+    desc: "Large-scale vertical garden feature wall in the main atrium",
+    area: "540 sqm",
+    images: ["/projects/proj7.jpeg", "/projects/proj8.jpeg", "/projects/proj9.jpeg"],
+  },
+  {
+    id: 5,
+    title: "The Greenfield Club",
+    location: "Mandaluyong",
+    category: "Commercial",
+    desc: "Custom planter boxes lining the event hall perimeter and entryway",
+    area: "Modular",
+    images: [
+      "/projects/proj10.jpeg", "/projects/proj11.jpeg", "/projects/proj12.jpeg",
+      "/projects/proj13.jpeg", "/projects/proj38.jpeg", "/projects/proj39.jpeg",
+      "/projects/proj40.jpeg", "/projects/proj41.jpeg",
+    ],
+  },
+  {
+    id: 6,
+    title: "Sun Valley Estates",
+    location: "Antipolo",
+    category: "Residential",
+    desc: "Residential lawn replacement with ultra-realistic turf grass",
+    area: "260 sqm",
+    images: ["/projects/proj20.jpeg", "/projects/proj21.jpeg"],
+  },
+  {
+    id: 7,
+    title: "Solana Hotel Lobby",
+    location: "Pasay City",
+    category: "Commercial",
+    desc: "Oversized potted palms and ferns for lobby and corridor ambience",
+    area: "Assorted",
+    images: [
+      "/projects/proj29.jpeg", "/projects/proj30.jpeg", "/projects/proj48.jpeg"
+    ],
+  },
+  {
+    id: 8,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj28.jpeg", "/projects/proj26.jpeg", "/projects/proj27.jpeg"],
+  },
+  {
+    id: 9,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj25.jpeg", "/projects/proj24.jpeg"],
+  },
+  {
+    id: 10,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj42.jpeg", "/projects/proj43.jpeg"],
+  },
+  {
+    id: 11,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj36.jpeg", "/projects/proj37.jpeg", "/projects/proj33.jpeg"],
+  },
+  {
+    id: 12,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj50.jpeg", "/projects/proj51.jpeg", "/projects/proj52.jpeg"],
+  },
+  {
+    id: 13,
+    title: "Casa Bella Residence",
+    location: "Makati City",
+    category: "Commercial",
+    desc: "Full living wall installation across indoor dining and lounge areas",
+    area: "320 sqm",
+    images: ["/projects/proj53.jpeg", "/projects/proj54.jpeg", "/projects/proj55.jpeg"],
+  },
+];
+
+const FILTERS = ["All Projects", "Residential", "Commercial"];
 
 interface ModalState {
   project: Project;
   imgIndex: number;
 }
 
-type DropdownName = "region" | "industry" | "service";
+const CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap');
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Boston Scientific HQ",
-    location: "Madrid, Spain",
-    industry: "Life Sciences",
-    service: "Design & Build",
-    images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80",
-    ],
-  },
-  {
-    id: 2,
-    title: "Bryan, Garnier & Co",
-    location: "Paris, France",
-    industry: "Finance",
-    service: "Workplace Design",
-    images: [
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80",
-      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200&q=80",
-    ],
-  },
-  {
-    id: 3,
-    title: "Boston Scientific",
-    location: "Hemel Hempstead, UK",
-    industry: "Life Sciences",
-    service: "Design & Build",
-    images: [
-      "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
-    ],
-  },
-  {
-    id: 4,
-    title: "onsemi",
-    location: "Milan, Italy",
-    industry: "Technology",
-    service: "Workplace Design",
-    images: [
-      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200&q=80",
-      "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=1200&q=80",
-    ],
-  },
-  {
-    id: 5,
-    title: "Global Software Co.",
-    location: "Sydney, Australia",
-    industry: "Technology",
-    service: "Design & Build",
-    images: [
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80",
-      "https://images.unsplash.com/photo-1604328698692-f76ea9498e76?w=1200&q=80",
-    ],
-  },
-  {
-    id: 6,
-    title: "Tripadvisor",
-    location: "Lisbon, Portugal",
-    industry: "Technology",
-    service: "Workplace Design",
-    images: [
-      "https://images.unsplash.com/photo-1600508774634-4e11d34730e2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1200&q=80",
-    ],
-  },
-  {
-    id: 7,
-    title: "Tower Research Capital",
-    location: "Amsterdam, Netherlands",
-    industry: "Finance",
-    service: "Design & Build",
-    images: [
-      "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?w=1200&q=80",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
-      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80",
-    ],
-  },
-  {
-    id: 8,
-    title: "Global Software Co.",
-    location: "Sydney, Australia",
-    industry: "Technology",
-    service: "Fit Out",
-    images: [
-      "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=1200&q=80",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=1200&q=80",
-    ],
-  },
-];
+  .rh-root { font-family: 'DM Sans', sans-serif; }
+  .rh-serif { font-family: 'DM Sans', serif; }
 
-const regions = ["All Regions", "Europe", "Asia Pacific", "Americas", "Middle East"];
-const industries = ["All Industries", "Technology", "Finance", "Life Sciences", "Legal"];
-const services = ["All Services", "Workplace Design", "Design & Build", "Fit Out", "Consulting"];
+  .rh-hero-bg {
+    background-image: url('/projects/proj27.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+  .rh-hero-overlay {
+    background: linear-gradient(to bottom, rgba(15,22,15,0.55) 0%, rgba(15, 22, 15, 0.55) 60%, rgba(15, 22, 15, 0.20) 100%);
+  }
+  .rh-hero-pattern {
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.02) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.025) 40px);
+  }
+
+  /* ── FILTER BUTTONS: rounder, white-outlined, transparent fill ── */
+  .rh-hero-filter {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+    padding: 9px 22px;
+    border: 1px solid rgba(255,255,255,0.55);
+    background: transparent;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    border-radius: 999px;
+  }
+  .rh-hero-filter:hover {
+    color: #fff;
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.85);
+  }
+  .rh-hero-filter.active {
+    color: #fff;
+    background: rgba(255,255,255,0.18);
+    border-color: #fff;
+  }
+
+  .rh-card { position: relative; overflow: hidden; cursor: pointer; }
+  .rh-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s; filter: brightness(0.88); }
+  .rh-card:hover img { transform: scale(1.06); filter: brightness(0.55); }
+
+  .rh-card-static { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 18px 14px; background: linear-gradient(to top, rgba(10,15,10,0.72) 0%, transparent 100%); pointer-events: none; transition: opacity 0.3s; }
+  .rh-card:hover .rh-card-static { opacity: 0; }
+
+  .rh-card-overlay { position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(to top, rgba(15,20,15,0.9) 0%, rgba(15,20,15,0.1) 60%, transparent 100%); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
+  .rh-card:hover .rh-card-overlay { opacity: 1; pointer-events: auto; }
+
+  /* ── CARD ARROW: icon only, no box ── */
+  .rh-card-arrow {
+    position: absolute; top: 14px; right: 14px;
+    width: 28px; height: 28px;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translate(4px,-4px);
+    transition: opacity 0.25s, transform 0.25s;
+    background: none; border: none;
+  }
+  .rh-card:hover .rh-card-arrow { opacity: 1; transform: translate(0,0); }
+
+  /* ── CATEGORY BADGE: hover changes to gold ── */
+  .rh-card-badge {
+    font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 300;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #e8d5b0; padding: 4px 10px; align-self: flex-start;
+    border: 0.5px solid rgba(184,152,106,0.55);
+    background: rgba(184,152,106,0.2);
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer;
+  }
+  .rh-card:hover .rh-card-badge:hover {
+    color: #1a1a18;
+    background: #e8d5b0;
+    border-color: #e8d5b0;
+  }
+
+  .rh-category-badge { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #2d3d2d; padding: 4px 10px; background: #ede9e2; }
+
+  /* Modal */
+  .rh-modal-backdrop { position: fixed; inset: 0; background: rgba(10,14,10,0.92); z-index: 999; display: flex; align-items: center; justify-content: center; animation: rh-fade 0.2s ease; }
+  @keyframes rh-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .rh-modal-split { position: relative; width: min(92vw, 980px); height: min(82vh, 500px); display: flex; background: #fff; animation: rh-scale 0.25s ease; overflow: hidden; }
+  @keyframes rh-scale { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
+
+  /* Left image panel */
+  .rh-modal-left { position: relative; flex: 0 0 58%; background: #111; overflow: hidden; }
+  .rh-modal-main-img { width: 100%; height: 100%; object-fit: cover; display: block; animation: rh-imgfade 0.22s ease; }
+  @keyframes rh-imgfade { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ── MODAL NAV: icon only, no background box ── */
+  .rh-img-nav {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px;
+    background: none; border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.15s;
+    z-index: 2;
+  }
+  .rh-img-nav:hover { opacity: 0.7; }
+  .rh-img-nav.prev { left: 12px; }
+  .rh-img-nav.next { right: 12px; }
+
+  /* Counter bottom-center of image */
+  .rh-img-counter { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.42); padding: 4px 12px; z-index: 2; white-space: nowrap; }
+
+  /* Right content panel */
+  .rh-modal-right { flex: 1; display: flex; flex-direction: column; padding: 48px 28px 50px; position: relative; overflow-y: auto; }
+
+  /* ── MODAL CLOSE: icon only, no background box ── */
+  .rh-modal-close {
+    position: absolute; top: 14px; right: 14px;
+    width: 30px; height: 30px;
+    background: none; border: none;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.15s;
+    z-index: 2;
+  }
+  .rh-modal-close:hover { opacity: 0.5; }
+
+  .rh-detail-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid rgba(0,0,0,0.07); }
+  .rh-detail-label { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #4a5450; flex: 0 0 80px; }
+  .rh-detail-value { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; color: #1a1a18; }
+
+  /* Thumbnail strip */
+  .rh-thumb-strip { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .rh-thumb {
+    width: 52px; height: 36px; object-fit: cover; cursor: pointer;
+    opacity: 0.4; border: 1.5px solid transparent;
+    transition: opacity 0.15s, border-color 0.15s; flex-shrink: 0;
+  }
+  .rh-thumb.active { opacity: 1; border-color: #b8986a; }
+
+  .rh-tagline-bg { background: linear-gradient(160deg, #1a2a1a 0%, #2d3d2d 50%, #1a1a18 100%); }
+
+  .rh-btn-gold { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: #e8d5b0; padding: 12px 28px; cursor: pointer; text-decoration: none; display: inline-block; border: 0.5px solid rgba(184,152,106,0.55); background: rgba(184,152,106,0.1); }
+  .rh-btn-ghost { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 12px 28px; cursor: pointer; text-decoration: none; display: inline-block; border: 0.5px solid rgba(255,255,255,0.12); background: transparent; }
+`;
 
 export default function ProjectsPage() {
-  const [activeRegion, setActiveRegion] = useState("All Regions");
-  const [activeIndustry, setActiveIndustry] = useState("All Industries");
-  const [activeService, setActiveService] = useState("All Services");
-  const [openDropdown, setOpenDropdown] = useState<DropdownName | null>(null);
+  const [activeFilter, setActiveFilter] = useState("All Projects");
   const [modal, setModal] = useState<ModalState | null>(null);
 
-  const filtered = projects.filter((p) => {
-    const industryMatch = activeIndustry === "All Industries" || p.industry === activeIndustry;
-    const serviceMatch = activeService === "All Services" || p.service === activeService;
-    return industryMatch && serviceMatch;
-  });
+  const filtered =
+    activeFilter === "All Projects"
+      ? PROJECTS
+      : PROJECTS.filter((p) => p.category === activeFilter);
 
-  const openModal = (project: Project, imgIndex: number = 0) => {
+  const openModal = (project: Project, imgIndex = 0) =>
     setModal({ project, imgIndex });
+
+  const closeModal = useCallback(() => setModal(null), []);
+
+  const modalPrev = useCallback(() => {
+    setModal((m) =>
+      m ? { ...m, imgIndex: (m.imgIndex - 1 + m.project.images.length) % m.project.images.length } : null
+    );
+  }, []);
+
+  const modalNext = useCallback(() => {
+    setModal((m) =>
+      m ? { ...m, imgIndex: (m.imgIndex + 1) % m.project.images.length } : null
+    );
+  }, []);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (!modal) return;
+      if (e.key === "ArrowRight") modalNext();
+      if (e.key === "ArrowLeft") modalPrev();
+      if (e.key === "Escape") closeModal();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [modal, modalNext, modalPrev, closeModal]);
+
+  useEffect(() => {
+    document.body.style.overflow = modal ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modal]);
+
+  const spanClass = (index: number) => {
+    const map: Record<number, string> = {
+      0: "col-span-7", 1: "col-span-5",
+      2: "col-span-4", 3: "col-span-4",
+      4: "col-span-4", 5: "col-span-5",
+      6: "col-span-7", 7: "col-span-12",
+    };
+    return map[index % 8] ?? "col-span-6";
   };
 
-  const closeModal = () => setModal(null);
-
-  const modalPrev = () => {
-    if (!modal) return;
-    const len = modal.project.images.length;
-    setModal((m) => m ? { ...m, imgIndex: (m.imgIndex - 1 + len) % len } : null);
+  const aspectClass = (index: number) => {
+    const map: Record<number, string> = {
+      0: "h-[395px]", 1: "h-[395px]",
+      2: "h-[445px]", 3: "h-[445px]",
+      4: "h-[445px]", 5: "h-[395px]",
+      6: "h-[395px]", 7: "h-[395px]",
+    };
+    return map[index % 8] ?? "h-[395px]";
   };
 
-  const modalNext = () => {
-    if (!modal) return;
-    const len = modal.project.images.length;
-    setModal((m) => m ? { ...m, imgIndex: (m.imgIndex + 1) % len } : null);
-  };
-
-  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
-    if (!modal) return;
-    if (e.key === "ArrowRight") modalNext();
-    if (e.key === "ArrowLeft") modalPrev();
-    if (e.key === "Escape") closeModal();
-  };
+  const m = modal as ModalState;
 
   return (
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
-
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-        .pr-root {
-          font-family: 'DM Sans', sans-serif;
-          color: #1a1a1a;
-          background: #fff;
-          min-height: 100vh;
-        }
-
-        /* ── Hero ── */
-        .pr-hero {
-          position: relative;
-          height: 620px;
-          overflow: hidden;
-          display: flex;
-          align-items: center;
-          padding: 48px 52px;
-        }
-
-        .pr-hero-bg {
-          position: absolute;
-          inset: 0;
-          background: url('/planterbox/box8.jpeg') center/cover;
-          filter: brightness(0.28);
-        }
-
-        .pr-hero-content {
-          position: relative;
-          z-index: 2;
-          width: 100%;
-        }
-
-        .pr-eyebrow {
-          font-size: 14px;
-          font-weight: 400;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          color: rgba(251, 251, 251, 0.89);
-          margin-bottom: 5px;
-          display: block;
-          text-align: center;
-        }
-
-        .pr-hero-title {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 400;
-          font-size: 52px;
-          line-height: 1;
-          color: rgba(251, 251, 251, 0.89);
-          letter-spacing: -0.02em;
-          text-align: center;
-        }
-
-        .pr-hero-title em {
-          font-style: italic;
-          color: rgba(255,255,255,0.5);
-        }
-
-        /* ── Filter Bar (below title) ── */
-        .pr-filter-section {
-          padding: 0 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .pr-filter-group {
-          position: relative;
-        }
-
-
-        .pr-filter-btn:hover,
-        .pr-filter-btn.open,
-        .pr-filter-btn.active {
-          color: #1a1a1a;
-          border-bottom-color: #1a1a1a;
-        }
-
-        .pr-filter-btn svg {
-          width: 9px; height: 9px;
-          stroke: currentColor; fill: none; stroke-width: 2;
-          transition: transform 0.18s;
-          flex-shrink: 0;
-        }
-
-        .pr-filter-btn.open svg { transform: rotate(180deg); }
-
-        .pr-filter-sep {
-          width: 1px; height: 14px;
-          background: #e0e0e0;
-          flex-shrink: 0;
-        }
-
-
-        .pr-dd-item {
-          display: block;
-          width: 100%;
-          background: none;
-          border: none;
-          text-align: left;
-          font-family: 'DM Sans', sans-serif;
-          font-size: 12px;
-          font-weight: 300;
-          letter-spacing: 0.03em;
-          color: #2d5040;
-          padding: 10px 18px;
-          cursor: pointer;
-          transition: background 0.12s;
-        }
-
-        .pr-dd-item:hover { background: #f5f5f5; color: #1a1a1a; }
-        .pr-dd-item.selected { color: #1a1a1a; font-weight: 500; }
-
-        .pr-filter-count {
-          margin-left: auto;
-          font-size: 11px;
-          font-weight: 300;
-          letter-spacing: 0.08em;
-          color: #aaa;
-          white-space: nowrap;
-        }
-
-        /* ── Grid ── */
-        .pr-section {
-          padding: 70px 52px 80px;
-        }
-
-        .pr-section-label {
-          font-family: 'Playfair Display', serif;
-          font-style: italic;
-          font-weight: 400;
-          font-size: 13px;
-          color: #aaa;
-          margin-bottom: 28px;
-          letter-spacing: 0.04em;
-        }
-
-        .pr-grid {
-          display: grid;
-          grid-template-columns: repeat(12, 1fr);
-          gap: 8px;
-        }
-
-        .pr-card {
-          position: relative;
-          overflow: hidden;
-          cursor: pointer;
-          background: #f0f0f0;
-        }
-
-        .pr-card:nth-child(7n+1) {
-        grid-column: span 6; /* left large */
-      }
-
-      .pr-card:nth-child(7n+2) {
-        grid-column: span 3; /* left small */
-      }
-
-      .pr-card:nth-child(7n+3) {
-        grid-column: span 3; /* left small */
-      }
-
-      .pr-card:nth-child(7n+4) {
-        grid-column: span 6; /* left large bottom */
-      }
-
-      /* RIGHT SIDE (3 featured images) */
-      .pr-card:nth-child(7n+5) {
-        grid-column: span 6; /* right big */
-      }
-
-      .pr-card:nth-child(7n+6) {
-        grid-column: span 3; /* right small */
-      }
-
-      .pr-card:nth-child(7n+7) {
-        grid-column: span 3; /* right small */
-      }
-
-        .pr-card-img {
-          width: 100%;
-          object-fit: cover;
-          display: block;
-          transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
-          filter: brightness(0.88) saturate(0.9);
-        }
-
-        .pr-card:hover .pr-card-img {
-          transform: scale(1.05);
-          filter: brightness(0.72) saturate(0.85);
-        }
-
-        .pr-card-info {
-          position: absolute;
-          bottom: 0; left: 0; right: 0;
-          padding: 48px 24px 22px;
-          background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
-        }
-
-        .pr-card-service {
-          display: inline-block;
-          font-size: 9px;
-          font-weight: 400;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.5);
-          margin-bottom: 6px;
-        }
-
-        .pr-card-title {
-          font-family: 'Playfair Display', serif;
-          font-weight: 400;
-          font-size: 17px;
-          color: #fff;
-          line-height: 1.25;
-        }
-
-        .pr-card-loc {
-          font-size: 11px;
-          font-weight: 300;
-          color: rgba(255,255,255,0.45);
-          margin-top: 4px;
-          letter-spacing: 0.05em;
-        }
-
-        .pr-card-arrow {
-          position: absolute;
-          top: 18px; right: 18px;
-          width: 30px; height: 30px;
-          border: 0.5px solid rgba(255,255,255,0.3);
-          display: flex; align-items: center; justify-content: center;
-          opacity: 0;
-          transform: translateY(-4px) translateX(4px);
-          transition: opacity 0.25s, transform 0.25s;
-        }
-
-        .pr-card:hover .pr-card-arrow {
-          opacity: 1;
-          transform: translateY(0) translateX(0);
-        }
-
-        .pr-card-arrow svg {
-          width: 12px; height: 12px;
-          stroke: #fff; fill: none; stroke-width: 1.8;
-        }
-
-        /* ── Thumbnails on card ── */
-        .pr-card-thumbs {
-          position: absolute;
-          bottom: 20px; right: 18px;
-          display: flex;
-          gap: 10px;
-          opacity: 0;
-          transition: opacity 0.25s;
-        }
-
-        .pr-card:hover .pr-card-thumbs {
-          opacity: 1;
-        }
-
-        .pr-card-thumb {
-          width: 36px;
-          height: 28px;
-          object-fit: cover;
-          border: 1px solid rgba(255,255,255,0.4);
-          cursor: pointer;
-          transition: border-color 0.15s, transform 0.15s;
-          flex-shrink: 0;
-        }
-
-        .pr-card-thumb:hover {
-          border-color: rgba(255,255,255,0.9);
-          transform: scale(1.08);
-        }
-
-        /* ── Modal ── */
-        .pr-modal-backdrop {
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.88);
-          z-index: 1000;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          animation: fadeIn 0.2s ease;
-        }
-
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-
-        .pr-modal {
-          position: relative;
-          width: min(80vw, 800px);
-          border-radius: 6px;
-          overflow: hidden; /* VERY IMPORTANT */
-          background: #ffffff; /* or rgba(17,17,17,0.95) */
-        }
-
-        @keyframes scaleIn {
-          from { opacity: 0; transform: scale(0.97); }
-          to   { opacity: 1; transform: scale(1); }
-        }
-
-        .pr-modal-image-box {
-          position: relative;
-          width: 100%;
-          line-height: 0;
-          overflow: hidden; /* IMPORTANT */
-        }
-
-        .pr-modal-img {
-          width: 100%;
-          max-height: 65vh;
-          object-fit: cover;
-          display: block;
-        }
-
-        /* INSIDE IMAGE CLOSE BUTTON */
-        .pr-modal-close {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          z-index: 50;
-
-          width: 36px;
-          height: 36px;
-
-          background: rgba(0, 0, 0, 0.45);
-          backdrop-filter: blur(6px);
-
-          border: 0.5px solid rgba(255, 255, 255, 0.3);
-
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          cursor: pointer;
-        }
-
-        .pr-modal-close svg {
-          width: 14px;
-          height: 14px;
-          stroke: #fff;
-          fill: none;
-          stroke-width: 1.8;
-        }
-                  
-        .pr-modal-img {
-          width: 100%;
-          max-height: 65vh;
-          object-fit: cover;
-          display: block;
-        }
-
-        .pr-modal-bar {
-          background: #111;
-          padding: 16px 24px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .pr-modal-info {}
-
-        .pr-modal-title {
-          font-family: 'Playfair Display', serif;
-          font-weight: 400;
-          font-size: 18px;
-          color: #fff;
-          letter-spacing: 0.01em;
-        }
-
-        .pr-modal-sub {
-          font-size: 11px;
-          font-weight: 300;
-          color: rgba(255,255,255,0.4);
-          letter-spacing: 0.08em;
-          margin-top: 3px;
-        }
-
-        .pr-modal-controls {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-        }
-
-        .pr-modal-nav {
-          width: 36px; height: 36px;
-          border: 0.5px solid rgba(255,255,255,0.2);
-          background: none;
-          cursor: pointer;
-          display: flex; align-items: center; justify-content: center;
-          transition: border-color 0.15s, background 0.15s;
-        }
-
-        .pr-modal-nav:hover {
-          border-color: rgba(255,255,255,0.6);
-          background: rgba(255,255,255,0.05);
-        }
-
-        .pr-modal-nav svg {
-          width: 14px; height: 14px;
-          stroke: #fff; fill: none; stroke-width: 1.8;
-        }
-
-        .pr-modal-counter {
-          font-size: 11px;
-          font-weight: 300;
-          color: rgba(255,255,255,0.35);
-          letter-spacing: 0.1em;
-          min-width: 36px;
-          text-align: center;
-        }
-
-
-        /* Thumbnails strip */
-        .pr-modal-thumbs {
-          display: flex;
-          gap: 3px;
-          margin-top: 3px;
-        }
-
-        .pr-modal-thumb {
-          width: 72px;
-          height: 48px;
-          object-fit: cover;
-          cursor: pointer;
-          opacity: 0.45;
-          border: 1.5px solid transparent;
-          transition: opacity 0.15s, border-color 0.15s;
-          flex-shrink: 0;
-        }
-
-        .pr-modal-thumb.active {
-          opacity: 1;
-          border-color: #fff;
-        }
-
-        .pr-modal-thumb:hover { opacity: 0.8; }
-
-        /* ── Empty State ── */
-        .pr-empty {
-          grid-column: 1 / -1;
-          padding: 80px 0;
-          text-align: center;
-          font-family: 'Playfair Display', serif;
-          font-style: italic;
-          font-size: 20px;
-          color: #bbb;
-          background: #fff;
-        }
-
-        @media (max-width: 768px) {
-          .pr-hero { padding: 32px 20px; height: 280px; }
-          .pr-hero-title { font-size: 48px; }
-          .pr-filter-section { padding: 0 20px; overflow-x: auto; }
-          .pr-section { padding: 32px 20px 60px; }
-          .pr-card { grid-column: span 12 !important; }
-          .pr-modal { width: 96vw; }
-        }
-          
-      `}</style>
-
-      <div
-        className="pr-root"
-        onClick={() => setOpenDropdown(null)}
-        onKeyDown={handleKeyDown}
-        tabIndex={-1}
-      >
-        {/* ── Hero ── */}
-        <section className="pr-hero">
-          <div className="pr-hero-bg" />
-          <div className="pr-hero-content">
-            <span className="pr-eyebrow">RICH HAVEN ARTIFICIAL GRADEN</span>
-            <h1 className="pr-hero-title">Projects </h1>
+      <style>{CSS}</style>
+
+      <div className="rh-root bg-[#f7f4ef] text-[#1a1a18] min-h-screen">
+
+        {/* Hero — 285px height */}
+        <section className="relative overflow-hidden flex flex-col items-center justify-center pb-0" style={{ height: "285px" }}>
+          <div className="rh-hero-bg absolute inset-0" />
+          <div className="rh-hero-overlay absolute inset-0" />
+          <div className="rh-hero-pattern absolute inset-0" />
+
+          <svg className="absolute right-[-20px] top-[-30px] opacity-[0.05]" width="560" height="560" viewBox="0 0 600 600">
+            <path d="M300 50 C400 100 550 200 500 350 C450 480 300 530 150 480 C50 440 30 300 80 200 C130 100 200 0 300 50Z" stroke="white" strokeWidth="1" fill="none" />
+            <path d="M300 50 C300 50 300 300 150 480" stroke="white" strokeWidth="0.5" fill="none" />
+            <path d="M300 50 C350 200 420 280 500 350" stroke="white" strokeWidth="0.5" fill="none" />
+          </svg>
+
+          <div className="relative flex flex-col items-center pb-6">
+            <h1 className="rh-serif font-light text-[52px] leading-none text-white tracking-tight text-center pt-[15px]">
+              Our <em className="italic text-white">Projects</em>
+            </h1>
+            <p className="text-[12px] font-extralight tracking-[0.12em] text-white/35 mt-3 mb-5">
+              Premium artificial greenery &#8212; crafted for lasting beauty
+            </p>
+            <div className="flex items-center gap-2 flex-wrap justify-center px-6">
+              {FILTERS.map((f) => (
+                <button
+                  key={f}
+                  className={`rh-hero-filter${activeFilter === f ? " active" : ""}`}
+                  onClick={() => setActiveFilter(f)}
+                >
+                  {f}
+                </button>
+              ))}
+            </div>
           </div>
+
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#b8986a]/40 to-transparent" />
         </section>
 
-        
-
-        {/* ── Projects Grid ── */}
-        <section className="pr-section">
-          <div className="pr-grid">
-            {filtered.length === 0 ? (
-              <p className="pr-empty">No projects match the selected filters.</p>
-            ) : (
-              filtered.map((p) => (
-                <article key={p.id} className="pr-card" onClick={() => openModal(p, 0)}>
-                  <img src={p.images[0]} alt={p.title} className="pr-card-img" loading="lazy" />
-                  <div className="pr-card-info">
-                    <span className="pr-card-service">{p.service}</span>
-                    <h2 className="pr-card-title">{p.title}</h2>
-                    <p className="pr-card-loc">{p.location}</p>
-                  </div>
-                  {/* Thumbnail strip on hover */}
-                  {p.images.length > 1 && (
-                    <div className="pr-card-thumbs" onClick={(e) => e.stopPropagation()}>
-                      {p.images.map((img, idx) => (
-                        <img
-                          key={idx}
-                          src={img}
-                          alt=""
-                          className="pr-card-thumb"
-                          onClick={(e) => { e.stopPropagation(); openModal(p, idx); }}
-                        />
-                      ))}
+        {/* Projects Grid */}
+        <section className="px-30 pt-14 pb-20">
+          {filtered.length === 0 ? (
+            <p className="rh-serif italic text-[22px] text-[#8a8679] text-center py-20">
+              No projects in this category yet.
+            </p>
+          ) : (
+            <div className="grid grid-cols-12 gap-1.5">
+              {filtered.map((p, i) => (
+                <article
+                  key={p.id}
+                  className={`rh-card bg-[#ddd] rounded-sm ${spanClass(i)} ${aspectClass(i)}`}
+                  onClick={() => openModal(p, 0)}
+                >
+                  <img src={p.images[0]} alt={p.title} loading="lazy" />
+                  <div className="rh-card-static">
+                    <div className="rh-serif font-light text-[18px] text-white/90 leading-tight">{p.title}</div>
+                    <div className="text-[10px] font-extralight tracking-[0.08em] text-white/40 mt-0.5">
+                      {p.location} &#183; {p.area}
                     </div>
-                  )}
-                  <div className="pr-card-arrow">
-                    <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </div>
+                  <div className="rh-card-overlay">
+                    <span className="rh-card-badge">{p.category}</span>
+                    <div>
+                      <div className="text-[10px] font-extralight tracking-[0.25em] uppercase text-white/40 mb-1">
+                        {p.images.length} image{p.images.length > 1 ? "s" : ""}
+                      </div>
+                      <h2 className="rh-serif font-light text-[25px] text-white leading-tight">{p.title}</h2>
+                      <p className="text-[11px] font-extralight text-white/45 mt-1.5 leading-relaxed">{p.desc}</p>
+                    </div>
+                  </div>
+                  {/* Arrow icon only — no box */}
+                  <div className="rh-card-arrow">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
                   </div>
                 </article>
-              ))
-            )}
+              ))}
+            </div>
+          )}
+
+          {/* Tagline */}
+          <div className="rh-tagline-bg mt-16 px-16 py-20 flex flex-col items-center text-center relative overflow-hidden">
+            <svg className="absolute left-[-60px] bottom-[-40px] opacity-[0.05]" width="420" height="420" viewBox="0 0 600 600">
+              <path d="M300 50 C400 100 550 200 500 350 C450 480 300 530 150 480 C50 440 30 300 80 200 C130 100 200 0 300 50Z" stroke="white" strokeWidth="1" fill="none" />
+            </svg>
+            <svg className="absolute right-[-40px] top-[-20px] opacity-[0.04]" width="300" height="300" viewBox="0 0 600 600">
+              <path d="M300 50 C400 100 550 200 500 350 C450 480 300 530 150 480 C50 440 30 300 80 200 C130 100 200 0 300 50Z" stroke="white" strokeWidth="1" fill="none" />
+            </svg>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-px bg-[#b8986a]/50" />
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b8986a" strokeWidth="1">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+                <path d="M12 6v6M12 16h.01" />
+              </svg>
+              <div className="w-12 h-px bg-[#b8986a]/50" />
+            </div>
+            <blockquote className="rh-serif font-light italic text-[38px] leading-[1.2] text-white/90 max-w-2xl mb-6">
+              &#8220;Nature, reimagined.<br />
+              <em className="text-[#b8986a]/80 not-italic font-extralight">&#27704;&#24601;&#20043;&#32905; &#8212; forever green.&#8221;</em>
+            </blockquote>
+            <p className="text-[12px] font-extralight tracking-[0.22em] uppercase text-white/30 mb-10">
+              Rich Haven &#183; Premium Artificial Greenery &#183; Philippines
+            </p>
+            <div className="flex items-center gap-3">
+              <a href="#" className="rh-btn-gold">View All Services</a>
+              <a href="#" className="rh-btn-ghost">Contact Us</a>
+            </div>
           </div>
         </section>
 
-        {/* ── Modal ── */}
-        {modal && (
-          <div className="pr-modal-backdrop" onClick={closeModal}>
-            <div className="pr-modal" onClick={(e) => e.stopPropagation()}>
+        {/* Modal */}
+        {modal !== null && (
+          <div className="rh-modal-backdrop" onClick={closeModal}>
+            <div className="rh-modal-split" onClick={(e) => e.stopPropagation()}>
 
-              {/* IMAGE CONTAINER */}
-              <div className="pr-modal-image-box">
-
-                {/* MAIN IMAGE */}
+              {/* LEFT: image + icon-only nav arrows */}
+              <div className="rh-modal-left">
                 <img
-                  key={modal.imgIndex}
-                  src={modal.project.images[modal.imgIndex]}
-                  alt={modal.project.title}
-                  className="pr-modal-img"
+                  key={m.imgIndex}
+                  src={m.project.images[m.imgIndex]}
+                  alt={m.project.title}
+                  className="rh-modal-main-img"
                 />
 
-                {/* CLOSE BUTTON (INSIDE IMAGE OVERLAY) */}
-                <button className="pr-modal-close" onClick={closeModal}>
-                  <svg viewBox="0 0 24 24">
+                {m.project.images.length > 1 && (
+                  <>
+                    <button className="rh-img-nav prev" onClick={modalPrev}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M19 12H5M12 5l-7 7 7 7" />
+                      </svg>
+                    </button>
+                    <button className="rh-img-nav next" onClick={modalNext}>
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </>
+                )}
+
+                <div className="rh-img-counter">
+                  {m.imgIndex + 1} / {m.project.images.length}
+                </div>
+              </div>
+
+              {/* RIGHT: content + thumbnails */}
+              <div className="rh-modal-right">
+                {/* Close — icon only, no box */}
+                <button className="rh-modal-close" onClick={closeModal}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a1a18" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 6L6 18M6 6l12 12" />
                   </svg>
                 </button>
 
-              </div>
+                <h2 className="rh-serif font-light text-[28px] leading-tight text-[#1a1a18] mb-4.5 pr-8">
+                  {m.project.title}
+                </h2>
 
-              {/* THUMBNAILS */}
-              {modal.project.images.length > 1 && (
-                <div className="pr-modal-thumbs">
-                  {modal.project.images.map((img, idx) => (
-                    <img
-                      key={idx}
-                      src={img}
-                      alt=""
-                      className={`pr-modal-thumb ${
-                        idx === modal.imgIndex ? "active" : ""
-                      }`}
-                      onClick={() =>
-                        setModal((m) =>
-                          m ? { ...m, imgIndex: idx } : null
-                        )
-                      }
-                    />
-                  ))}
-                </div>
-              )}
-
-              {/* BOTTOM BAR */}
-              <div className="pr-modal-bar">
-                <div className="pr-modal-info">
-                  <p className="pr-modal-title">{modal.project.title}</p>
-                  <p className="pr-modal-sub">
-                    {modal.project.location} · {modal.project.industry}
-                  </p>
+                <div className="mb-5" style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
+                  <div className="rh-detail-row">
+                    <span className="rh-detail-label">Location</span>
+                    <span className="rh-detail-value">{m.project.location}</span>
+                  </div>
+                  <div className="rh-detail-row">
+                    <span className="rh-detail-label">Area</span>
+                    <span className="rh-detail-value">{m.project.area}</span>
+                  </div>
+                  <div className="rh-detail-row">
+                    <span className="rh-detail-label">Category</span>
+                    <span className="rh-category-badge">{m.project.category}</span>
+                  </div>
                 </div>
 
-                {modal.project.images.length > 1 && (
-                  <div className="pr-modal-controls">
-                    <button className="pr-modal-nav" onClick={modalPrev}>
-                      <svg viewBox="0 0 24 24">
-                        <path d="M19 12H5M12 5l-7 7 7 7" />
-                      </svg>
-                    </button>
+                <p className="text-[12px] font-normal text-[#4a4a46] leading-[1.85] mb-2">
+                  {m.project.desc.charAt(0).toUpperCase() + m.project.desc.slice(1)}, executed with our signature attention to material quality and natural aesthetics.
+                </p>
 
-                    <span className="pr-modal-counter">
-                      {modal.imgIndex + 1} / {modal.project.images.length}
+                {/* Thumbnail strip */}
+                {m.project.images.length > 1 && (
+                  <div className="mt-auto pt-5" style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
+                    <span className="text-[10px] font-light tracking-[0.18em] uppercase text-[#8a8679] block mb-3">
+                      Photos
                     </span>
-
-                    <button className="pr-modal-nav" onClick={modalNext}>
-                      <svg viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </button>
+                    <div className="rh-thumb-strip">
+                      {m.project.images.map((img, idx) => (
+                        <img
+                          key={idx}
+                          src={img}
+                          alt=""
+                          className={`rh-thumb${idx === m.imgIndex ? " active" : ""}`}
+                          onClick={() => setModal((prev) => (prev ? { ...prev, imgIndex: idx } : null))}
+                        />
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>
@@ -759,6 +561,7 @@ export default function ProjectsPage() {
             </div>
           </div>
         )}
+
       </div>
     </>
   );
