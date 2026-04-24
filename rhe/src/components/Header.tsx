@@ -159,7 +159,7 @@ export default function Header() {
         /* Cormorant + forest color — matches .footer-logo-name */
         .hdr-logo-name {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 1.2rem;
+          font-size: 1.5rem;
           font-weight: 500;
           color: var(--forest);
           letter-spacing: 0.02em;
@@ -167,7 +167,7 @@ export default function Header() {
 
         /* Matches .footer-logo-tagline */
         .hdr-logo-tagline {
-          font-size: 0.42rem;
+          font-size: 0.6rem;
           font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: capitalize;
@@ -341,7 +341,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 0.2em;
-          text-transform: capitalize;
+          text-transform: uppercase;
           border-radius: 9999px;
           cursor: pointer;
           text-decoration: none;
@@ -537,9 +537,9 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Rich Haven logo"
-              width={32}
-              height={32}
-              style={{ objectFit: "contain", marginTop: "-18px", width: "auto" }}
+              width={48}
+              height={48}
+              style={{ objectFit: "contain", width: "auto", height: "48px", marginTop: "-20px" }}
             />
             <div className="hdr-logo-text">
               <span className="hdr-logo-name">Rich Haven</span>
