@@ -539,7 +539,7 @@ export default function Header() {
               alt="Rich Haven logo"
               width={48}
               height={48}
-              style={{ objectFit: "contain", width: "auto", height: "48px", marginTop: "-20px" }}
+              style={{ objectFit: "contain", width: "auto", height: "48px", marginTop: "-15px" }}
             />
             <div className="hdr-logo-text">
               <span className="hdr-logo-name">Rich Haven</span>
