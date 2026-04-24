@@ -14,10 +14,10 @@ function scrollToFooter(e: React.MouseEvent) {
 }
 
 const productLinks = [
-  { label: "Artificial Grass", href: "/products-services/grass" },
-  { label: "Potted Plants & Trees", href: "/products-services/potted-plants" },
-  { label: "Planter Boxes", href: "/products-services/planter-box" },
-  { label: "Wall Greens", href: "/products-services/wall-greens" },
+  { label: "Artificial Grass", desc: "Low-maintenance turf for any space", href: "/products-services/grass" },
+  { label: "Potted Plants & Trees", desc: "Curated planters for indoors & out", href: "/products-services/potted-plants" },
+  { label: "Planter Boxes", desc: "Custom boxes for offices & lobbies", href: "/products-services/planter-box" },
+  { label: "Wall Greens", desc: "Vertical gardens that transform walls", href: "/products-services/wall-greens" },
 ];
 
 export default function Header() {
@@ -26,6 +26,7 @@ export default function Header() {
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isTransparent = isHome && !scrolled && !dropdownOpen && !mobileOpen;
@@ -241,20 +242,20 @@ export default function Header() {
 
         .hdr-dropdown-trigger.open svg { transform: rotate(180deg); }
 
-        /* Dropdown panel — warm-white bg, thin border matches --border token */
+        /* Dropdown panel */
         .hdr-dropdown {
           position: absolute;
-          top: calc(100% + 28px);
+          top: calc(100% + 26px);
           left: 50%;
-          transform: translateX(-50%) translateY(-6px);
-          background: var(--warm-white);
+          transform: translateX(-50%) translateY(-8px);
+          background: #fff;
           border: 1px solid var(--border);
-          border-radius: 4px;
-          min-width: 210px;
-          box-shadow: 0 12px 40px rgba(45,74,39,0.1);
+          border-radius: 5px;
+          min-width: 248px;
+          box-shadow: 0 24px 64px rgba(45,74,39,0.11), 0 4px 16px rgba(0,0,0,0.05);
           opacity: 0;
           pointer-events: none;
-          transition: opacity 0.18s, transform 0.18s;
+          transition: opacity 0.2s, transform 0.2s;
           z-index: 99;
           overflow: hidden;
         }
@@ -265,62 +266,59 @@ export default function Header() {
           transform: translateX(-50%) translateY(0);
         }
 
-        .hdr-dropdown-links {
-          padding: 8px;
-          display: flex;
-          flex-direction: column;
+        .hdr-dropdown-header {
+          padding: 11px 18px 9px;
+          border-bottom: 1px solid var(--border);
         }
 
-        /* Dropdown items match .footer-nav a style */
+        .hdr-dropdown-header span {
+          font-size: 8.5px;
+          font-weight: 500;
+          letter-spacing: 0.26em;
+          text-transform: uppercase;
+          color: var(--sage);
+        }
+
+        .hdr-dropdown-links {
+          padding: 6px 0;
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
         .hdr-dropdown-links a {
-          font-size: 0.83rem;
-          font-weight: 300;
-          color: var(--text-muted);
+          display: flex;
+          flex-direction: column;
+          gap: 3px;
           text-decoration: none;
-          padding: 9px 12px;
-          border-radius: 4px;
-          transition: color 0.2s, background 0.2s;
-          white-space: nowrap;
-          letter-spacing: 0.01em;
+          padding: 9px 18px;
+          border-left: 2px solid transparent;
+          transition: background 0.18s, border-color 0.18s;
         }
 
         .hdr-dropdown-links a:hover {
-          color: var(--forest);
-          background: rgba(45,74,39,0.04);
+          background: rgba(143,168,130,0.08);
+          border-left-color: var(--sage);
         }
 
-        /* Dropdown footer — matches --border separator in footer */
-        .hdr-dropdown-footer {
-          border-top: 1px solid var(--border);
-          padding: 6px 8px;
-        }
-
-        .hdr-dropdown-view-all {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          font-size: 10px;
+        .hdr-dropdown-link-label {
+          font-size: 13px;
           font-weight: 400;
-          letter-spacing: 0.16em;
-          text-transform: capitalize;
+          color: var(--text);
+          letter-spacing: -0.01em;
+          transition: color 0.18s;
+        }
+
+        .hdr-dropdown-links a:hover .hdr-dropdown-link-label {
           color: var(--forest);
-          text-decoration: none;
-          padding: 8px 12px;
-          border-radius: 4px;
-          transition: color 0.2s, background 0.2s;
         }
 
-        .hdr-dropdown-view-all:hover {
-          color: var(--deep);
-          background: rgba(45,74,39,0.04);
-        }
-
-        .hdr-dropdown-view-all svg {
-          width: 11px;
-          height: 11px;
-          stroke: currentColor;
-          fill: none;
-          stroke-width: 2;
+        .hdr-dropdown-link-desc {
+          font-size: 11px;
+          font-weight: 300;
+          color: var(--text-faint);
+          letter-spacing: 0.01em;
+          line-height: 1.4;
         }
 
         /* ── CTA button — matches .cta-btn-primary / footer-submit ── */
@@ -553,34 +551,35 @@ export default function Header() {
               <li><a href="/" className="hdr-nav-link">Home</a></li>
               <li><a href="/about" className="hdr-nav-link">About Us</a></li>
               <li>
-                <div className="hdr-dropdown-wrap" ref={dropdownRef}>
-                  <button
+                <div
+                  className="hdr-dropdown-wrap"
+                  ref={dropdownRef}
+                  onMouseEnter={() => {
+                    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+                    setDropdownOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    hoverTimeoutRef.current = setTimeout(() => setDropdownOpen(false), 150);
+                  }}
+                >
+                  <a
+                    href="/products-services"
                     className={`hdr-dropdown-trigger${dropdownOpen ? " open" : ""}`}
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                    aria-expanded={dropdownOpen}
                   >
                     Green Solutions
                     <svg viewBox="0 0 24 24">
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
-                  </button>
+                  </a>
 
                   <div className={`hdr-dropdown${dropdownOpen ? " open" : ""}`}>
-                    <div className="hdr-dropdown-links">
+<div className="hdr-dropdown-links">
                       {productLinks.map((link) => (
                         <a key={link.href} href={link.href} onClick={() => setDropdownOpen(false)}>
-                          {link.label}
+                          <span className="hdr-dropdown-link-label">{link.label}</span>
+                          <span className="hdr-dropdown-link-desc">{link.desc}</span>
                         </a>
                       ))}
-                    </div>
-                    <div className="hdr-dropdown-footer">
-                      <a href="/products-services" className="hdr-dropdown-view-all" onClick={() => setDropdownOpen(false)}>
-                        View All
-                        <svg viewBox="0 0 24 24">
-                          <line x1="5" y1="12" x2="19" y2="12" />
-                          <polyline points="12 5 19 12 12 19" />
-                        </svg>
-                      </a>
                     </div>
                   </div>
                 </div>
