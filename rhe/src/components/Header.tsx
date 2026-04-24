@@ -292,13 +292,11 @@ export default function Header() {
           gap: 3px;
           text-decoration: none;
           padding: 9px 18px;
-          border-left: 2px solid transparent;
-          transition: background 0.18s, border-color 0.18s;
+          transition: background 0.18s;
         }
 
         .hdr-dropdown-links a:hover {
           background: rgba(143,168,130,0.08);
-          border-left-color: var(--sage);
         }
 
         .hdr-dropdown-link-label {
@@ -351,11 +349,10 @@ export default function Header() {
 
         .hdr-cta-btn:hover {
           background: var(--forest);
-          transform: translateY(-2px);
           box-shadow: 0 10px 28px rgba(0,0,0,0.12);
         }
 
-        .hdr-cta-btn:active { transform: translateY(0); box-shadow: none; }
+        .hdr-cta-btn:active { box-shadow: none; }
 
         /* ── Mobile burger ── */
         .hdr-burger {
@@ -398,7 +395,7 @@ export default function Header() {
         .hdr-mobile-menu {
           display: none;
           position: fixed;
-          top: 80px;
+          top: 70px;
           left: 0;
           right: 0;
           background: var(--cream);
@@ -416,9 +413,9 @@ export default function Header() {
 
         /* Mobile links — matches .footer-nav a style */
         .hdr-mobile-link {
-          font-size: 10px;
+          font-size: 13px;
           font-weight: 400;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.06em;
           text-transform: capitalize;
           color: var(--text-muted);
           text-decoration: none;
@@ -435,9 +432,9 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          font-size: 10px;
+          font-size: 13px;
           font-weight: 400;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.06em;
           text-transform: capitalize;
           color: var(--text-muted);
           padding: 14px 4px;
@@ -467,7 +464,6 @@ export default function Header() {
           display: none;
           flex-direction: column;
           padding-left: 16px;
-          background: rgba(45,74,39,0.02);
         }
 
         .hdr-mobile-sub.open { display: flex; }
@@ -478,12 +474,9 @@ export default function Header() {
           color: var(--text-muted);
           text-decoration: none;
           padding: 11px 4px;
-          border-bottom: 1px solid var(--border);
           transition: color 0.2s;
           letter-spacing: 0.01em;
         }
-
-        .hdr-mobile-sub a:last-child { border-bottom: none; }
         .hdr-mobile-sub a:hover { color: var(--forest); }
 
         /* Mobile CTA — matches .cta-btn-primary */
@@ -497,7 +490,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 0.2em;
-          text-transform: capitalize;
+          text-transform: uppercase;
           border-radius: 9999px;
           cursor: pointer;
           text-decoration: none;
@@ -612,7 +605,7 @@ export default function Header() {
             className={`hdr-mobile-products-toggle${mobileProductsOpen ? " open" : ""}`}
             onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
           >
-            Products &amp; Services
+            Green Solutions
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" /></svg>
           </button>
 
@@ -630,6 +623,8 @@ export default function Header() {
               View All →
             </a>
           </div>
+
+          <a href="/projects" className="hdr-mobile-link" onClick={() => setMobileOpen(false)}>Projects</a>
 
           <a
             href="#footer"
