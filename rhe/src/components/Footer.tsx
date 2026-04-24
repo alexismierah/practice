@@ -13,6 +13,7 @@ export default function Footer() {
   const [btnSent, setBtnSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [focused, setFocused] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -48,9 +49,8 @@ export default function Footer() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
 
-        /* ── TOKEN MATCH: same as page.tsx :root ── */
         .footer-root {
           --sage: #8fa882;
           --forest: #2d4a27;
@@ -60,9 +60,7 @@ export default function Footer() {
           --text: #1c1e19;
           --text-muted: #6b7060;
           --text-faint: #a8ad9e;
-          --border: rgba(45,74,39,0.12);
-          --gold: #c9a96e;
-          --font: "DM Sans", sans-serif;
+          --font: 'DM Sans', sans-serif;
 
           font-family: var(--font);
           background: var(--cream);
@@ -71,135 +69,126 @@ export default function Footer() {
           overflow: hidden;
         }
 
-        /* Grain texture — matches .hero-grain on homepage */
         .footer-grain {
           position: absolute;
           inset: 0;
           pointer-events: none;
           z-index: 0;
-          opacity: 0.025;
-          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+          opacity: 0.03;
+          background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
           background-size: 200px 200px;
         }
 
-        /* Faint "Haven" watermark — mirrors .cta-bg-text */
         .footer-watermark {
           position: absolute;
-          top: 50%;
-          right: -4vw;
-          transform: translateY(-50%);
+          bottom: -4vw;
+          left: -2vw;
           font-family: var(--font);
-          font-size: 18vw;
+          font-size: 22vw;
           font-weight: 300;
-          color: rgba(45,74,39,0.035);
+          color: rgba(45,74,39,0.04);
           white-space: nowrap;
           pointer-events: none;
           user-select: none;
           line-height: 1;
           z-index: 0;
+          letter-spacing: -0.02em;
         }
 
-        /* ─── Top divider line — gold, like homepage section separators ─── */
-        .footer-top-rule {
-          height: 1px;
-          background: linear-gradient(to right, transparent, var(--gold), transparent);
-          opacity: 0.35;
-        }
-
-        /* ─── 3-column layout ─── */
+        /* ── Main layout ── */
         .footer-inner {
           position: relative;
           z-index: 1;
-          max-width: 1180px;
+          max-width: 1200px;
           margin: 0 auto;
-          padding: 72px 60px 48px;
+          padding: 80px 60px 56px;
           display: grid;
-          grid-template-columns: 1fr 1fr 1.8fr;
-          gap: 60px;
+          grid-template-columns: 1fr 240px 1.9fr;
           align-items: start;
         }
 
-        @media (max-width: 960px) {
+        @media (max-width: 1000px) {
           .footer-inner {
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            padding: 56px 28px 40px;
+            padding: 60px 36px 44px;
           }
-          .footer-form-wrap {
+          .footer-form-col {
             grid-column: 1 / -1;
-            padding: 0 !important;
+            padding: 48px 0 0 !important;
+            margin-top: 48px;
           }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 640px) {
           .footer-inner {
             grid-template-columns: 1fr;
-            gap: 40px;
             padding: 48px 28px 36px;
           }
-          .footer-form-wrap {
-            grid-column: unset;
+          .footer-mid-col {
+            padding: 40px 0 0 !important;
+            margin-top: 40px;
+          }
+          .footer-form-col {
+            padding: 40px 0 0 !important;
+            margin-top: 0;
           }
         }
 
-        /* ─── Left column: Brand ─── */
-        .footer-brand {
+        /* ── Col 1: Brand ── */
+        .footer-brand-col {
+          padding-right: 52px;
           display: flex;
           flex-direction: column;
-          gap: 24px;
+          gap: 28px;
         }
 
         .footer-logo-wrap {
           display: flex;
-          flex-direction: row;
           align-items: center;
-          gap: 0px;
+          gap: 2px;
         }
 
         .footer-logo-text {
           display: flex;
           flex-direction: column;
           line-height: 1;
-          margin-left: -6px;
+          margin-left: -4px;
         }
 
-        /* Uses Cormorant — matches homepage's italic em style */
         .footer-logo-name {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 1.9rem;
+          font-size: 1.7rem;
           font-weight: 500;
           color: var(--forest);
-          letter-spacing: 0.02em;
+          letter-spacing: 0.01em;
         }
 
         .footer-logo-tagline {
-          font-size: 0.63rem;
+          font-size: 0.58rem;
           font-weight: 400;
-          letter-spacing: 0.28em;
+          letter-spacing: 0.30em;
           text-transform: uppercase;
           color: var(--text-faint);
-          margin-top: 2px;
+          margin-top: 3px;
         }
 
         .footer-desc {
+          font-family: var(--font);
           font-size: 0.85rem;
+          font-weight: 300;
           line-height: 1.85;
           color: var(--text-muted);
-          font-weight: 300;
-          max-width: 280px;
+          max-width: 260px;
         }
 
         .footer-socials {
           display: flex;
           gap: 10px;
-          margin-top: 4px;
         }
 
-        /* Ghost circle buttons — matches .btn-ghost-hero pill style */
         .footer-social-btn {
           width: 36px;
           height: 36px;
-          border: 0.5px solid var(--border);
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -207,14 +196,13 @@ export default function Footer() {
           color: var(--text-muted);
           text-decoration: none;
           transition: all 0.3s;
-          background: transparent;
+          background: rgba(45,74,39,0.06);
           cursor: pointer;
         }
 
         .footer-social-btn:hover {
-          border-color: var(--forest);
           color: var(--forest);
-          background: rgba(45,74,39,0.06);
+          background: rgba(45,74,39,0.12);
           transform: translateY(-2px);
         }
 
@@ -224,63 +212,95 @@ export default function Footer() {
           fill: currentColor;
         }
 
-        /* ─── Center column: Contact + Nav ─── */
-        .footer-middle {
-          display: flex;
-          flex-direction: column;
-          gap: 48px;
-          margin-top: 10px;
-          padding-left: 32px;
-        }
-
-        .footer-nav {
-          display: flex;
-          flex-direction: column;
+        .footer-est-chip {
+          display: inline-flex;
+          align-items: center;
           gap: 8px;
+          padding: 6px 14px;
+          border-radius: 999px;
+          background: rgba(45,74,39,0.06);
+          align-self: flex-start;
         }
 
-        /* Section label — no line on the left */
-        .footer-nav-label {
-          font-size: 10px;
-          font-weight: 400;
+        .footer-est-chip span {
+          font-size: 9px;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: var(--sage);
-          margin-bottom: 10px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
+          color: var(--text-faint);
+          font-weight: 400;
         }
 
-        .footer-nav a,
-        .footer-nav span.footer-nav-item {
-          font-size: 0.85rem;
+        .footer-est-chip-dot {
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: var(--text-faint);
+        }
+
+        /* ── Col 2: Nav/Contact ── */
+        .footer-mid-col {
+          padding-left: 48px;
+          display: flex;
+          flex-direction: column;
+          gap: 44px;
+        }
+
+        .footer-nav-block {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+        }
+
+        /* Section label — same height as form heading so they align */
+        .footer-nav-label {
+          font-size: 13px;
+          font-weight: 500;
+          letter-spacing: 0.28em;
+          text-transform: uppercase;
+          color: var(--sage);
+          /* match the form's eyebrow + heading gap so first item aligns */
+          margin-bottom: 14px;
+        }
+
+        .footer-nav-item {
+          font-size: 0.80rem;
+          color: var(--text-muted);
+          font-weight: 300;
+          display: block;
+          letter-spacing: 0.01em;
+          padding: 4px 0;
+          text-decoration: none;
+        }
+
+        .footer-nav-link {
+          font-size: 0.80rem;
           color: var(--text-muted);
           text-decoration: none;
           font-weight: 300;
-          display: inline-flex;
-          align-items: center;
-          transition: color 0.25s;
+          display: block;
           letter-spacing: 0.01em;
+          padding: 4px 0;
+          transition: color 0.25s;
         }
 
-        .footer-nav a:hover {
+        .footer-nav-link:hover {
           color: var(--forest);
         }
 
-        /* ─── Right column: Form ─── */
-        .footer-form-wrap {
-          padding: 0;
+        /* ── Col 3: Form ── */
+        .footer-form-col {
+          padding-left: 60px;
           position: relative;
         }
 
-        /* Heading matches .section-headline weight + .cta-headline sizing */
+        /* "Get in Touch" heading — vertically aligned with the first nav label */
         .footer-form-heading {
           font-family: var(--font);
           font-size: clamp(1.5rem, 2.2vw, 2rem);
           font-weight: 300;
           color: var(--text);
-          margin-bottom: 6px;
+          /* same bottom margin as .footer-nav-label so items below align */
+          margin-bottom: 20px;
           line-height: 1.1;
           letter-spacing: -0.01em;
         }
@@ -296,7 +316,8 @@ export default function Footer() {
           font-weight: 300;
           letter-spacing: 0.02em;
           margin-bottom: 28px;
-          line-height: 1.7;
+          line-height: 1.75;
+          max-width: 340px;
         }
 
         .footer-form {
@@ -312,9 +333,7 @@ export default function Footer() {
         }
 
         @media (max-width: 560px) {
-          .footer-form-row {
-            grid-template-columns: 1fr;
-          }
+          .footer-form-row { grid-template-columns: 1fr; }
         }
 
         .footer-field {
@@ -323,20 +342,23 @@ export default function Footer() {
           gap: 6px;
         }
 
-        /* Label matches .section-eyebrow micro-text style */
         .footer-field label {
           font-size: 10px;
           font-weight: 400;
           letter-spacing: 0.22em;
           text-transform: uppercase;
           color: var(--text-faint);
+          transition: color 0.25s;
         }
 
-        /* Inputs — subtle cream background, forest focus ring */
+        .footer-field.is-focused label {
+          color: var(--forest);
+        }
+
         .footer-field input,
         .footer-field textarea {
-          background: var(--cream) !important;
-          border: 1px solid var(--border);
+          background: var(--warm-white) !important;
+          border: none;
           border-radius: 999px;
           padding: 11px 18px;
           font-family: var(--font);
@@ -344,8 +366,10 @@ export default function Footer() {
           font-weight: 300;
           color: var(--text);
           outline: none;
-          transition: border-color 0.25s, box-shadow 0.25s;
+          transition: background 0.25s, box-shadow 0.25s;
           resize: none;
+          -webkit-appearance: none;
+          box-shadow: 0 2px 8px rgba(45,74,39,0.06);
         }
 
         .footer-field textarea {
@@ -361,19 +385,18 @@ export default function Footer() {
 
         .footer-field input:focus,
         .footer-field textarea:focus {
-          border-color: var(--sage);
-          box-shadow: 0 0 0 3px rgba(143,168,130,0.15);
+          background: #ffffff !important;
+          box-shadow: 0 4px 16px rgba(45,74,39,0.1);
         }
 
-        /* ─── Submit button — matches .cta-btn-primary exactly ─── */
+        /* ── Submit button ── */
         .footer-submit {
           align-self: flex-start;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          gap: 8px;
           min-width: 148px;
-          background: var(--deep);
+          background: var(--forest);
           color: #fff;
           border: none;
           padding: 12px 28px;
@@ -385,18 +408,16 @@ export default function Footer() {
           cursor: pointer;
           transition: background 0.3s, transform 0.25s, box-shadow 0.3s;
           border-radius: 9999px;
-          overflow: hidden;
+          margin-top: 4px;
         }
 
-        .footer-submit:hover {
+        .footer-submit:hover:not(:disabled) {
           background: var(--forest);
           transform: translateY(-2px);
           box-shadow: 0 10px 28px rgba(0,0,0,0.15);
         }
 
-        .footer-submit:active {
-          transform: translateY(0);
-        }
+        .footer-submit:active { transform: translateY(0); }
 
         .footer-submit:disabled {
           opacity: 0.65;
@@ -416,20 +437,29 @@ export default function Footer() {
           stroke-width: 2.5;
           fill: none;
           flex-shrink: 0;
+          margin-right: 4px;
         }
 
         .footer-submit.sent .check-icon {
           display: block;
         }
 
-        /* ─── Bottom bar ─── */
+        .footer-error {
+          font-size: 0.78rem;
+          color: #c0392b;
+          margin: 0;
+          padding: 8px 16px;
+          background: rgba(192,57,43,0.06);
+          border-radius: 8px;
+        }
+
+        /* ── Bottom bar ── */
         .footer-bottom {
           position: relative;
           z-index: 1;
-          border-top: 1px solid var(--border);
-          max-width: 1180px;
+          max-width: 1200px;
           margin: 0 auto;
-          padding: 20px 60px;
+          padding: 22px 60px 32px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -441,11 +471,11 @@ export default function Footer() {
           .footer-bottom {
             flex-direction: column;
             align-items: flex-start;
-            padding: 20px 28px;
+            padding: 16px 28px 32px;
+            gap: 10px;
           }
         }
 
-        /* Copy text matches .about-foot-sub style */
         .footer-copy {
           font-size: 10px;
           color: var(--text-faint);
@@ -460,46 +490,44 @@ export default function Footer() {
           transition: color 0.2s;
         }
 
-        .footer-copy a:hover {
-          color: var(--forest);
-        }
+        .footer-copy a:hover { color: var(--forest); }
 
-        .footer-bottom-links {
+        .footer-bottom-badge {
           display: flex;
-          gap: 22px;
-        }
-
-        .footer-bottom-links a {
-          font-size: 10px;
-          color: var(--text-faint);
-          text-decoration: none;
-          font-weight: 300;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          transition: color 0.2s;
-        }
-
-        .footer-bottom-links a:hover {
-          color: var(--forest);
-        }
-
-        /* Est. badge — matches .about-foot-sub style */
-        .footer-est {
-          font-size: 10px;
-          letter-spacing: 0.14em;
+          align-items: center;
+          gap: 8px;
+          font-size: 9px;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
           color: var(--text-faint);
-          margin-top: 2px;
         }
+
+        .footer-bottom-badge-dot {
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: var(--text-faint);
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUpIn {
+          from { opacity: 0; transform: translateY(16px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer-brand-col { animation: fadeUpIn 0.7s ease both; }
+        .footer-mid-col   { animation: fadeUpIn 0.7s 0.1s ease both; }
+        .footer-form-col  { animation: fadeUpIn 0.7s 0.2s ease both; }
       `}</style>
 
       <footer className="footer-root" id="footer">
         <div className="footer-grain" aria-hidden="true" />
+        {/*<div className="footer-watermark" aria-hidden="true">Haven</div>*/}
 
         <div className="footer-inner">
 
           {/* ── Col 1: Brand ── */}
-          <div className="footer-brand">
+          <div className="footer-brand-col">
             <div className="footer-logo-wrap">
               <Image
                 src="/logo.png"
@@ -540,31 +568,31 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* ── Col 2: Contact + Services ── */}
-          <div className="footer-middle">
-            <nav className="footer-nav">
+          {/* ── Col 2: Contact + Products ── */}
+          <div className="footer-mid-col">
+            <nav className="footer-nav-block">
               <span className="footer-nav-label">Contact Us</span>
               <span className="footer-nav-item">hello@richhaven.net</span>
               <span className="footer-nav-item">0916 236 6737</span>
             </nav>
 
-            <nav className="footer-nav">
-              <span className="footer-nav-label">Our Products</span>
-              <a href="/products-services/grass">Artificial Grass</a>
-              <a href="/products-services/potted-plants">Potted Plants &amp; Trees</a>
-              <a href="/products-services/planter-box">Planter Boxes</a>
-              <a href="/products-services/wall-greens">Wall Greens</a>
+            <nav className="footer-nav-block">
+              <span className="footer-nav-label">Green Solutions</span>
+              <a className="footer-nav-link" href="/products-services/grass">Artificial Grass</a>
+              <a className="footer-nav-link" href="/products-services/potted-plants">Potted Plants &amp; Trees</a>
+              <a className="footer-nav-link" href="/products-services/planter-box">Planter Boxes</a>
+              <a className="footer-nav-link" href="/products-services/wall-greens">Wall Greens</a>
             </nav>
           </div>
 
-          {/* ── Col 3: Contact Form ── */}
-          <div className="footer-form-wrap">
+          {/* ── Col 3: Form ── */}
+          <div className="footer-form-col">
             <h3 className="footer-form-heading">Get in <em>Touch</em></h3>
             <p className="footer-form-sub">Have a question or planning your next space? We'd love to hear from you.</p>
 
             <form className="footer-form" onSubmit={handleSubmit}>
               <div className="footer-form-row">
-                <div className="footer-field">
+                <div className={`footer-field${focused === "name" ? " is-focused" : ""}`}>
                   <label htmlFor="footer-name">Full Name</label>
                   <input
                     id="footer-name"
@@ -573,10 +601,12 @@ export default function Footer() {
                     placeholder="Your name"
                     value={formData.name}
                     onChange={handleChange}
+                    onFocus={() => setFocused("name")}
+                    onBlur={() => setFocused(null)}
                     required
                   />
                 </div>
-                <div className="footer-field">
+                <div className={`footer-field${focused === "email" ? " is-focused" : ""}`}>
                   <label htmlFor="footer-email">Email Address</label>
                   <input
                     id="footer-email"
@@ -585,11 +615,14 @@ export default function Footer() {
                     placeholder="hello@gmail.com"
                     value={formData.email}
                     onChange={handleChange}
+                    onFocus={() => setFocused("email")}
+                    onBlur={() => setFocused(null)}
                     required
                   />
                 </div>
               </div>
-              <div className="footer-field">
+
+              <div className={`footer-field${focused === "phone" ? " is-focused" : ""}`}>
                 <label htmlFor="footer-phone">Phone Number</label>
                 <input
                   id="footer-phone"
@@ -598,9 +631,12 @@ export default function Footer() {
                   placeholder="09** *** ****"
                   value={formData.phone}
                   onChange={handleChange}
+                  onFocus={() => setFocused("phone")}
+                  onBlur={() => setFocused(null)}
                 />
               </div>
-              <div className="footer-field">
+
+              <div className={`footer-field${focused === "message" ? " is-focused" : ""}`}>
                 <label htmlFor="footer-msg">Your Message</label>
                 <textarea
                   id="footer-msg"
@@ -608,12 +644,14 @@ export default function Footer() {
                   placeholder="Tell us what you're looking for…"
                   value={formData.message}
                   onChange={handleChange}
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
                   required
                 />
               </div>
-              {error && (
-                <p style={{ fontSize: "0.8rem", color: "#c0392b", margin: 0 }}>{error}</p>
-              )}
+
+              {error && <p className="footer-error">{error}</p>}
+
               <button
                 type="submit"
                 disabled={submitting}
@@ -633,8 +671,6 @@ export default function Footer() {
           <span className="footer-copy">
             © {new Date().getFullYear()} <a href="#">Rich Haven Artificial Garden</a>. All rights reserved.
           </span>
-          <div className="footer-bottom-links">
-          </div>
         </div>
       </footer>
     </>

@@ -172,30 +172,37 @@ export default function Home() {
         }
         .hero-eyebrow {
           display: inline-flex; align-items: center; gap: 10px;
-          font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
-          color: var(--gold); font-weight: 400; margin-bottom: 15px;
+          font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase;
+          color: rgba(255,255,255,0.9); font-weight: 500; margin-bottom: 18px;
           animation: fadeUp 1s ease 0.2s both;
         }
-        .hero-grid { display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 48px; }
+        .hero-grid { display: grid; grid-template-columns: 1fr auto; align-items: flex-end; gap: 56px; }
         .hero-title {
-          font-family: "DM Sans", serif;
-          font-weight: 300; font-size: clamp(3.2rem, 6.5vw, 7rem);
-          line-height: 0.93; color: #fff; letter-spacing: -0.02em;
+          font-family: "DM Sans", sans-serif;
+          font-weight: 400; font-size: clamp(3.6rem, 7vw, 7.2rem);
+          line-height: 0.95; color: #fff; letter-spacing: -0.015em;
           animation: fadeUp 1s ease 0.4s both;
+          text-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
         .hero-title em { font-style: italic; color: rgba(194,220,189,0.92); }
-        .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 24px; padding-bottom: 8px; animation: fadeUp 1s ease 0.6s both; }
-        .hero-sub { font-size: 13px; color: rgba(255,255,255,0.48); line-height: 1.7; font-weight: 300; max-width: 200px; text-align: right; }
+        .hero-right { display: flex; flex-direction: column; align-items: flex-end; gap: 28px; padding-bottom: 8px; animation: fadeUp 1s ease 0.6s both; }
+        .hero-sub { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.8; font-weight: 300; max-width: 220px; text-align: right; letter-spacing: 0.01em; }
         .hero-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
         .btn-ghost-hero {
-          display: inline-flex; align-items: center; gap: 12px; padding: 10px 22px;
-          background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.2);
-          backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-          color: rgba(255,255,255,0.75); font-size: 10px; font-weight: 400;
-          letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
-          border-radius: 9999px; transition: all 0.3s;
+          display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 28px;
+          background: rgba(255,255,255,0.09); border: 1px solid rgba(255,255,255,0.25);
+          backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+          color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500;
+          letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none;
+          border-radius: 9999px; transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
         }
-        .btn-ghost-hero:hover { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.35); color: #fff; }
+        .btn-ghost-hero:hover { 
+          background: rgba(255,255,255,0.18); 
+          border-color: rgba(255,255,255,0.45); 
+          color: #fff; 
+          transform: translateY(-2px);
+          box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+        }
 
         /* ── ABOUT ── */
         .about-wrap { background: var(--warm-white); padding: 72px 60px; }
@@ -393,7 +400,7 @@ export default function Home() {
         .cta-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 6px; }
         .cta-btn-primary {
           display: inline-flex; align-items: center; gap: 12px; padding: 12px 28px;
-          background: var(--deep); border: none; color: #fff;
+          background: var(--forest); border: none; color: #fff;
           font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
           text-decoration: none; border-radius: 9999px; transition: all 0.3s; cursor: pointer;
         }

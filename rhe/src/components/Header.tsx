@@ -144,7 +144,7 @@ export default function Header() {
           display: flex;
           flex-direction: row;
           align-items: center;
-          gap: 0px;
+          gap: 3px;
           line-height: 1;
           text-decoration: none;
           flex-shrink: 0;
@@ -159,7 +159,7 @@ export default function Header() {
         /* Cormorant + forest color — matches .footer-logo-name */
         .hdr-logo-name {
           font-family: 'Cormorant Garamond', serif;
-          font-size: 1.4rem;
+          font-size: 1.2rem;
           font-weight: 500;
           color: var(--forest);
           letter-spacing: 0.02em;
@@ -167,7 +167,7 @@ export default function Header() {
 
         /* Matches .footer-logo-tagline */
         .hdr-logo-tagline {
-          font-size: 0.5rem;
+          font-size: 0.42rem;
           font-weight: 400;
           letter-spacing: 0.28em;
           text-transform: uppercase;
@@ -199,6 +199,8 @@ export default function Header() {
           text-transform: uppercase;
           transition: color 0.25s;
           white-space: nowrap;
+          display: flex;
+          align-items: center;
         }
 
         .hdr-nav-link:hover { color: var(--forest); }
@@ -331,7 +333,7 @@ export default function Header() {
         @media (max-width: 860px) { .hdr-cta { display: none; } }
 
         .hdr-cta-btn {
-          background: var(--deep);
+          background: var(--forest);
           color: #ffffff;
           border: none;
           padding: 10px 22px;
@@ -489,7 +491,7 @@ export default function Header() {
         /* Mobile CTA — matches .cta-btn-primary */
         .hdr-mobile-cta {
           margin-top: 20px;
-          background: var(--deep);
+          background: var(--forest);
           color: #ffffff;
           border: none;
           padding: 13px 22px;
@@ -535,9 +537,9 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Rich Haven logo"
-              width={45}
-              height={45}
-              style={{ objectFit: "contain", marginTop: "-25px", width: "auto" }}
+              width={32}
+              height={32}
+              style={{ objectFit: "contain", marginTop: "-18px", width: "auto" }}
             />
             <div className="hdr-logo-text">
               <span className="hdr-logo-name">Rich Haven</span>
