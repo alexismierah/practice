@@ -4,8 +4,20 @@ import { useRef, useState, useCallback } from "react";
 
 export default function Home() {
   const [sliderPos, setSliderPos] = useState(50);
+  const [ctaPulse, setCtaPulse] = useState(false);
   const sliderRef = useRef(null);
   const isDragging = useRef(false);
+
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setCtaPulse(true);
+    setTimeout(() => setCtaPulse(false), 550);
+    const footer = document.getElementById("footer");
+    if (footer) {
+      const top = footer.getBoundingClientRect().top + window.scrollY - 80;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
 
   const services = [
     {
@@ -403,6 +415,13 @@ export default function Home() {
           text-decoration: none; border-radius: 9999px; transition: all 0.35s; cursor: pointer;
         }
         .cta-btn-primary:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(45,74,39,0.22); }
+        .cta-btn-primary:active { transform: translateY(0) scale(0.96); }
+        @keyframes ctaPulse {
+          0%   { transform: translateY(-2px) scale(0.96); box-shadow: 0 0 0 0 rgba(45,74,39,0.45); }
+          45%  { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 0 14px rgba(45,74,39,0); }
+          100% { transform: translateY(-2px) scale(1);    box-shadow: 0 12px 32px rgba(45,74,39,0.22); }
+        }
+        .cta-btn-primary.pulse { animation: ctaPulse 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
         .cta-btn-ghost {
           display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px;
           background: transparent; border: 0.5px solid rgba(45,74,39,0.18);
@@ -595,7 +614,7 @@ export default function Home() {
               Whether it's a cozy home corner or a full commercial lobby — we'll design, source, and install the perfect greenery for you.
             </p>
             <div className="cta-actions">
-              <a href="#footer" className="cta-btn-primary">Get in Touch</a>
+              <button onClick={scrollToContact} className={`cta-btn-primary${ctaPulse ? " pulse" : ""}`}>Get in Touch</button>
               <a href="/products-services" className="cta-btn-ghost">View Our Work</a>
             </div>
           </div>
