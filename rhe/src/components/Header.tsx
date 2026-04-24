@@ -170,7 +170,7 @@ export default function Header() {
           font-size: 0.42rem;
           font-weight: 400;
           letter-spacing: 0.28em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           color: var(--text-faint);
           margin-top: 2px;
         }
@@ -191,12 +191,12 @@ export default function Header() {
 
         /* Nav links — matches .learn-more-link / .view-all-link style */
         .hdr-nav-link {
-          font-size: 10px;
+          font-size: 13px;
           font-weight: 400;
           color: var(--text-muted);
           text-decoration: none;
           letter-spacing: 0.16em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           transition: color 0.25s;
           white-space: nowrap;
           display: flex;
@@ -212,11 +212,11 @@ export default function Header() {
           display: flex;
           align-items: center;
           gap: 5px;
-          font-size: 10px;
+          font-size: 13px;
           font-weight: 400;
           color: var(--text-muted);
           letter-spacing: 0.16em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           cursor: pointer;
           background: none;
           border: none;
@@ -302,7 +302,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 400;
           letter-spacing: 0.16em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           color: var(--forest);
           text-decoration: none;
           padding: 8px 12px;
@@ -341,7 +341,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 0.2em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           border-radius: 9999px;
           cursor: pointer;
           text-decoration: none;
@@ -421,7 +421,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 400;
           letter-spacing: 0.16em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           color: var(--text-muted);
           text-decoration: none;
           padding: 14px 4px;
@@ -440,7 +440,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 400;
           letter-spacing: 0.16em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           color: var(--text-muted);
           padding: 14px 4px;
           border-bottom: 1px solid var(--border);
@@ -499,7 +499,7 @@ export default function Header() {
           font-size: 10px;
           font-weight: 500;
           letter-spacing: 0.2em;
-          text-transform: uppercase;
+          text-transform: capitalize;
           border-radius: 9999px;
           cursor: pointer;
           text-decoration: none;

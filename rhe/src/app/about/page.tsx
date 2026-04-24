@@ -2,9 +2,21 @@ export default function AboutPage() {
   return (
     <main style={{ fontFamily: "'DM Sans', sans-serif", color: "#1a1a1a", overflowX: "hidden" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
 
         .ab-wrap {
+          --sage: #8fa882;
+          --forest: #2d4a27;
+          --deep: #1a2e16;
+          --cream: #efefef;
+          --warm-white: #f7f7f7;
+          --text: #1c1e19;
+          --text-muted: #6b7060;
+          --text-faint: #a8ad9e;
+          --border: rgba(45,74,39,0.12);
+          --font: "DM Sans", sans-serif;
+
+          font-family: var(--font);
           max-width: 960px;
           margin: 0 auto;
           padding: 56px 48px 48px;
@@ -19,32 +31,32 @@ export default function AboutPage() {
         }
 
         .ab-eyebrow {
-          font-size: 13px;
+          font-size: 10px;
           font-weight: 400;
-          letter-spacing: 0.26em;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #9DA68E;
+          color: var(--sage);
           margin-bottom: 20px;
         }
 
         .ab-headline {
-          font-size: clamp(1.6rem, 4vw, 4rem);
+          font-size: clamp(1.8rem, 4vw, 2.8rem);
           font-weight: 300;
           line-height: 1.05;
           letter-spacing: -0.025em;
-          color: #0d1b0f;
+          color: var(--deep);
           margin: 0;
         }
 
         .ab-headline em {
           font-style: italic;
-          color: #2d5040;
+          color: var(--forest);
         }
 
         .ab-body {
-          font-size: 17px;
+          font-size: 15px;
           font-weight: 300;
-          color: #4a5450;
+          color: var(--text-muted);
           line-height: 1.8;
           margin: 0 0 28px;
           text-align: justify;
@@ -59,17 +71,17 @@ export default function AboutPage() {
         .ab-stat-num {
           font-size: 2.2rem;
           font-weight: 300;
-          color: #2d5040;
+          color: var(--forest);
           line-height: 1;
           letter-spacing: -0.02em;
         }
 
         .ab-stat-label {
-          font-size: 11px;
+          font-size: 10px;
           font-weight: 400;
           letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #b0b8a8;
+          color: var(--text-faint);
           margin-top: 6px;
         }
 
@@ -93,40 +105,40 @@ export default function AboutPage() {
         }
 
         .ab-block-num {
-          font-size: 11px;
+          font-size: 10px;
           font-weight: 400;
           letter-spacing: 0.18em;
-          color: #c8d2b8;
+          color: var(--text-faint);
         }
 
         .ab-block-tag {
-          font-size: 13px;
+          font-size: 11px;
           font-weight: 400;
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #4a5450;
+          color: var(--text-muted);
         }
 
         .ab-block-heading {
-          font-size: 22px;
+          font-size: 20px;
           font-weight: 400;
-          color: #0d1b0f;
+          color: var(--text);
           margin: 0 0 10px;
           line-height: 1.3;
           letter-spacing: -0.01em;
         }
 
         .ab-block-body {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: 300;
-          color: #6b7060;
+          color: var(--text-muted);
           line-height: 1.75;
           margin: 0;
         }
 
         /* ── Closing ── */
         .ab-closing-section {
-          background: #f7f7f7;
+          background: var(--cream);
           padding: 100px 60px;
           text-align: center;
         }
@@ -137,20 +149,20 @@ export default function AboutPage() {
         }
 
         .ab-closing-quote {
-          font-family: 'DM Sans', sans-serif;
-          font-size: clamp(26px, 4vw, 40px);
-          font-weight: 400;
+          font-family: var(--font);
+          font-size: clamp(1.4rem, 3vw, 2.2rem);
+          font-weight: 300;
           font-style: italic;
-          line-height: 1.45;
+          line-height: 1.5;
           margin: 0 0 24px;
-          color: #111111;
+          color: var(--text);
         }
 
         .ab-closing-sig {
-          font-size: 12px;
-          letter-spacing: 0.16em;
+          font-size: 10px;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #204e0d;
+          color: var(--forest);
           display: block;
         }
 

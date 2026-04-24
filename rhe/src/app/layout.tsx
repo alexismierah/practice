@@ -6,7 +6,7 @@ import "./globals.css"
 export const metadata = {
   title: "Rich Haven Artificial Garden",
   icons: {
-    icon: "/Favicon.ico",
+    icon: "/logo.png",
   },
 }
 
