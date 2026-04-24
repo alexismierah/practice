@@ -195,7 +195,7 @@ export default function Header() {
           font-weight: 400;
           color: var(--text-muted);
           text-decoration: none;
-          letter-spacing: 0.16em;
+          letter-spacing: 0.06em;
           text-transform: capitalize;
           transition: color 0.25s;
           white-space: nowrap;
@@ -215,7 +215,7 @@ export default function Header() {
           font-size: 13px;
           font-weight: 400;
           color: var(--text-muted);
-          letter-spacing: 0.16em;
+          letter-spacing: 0.06em;
           text-transform: capitalize;
           cursor: pointer;
           background: none;
