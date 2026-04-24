@@ -7,7 +7,7 @@ export default function ProductsServicesPage() {
     <div
       style={{
         fontFamily: "'Cormorant Garamond', 'Georgia', serif",
-        background: "#fafaf8",
+        background: "#f7f7f7",
         color: "#1a1a1a",
         overflowX: "hidden",
       }}
@@ -126,7 +126,7 @@ export default function ProductsServicesPage() {
       {/* ── 1ST INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#ffffff", padding: "2rem 5rem" }}
+        style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
       >
         <div>
           <div className="two-col-grid">
@@ -255,7 +255,7 @@ export default function ProductsServicesPage() {
       {/* ── 2ND INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#FAFAF8", padding: "2rem 5rem" }}
+        style={{ background: "#efefef", padding: "2rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
@@ -384,7 +384,7 @@ export default function ProductsServicesPage() {
       {/* ── 3RD INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#ffffff", padding: "2rem 5rem" }}
+        style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid">
@@ -512,7 +512,7 @@ export default function ProductsServicesPage() {
       {/* ── 4TH INTRO BAND ── */}
       <section
         className="section-pad"
-        style={{ background: "#FAFAF8", padding: "2rem 5rem" }}
+        style={{ background: "#efefef", padding: "2rem 5rem" }}
       >
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>

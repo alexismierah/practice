@@ -362,7 +362,7 @@ export default function ProjectsPage() {
     <>
       <style>{CSS}</style>
 
-      <div className="rh-root bg-[#f7f4ef] text-[#1a1a18] min-h-screen">
+      <div className="rh-root bg-[#f7f7f7] text-[#1a1a18] min-h-screen">
 
         {/* Hero — 285px height */}
         <section className="relative overflow-hidden flex flex-col items-center justify-center pb-0" style={{ height: "285px" }}>

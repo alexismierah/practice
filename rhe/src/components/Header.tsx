@@ -56,8 +56,8 @@ export default function Header() {
           --sage: #8fa882;
           --forest: #2d4a27;
           --deep: #1a2e16;
-          --cream: #f7f5f0;
-          --warm-white: #fafaf7;
+          --cream: #efefef;
+          --warm-white: #f7f7f7;
           --text: #1c1e19;
           --text-muted: #6b7060;
           --text-faint: #a8ad9e;
@@ -72,7 +72,7 @@ export default function Header() {
           right: 0;
           z-index: 100;
           height: 70px;
-          background-color: var(--warm-white);
+          background-color: var(--cream);
           transition: background-color 0.35s, box-shadow 0.35s;
         }
 
@@ -403,7 +403,7 @@ export default function Header() {
           top: 80px;
           left: 0;
           right: 0;
-          background: var(--warm-white);
+          background: var(--cream);
           border-top: 1px solid var(--border);
           padding: 16px 28px 28px;
           flex-direction: column;

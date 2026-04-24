@@ -55,8 +55,8 @@ export default function Footer() {
           --sage: #8fa882;
           --forest: #2d4a27;
           --deep: #1a2e16;
-          --cream: #f7f5f0;
-          --warm-white: #fafaf7;
+          --cream: #efefef;
+          --warm-white: #f7f7f7;
           --text: #1c1e19;
           --text-muted: #6b7060;
           --text-faint: #a8ad9e;
@@ -255,9 +255,9 @@ export default function Footer() {
         .footer-nav-label {
           font-size: 13px;
           font-weight: 500;
-          letter-spacing: 0.28em;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
-          color: var(--sage);
+          color: var(--black);
           /* match the form's eyebrow + heading gap so first item aligns */
           margin-bottom: 14px;
         }
