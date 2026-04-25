@@ -31,17 +31,17 @@ const PRODUCTS: Product[] = [
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
-  fontWeight: 300,
-  color: "#4a5450",
+  fontWeight: 400,
+  color: "#6B7060",
   margin: 0,
   letterSpacing: "0.04em",
 };
 
 const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "14px",
+  fontSize: "10px",
   fontWeight: 300,
-  color: "#4a5450",
+  color: "#6B7060",
   lineHeight: 1.7,
   marginTop: "-10px",
   letterSpacing: "0.03em",
@@ -51,7 +51,7 @@ const detailText: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
   fontWeight: 500,
-  lineHeight: 1.55,
+  lineHeight: 1.72,
   letterSpacing: "0.03em",
   margin: 0,
 };
@@ -67,7 +67,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         className="group overflow-hidden "
         style={{
           width: "100%",
-          background: "#fafaf7",
+          background: "#f7f7f7",
           boxShadow: "0 0px 2px rgba(0,0,0,0.30)",
           transition: "box-shadow 0.25s ease, border-color 0.25s ease",
           borderRadius: "6px",
@@ -104,7 +104,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
           padding: "1.2rem 0.85rem 0",
           textAlign: "center",
           fontSize: "14px",
-          fontWeight: 300,
+          fontWeight: 500,
           fontFamily: "'DM Sans', sans-serif",
           color: "#000",
         }}
@@ -114,7 +114,7 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
             style={{
               fontSize: "12px",
               marginTop: "-1px",
-              color: "#4a5450",
+              color: "#6B7060",
             }}
           >
             {product.size}
@@ -260,7 +260,7 @@ export default function Page() {
         /* HERO */
         .tg-hero {
           width: 100%;
-          height: 285px;
+          height: 40vh;
           background-image: url('/turfgrass/turf6.webp');
           background-size: cover;
           background-position: center 80%;
@@ -280,19 +280,19 @@ export default function Page() {
           padding: 0 5rem;
         }
         .tg-hero-title {
-          font-size: 52px;
-          font-weight: 450;
-          line-height: 1.1;
-          color: #fafafa;
+          font-size: 50px;
+          font-weight: 300;
+          line-height: 1.12;
+          color: #fff;
           margin: 0;
           letter-spacing: 0.02em;
         }
         .tg-hero-subtitle {
           font-family: 'DM Sans', sans-serif;
-          font-size: 14px;
-          font-weight: 420;
-          color: #f8f8f8;
-          letter-spacing: 0.02em;
+          font-size: 11px;
+          font-weight: 500;
+          color: #fff;
+          letter-spacing: 0.22em;
           margin-top: -10px;
         }
 
@@ -307,14 +307,14 @@ export default function Page() {
           column-gap: 2rem;
         }
         .tg-about-img-col {
-          background: #fafaf7;
+          background: #f7f7f7;
           display: flex;
           align-items: center;
           justify-content: center;
           min-height: 600px;
         }
         .tg-about-text-col {
-          background: #fafaf7;
+          background: #f7f7f7;
           padding: 4.5rem 0 4.5rem 3.5rem;
           display: flex;
           flex-direction: column;
@@ -453,7 +453,7 @@ export default function Page() {
 
 
       {/* ── SECTION 2 — ABOUT THE PRODUCT ── */}
-      <section style={{ width: "100%", background: "#fafaf7" }}>
+      <section style={{ width: "100%", background: "#f7f7f7" }}>
         <div className="tg-about-grid">
 
           {/* IMAGE — order 1 on mobile (always on top) */}
@@ -483,11 +483,11 @@ export default function Page() {
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "12px",
-                fontWeight : 500,
-                letterSpacing: "0.32em",
+                fontSize: "10px",
+                fontWeight : 400,
+                letterSpacing: "0.30em",
                 textTransform: "uppercase",
-                color: "#000000",
+                color: "#8FA882",
                 margin: "0 0 0.5rem",
               }}
             >
@@ -497,8 +497,8 @@ export default function Page() {
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem)",
-                fontWeight: 400,
+                fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
+                fontWeight: 300,
                 lineHeight: 1.12,
                 color: "#000000",
                 margin: "0 0 1rem",
@@ -512,7 +512,7 @@ export default function Page() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 fontWeight: 300,
-                color: "#4a5450",
+                color: "#6B7060",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
@@ -524,7 +524,7 @@ export default function Page() {
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 fontWeight: 300,
-                color: "#4a5450",
+                color: "#6B7060",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
@@ -536,16 +536,16 @@ export default function Page() {
 
 
       {/* ── SECTION 3 — PRODUCTS CATALOG ── */}
-      <section style={{ width: "100%", background: "#fff" }}>
+      <section style={{ width: "100%", background: "#efefef" }}>
         <div className="tg-catalog-header">
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "14px",
-              fontWeight: 500,
-              letterSpacing: "0.32em",
+              fontSize: "10px",
+              fontWeight: 400,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#000000",
+              color: "#8FA882",
               marginTop: "50px",
             }}
           >
@@ -554,12 +554,12 @@ export default function Page() {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem)",
-              fontWeight: 500,
+              fontSize: "50px",
+              fontWeight: 400,
               color: "#000000",
-              lineHeight: 1.15,
+              lineHeight: 1.17,
               textTransform: "uppercase",
-              marginBottom: "-20px",
+              marginBottom: "-30px",
             }}
           >
             Featured Products
@@ -583,7 +583,7 @@ export default function Page() {
       {/* ── SECTION 4 — CHOOSE THE PERFECT PLANT ── */}
       <section
         className="tg-features-section"
-        style={{ width: "100%", background: "#fafaf7", padding: "88px 20px" }}
+        style={{ width: "100%", background: "#f7f7f7", padding: "88px 20px" }}
       >
         <div
           style={{
@@ -598,14 +598,14 @@ export default function Page() {
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
+              fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
               fontWeight: 300,
-              lineHeight: 1.2,
+              lineHeight: 1.17,
               margin: "0 0 2.5rem",
             }}
           >
             <span style={{ color: "#000000" }}>Choose the Perfect</span>{" "}
-            <span style={{ color: "#000000" }}>Greens</span>
+            <em style={{ color: "#2D4A27" }}>Greens</em>
             <br />
             <span style={{ color: "#000000", fontWeight: 300 }}>for Your Space</span>
           </h2>
@@ -664,7 +664,7 @@ export default function Page() {
                     height: "68px",
                     borderRadius: "50%",
                     border: "1px solid #4a5450",
-                    background: "#2d5040",
+                    background: "#2d4a27",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
