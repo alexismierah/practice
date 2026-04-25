@@ -516,7 +516,7 @@ export default function Home() {
           <div className="hw-inner">
             <div className="hw-header">
               <p className="section-eyebrow" style={{ justifyContent: "center" }}>From idea to reality</p>
-              <h2 className="section-headline">Our <em>process</em></h2>
+              <h2 className="section-headline">How We <em>Work</em></h2>
             </div>
             <div className="hw-steps">
               {steps.map((step, i) => (
@@ -547,7 +547,7 @@ export default function Home() {
               <button onClick={scrollToContact} className={`cta-btn-primary${ctaPulse ? " pulse" : ""}`}>
                 Get in Touch
               </button>
-              <a href="/products-services" className="cta-btn-ghost">Browse Products</a>
+              <a href="/products-services" className="cta-btn-ghost">Explore Greens</a>
             </div>
           </div>
         </section>
