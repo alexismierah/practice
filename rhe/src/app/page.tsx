@@ -23,9 +23,8 @@ export default function Home() {
     {
       num: "01",
       name: "Artificial Grass",
-      desc: "Low-maintenance turf for lobbies and sports areas.",
+      desc: "Low-maintenance turf for lobbies, yards, and sports areas.",
       img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
-      tag: "Turf & Lawn",
       href: "/products-services/grass",
     },
     {
@@ -33,7 +32,6 @@ export default function Home() {
       name: "Potted Plants & Trees",
       desc: "Curated planters for balconies, entrances, and lobbies.",
       img: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1719266906-live-majesty-palm-plant-w-grow-pot-xl-6679ee546c94b.jpg?crop=0.803xw:1.00xh;0.0994xw,0&resize=980:",
-      tag: "Indoor / Outdoor",
       href: "/products-services/potted-plants",
     },
     {
@@ -41,7 +39,6 @@ export default function Home() {
       name: "Wall Greens",
       desc: "Vertical gardens for homes, restaurants, and offices.",
       img: "/services-overview/p19.jpg",
-      tag: "Vertical Gardens",
       href: "/products-services/wall-greens",
     },
     {
@@ -49,7 +46,6 @@ export default function Home() {
       name: "Planter Boxes",
       desc: "Elegant greenery for offices and conference rooms.",
       img: "/services-overview/p1.jpg",
-      tag: "Custom Boxes",
       href: "/products-services/planter-box",
     },
   ];
@@ -85,57 +81,37 @@ export default function Home() {
     },
   ];
 
-  const reasons = [
-    {
-      title: "Premium Quality",
-      desc: "UV-resistant, lifelike materials that stay vibrant for years without fading.",
-      stat: "5yr",
-      statLabel: "Warranty",
-    },
-    {
-      title: "Zero Maintenance",
-      desc: "No watering, pruning, or upkeep. Beauty without the burden.",
-      stat: "0hrs",
-      statLabel: "Weekly Care",
-    },
-    {
-      title: "Custom Installations",
-      desc: "Designed to fit any space — from cozy home corners to expansive lobbies.",
-      stat: "100%",
-      statLabel: "Custom Fit",
-    },
-    {
-      title: "Client-First Care",
-      desc: "Full support from consultation through aftercare. We're with you every step.",
-      stat: "500+",
-      statLabel: "Happy Clients",
-    },
-  ];
-
   const getPos = (e: MouseEvent | TouchEvent, el: HTMLElement) => {
     const rect = el.getBoundingClientRect();
-    const clientX = (e as TouchEvent).touches ? (e as TouchEvent).touches[0].clientX : (e as MouseEvent).clientX;
+    const clientX = (e as TouchEvent).touches
+      ? (e as TouchEvent).touches[0].clientX
+      : (e as MouseEvent).clientX;
     const pct = ((clientX - rect.left) / rect.width) * 100;
     return Math.min(Math.max(pct, 2), 98);
   };
 
-  const onSliderMouseDown = useCallback((e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    isDragging.current = true;
-    const el = sliderRef.current;
-    const onMove = (ev: MouseEvent | TouchEvent) => { if (isDragging.current) setSliderPos(getPos(ev, el!)); };
-    const onUp = () => {
-      isDragging.current = false;
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
-      window.removeEventListener("touchmove", onMove);
-      window.removeEventListener("touchend", onUp);
-    };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
-    window.addEventListener("touchmove", onMove, { passive: false });
-    window.addEventListener("touchend", onUp);
-  }, []);
+  const onSliderMouseDown = useCallback(
+    (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      isDragging.current = true;
+      const el = sliderRef.current;
+      const onMove = (ev: MouseEvent | TouchEvent) => {
+        if (isDragging.current) setSliderPos(getPos(ev, el!));
+      };
+      const onUp = () => {
+        isDragging.current = false;
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseup", onUp);
+        window.removeEventListener("touchmove", onMove);
+        window.removeEventListener("touchend", onUp);
+      };
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseup", onUp);
+      window.addEventListener("touchmove", onMove, { passive: false });
+      window.addEventListener("touchend", onUp);
+    },
+    []
+  );
 
   return (
     <main>
@@ -159,7 +135,6 @@ export default function Home() {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         html, body { overflow-x: hidden; }
-
         .rh, .rh * { font-family: var(--font); }
 
         /* ── HERO ── */
@@ -214,33 +189,27 @@ export default function Home() {
         }
 
         /* ── ABOUT ── */
-        .about-wrap { background: var(--warm-white); padding: 72px 60px; }
-        .about-inner { max-width: 900px; margin: 0 auto; }
+        .about-wrap { background: var(--warm-white); padding: 80px 72px; }
+        .about-inner { max-width: 920px; margin: 0 auto; text-align: center; }
         .about-tag {
           display: inline-flex; align-items: center; gap: 10px;
           font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-          color: var(--sage); margin-bottom: 20px; font-weight: 400;
+          color: var(--sage); margin-bottom: 22px; font-weight: 400;
         }
         .about-quote {
-          font-size: clamp(1rem, 3vw, 1.8rem);
-          font-weight: 300; line-height: 1.7;
-          color: var(--text-muted); max-width: 900px;
-          text-align: center;
+          font-size: clamp(1.05rem, 2.8vw, 1.75rem);
+          font-weight: 300; line-height: 1.72; color: var(--text-muted);
           font-style: italic;
         }
-        .about-quote em { font-style: normal; font-weight: 300; color: var(--text); }
+        .about-quote em { font-style: normal; color: var(--text); font-weight: 300; }
         .about-foot {
-          margin-top: 36px; padding-top: 24px;
-          display: flex; align-items: center; justify-content: space-between;
+          margin-top: 36px; padding-top: 0;
+          display: flex; align-items: center; justify-content: center;
         }
-        .about-foot-left { display: flex; flex-direction: column; gap: 4px; }
-        .about-foot-name { font-size: 14px; font-weight: 200; color: var(--text); letter-spacing: -0.01em; }
-        .about-foot-sub { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-faint); }
         .learn-more-link {
           font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
           color: var(--text-muted); text-decoration: none; font-weight: 400;
           display: flex; align-items: center; gap: 8px; transition: color 0.3s;
-          white-space: nowrap;
         }
         .learn-more-link::after { content: "→"; transition: transform 0.3s; }
         .learn-more-link:hover { color: var(--forest); }
@@ -278,19 +247,31 @@ export default function Home() {
         .rh-s-card-img {
           position: absolute; inset: 0; width: 100%; height: 100%;
           object-fit: cover; display: block;
-          transition: transform 0.7s cubic-bezier(0.22,1,0.36,1);
-          filter: saturate(0.82);
+          transition: transform 0.7s cubic-bezier(0.22,1,0.36,1); filter: saturate(0.8);
         }
-        .rh-s-card:hover .rh-s-card-img { transform: scale(1.05); filter: saturate(1); }
+        .rh-s-card:hover .rh-s-card-img { transform: scale(1.06); filter: saturate(1); }
         .rh-s-card::after {
           content: ""; position: absolute; inset: 0;
-          background: linear-gradient(to top, rgba(8,16,6,0.84) 0%, rgba(8,16,6,0.08) 55%, transparent 75%);
+          background: linear-gradient(to top, rgba(8,16,6,0.92) 0%, rgba(8,16,6,0.3) 40%, rgba(8,16,6,0.15) 65%, transparent 85%);
           z-index: 1; border-radius: inherit;
         }
+        .rh-s-card-arrow {
+          position: absolute; top: 18px; right: 18px; z-index: 3;
+          width: 30px; height: 30px; border-radius: 50%;
+          background: rgba(255,255,255,0.08); border: 0.5px solid rgba(255,255,255,0.14);
+          display: flex; align-items: center; justify-content: center;
+          color: rgba(255,255,255,0.65); font-size: 13px;
+          opacity: 0; transform: translateY(5px);
+          transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
+        }
+        .rh-s-card:hover .rh-s-card-arrow { opacity: 1; transform: translateY(0); }
         .rh-s-card-body { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 28px 22px 22px; }
-        .rh-s-card-num { font-size: 9px; color: var(--gold); letter-spacing: 0.3em; font-weight: 400; margin-bottom: 8px; display: block; opacity: 0.75; }
+        .rh-s-card-num {
+          font-size: 11px; color: var(--warm-white); letter-spacing: 0.22em; font-weight: 500;
+          margin-bottom: 8px; display: block; opacity: 1;
+        }
         .rh-s-card-name { font-size: 15px; font-weight: 400; color: #fff; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 7px; }
-        .rh-s-card-desc { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.44); line-height: 1.6; }
+        .rh-s-card-desc { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.52); line-height: 1.65; }
 
         /* ── BEFORE / AFTER ── */
         .ba-section { background: var(--warm-white); padding: 100px 72px; }
@@ -331,11 +312,12 @@ export default function Home() {
         /* ── HOW WE WORK ── */
         .hw-section { background: var(--cream); padding: 100px 72px; }
         .hw-inner { max-width: 1000px; margin: 0 auto; }
-        .hw-header { margin-bottom: 60px; }
+        .hw-header { margin-bottom: 60px; text-align: center; }
         .hw-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; position: relative; }
         .hw-steps::before {
           content: ""; position: absolute; top: 36px; left: 15%; right: 15%;
-          height: 0.5px; background: linear-gradient(to right, transparent, var(--border), var(--border), transparent);
+          height: 0.5px;
+          background: linear-gradient(to right, transparent, var(--border), var(--border), transparent);
           z-index: 0;
         }
         .hw-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 24px; }
@@ -351,79 +333,48 @@ export default function Home() {
         .hw-step-label { font-size: 16px; font-weight: 400; color: var(--text); letter-spacing: -0.01em; margin-bottom: 12px; line-height: 1.1; }
         .hw-step-sub { font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.8; max-width: 210px; margin: 0 auto; }
 
-        /* ── WHY CHOOSE US ── */
-        .why-section { background: var(--warm-white); padding: 100px 72px; }
-        .why-inner { max-width: 1100px; margin: 0 auto; }
-        .why-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 64px; }
-        .why-eyebrow {
-          font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-          color: var(--sage); margin-bottom: 12px; font-weight: 400;
-          display: flex; align-items: center; gap: 14px;
-        }
-        .why-headline {
-          font-family: "DM Sans", sans-serif;
-          font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-          font-weight: 300; line-height: 1.0; letter-spacing: -0.015em; color: var(--text);
-        }
-        .why-headline em { font-style: italic; font-weight: 200; color: var(--forest); }
-        .why-header-sub { font-size: 13px; font-weight: 300; color: var(--text-faint); line-height: 1.7; max-width: 240px; text-align: right; }
-        .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 0.5px solid var(--border); }
-        .why-card { padding: 40px 32px 40px 0; border-right: 0.5px solid var(--border); display: flex; flex-direction: column; }
-        .why-card:first-child { padding-left: 0; }
-        .why-card:last-child { border-right: none; padding-right: 0; padding-left: 32px; }
-        .why-card:not(:first-child):not(:last-child) { padding-left: 32px; }
-        .why-card-stat {
-          font-family: "DM Sans", sans-serif;
-          font-size: 44px; font-weight: 300; color: var(--forest);
-          line-height: 1; letter-spacing: -0.03em; margin-bottom: 4px;
-        }
-        .why-card-stat-label { font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 28px; }
-        .why-card-title { font-size: 13px; font-weight: 400; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
-        .why-card-desc { font-size: 12px; font-weight: 300; color: var(--text-muted); line-height: 1.75; }
-
         /* ── CTA ── */
-        .cta-section { background: var(--warm-white); padding: 72px; position: relative; overflow: hidden; }
+        .cta-section { background: var(--warm-white); padding: 110px 72px; position: relative; overflow: hidden; }
         .cta-bg-text {
           position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-          font-family: "DM Sans", sans-serif;
-          font-size: 22vw; font-weight: 200; color: rgba(45,74,39,0.03);
-          white-space: nowrap; pointer-events: none; user-select: none; line-height: 1;
+          font-family: "DM Sans", sans-serif; font-size: 22vw; font-weight: 200;
+          color: rgba(45,74,39,0.03); white-space: nowrap; pointer-events: none;
+          user-select: none; line-height: 1;
         }
         .cta-inner {
-          max-width: 620px; margin: 0 auto; text-align: center;
-          display: flex; flex-direction: column; align-items: center; gap: 24px;
+          max-width: 640px; margin: 0 auto; text-align: center;
+          display: flex; flex-direction: column; align-items: center; gap: 28px;
           position: relative; z-index: 1;
         }
         .cta-eyebrow {
-          display: inline-flex; align-items: center; gap: 14px;
+          display: inline-flex; align-items: center; gap: 16px;
           font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
           color: var(--sage); font-weight: 400;
         }
-
         .cta-headline {
           font-family: "DM Sans", sans-serif;
-          font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-          font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; color: var(--text);
+          font-size: clamp(2rem, 4vw, 3.2rem);
+          font-weight: 300; line-height: 1.12; letter-spacing: -0.022em; color: var(--text);
         }
         .cta-headline em { font-style: italic; font-weight: 200; color: var(--forest); }
-        .cta-sub { font-size: 13px; font-weight: 300; color: var(--text-muted); line-height: 1.8; max-width: 380px; }
-        .cta-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 4px; }
+        .cta-sub { font-size: 14px; font-weight: 300; color: var(--text-muted); line-height: 1.88; max-width: 400px; }
+        .cta-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
         .cta-btn-primary {
-          display: inline-flex; align-items: center; gap: 10px; padding: 12px 30px;
+          display: inline-flex; align-items: center; gap: 10px; padding: 14px 36px;
           background: var(--forest); border: none; color: #fff;
-          font-size: 10px; font-weight: 400; letter-spacing: 0.22em; text-transform: uppercase;
+          font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase;
           text-decoration: none; border-radius: 9999px; transition: all 0.35s; cursor: pointer;
         }
-        .cta-btn-primary:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(45,74,39,0.22); }
+        .cta-btn-primary:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 12px 36px rgba(45,74,39,0.22); }
         .cta-btn-primary:active { transform: translateY(0) scale(0.96); }
         @keyframes ctaPulse {
-          0%   { transform: translateY(-2px) scale(0.96); box-shadow: 0 0 0 0 rgba(45,74,39,0.45); }
+          0%   { transform: translateY(-2px) scale(0.96); box-shadow: 0 0 0 0 rgba(45,74,39,0.4); }
           45%  { transform: translateY(-3px) scale(1.03); box-shadow: 0 0 0 14px rgba(45,74,39,0); }
-          100% { transform: translateY(-2px) scale(1);    box-shadow: 0 12px 32px rgba(45,74,39,0.22); }
+          100% { transform: translateY(-2px) scale(1); box-shadow: 0 12px 36px rgba(45,74,39,0.22); }
         }
         .cta-btn-primary.pulse { animation: ctaPulse 0.55s cubic-bezier(0.22,1,0.36,1) forwards; }
         .cta-btn-ghost {
-          display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px;
+          display: inline-flex; align-items: center; gap: 10px; padding: 14px 30px;
           background: transparent; border: 0.5px solid rgba(45,74,39,0.18);
           color: var(--text-muted); font-size: 10px; font-weight: 400;
           letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none;
@@ -434,34 +385,31 @@ export default function Home() {
         /* ── RESPONSIVE ── */
         @media (max-width: 1100px) {
           .rh-s-grid { grid-template-columns: repeat(2, 1fr); }
-          .why-grid { grid-template-columns: repeat(2, 1fr); }
-          .why-card { border-bottom: 0.5px solid var(--border); }
-          .why-card:nth-child(2) { border-right: none; padding-right: 0; }
-          .why-card:nth-child(3) { padding-left: 0; border-right: 0.5px solid var(--border); padding-right: 32px; }
-          .why-card:last-child { border-right: none; border-bottom: none; padding-left: 32px; padding-right: 0; }
-          .why-card:nth-child(3), .why-card:nth-child(4) { border-bottom: none; }
+          .wa-grid { grid-template-columns: 1fr; }
+          .wa-top { grid-template-columns: 1fr; gap: 24px; }
+          .features-strip { flex-wrap: wrap; }
+          .features-strip-item { flex: 1 1 calc(50% - 1px); min-width: 0; border-bottom: 0.5px solid var(--border); }
         }
         @media (max-width: 900px) {
-          .hero-body { padding: 0 32px 56px; }
+          .hero-body { padding: 0 32px 60px; }
           .hero-grid { grid-template-columns: 1fr; gap: 28px; }
           .hero-right { align-items: flex-start; }
-          .hero-sub { text-align: left; }
+          .hero-sub { text-align: left; max-width: 100%; }
           .hero-actions { align-items: flex-start; flex-direction: row; flex-wrap: wrap; }
-          .about-wrap, .ba-section, .rh-services, .hw-section, .why-section, .cta-section { padding-left: 32px; padding-right: 32px; }
+          .about-wrap, .ba-section, .rh-services, .hw-section,
+          .why-section, .cta-section, .wa-section { padding-left: 32px; padding-right: 32px; }
+          .features-strip { padding: 0 32px; }
           .hw-steps { grid-template-columns: 1fr; gap: 32px; }
           .hw-steps::before { display: none; }
-          .why-header { flex-direction: column; align-items: flex-start; gap: 12px; }
-          .why-header-sub { text-align: left; max-width: 100%; }
+          .wa-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
-          .hero-title { font-size: 2.8rem; }
+          .hero-title { font-size: 2.9rem; }
           .rh-s-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-          .about-foot { flex-direction: column; gap: 16px; align-items: flex-start; }
           .rh-s-header { flex-direction: column; align-items: flex-start; gap: 14px; }
-          .why-grid { grid-template-columns: 1fr; }
-          .why-card { padding: 28px 0 !important; border-right: none !important; border-bottom: 0.5px solid var(--border); }
-          .why-card:last-child { border-bottom: none; }
-          .why-card-stat { font-size: 38px; }
+          .features-strip { flex-direction: column; }
+          .features-strip-item { border-right: none; padding-left: 0; padding-right: 0; }
+          .wa-grid { grid-template-columns: 1fr; }
         }
       `}</style>
 
@@ -477,12 +425,12 @@ export default function Home() {
             <p className="hero-eyebrow">Rich Haven Artificial Garden</p>
             <div className="hero-grid">
               <h1 className="hero-title">
-                Bring <em>Nature</em><br />to Your Space
+                Bring Nature <br />to Your Space
               </h1>
               <div className="hero-right">
                 <p className="hero-sub">Greenery that looks real, lasts forever, and needs zero maintenance.</p>
                 <div className="hero-actions">
-                  <a href="#footer" className="btn-ghost-hero">Explore Greens</a>
+                  <a href="/products-services" className="btn-ghost-hero">Explore Greens</a>
                 </div>
               </div>
             </div>
@@ -494,14 +442,12 @@ export default function Home() {
           <div className="about-inner">
             <p className="about-tag">About Rich Haven</p>
             <p className="about-quote">
-              We bring <em>nature-inspired beauty</em> to every space — without the maintenance. Thoughtfully designed <em>greenery</em> for homes, offices, and commercial spaces that stays <em>fresh and vibrant</em> all year round.
+              We believe beautiful spaces shouldn't come with a <em>maintenance bill</em>.
+              Our artificial gardens are crafted to look indistinguishable from the real thing —
+              so your space stays <em>lush and vibrant</em> every single day, without any effort on your part.
             </p>
             <div className="about-foot">
-              <div className="about-foot-left">
-                {/*<span className="about-foot-name">Rich Haven Artificial Garden</span>
-                <span className="about-foot-sub">Est. 2014</span>*/}
-              </div>
-              <a href="/about" className="learn-more-link">Learn more</a>
+              <a href="/about" className="learn-more-link">Our story</a>
             </div>
           </div>
         </div>
@@ -513,12 +459,13 @@ export default function Home() {
               <p className="section-eyebrow">What we offer</p>
               <h2 className="section-headline">Our <em>Green Solutions</em></h2>
             </div>
-            <a href="/products-services" className="view-all-link">View all services</a>
+            <a href="/products-services" className="view-all-link">View all</a>
           </div>
           <div className="rh-s-grid">
             {services.map((s, i) => (
               <a key={i} href={s.href} className="rh-s-card">
                 <img className="rh-s-card-img" src={s.img} alt={s.name} />
+                <span className="rh-s-card-arrow">↗</span>
                 <div className="rh-s-card-body">
                   <span className="rh-s-card-num">{s.num}</span>
                   <h3 className="rh-s-card-name">{s.name}</h3>
@@ -533,7 +480,7 @@ export default function Home() {
         <section className="ba-section">
           <div className="ba-inner">
             <div className="ba-header">
-              <p className="section-eyebrow">See the difference</p>
+              <p className="section-eyebrow">See the transformation</p>
               <h2 className="section-headline">Before &amp; <em>After</em></h2>
             </div>
             <div
@@ -547,7 +494,12 @@ export default function Home() {
                 <img src="/beforeafter/before2.jpg" alt="Before" />
               </div>
               <div className="ba-divider" style={{ left: `${sliderPos}%` }} />
-              <div className="ba-handle" style={{ left: `${sliderPos}%` }} onMouseDown={onSliderMouseDown} onTouchStart={onSliderMouseDown}>
+              <div
+                className="ba-handle"
+                style={{ left: `${sliderPos}%` }}
+                onMouseDown={onSliderMouseDown}
+                onTouchStart={onSliderMouseDown}
+              >
                 <div className="ba-handle-arrows">
                   <div className="ba-arrow ba-arrow-left" />
                   <div className="ba-arrow ba-arrow-right" />
@@ -563,8 +515,8 @@ export default function Home() {
         <section className="hw-section">
           <div className="hw-inner">
             <div className="hw-header">
-              <p className="section-eyebrow" style={{ justifyContent: "flex-start" }}>Our process</p>
-              <h2 className="section-headline">How we <em>Work</em></h2>
+              <p className="section-eyebrow" style={{ justifyContent: "center" }}>From idea to reality</p>
+              <h2 className="section-headline">Our <em>process</em></h2>
             </div>
             <div className="hw-steps">
               {steps.map((step, i) => (
@@ -579,43 +531,23 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── WHY CHOOSE US ── */}
-        {/*<section className="why-section">
-          <div className="why-inner">
-            <div className="why-header">
-              <div>
-                <p className="why-eyebrow">Why us</p>
-                <h2 className="why-headline">Why <em>Choose Us</em></h2>
-              </div>
-              <p className="why-header-sub">Six years of crafting spaces that stay beautiful — with zero upkeep.</p>
-            </div>
-            <div className="why-grid">
-              {reasons.map((r, i) => (
-                <div key={i} className="why-card">
-                  <div className="why-card-stat">{r.stat}</div>
-                  <div className="why-card-stat-label">{r.statLabel}</div>
-                  <p className="why-card-title">{r.title}</p>
-                  <p className="why-card-desc">{r.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>*/}
-
         {/* ── CTA ── */}
         <section className="cta-section">
           <div className="cta-bg-text">Haven</div>
           <div className="cta-inner">
-            <p className="cta-eyebrow">Transform Your Space</p>
+            <p className="cta-eyebrow">Ready to transform?</p>
             <h2 className="cta-headline">
-              Let's bring <em>greenery</em><br />to your space
+              Your space deserves<br />to be <em>always green</em>
             </h2>
             <p className="cta-sub">
-              Whether it's a cozy home corner or a full commercial lobby — we'll design, source, and install the perfect greenery for you.
+              Tell us about your space and we'll design the perfect greenery solution —
+              from a single planter to a full garden installation.
             </p>
             <div className="cta-actions">
-              <button onClick={scrollToContact} className={`cta-btn-primary${ctaPulse ? " pulse" : ""}`}>Get in Touch</button>
-              <a href="/products-services" className="cta-btn-ghost">View Our Work</a>
+              <button onClick={scrollToContact} className={`cta-btn-primary${ctaPulse ? " pulse" : ""}`}>
+                Get in Touch
+              </button>
+              <a href="/products-services" className="cta-btn-ghost">Browse Products</a>
             </div>
           </div>
         </section>
