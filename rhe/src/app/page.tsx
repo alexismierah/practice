@@ -198,7 +198,7 @@ export default function Home() {
 
         .hero-brand {
           font-family: var(--sans);
-          font-size: 9px;
+          font-size: 10px;
           letter-spacing: 0.45em;
           text-transform: uppercase;
           color: var(--sage);
@@ -412,7 +412,7 @@ export default function Home() {
         }
         .label-tag {
           font-family: var(--sans);
-          font-size: 11px;
+          font-size: 10px;
           letter-spacing: 0.38em;
           text-transform: uppercase;
           color: var(--fern);
@@ -484,7 +484,7 @@ export default function Home() {
         }
         .section-label {
           font-family: var(--sans);
-          font-size: 9px;
+          font-size: 10px;
           letter-spacing: 0.38em;
           text-transform: uppercase;
           color: var(--sage);
@@ -740,7 +740,7 @@ export default function Home() {
           background: var(--gray-md);
           padding: 100px 72px;
         }
-        .hw-header { margin-bottom: 40px; }
+        .hw-header { margin-bottom: 16px; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .hw-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
