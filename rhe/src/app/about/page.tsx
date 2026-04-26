@@ -42,11 +42,26 @@ export default function AboutPage() {
 
 
         @media (max-width: 768px) {
-          .intro { grid-template-columns: 1fr; gap: 48px; padding: 64px 28px; }
-          .pillars-grid { grid-template-columns: 1fr; }
-          .pillars-wrap { padding: 64px 28px; }
-          .hero-content { padding: 0 28px 48px; }
-          .closing { padding: 80px 28px; }
+          .intro {
+            grid-template-columns: 1fr;
+            gap: 32px;
+            padding: 135px 24px 56px;
+          }
+          .section-label { font-size: 10px; letter-spacing: 0.38em; color: var(--mg); margin-bottom: 14px; }
+          .intro-heading { font-size: clamp(26px, 7vw, 34px); }
+          .intro-body { font-size: 14px; line-height: 1.85; }
+          .intro-divider { margin: 20px 0; }
+          .intro-right { flex-direction: row; gap: 10px; }
+          .intro-stat { padding: 20px 18px; flex: 1; border-radius: 10px; }
+          .intro-stat-num { font-size: 26px; margin-bottom: 6px; }
+          .intro-stat-label { font-size: 11px; line-height: 1.5; }
+          .pillars-wrap { padding: 0 24px 60px; }
+          .pillars-grid { grid-template-columns: 1fr; gap: 2px; }
+          .pillar-card { padding: 28px 24px; }
+          .pillar-name { font-size: 20px; }
+          .pillar-sub { font-size: 12px; margin-bottom: 14px; }
+          .pillar-body { font-size: 13px; line-height: 1.8; }
+          .pillar-icon { width: 38px; height: 38px; margin-bottom: 18px; }
         }
       `}</style>
 
