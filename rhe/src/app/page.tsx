@@ -843,13 +843,7 @@ export default function Home() {
           color: var(--sage);
           font-weight: 400;
         }
-        .cta-eyebrow::before, .cta-eyebrow::after {
-          content: "";
-          display: block;
-          width: 28px;
-          height: 1px;
-          background: var(--sage);
-        }
+        .cta-eyebrow::before, .cta-eyebrow::after { display: none; }
         .cta-headline {
           font-family: var(--serif);
           font-size: clamp(1.8rem, 3.5vw, 2.8rem);
@@ -1081,7 +1075,7 @@ export default function Home() {
               >
                 Get in Touch
               </button>
-              <a href="/products-services" className="cta-btn-ghost">View Our Work</a>
+              <a href="/products-services" className="cta-btn-ghost">Products & Services</a>
             </div>
           </div>
         </section>
