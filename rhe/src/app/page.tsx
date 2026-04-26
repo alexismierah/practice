@@ -971,7 +971,7 @@ export default function Home() {
               The Garden<br />That Never<br /> Fades
             </h1>
             <p className="about-body">
-              Greenery made to look natural, stay flawless, and bring lasting beauty. No watering, no upkeep.
+              Greenery made to look natural, stay flawless, and bring lasting beauty. No maintenance needed.
             </p>
           </div>
         </section>

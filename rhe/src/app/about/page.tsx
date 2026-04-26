@@ -2,221 +2,110 @@ export default function AboutPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
 
-        *, *::before, *::after {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --deep-green: #1a2e1e;
-          --mid-green: #2d4a32;
-          --sage: #7a9e7e;
-          --warm-white: #faf8f4;
-          --warm-cream: #f3f0e9;
-          --text-muted: #6b7c6d;
+          --dg: #1a2e1e; --mg: #2d4a32; --sage: #7a9e7e; --sage-light: #a8c5ab;
+          --cream: #f7f7f7; --cream2: #eeeeee; --cream3: #e5e5e5; --muted: #6b7c6d;
         }
 
-        body {
-          background-color: var(--warm-white);
-          color: var(--deep-green);
-          font-family: 'DM Sans', sans-serif;
-          overflow-x: hidden;
-        }
+        body { background: var(--cream); color: var(--dg); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
 
-        .about-page {
-          min-height: 100vh;
-        }
 
-        /* ── Hero ── */
-        .hero {
-          padding: 100px 24px 64px;
-          text-align: center;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          position: relative;
-        }
+        /* INTRO */
+        .intro { padding: 140px 56px 96px; background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; }
+        .intro-left { display: flex; flex-direction: column; }
+        .section-label { font-size: 10px; letter-spacing: .36em; text-transform: uppercase; color: var(--sage); margin-bottom: 20px; }
+        .intro-heading { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: clamp(32px, 4vw, 46px); line-height: 1.15; color: var(--dg); letter-spacing: -.5px; }
+        .intro-heading em { font-style: italic; color: var(--mg); }
+        .intro-divider { width: 40px; height: 1px; background: var(--sage); margin: 32px 0; opacity: 0.5; }
+        .intro-body { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--muted); }
+        .intro-right { display: flex; flex-direction: column; gap: 28px; }
+        .intro-stat { padding: 28px 32px; background: var(--cream2); border-radius: 12px; }
+        .intro-stat-num { font-family: 'DM Sans', sans-serif; font-weight: 200; font-size: 40px; color: var(--mg); letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+        .intro-stat-label { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6; }
 
-        .hero::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 48px;
-          height: 1px;
-          background-color: var(--sage);
-          opacity: 0.6;
-        }
+        /* PILLARS */
+        .pillars-wrap { background: var(--cream); padding: 0 56px 96px; }
+        .pillars-inner { max-width: 1000px; margin: 0 auto; }
+        .pillars-top { margin-bottom: 56px; }
+        .pillars-heading { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: clamp(28px, 3.5vw, 38px); color: var(--dg); line-height: 1.1; letter-spacing: -.5px; margin-top: 12px; }
+        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+        .pillar-card { background: #ffffff; padding: 32px 40px; display: flex; flex-direction: column; border-radius: 2px; }
+        .pillar-num { display: none; }
+        .pillar-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--cream2); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .pillar-name { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 24px; color: var(--dg); line-height: 1.15; margin-bottom: 8px; letter-spacing: -.3px; }
+        .pillar-sub { font-size: 13px; font-style: italic; font-weight: 300; color: var(--sage); margin-bottom: 20px; }
+        .pillar-body { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--muted); }
 
-        .eyebrow {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 400;
-          font-size: 11px;
-          letter-spacing: 0.35em;
-          text-transform: uppercase;
-          color: var(--sage);
-          margin-bottom: 20px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
 
-        .eyebrow::before,
-        .eyebrow::after {
-          content: '';
-          display: block;
-          width: 24px;
-          height: 1px;
-          background: var(--sage);
-          opacity: 0.5;
-        }
-
-        .hero-title {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
-          font-size: clamp(40px, 6vw, 50px);
-          line-height: 1.05;
-          color: var(--deep-green);
-          margin-bottom: 22px;
-          letter-spacing: -0.5px;
-          margin-top: 50px;
-        }
-
-        .hero-title em {
-          font-style: italic;
-          color: var(--mid-green);
-        }
-
-        .hero-desc {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
-          font-size: 16px;
-          line-height: 1.85;
-          color: var(--text-muted);
-          max-width: 600px;
-        }
-
-        /* ── Pillars section ── */
-        .pillars {
-          max-width: 960px;
-          margin: 0 auto;
-          padding: 32px 24px 96px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 0;
-        }
-
-        .pillar-item {
-          padding: 36px 0;
-          width: 100%;
-          max-width: 680px;
-          display: grid;
-          grid-template-columns: 160px 1fr;
-          gap: 0 40px;
-          align-items: start;
-        }
-
-        .pillar-item + .pillar-item {
-          border-top: 1px solid var(--warm-cream);
-        }
-
-        .pillar-left {
-          padding-top: 3px;
-        }
-
-        .pillar-number {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
-          font-size: 11px;
-          letter-spacing: 0.2em;
-          color: var(--sage);
-          text-transform: uppercase;
-          margin-bottom: 6px;
-        }
-
-        .pillar-title {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 400;
-          font-size: clamp(18px, 2.5vw, 22px);
-          line-height: 1.2;
-          color: var(--deep-green);
-        }
-
-        .pillar-right {}
-
-        .pillar-subtitle {
-          font-family: 'DM Sans', sans-serif;
-          font-style: italic;
-          font-weight: 300;
-          font-size: 15px;
-          color: var(--deep-green);
-          margin-bottom: 10px;
-          opacity: 0.75;
-        }
-
-        .pillar-body {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 300;
-          font-size: 15.5px;
-          line-height: 1.8;
-          color: var(--text-muted);
-        }
-
-        /* ── Responsive ── */
-        @media (max-width: 600px) {
-          .pillar-item {
-            grid-template-columns: 1fr;
-            gap: 12px 0;
-            max-width: 100%;
-          }
+        @media (max-width: 768px) {
+          .intro { grid-template-columns: 1fr; gap: 48px; padding: 64px 28px; }
+          .pillars-grid { grid-template-columns: 1fr; }
+          .pillars-wrap { padding: 64px 28px; }
+          .hero-content { padding: 0 28px 48px; }
+          .closing { padding: 80px 28px; }
         }
       `}</style>
 
-      <div className="about-page">
-        {/* ── Hero ── */}
-        <section className="hero">
-          <h1 className="hero-title">
-            About <em>Rich Haven</em>
-          </h1>
-          <p className="hero-desc">
-            We bring nature-inspired beauty to every space — without the maintenance.
-            Thoughtfully designed greenery for homes, offices, and commercial spaces
-            that stays fresh and vibrant all year round.
-          </p>
-        </section>
-
-        {/* ── Pillars ── */}
-        <section className="pillars">
-          {[
-            {
-              number: "01",
-              title: "What we do",
-              subtitle: "High-quality artificial greenery for every kind of space.",
-              body: "Our collection covers potted plants, wall greens, hanging plants, and artificial turf — bringing the calm of nature indoors and out with none of the upkeep.",
-            },
-            {
-              number: "02",
-              title: "How we do it",
-              subtitle: "Realistic aesthetics. Built to last.",
-              body: "Our products are designed to look and feel like the real thing — because artificial shouldn't mean artificial-looking. Durable materials, careful detail, and color that holds for years, not months.",
-            },
-          ].map((item, i) => (
-            <div key={i} className="pillar-item">
-              <div className="pillar-left">
-                <h2 className="pillar-title">{item.title}</h2>
+      <div>
+        {/* Intro */}
+        <section style={{ background: "var(--cream)" }}>
+          <div className="intro">
+            <div className="intro-left">
+              <p className="section-label">Our story</p>
+              <h2 className="intro-heading">Rich Haven<br /><em>Artificial Garden</em></h2>
+              <div className="intro-divider" />
+              <p className="intro-body">
+                We bring nature-inspired beauty to every space — without the maintenance.
+                Thoughtfully designed greenery for homes, offices, and commercial spaces
+                that stays fresh and vibrant all year round. Because you shouldn't have
+                to choose between beauty and convenience.
+              </p>
+            </div>
+            <div className="intro-right">
+              <div className="intro-stat">
+                <div className="intro-stat-num">100%</div>
+                <p className="intro-stat-label">Maintenance-free greenery — no watering, pruning, or replacing needed.</p>
               </div>
-              <div className="pillar-right">
-                <p className="pillar-subtitle">{item.subtitle}</p>
-                <p className="pillar-body">{item.body}</p>
+              <div className="intro-stat">
+                <div className="intro-stat-num">Every<br/>Space</div>
+                <p className="intro-stat-label">From compact home corners to full commercial lobbies, we design for all environments.</p>
               </div>
             </div>
-          ))}
+          </div>
         </section>
+
+        {/* Pillars */}
+        <section className="pillars-wrap">
+          <div className="pillars-inner">
+<div className="pillars-grid">
+              {[
+                {
+                  num: "01", name: "What we do", sub: "Greenery for every kind of space.",
+                  body: "Our collection covers potted plants, wall greens, hanging plants, and artificial turf — bringing the calm of nature indoors and out with none of the upkeep.",
+                  icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C10 2 4 6 4 11a6 6 0 0012 0C16 6 10 2 10 2z" stroke="#7a9e7e" strokeWidth="1.2"/><line x1="10" y1="11" x2="10" y2="18" stroke="#7a9e7e" strokeWidth="1.2"/></svg>,
+                },
+                {
+                  num: "02", name: "How we do it", sub: "Realistic. Built to last.",
+                  body: "Our products are designed to look and feel like the real thing — durable materials, careful detail, and color that holds for years, not months. Artificial shouldn't mean artificial-looking.",
+                  icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#7a9e7e" strokeWidth="1.2"/><path d="M7 10l2 2 4-4" stroke="#7a9e7e" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+                },
+              ].map((p, i) => (
+                <div key={i} className="pillar-card">
+                  <p className="pillar-num">{p.num}</p>
+                  <div className="pillar-icon">{p.icon}</div>
+                  <h3 className="pillar-name">{p.name}</h3>
+                  <p className="pillar-sub">{p.sub}</p>
+                  <p className="pillar-body">{p.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
       </div>
     </>
   );
