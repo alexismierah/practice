@@ -168,10 +168,10 @@ export default function Header() {
 
         /* Matches .footer-logo-tagline */
         .hdr-logo-tagline {
-          font-size: 0.6rem;
+          font-size: 0.53rem;
           font-weight: 400;
           letter-spacing: 0.28em;
-          text-transform: capitalize;
+          text-transform: uppercase;
           color: var(--text-faint);
           margin-top: 2px;
         }

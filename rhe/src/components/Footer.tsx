@@ -534,7 +534,7 @@ export default function Footer() {
                 alt="Rich Haven logo"
                 width={62}
                 height={62}
-                style={{ objectFit: "contain", marginTop: "-36px", width: "auto" }}
+                style={{ objectFit: "contain", marginTop: "-36px", width: "auto", height: "62px" }}
               />
               <div className="footer-logo-text">
                 <span className="footer-logo-name">Rich Haven</span>
