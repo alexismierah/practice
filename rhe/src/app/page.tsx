@@ -974,7 +974,7 @@ export default function Home() {
           <div className="about-text-col">
             <p className="label-tag">Rich Haven</p>
             <h1 className="about-headline">
-              The Garden<br />That Never<br /><em>Fades</em>
+              The Garden<br />That Never<br /> Fades
             </h1>
             <p className="about-body">
               Greenery made to look natural, stay flawless, and bring lasting beauty. No watering, no upkeep.
