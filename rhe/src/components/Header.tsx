@@ -90,38 +90,17 @@ export default function Header() {
         .hdr-root.transparent .hdr-logo-name,
         .hdr-root.transparent .hdr-nav-link,
         .hdr-root.transparent .hdr-dropdown-trigger {
-          color: #ffffff;
+          color: var(--text);
         }
 
         .hdr-root.transparent .hdr-logo-tagline {
-          color: rgba(255,255,255,0.55);
+          color: var(--text-faint);
         }
 
         .hdr-root.transparent .hdr-nav-link:hover,
         .hdr-root.transparent .hdr-dropdown-trigger:hover,
         .hdr-root.transparent .hdr-dropdown-trigger.open {
-          color: rgba(255,255,255,0.75);
-        }
-
-        /* CTA pill — ghost style matching .btn-ghost-hero on homepage */
-        .hdr-root.transparent .hdr-cta-btn {
-          background: rgba(255,255,255,0.08);
-          border: 0.5px solid rgba(255,255,255,0.2);
-          color: rgba(255,255,255,0.85);
-        }
-
-        .hdr-root.transparent .hdr-cta-btn:hover {
-          background: rgba(255,255,255,0.15);
-          border-color: rgba(255,255,255,0.35);
-          color: #fff;
-        }
-
-        .hdr-root.transparent .hdr-burger span {
-          background: #ffffff;
-        }
-
-        .hdr-root.transparent .hdr-logo img {
-          filter: brightness(0) invert(1);
+          color: var(--forest);
         }
 
         /* ── Inner layout ── */
@@ -559,7 +538,7 @@ export default function Header() {
                     href="/products-services"
                     className={`hdr-dropdown-trigger${dropdownOpen ? " open" : ""}`}
                   >
-                    Green Solutions
+                    Products & Services
                     <svg viewBox="0 0 24 24">
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
