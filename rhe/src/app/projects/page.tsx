@@ -147,7 +147,7 @@ const CSS = `
   .rh-root { font-family: 'DM Sans', sans-serif; }
   .rh-serif { font-family: 'Cormorant Garamond', serif; }
 
-  /* ── UNIFIED GRID: hero text col + remaining cards all in one 12-col grid ── */
+  /* ── UNIFIED GRID ── */
   .rh-grid {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -157,7 +157,7 @@ const CSS = `
   /* Text hero cell */
   .rh-hero-cell {
     grid-column: span 4;
-    background: #fff;
+    background: #f7f7f7;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -166,14 +166,14 @@ const CSS = `
   }
 
   /* Cards */
-  .rh-card { position: relative; overflow: hidden; cursor: pointer; }
+  .rh-card { position: relative; overflow: hidden; cursor: pointer; border-radius: 6px; }
   .rh-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s; filter: brightness(0.88); }
   .rh-card:hover img { transform: scale(1.06); filter: brightness(0.55); }
 
   .rh-card-static { position: absolute; bottom: 0; left: 0; right: 0; padding: 32px 18px 14px; background: linear-gradient(to top, rgba(10,15,10,0.72) 0%, transparent 100%); pointer-events: none; transition: opacity 0.3s; }
   .rh-card:hover .rh-card-static { opacity: 0; }
 
-  .rh-card-overlay { position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(to top, rgba(15,20,15,0.9) 0%, rgba(15,20,15,0.1) 60%, transparent 100%); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
+  .rh-card-overlay { position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(to top, rgba(15,20,15,0.9) 0%, rgba(15,20,15,0.1) 60%, transparent 100%); opacity: 0; transition: opacity 0.35s; pointer-events: none; border-radius: 6px; }
   .rh-card:hover .rh-card-overlay { opacity: 1; pointer-events: auto; }
 
   .rh-card-arrow {
@@ -186,25 +186,47 @@ const CSS = `
   .rh-card:hover .rh-card-arrow { opacity: 1; transform: translate(0,0); }
 
   .rh-card-badge {
-    font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 300;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: #e8d5b0; padding: 4px 10px; align-self: flex-start;
-    border: 0.5px solid rgba(184,152,106,0.55);
-    background: rgba(184,152,106,0.2);
-    transition: color 0.2s, background 0.2s, border-color 0.2s; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 6px 14px;
+    align-self: flex-start;
+    border-radius: 9999px;
+    border: 0.5px solid rgba(255,255,255,0.35);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
+    cursor: pointer;
   }
-  .rh-card:hover .rh-card-badge:hover { color: #1a1a18; background: #e8d5b0; border-color: #e8d5b0; }
+  .rh-card:hover .rh-card-badge:hover {
+    color: #1a2e16;
+    background: #fff;
+    border-color: #fff;
+  }
 
-  .rh-category-badge { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 300; letter-spacing: 0.14em; text-transform: uppercase; color: #2d3d2d; padding: 4px 10px; background: #ede9e2; }
+  .rh-category-badge {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #2d3d2d;
+    padding: 5px 14px;
+    background: #ede9e2;
+    border-radius: 9999px;
+  }
 
   /* Modal */
   .rh-modal-backdrop { position: fixed; inset: 0; background: rgba(10,14,10,0.92); z-index: 999; display: flex; align-items: center; justify-content: center; animation: rh-fade 0.2s ease; }
   @keyframes rh-fade { from { opacity: 0; } to { opacity: 1; } }
 
-  .rh-modal-split { position: relative; width: min(92vw, 980px); height: min(82vh, 500px); display: flex; background: #fff; animation: rh-scale 0.25s ease; overflow: hidden; }
+  .rh-modal-split { position: relative; width: min(92vw, 980px); height: min(82vh, 500px); display: flex; background: #fff; animation: rh-scale 0.25s ease; overflow: hidden; border-radius: 6px; }
   @keyframes rh-scale { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
 
-  .rh-modal-left { position: relative; flex: 0 0 58%; background: #111; overflow: hidden; }
+  .rh-modal-left { position: relative; flex: 0 0 58%; background: #111; overflow: hidden; border-radius: 6px 0 0 6px; }
   .rh-modal-main-img { width: 100%; height: 100%; object-fit: cover; display: block; animation: rh-imgfade 0.22s ease; }
   @keyframes rh-imgfade { from { opacity: 0; } to { opacity: 1; } }
 
@@ -213,22 +235,33 @@ const CSS = `
   .rh-img-nav.prev { left: 12px; }
   .rh-img-nav.next { right: 12px; }
 
-  .rh-img-counter { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.42); padding: 4px 12px; z-index: 2; white-space: nowrap; }
+  .rh-img-counter { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.42); padding: 4px 12px; z-index: 2; white-space: nowrap; border-radius: 9999px; }
 
-  .rh-modal-right { flex: 1; display: flex; flex-direction: column; padding: 48px 28px 50px; position: relative; overflow-y: auto; }
+  .rh-modal-right { flex: 1; display: flex; flex-direction: column; padding: 48px 28px 50px; position: relative; overflow-y: auto; background: #fff; }
 
   .rh-modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.15s; z-index: 2; }
   .rh-modal-close:hover { opacity: 0.5; }
 
   .rh-detail-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid rgba(0,0,0,0.07); }
-  .rh-detail-label { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: #4a5450; flex: 0 0 80px; }
-  .rh-detail-value { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; color: #1a1a18; }
+  .rh-detail-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #a8ad9e;
+    flex: 0 0 80px;
+  }
+  .rh-detail-value {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #1c1e19;
+  }
 
   .rh-thumb-strip { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-  .rh-thumb { width: 52px; height: 36px; object-fit: cover; cursor: pointer; opacity: 0.4; border: 1.5px solid transparent; transition: opacity 0.15s, border-color 0.15s; flex-shrink: 0; }
+  .rh-thumb { width: 52px; height: 36px; object-fit: cover; cursor: pointer; opacity: 0.4; border: 1.5px solid transparent; transition: opacity 0.15s, border-color 0.15s; flex-shrink: 0; border-radius: 3px; }
   .rh-thumb.active { opacity: 1; border-color: #b8986a; }
-
-  .rh-tagline-bg { background: linear-gradient(160deg, #1a2a1a 0%, #2d3d2d 50%, #1a1a18 100%); }
 
   .rh-btn-gold { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: #e8d5b0; padding: 12px 28px; cursor: pointer; text-decoration: none; display: inline-block; border: 0.5px solid rgba(184,152,106,0.55); background: rgba(184,152,106,0.1); }
   .rh-btn-ghost { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 12px 28px; cursor: pointer; text-decoration: none; display: inline-block; border: 0.5px solid rgba(255,255,255,0.12); background: transparent; }
@@ -268,24 +301,19 @@ export default function ProjectsPage() {
     return () => { document.body.style.overflow = ""; };
   }, [modal]);
 
-  /* Column spans and heights for items starting at index 1 (index 0 is the hero text cell).
-     The first 4 cards fill the remaining 8 cols of row 1 (positions 1–4 of the PROJECTS array). */
   const spanClass = (index: number) => {
-    /* index here is the card's position in PROJECTS (0-based).
-       Cards 0 & 1 share the 8 remaining cols in row 1 beside the text cell.
-       From card 2 onward the grid is full 12-col again. */
     const map: Record<number, string> = {
-      0: "col-span-8",   // row 1, beside text (text=4, this=5)
-      1: "col-span-4",   // row 1, beside text (this=3 → total 4+5+3=12)
-      2: "col-span-4",   // row 2
+      0: "col-span-8",
+      1: "col-span-4",
+      2: "col-span-4",
       3: "col-span-4",
       4: "col-span-6",
-      5: "col-span-6",   // row 3
+      5: "col-span-6",
       6: "col-span-4",
-      7: "col-span-4",  // full-width
+      7: "col-span-4",
       8: "col-span-4",
       9: "col-span-12",
-      10: "col-span-4",   // row 3
+      10: "col-span-4",
       11: "col-span-4",
       12: "col-span-4",
       13: "col-span-4",
@@ -319,62 +347,58 @@ export default function ProjectsPage() {
     <>
       <style>{CSS}</style>
 
-      <div className="rh-root bg-[#ffffff] text-[#1a1a18] min-h-screen">
+      <div className="rh-root min-h-screen" style={{ background: "#f7f7f7" }}>
 
-        {/* ── UNIFIED GRID: hero text + gallery all in one flow ── */}
         <section className="px-25 pt-1.5 pb-20">
           <div className="rh-grid">
 
-            {/* TEXT CELL — col-span-4, same height as first two  cards */}
+            {/* TEXT CELL */}
             <div className="rh-hero-cell">
               <div>
-                <p className="text-[var(--sage)]"
+                {/* "WHAT WE CREATE" — styled like "About Rich Haven" / "What we offer" */}
+                <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
                     fontSize: "10px",
-                    fontWeight: 300,
-                    
-                    lineHeight: 1.8,
-                    maxWidth: 500,
+                    fontWeight: 400,
                     letterSpacing: "0.3em",
+                    textTransform: "uppercase",
+                    color: "#8fa882",
+                    marginBottom: "12px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "14px",
                   }}
                 >
                   WHAT WE CREATE
                 </p>
+
+                {/* "Explore Our Creations" — styled like "Your space deserves to be always green" */}
                 <h1
-                  className="rh-root"
                   style={{
+                    fontFamily: "'DM Sans', sans-serif",
+                    fontSize: "clamp(2rem, 4vw, 3.2rem)",
                     fontWeight: 300,
-                    fontSize: "clamp(38px, 4vw, 56px)",
-                    lineHeight: 1.08,
-                    color: "#1a1a18",
-                    margin: 0,
-                  }}
-                >
-                  Explore
-                </h1>
-                <h1
-                  className="rh-root"
-                  style={{
-                    fontWeight: 300,
-                    fontStyle: "italic",
-                    fontSize: "clamp(38px, 4vw, 56px)",
-                    lineHeight: 1.08,
-                    color: "#4a5c4a",
+                    lineHeight: 1.12,
+                    letterSpacing: "-0.022em",
+                    color: "#1c1e19",
                     marginBottom: 24,
                   }}
                 >
-                  Our Creations
+                  Explore{" "}
+                  <em style={{ fontStyle: "italic", fontWeight: 200, color: "#2d4a27" }}>
+                    Our Creations
+                  </em>
                 </h1>
 
+                {/* Paragraph — styled like hw-step-sub */}
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: "14px",
+                    fontSize: "13px",
                     fontWeight: 300,
-                    color: "#4a5450",
+                    color: "#6b7060",
                     lineHeight: 1.8,
-                    maxWidth: 500,
                   }}
                 >
                   A curated selection of our projects showcasing premium artificial greenery across residential and commercial spaces. Each installation is crafted to bring lasting beauty and timeless appeal.
@@ -382,7 +406,7 @@ export default function ProjectsPage() {
               </div>
             </div>
 
-            {/* CARDS — every project, starting right beside the text cell */}
+            {/* CARDS */}
             {PROJECTS.map((p, i) => (
               <article
                 key={p.id}
@@ -432,7 +456,7 @@ export default function ProjectsPage() {
                       {p.images.length} image{p.images.length > 1 ? "s" : ""}
                     </div>
                     <h2
-                      className="rh-serif"
+                      className="rh-root"
                       style={{ fontWeight: 300, fontSize: 24, color: "#fff", lineHeight: 1.25 }}
                     >
                       {p.title}
@@ -498,9 +522,18 @@ export default function ProjectsPage() {
                   </svg>
                 </button>
 
+                {/* Modal title — hw-step-label size/weight */}
                 <h2
-                  className="rh-serif"
-                  style={{ fontWeight: 300, fontSize: 28, lineHeight: 1.2, color: "#1a1a18", marginBottom: 18, paddingRight: 32 }}
+                  className="rh-root"
+                  style={{
+                    fontWeight: 300,
+                    fontSize: 28,
+                    lineHeight: 1.2,
+                    color: "#1c1e19",
+                    marginBottom: 18,
+                    paddingRight: 32,
+                    letterSpacing: "-0.01em",
+                  }}
                 >
                   {m.project.title}
                 </h2>
@@ -520,13 +553,14 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
+                {/* Description — hw-step-sub style */}
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 12,
-                    fontWeight: 400,
-                    color: "#4a4a46",
-                    lineHeight: 1.85,
+                    fontSize: 13,
+                    fontWeight: 300,
+                    color: "#6b7060",
+                    lineHeight: 1.8,
                     marginTop: 16,
                   }}
                 >
@@ -535,14 +569,15 @@ export default function ProjectsPage() {
 
                 {m.project.images.length > 1 && (
                   <div className="mt-auto pt-5" style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
+                    {/* "PHOTOS" label — color like paragraph, style like "What we offer" */}
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
                         fontSize: 10,
-                        fontWeight: 300,
-                        letterSpacing: "0.18em",
+                        fontWeight: 400,
+                        letterSpacing: "0.3em",
                         textTransform: "uppercase",
-                        color: "#8a8679",
+                        color: "#6b7060",
                         display: "block",
                         marginBottom: 10,
                       }}

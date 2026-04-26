@@ -45,17 +45,17 @@ const PRODUCTS: Product[] = [
 const featureLabelStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
-  fontWeight: 300,
-  color: "#4a5450",
+  fontWeight: 400,
+  color: "#6B7060",
   margin: 0,
-  letterSpacing: "0.02em",
+  letterSpacing: "0.04em",
 };
 
 const featureDescStyle: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
-  fontSize: "14px",
+  fontSize: "10px",
   fontWeight: 300,
-  color: "#4a5450",
+  color: "#6B7060",
   lineHeight: 1.7,
   marginTop: "-10px",
   letterSpacing: "0.03em",
@@ -65,7 +65,7 @@ const detailText: React.CSSProperties = {
   fontFamily: "'DM Sans', sans-serif",
   fontSize: "14px",
   fontWeight: 500,
-  lineHeight: 1.55,
+  lineHeight: 1.72,
   letterSpacing: "0.03em",
   margin: 0,
 };
@@ -74,14 +74,14 @@ const detailText: React.CSSProperties = {
 function ProductCard({ product, onClick }: { product: Product; onClick: () => void }) {
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", cursor: "pointer" }}
+      style={{ display: "flex", flexDirection: "column", width: "100%", maxWidth: "320px", margin: "0 auto", cursor: "pointer" }}
       onClick={onClick}
     >
       <div
-        className="group overflow-hidden "
+        className="group overflow-hidden"
         style={{
           width: "100%",
-          background: "#fafaf7",
+          background: "#f7f7f7",
           boxShadow: "0 0px 2px rgba(0,0,0,0.30)",
           transition: "box-shadow 0.25s ease, border-color 0.25s ease",
           borderRadius: "6px",
@@ -118,18 +118,18 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
           padding: "1.2rem 0.85rem 0",
           textAlign: "center",
           fontSize: "14px",
-          fontWeight: 300,
+          fontWeight: 500,
           fontFamily: "'DM Sans', sans-serif",
-          color: "#000000",
+          color: "#000",
         }}
       >
         <p style={{ ...detailText }}>{product.name}</p>
         <p
           style={{
-              fontSize: "12px",
-              marginTop: "-1px",
-              color: "#4a5450",
-            }}
+            fontSize: "12px",
+            marginTop: "-1px",
+            color: "#6B7060",
+          }}
         >
           {product.size}
         </p>
@@ -269,12 +269,11 @@ export default function Page() {
   return (
     <div className={`${cormorant.className}`}>
 
-      {/* ── GLOBAL RESPONSIVE STYLES ── */}
       <style>{`
-        /* ── HERO ── */
+        /* HERO */
         .wg-hero {
           width: 100%;
-          height: 285px;
+          height: 40vh;
           background-image: url('/wallgreens/wall9.jpg');
           background-size: cover;
           background-position: center 45%;
@@ -294,23 +293,23 @@ export default function Page() {
           padding: 0 5rem;
         }
         .wg-hero-title {
-          font-size: 52px;
-          font-weight: 500;
-          line-height: 1.1;
-          color: #fafafa;
+          font-size: 50px;
+          font-weight: 300;
+          line-height: 1.12;
+          color: #fff;
           margin: 0;
           letter-spacing: 0.02em;
         }
         .wg-hero-subtitle {
           font-family: 'DM Sans', sans-serif;
-          font-size: 14px;
-          font-weight: 420;
-          color: #f8f8f8;
-          letter-spacing: 0.02em;
+          font-size: 11px;
+          font-weight: 500;
+          color: #fff;
+          letter-spacing: 0.22em;
           margin-top: -10px;
         }
 
-        /* ── ABOUT SECTION ── */
+        /* ABOUT */
         .wg-about-grid {
           width: 100%;
           display: grid;
@@ -321,21 +320,21 @@ export default function Page() {
           column-gap: 2rem;
         }
         .wg-about-img-wrap {
-          background: #fafaf7;
+          background: #f7f7f7;
           display: flex;
           align-items: center;
           justify-content: center;
           min-height: 600px;
         }
         .wg-about-text {
-          background: #fafaf7;
+          background: #f7f7f7;
           padding: 4.5rem 0 4.5rem 3.5rem;
           display: flex;
           flex-direction: column;
           justify-content: center;
         }
 
-        /* ── CATALOG ── */
+        /* CATALOG */
         .wg-catalog-header {
           padding: 2.5rem 8rem 5rem;
           display: flex;
@@ -352,7 +351,7 @@ export default function Page() {
           gap: 2.5rem;
         }
 
-        /* ── FEATURES ── */
+        /* FEATURES */
         .wg-features-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
@@ -360,33 +359,20 @@ export default function Page() {
           width: 100%;
         }
 
-        /* ── MOBILE ── */
+        /* MOBILE */
         @media (max-width: 768px) {
-          .wg-hero {
-            height: 220px;
-          }
-          .wg-hero-inner {
-            padding: 0 1.5rem;
-            gap: 0.8rem;
-          }
-          .wg-hero-title {
-            font-size: 30px;
-          }
-          .wg-hero-subtitle {
-            font-size: 11px;
-          }
+          .wg-hero { height: 220px; }
+          .wg-hero-inner { padding: 0 1.5rem; gap: 0.8rem; }
+          .wg-hero-title { font-size: 28px; }
+          .wg-hero-subtitle { font-size: 11px; }
 
           .wg-about-grid {
             grid-template-columns: 1fr;
             padding: 0;
             row-gap: 0;
           }
-          .wg-about-img-col {
-            order: 1;
-          }
-          .wg-about-text-col {
-            order: 2;
-          }
+          .wg-about-img-col { order: 1; }
+          .wg-about-text-col { order: 2; }
           .wg-about-img-wrap {
             min-height: unset;
             padding: 1.5rem 1.5rem 0;
@@ -395,72 +381,33 @@ export default function Page() {
             max-width: 100% !important;
             max-height: unset !important;
           }
-          .wg-about-img-wrap > div img {
-            height: 260px !important;
-          }
-          .wg-about-text {
-            padding: 2rem 1.5rem 2.5rem;
-          }
+          .wg-about-img-wrap > div img { height: 260px !important; }
+          .wg-about-text { padding: 2rem 1.5rem 2.5rem; }
 
-          .wg-catalog-header {
-            padding: 2rem 1.5rem 1.5rem;
-          }
-          .wg-catalog-grid-wrap {
-            padding: 0 1.5rem 3rem;
-          }
-          .wg-products-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.2rem;
-          }
+          .wg-catalog-header { padding: 2rem 1.5rem 1.5rem; }
+          .wg-catalog-grid-wrap { padding: 0 1.5rem 3rem; }
+          .wg-products-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
 
-          .wg-features-grid {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-          .wg-features-section {
-            padding: 56px 24px !important;
-          }
+          .wg-features-grid { grid-template-columns: 1fr; gap: 2rem; }
+          .wg-features-section { padding: 56px 24px !important; }
         }
 
-        @media (min-width: 7614px) and (max-width: 1024px) {
-          .wg-hero-inner {
-            padding: 0 2rem;
-          }
-          .wg-hero-title {
-            font-size: 38px;
-          }
-          .wg-about-grid {
-            padding: 0.5rem 2.5rem;
-            column-gap: 1.5rem;
-          }
-          .wg-about-img-wrap {
-            min-height: 400px;
-          }
-          .wg-about-text {
-            padding: 3rem 0 3rem 2rem;
-          }
-          .wg-catalog-header {
-            padding: 2rem 3rem 3rem;
-          }
-          .wg-catalog-grid-wrap {
-            padding: 0 3rem 4rem;
-          }
-          .wg-products-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.8rem;
-          }
+        /* TABLET */
+        @media (min-width: 769px) and (max-width: 1024px) {
+          .wg-hero-inner { padding: 0 2rem; }
+          .wg-hero-title { font-size: 36px; }
+          .wg-about-grid { padding: 0.5rem 2.5rem; column-gap: 1.5rem; }
+          .wg-about-img-wrap { min-height: 400px; }
+          .wg-about-text { padding: 3rem 0 3rem 2rem; }
+          .wg-catalog-header { padding: 2rem 3rem 3rem; }
+          .wg-catalog-grid-wrap { padding: 0 3rem 4rem; }
+          .wg-products-grid { grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
         }
       `}</style>
 
       {/* ── SECTION 1 — HERO ── */}
       <section className="wg-hero">
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background: "rgba(20, 28, 20, 0.50)",
-          }}
-        />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(20, 28, 20, 0.50)" }} />
         <div className="wg-hero-inner">
           <h1 className={`${dmSans.className} wg-hero-title`}>
             Artificial Wall Greens
@@ -471,12 +418,10 @@ export default function Page() {
         </div>
       </section>
 
-
       {/* ── SECTION 2 — ABOUT THE PRODUCT ── */}
-      <section style={{ width: "100%", background: "#fafaf7" }}>
+      <section style={{ width: "100%", background: "#f7f7f7" }}>
         <div className="wg-about-grid">
 
-          {/* IMAGE */}
           <div className="wg-about-img-col wg-about-img-wrap">
             <div
               style={{
@@ -493,27 +438,20 @@ export default function Page() {
               <img
                 src="/wallgreens/wall7.jpg"
                 alt="Artificial wall plant"
-                style={{
-                  width: "100%",
-                  height: "400px",
-                  objectFit: "cover",
-                  display: "block",
-                }}
+                style={{ width: "100%", height: "400px", objectFit: "cover", display: "block" }}
               />
             </div>
           </div>
 
-          {/* TEXT */}
           <div className="wg-about-text-col wg-about-text">
             <p
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "12px",
-
-fontWeight : 500,
-                letterSpacing: "0.32em",
+                fontSize: "10px",
+                fontWeight: 400,
+                letterSpacing: "0.30em",
                 textTransform: "uppercase",
-                color: "#000000",
+                color: "#8FA882",
                 margin: "0 0 0.5rem",
               }}
             >
@@ -523,9 +461,9 @@ fontWeight : 500,
             <h2
               style={{
                 fontFamily: "'DM Sans', sans-serif",
-                fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
+                fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
                 fontWeight: 300,
-                lineHeight: 1.2,
+                lineHeight: 1.12,
                 color: "#000000",
                 margin: "0 0 1rem",
               }}
@@ -538,7 +476,7 @@ fontWeight : 500,
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 fontWeight: 300,
-                color: "#4a5450",
+                color: "#6B7060",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
@@ -553,7 +491,7 @@ fontWeight : 500,
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: "14px",
                 fontWeight: 300,
-                color: "#4a5450",
+                color: "#6B7060",
                 lineHeight: 1.85,
                 margin: "0 0 1rem",
               }}
@@ -568,18 +506,17 @@ fontWeight : 500,
         </div>
       </section>
 
-
       {/* ── SECTION 3 — PRODUCTS CATALOG ── */}
-      <section style={{ width: "100%", background: "#fff" }}>
+      <section style={{ width: "100%", background: "#efefef" }}>
         <div className="wg-catalog-header">
           <p
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "14px",
-              fontWeight: 500,
-              letterSpacing: "0.32em",
+              fontSize: "10px",
+              fontWeight: 400,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#000000",
+              color: "#8FA882",
               marginTop: "50px",
             }}
           >
@@ -588,12 +525,12 @@ fontWeight : 500,
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.7rem, 2.2vw + 0.6rem, 2.8rem)",
-              fontWeight: 500,
+              fontSize: "50px",
+              fontWeight: 400,
               color: "#000000",
-              lineHeight: 1.15,
+              lineHeight: 1.17,
               textTransform: "uppercase",
-              marginBottom: "-20px",
+              marginBottom: "-30px",
             }}
           >
             Featured Products
@@ -613,15 +550,10 @@ fontWeight : 500,
         </div>
       </section>
 
-
-      {/* ── SECTION 4 — CHOOSE THE PERFECT PLANT ── */}
+      {/* ── SECTION 4 — FEATURES ── */}
       <section
         className="wg-features-section"
-        style={{
-          width: "100%",
-          background: "#fafaf7",
-          padding: "88px 20px",
-        }}
+        style={{ width: "100%", background: "#f7f7f7", padding: "88px 20px" }}
       >
         <div
           style={{
@@ -629,21 +561,21 @@ fontWeight : 500,
             margin: "0 auto",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "stretch",
             textAlign: "center",
           }}
         >
           <h2
             style={{
               fontFamily: "'DM Sans', sans-serif",
-              fontSize: "clamp(1.5rem, 1.8vw + 0.8rem, 2.4rem)",
+              fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
               fontWeight: 300,
-              lineHeight: 1.2,
+              lineHeight: 1.17,
               margin: "0 0 2.5rem",
             }}
           >
             <span style={{ color: "#000000" }}>Choose the Perfect</span>{" "}
-            <span style={{ color: "#000000" }}>Greens</span>
+            <em style={{ color: "#2D4A27" }}>Greens</em>
             <br />
             <span style={{ color: "#000000", fontWeight: 300 }}>for Your Space</span>
           </h2>
@@ -694,12 +626,7 @@ fontWeight : 500,
             ].map((feature) => (
               <div
                 key={feature.label}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  gap: "0.8rem",
-                }}
+                style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.8rem" }}
               >
                 <div
                   style={{
@@ -707,7 +634,7 @@ fontWeight : 500,
                     height: "68px",
                     borderRadius: "50%",
                     border: "1px solid #4a5450",
-                    background: "#2d5040",
+                    background: "#2d4a27",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",

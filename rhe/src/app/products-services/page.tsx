@@ -6,16 +6,32 @@ export default function ProductsServicesPage() {
   return (
     <div
       style={{
-        fontFamily: "'Cormorant Garamond', 'Georgia', serif",
+        fontFamily: "'DM Sans', sans-serif",
         background: "#f7f7f7",
-        color: "#1a1a1a",
+        color: "#1c1e19",
         overflowX: "hidden",
       }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+        @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,200;1,9..40,300;1,9..40,400&display=swap");
 
-        /* ── EXISTING GRID (UNCHANGED) ── */
+        :root {
+          --sage: #8fa882;
+          --forest: #2d4a27;
+          --deep: #1a2e16;
+          --cream: #efefef;
+          --warm-white: #f7f7f7;
+          --text: #1c1e19;
+          --text-muted: #6b7060;
+          --text-faint: #a8ad9e;
+          --border: rgba(45,74,39,0.10);
+          --gold: #c9a96e;
+          --font: "DM Sans", sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        /* ── TWO COL GRID ── */
         .two-col-grid {
           display: grid;
           grid-template-columns: 1fr 1fr;
@@ -23,15 +39,14 @@ export default function ProductsServicesPage() {
           align-items: center;
         }
 
-        /* ── HERO (TURF STRUCTURE, NO OVERLAY, ORIGINAL COLORS) ── */
+        /* ── HERO ── */
         .craft-hero {
           width: 100%;
-          height: 285px;
-          background-image: url('/2.png');
+          height: 50vh;
+          background-image: url('/blur6.png');
           background-size: cover;
           background-position: 20%;
           background-repeat: no-repeat;
-
           position: relative;
           display: flex;
           align-items: center;
@@ -46,35 +61,103 @@ export default function ProductsServicesPage() {
           flex-direction: column;
           align-items: center;
           gap: 0.5rem;
-          padding: 0 5rem;
+          padding: 9.5rem 0 5rem;
         }
 
-        /* KEEP YOUR ORIGINAL TEXT COLORS */
+        /* ── EYEBROW — matches "About Rich Haven" style ── */
+        .ps-eyebrow {
+          font-family: var(--font);
+          font-size: 10px;
+          font-weight: 400;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--sage);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 12px;
+        }
+
+        /* hero eyebrow keeps original muted color on light bg */
         .craft-eyebrow {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 14px;
-          font-weight: 300;
+          font-family: var(--font);
+          font-size: 10px;
+          font-weight: 400;
           letter-spacing: 0.30em;
-          color: #4a5450; /* ORIGINAL */
+          text-transform: uppercase;
+          color: #fff;
           margin: 0;
         }
 
         .craft-title {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 52px;
+          font-family: var(--font);
+          font-size: 50px;
           font-weight: 300;
           line-height: 1.12;
-          color: #313131; /* ORIGINAL */
+          color: #fff;
           margin: 0;
         }
 
-        .craft-title em {
-          font-style: normal;
-          color: #313131; /* ORIGINAL */
+        /* ── SECTION HEADLINE — matches "Our Green Solutions" ── */
+        .ps-section-headline {
+          font-family: var(--font);
+          font-size: clamp(1.6rem, 2.8vw, 2.2rem);
           font-weight: 300;
+          line-height: 1.0;
+          letter-spacing: -0.015em;
+          color: var(--text);
+          margin: 0;
         }
 
-        /* ── RESPONSIVE (UNCHANGED + HERO FIX) ── */
+        /* ── BODY PARAGRAPH ── */
+        .ps-body-text {
+          font-family: var(--font);
+          font-size: 14px;
+          font-weight: 300;
+          color: var(--text-muted);
+          line-height: 1.85;
+          margin-bottom: 1.5rem;
+        }
+
+        /* ── FEATURE BULLET ── */
+        .ps-feature-label {
+          font-family: var(--font);
+          font-size: 14px;
+          font-weight: 300;
+          color: var(--text-muted);
+          line-height: 1.4;
+        }
+
+        /* ── VIEW MORE — matches "View all services" ── */
+        .ps-view-more {
+          font-family: var(--font);
+          font-size: 10px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: var(--text-muted);
+          text-decoration: underline;
+          font-weight: 500;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.3px;
+          transition: color 0.3s;
+          text-underline-offset: 7px;
+        }
+
+        .ps-view-more::after {
+          content: "→";
+          transition: transform 0.3s;
+        }
+
+        .ps-view-more:hover {
+          color: var(--forest);
+        }
+
+        .ps-view-more:hover::after {
+          transform: translateX(4px);
+        }
+
+        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
           .section-pad { padding-left: 2.5rem !important; padding-right: 2.5rem !important; }
         }
@@ -87,11 +170,8 @@ export default function ProductsServicesPage() {
           .two-col-grid .text-cell { order: 2; }
           .two-col-grid .image-cell { order: 1; }
           .product-img-wrap { height: 260px !important; }
-          .hero-h1 { font-size: 2.2rem !important; }
           .feature-grid { grid-template-columns: 1fr !important; }
-
-          /* HERO MOBILE */
-          .craft-hero { height: 220px; }
+          .craft-hero { height: 100vh; }
           .craft-hero-inner { padding: 0 1.5rem; }
           .craft-title { font-size: 28px; }
           .craft-eyebrow { font-size: 11px; }
@@ -110,20 +190,19 @@ export default function ProductsServicesPage() {
         }
       `}</style>
 
-      {/* ── HERO (NO OVERLAY, ORIGINAL TEXT COLORS) ── */}
+      {/* ── HERO ── */}
       <section className="craft-hero">
         <div className="craft-hero-inner">
           <p className="craft-eyebrow">PRODUCT COLLECTIONS</p>
-
           <h1 className="craft-title">
             Crafting Beauty
             <br />
-            <em>For Every Space</em>
+            For Every Space
           </h1>
         </div>
       </section>
 
-      {/* ── 1ST INTRO BAND ── */}
+      {/* ── 1ST BAND — Potted Artificial Plants ── */}
       <section
         className="section-pad"
         style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
@@ -152,45 +231,16 @@ export default function ProductsServicesPage() {
             </div>
 
             <div className="text-cell" style={{ paddingTop: 5 }}>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  letterSpacing: "0.30em",
-                  textTransform: "uppercase",
-                  color: "#4a5450",
-                  marginBottom: "1rem",
-                }}
-              >
-                what do we have?
-              </p>
+              {/* "What do we have?" — styled like "About Rich Haven" */}
+              <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
 
-              <h2
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-                  fontWeight: 300,
-                  lineHeight: 1.15,
-                  color: "#0d1b0f",
-                  marginBottom: "1rem",
-                }}
-              >
+              {/* Headline — styled like "Our Green Solutions" */}
+              <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Potted Artificial Plants
               </h2>
 
-              
-
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  color: "#4a5450",
-                  lineHeight: 1.85,
-                  marginBottom: "1.5rem",
-                }}
-              >
+              {/* Paragraph */}
+              <p className="ps-body-text">
                 A premium collection of lifelike plants in pots, thoughtfully designed
                 to elevate indoor and outdoor spaces. Each piece comes ready for display in stylish
                 containers, delivering the beauty of natural green perfect for both residential and commercial environments.
@@ -205,54 +255,33 @@ export default function ProductsServicesPage() {
                   marginBottom: "1.5rem",
                 }}
               >
-                {[ "Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
+                {["Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
                   <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
                     <div
                       style={{
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: "#2d5040",
+                        background: "var(--forest)",
                         flexShrink: 0,
                         marginTop: "0.42rem",
                       }}
                     />
-                    <span
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
-                        color: "#4a5450",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {item}
-                    </span>
+                    <span className="ps-feature-label">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <Link
-                href="/products-services/potted-plants"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  color: "#2d5040",
-                  borderBottom: "1.5px solid #2d5040",
-                  paddingBottom: 2,
-                  textDecoration: "none",
-                }}
-              >
-                View More &rarr;
+              {/* View More — styled like "View all services" */}
+              <Link href="/products-services/potted-plants" className="ps-view-more">
+                View more
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 2ND INTRO BAND ── */}
+      {/* ── 2ND BAND — Artificial Wall Greens ── */}
       <section
         className="section-pad"
         style={{ background: "#efefef", padding: "2rem 5rem" }}
@@ -260,44 +289,13 @@ export default function ProductsServicesPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
             <div className="text-cell" style={{ paddingTop: 5 }}>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  letterSpacing: "0.30em",
-                  textTransform: "uppercase",
-                  color: "#4a5450",
-                  marginBottom: "1rem",
-                }}
-              >
-                what do we have?
-              </p>
+              <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
 
-              <h2
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-                  fontWeight: 300,
-                  lineHeight: 1.15,
-                  color: "#0d1b0f",
-                  marginBottom: "1rem",
-                }}
-              >
+              <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Artificial Wall Greens
               </h2>
 
-
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  color: "#4a5450",
-                  lineHeight: 1.85,
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <p className="ps-body-text">
                 A refined collection of artificial wall greens designed to
                 bring lush vertical beauty into any space. Ideal for both residential
                 and commercial settings, providing a clean and elegant backdrop that
@@ -320,40 +318,18 @@ export default function ProductsServicesPage() {
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: "#2d5040",
+                        background: "var(--forest)",
                         flexShrink: 0,
                         marginTop: "0.42rem",
                       }}
                     />
-                    <span
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
-                        color: "#4a5450",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {item}
-                    </span>
+                    <span className="ps-feature-label">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <Link
-                href="/products-services/wall-greens"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  color: "#2d5040",
-                  borderBottom: "1.5px solid #2d5040",
-                  paddingBottom: 2,
-                  textDecoration: "none",
-                }}
-              >
-                View More &rarr;
+              <Link href="/products-services/wall-greens" className="ps-view-more">
+                View more
               </Link>
             </div>
 
@@ -381,7 +357,7 @@ export default function ProductsServicesPage() {
         </div>
       </section>
 
-      {/* ── 3RD INTRO BAND ── */}
+      {/* ── 3RD BAND — Decorative Planter Box ── */}
       <section
         className="section-pad"
         style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
@@ -410,43 +386,13 @@ export default function ProductsServicesPage() {
             </div>
 
             <div className="text-cell" style={{ paddingTop: 5 }}>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  letterSpacing: "0.30em",
-                  textTransform: "uppercase",
-                  color: "#4a5450",
-                  marginBottom: "1rem",
-                }}
-              >
-                what do we have?
-              </p>
+              <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
 
-              <h2
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-                  fontWeight: 300,
-                  lineHeight: 1.15,
-                  color: "#0d1b0f",
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Decorative Planter Box
               </h2>
 
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  color: "#4a5450",
-                  lineHeight: 1.85,
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <p className="ps-body-text">
                 Decorative planter box features carefully arranged and combined artificial
                 plants on empty spaces, designed to enhance both indoor
                 and outdoor environments. Provides an instant and refined botanical
@@ -469,47 +415,25 @@ export default function ProductsServicesPage() {
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: "#2d5040",
+                        background: "var(--forest)",
                         flexShrink: 0,
                         marginTop: "0.42rem",
                       }}
                     />
-                    <span
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
-                        color: "#4a5450",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {item}
-                    </span>
+                    <span className="ps-feature-label">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <Link
-                href="/products-services/planter-box"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  color: "#2d5040",
-                  borderBottom: "1.5px solid #2d5040",
-                  paddingBottom: 2,
-                  textDecoration: "none",
-                }}
-              >
-                View More &rarr;
+              <Link href="/products-services/planter-box" className="ps-view-more">
+                View more
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 4TH INTRO BAND ── */}
+      {/* ── 4TH BAND — Artificial Turf Grass ── */}
       <section
         className="section-pad"
         style={{ background: "#efefef", padding: "2rem 5rem" }}
@@ -517,43 +441,13 @@ export default function ProductsServicesPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
             <div className="text-cell" style={{ paddingTop: 5 }}>
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  letterSpacing: "0.30em",
-                  textTransform: "uppercase",
-                  color: "#4a5450",
-                  marginBottom: "1rem",
-                }}
-              >
-                what do we have?
-              </p>
+              <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
 
-              <h2
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "clamp(1.7rem, 1.8vw + 0.8rem, 2.4rem)",
-                  fontWeight: 300,
-                  lineHeight: 1.15,
-                  color: "#0d1b0f",
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Artificial Turf Grass
               </h2>
 
-              <p
-                style={{
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  fontWeight: 300,
-                  color: "#4a5450",
-                  lineHeight: 1.85,
-                  marginBottom: "1.5rem",
-                }}
-              >
+              <p className="ps-body-text">
                 A high quality range of artificial turf grass designed to replicate
                 the look and feel of natural lawn surfaces. Built for durability and
                 year round greenery, offering a practical and
@@ -577,40 +471,18 @@ export default function ProductsServicesPage() {
                         width: 6,
                         height: 6,
                         borderRadius: "50%",
-                        background: "#2d5040",
+                        background: "var(--forest)",
                         flexShrink: 0,
                         marginTop: "0.42rem",
                       }}
                     />
-                    <span
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: "14px",
-                        color: "#4a5450",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {item}
-                    </span>
+                    <span className="ps-feature-label">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <Link
-                href="/products-services/grass"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.5rem",
-                  fontFamily: "'DM Sans', sans-serif",
-                  fontSize: "14px",
-                  color: "#2d5040",
-                  borderBottom: "1.5px solid #2d5040",
-                  paddingBottom: 2,
-                  textDecoration: "none",
-                }}
-              >
-                View More &rarr;
+              <Link href="/products-services/grass" className="ps-view-more">
+                View more
               </Link>
             </div>
 
