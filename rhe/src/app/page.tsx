@@ -846,7 +846,7 @@ export default function Home() {
         .cta-eyebrow::before, .cta-eyebrow::after { display: none; }
         .cta-headline {
           font-family: var(--serif);
-          font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+          font-size: clamp(3rem, 4vw, 4.8rem);
           font-weight: 300;
           line-height: 1.1;
           letter-spacing: -0.02em;
@@ -1059,14 +1059,13 @@ export default function Home() {
 
         {/* ── CTA ── */}
         <section className="cta-section">
-          <div className="cta-bg-text">Haven</div>
           <div className="cta-inner">
-            <p className="cta-eyebrow">Transform Your Space</p>
+            <p className="cta-eyebrow">Let's Work Together</p>
             <h2 className="cta-headline">
-              Let's bring <em>greenery</em><br />to your world
+              Transform Your <em>Space</em>
             </h2>
             <p className="cta-sub">
-              Whether it's a cozy home corner or a full commercial lobby — we'll design, source, and install the perfect greenery for you.
+              Whether it's a cozy home corner or a full commercial lobby — we'll source, and install the perfect greenery for you.
             </p>
             <div className="cta-actions">
               <button
