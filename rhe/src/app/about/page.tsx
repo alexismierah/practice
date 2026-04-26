@@ -15,6 +15,7 @@ export default function AboutPage() {
           --mid-green: #2d4a32;
           --sage: #7a9e7e;
           --warm-white: #faf8f4;
+          --warm-cream: #f3f0e9;
           --text-muted: #6b7c6d;
         }
 
@@ -31,11 +32,24 @@ export default function AboutPage() {
 
         /* ── Hero ── */
         .hero {
-          padding: 100px 24px 56px;
+          padding: 100px 24px 64px;
           text-align: center;
           display: flex;
           flex-direction: column;
           align-items: center;
+          position: relative;
+        }
+
+        .hero::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 48px;
+          height: 1px;
+          background-color: var(--sage);
+          opacity: 0.6;
         }
 
         .eyebrow {
@@ -45,17 +59,31 @@ export default function AboutPage() {
           letter-spacing: 0.35em;
           text-transform: uppercase;
           color: var(--sage);
-          margin-bottom: 18px;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .eyebrow::before,
+        .eyebrow::after {
+          content: '';
+          display: block;
+          width: 24px;
+          height: 1px;
+          background: var(--sage);
+          opacity: 0.5;
         }
 
         .hero-title {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
-          font-size: clamp(44px, 7vw, 55px);
-          line-height: 1.0;
+          font-size: clamp(40px, 6vw, 50px);
+          line-height: 1.05;
           color: var(--deep-green);
-          margin-bottom: 20px;
-          margin-top: 60px;
+          margin-bottom: 22px;
+          letter-spacing: -0.5px;
+          margin-top: 50px;
         }
 
         .hero-title em {
@@ -67,57 +95,83 @@ export default function AboutPage() {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
           font-size: 16px;
-          line-height: 1.8;
+          line-height: 1.85;
           color: var(--text-muted);
-          max-width: 680px;
+          max-width: 600px;
         }
 
         /* ── Pillars section ── */
         .pillars {
           max-width: 960px;
           margin: 0 auto;
-          padding: 32px 24px 72px;
+          padding: 32px 24px 96px;
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 4px;
+          gap: 0;
         }
 
         .pillar-item {
-          padding: 18px 0;
+          padding: 36px 0;
           width: 100%;
-          max-width: 740px;
+          max-width: 680px;
+          display: grid;
+          grid-template-columns: 160px 1fr;
+          gap: 0 40px;
+          align-items: start;
+        }
+
+        .pillar-item + .pillar-item {
+          border-top: 1px solid var(--warm-cream);
+        }
+
+        .pillar-left {
+          padding-top: 3px;
+        }
+
+        .pillar-number {
+          font-family: 'DM Sans', sans-serif;
+          font-weight: 300;
+          font-size: 11px;
+          letter-spacing: 0.2em;
+          color: var(--sage);
+          text-transform: uppercase;
+          margin-bottom: 6px;
         }
 
         .pillar-title {
           font-family: 'DM Sans', sans-serif;
           font-weight: 400;
-          font-size: clamp(22px, 3vw, 30px);
-          line-height: 1.15;
+          font-size: clamp(18px, 2.5vw, 22px);
+          line-height: 1.2;
           color: var(--deep-green);
-          margin-bottom: 4px;
         }
+
+        .pillar-right {}
 
         .pillar-subtitle {
           font-family: 'DM Sans', sans-serif;
           font-style: italic;
           font-weight: 300;
-          font-size: 16px;
-          color: var(--text-muted);
-          margin-bottom: 8px;
+          font-size: 15px;
+          color: var(--deep-green);
+          margin-bottom: 10px;
+          opacity: 0.75;
         }
 
         .pillar-body {
           font-family: 'DM Sans', sans-serif;
           font-weight: 300;
-          font-size: 16px;
-          line-height: 1.75;
+          font-size: 15.5px;
+          line-height: 1.8;
           color: var(--text-muted);
         }
 
         /* ── Responsive ── */
         @media (max-width: 600px) {
           .pillar-item {
+            grid-template-columns: 1fr;
+            gap: 12px 0;
             max-width: 100%;
           }
         }
@@ -130,8 +184,9 @@ export default function AboutPage() {
             About <em>Rich Haven</em>
           </h1>
           <p className="hero-desc">
-            At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space — without the maintenance.
-            Thoughtfully designed greenery for homes, offices, and commercial spaces that stays fresh and vibrant all year round.
+            We bring nature-inspired beauty to every space — without the maintenance.
+            Thoughtfully designed greenery for homes, offices, and commercial spaces
+            that stays fresh and vibrant all year round.
           </p>
         </section>
 
@@ -139,25 +194,26 @@ export default function AboutPage() {
         <section className="pillars">
           {[
             {
+              number: "01",
               title: "What we do",
               subtitle: "High-quality artificial greenery for every kind of space.",
               body: "Our collection covers potted plants, wall greens, hanging plants, and artificial turf — bringing the calm of nature indoors and out with none of the upkeep.",
             },
             {
+              number: "02",
               title: "How we do it",
               subtitle: "Realistic aesthetics. Built to last.",
               body: "Our products are designed to look and feel like the real thing — because artificial shouldn't mean artificial-looking. Durable materials, careful detail, and color that holds for years, not months.",
             },
-            {
-              title: "Our promise",
-              subtitle: "Style, quality, and greenery you can rely on.",
-              body: "Nature's beauty, without the upkeep. Every piece Rich Haven delivers is built to stay fresh and vibrant all year round, season after season.",
-            },
           ].map((item, i) => (
             <div key={i} className="pillar-item">
-              <h2 className="pillar-title">{item.title}</h2>
-              <p className="pillar-subtitle">{item.subtitle}</p>
-              <p className="pillar-body">{item.body}</p>
+              <div className="pillar-left">
+                <h2 className="pillar-title">{item.title}</h2>
+              </div>
+              <div className="pillar-right">
+                <p className="pillar-subtitle">{item.subtitle}</p>
+                <p className="pillar-body">{item.body}</p>
+              </div>
             </div>
           ))}
         </section>
