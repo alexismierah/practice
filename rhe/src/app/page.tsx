@@ -104,7 +104,7 @@ export default function Home() {
 
   const moveSlider = useCallback((pct: number) => {
     const p = `${pct}%`;
-    if (baAfterRef.current) baAfterRef.current.style.width = p;
+    if (baAfterRef.current) baAfterRef.current.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
     if (baLineRef.current) baLineRef.current.style.left = p;
     if (baHandleRef.current) baHandleRef.current.style.left = p;
   }, []);
@@ -664,8 +664,7 @@ export default function Home() {
         .ba-after {
           position: absolute;
           inset: 0;
-          overflow: hidden;
-          will-change: width;
+          will-change: clip-path;
         }
         .ba-after img {
           position: absolute;
@@ -1017,7 +1016,7 @@ export default function Home() {
             onTouchStart={onSliderMouseDown}
           >
             <img className="ba-img" src="/beforeafter/after2.jpg" alt="After" />
-            <div className="ba-after" ref={baAfterRef} style={{ width: "50%" }}>
+            <div className="ba-after" ref={baAfterRef} style={{ clipPath: "inset(0 50% 0 0)" }}>
               <img src="/beforeafter/before2.jpg" alt="Before" />
             </div>
             <div className="ba-line" ref={baLineRef} style={{ left: "50%" }} />
