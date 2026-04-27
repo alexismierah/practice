@@ -224,17 +224,16 @@ export default function Header() {
         /* Dropdown panel */
         .hdr-dropdown {
           position: absolute;
-          top: calc(100% + 26px);
+          top: calc(100% + 28px);
           left: 50%;
-          transform: translateX(-50%) translateY(-8px);
-          background: #fff;
-          border: 1px solid var(--border);
-          border-radius: 5px;
-          min-width: 248px;
-          box-shadow: 0 24px 64px rgba(45,74,39,0.11), 0 4px 16px rgba(0,0,0,0.05);
+          transform: translateX(-50%) translateY(-6px);
+          background: var(--warm-white);
+          border-radius: 10px;
+          min-width: 180px;
+          box-shadow: 0 8px 40px rgba(45,74,39,0.13), 0 2px 8px rgba(0,0,0,0.06);
           opacity: 0;
           pointer-events: none;
-          transition: opacity 0.2s, transform 0.2s;
+          transition: opacity 0.18s, transform 0.18s;
           z-index: 99;
           overflow: hidden;
         }
@@ -245,57 +244,50 @@ export default function Header() {
           transform: translateX(-50%) translateY(0);
         }
 
-        .hdr-dropdown-header {
-          padding: 11px 18px 9px;
-          border-bottom: 1px solid var(--border);
-        }
-
-        .hdr-dropdown-header span {
-          font-size: 8.5px;
-          font-weight: 500;
-          letter-spacing: 0.26em;
-          text-transform: uppercase;
-          color: var(--sage);
-        }
-
-        .hdr-dropdown-links {
-          padding: 6px 0;
+.hdr-dropdown-links {
+          padding: 8px 0 10px;
           display: flex;
           flex-direction: column;
-          gap: 0;
         }
 
         .hdr-dropdown-links a {
           display: flex;
-          flex-direction: column;
-          gap: 3px;
+          align-items: center;
+          justify-content: space-between;
           text-decoration: none;
-          padding: 9px 18px;
-          transition: background 0.18s;
+          padding: 10px 18px;
+          transition: background 0.15s;
+          position: relative;
+        }
+
+        .hdr-dropdown-links a::after {
+          content: "→";
+          font-size: 11px;
+          color: var(--sage);
+          opacity: 0;
+          transform: translateX(-4px);
+          transition: opacity 0.18s, transform 0.18s;
         }
 
         .hdr-dropdown-links a:hover {
-          background: rgba(143,168,130,0.08);
+          background: rgba(45,74,39,0.04);
+        }
+
+        .hdr-dropdown-links a:hover::after {
+          opacity: 1;
+          transform: translateX(0);
         }
 
         .hdr-dropdown-link-label {
           font-size: 13px;
-          font-weight: 400;
+          font-weight: 300;
           color: var(--text);
-          letter-spacing: -0.01em;
-          transition: color 0.18s;
+          letter-spacing: 0em;
+          transition: color 0.15s;
         }
 
         .hdr-dropdown-links a:hover .hdr-dropdown-link-label {
           color: var(--forest);
-        }
-
-        .hdr-dropdown-link-desc {
-          font-size: 11px;
-          font-weight: 300;
-          color: var(--text-faint);
-          letter-spacing: 0.01em;
-          line-height: 1.4;
         }
 
         /* ── CTA button — matches .cta-btn-primary / footer-submit ── */
@@ -549,7 +541,6 @@ export default function Header() {
                       {productLinks.map((link) => (
                         <a key={link.href} href={link.href} onClick={() => setDropdownOpen(false)}>
                           <span className="hdr-dropdown-link-label">{link.label}</span>
-                          <span className="hdr-dropdown-link-desc">{link.desc}</span>
                         </a>
                       ))}
                     </div>
