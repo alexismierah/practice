@@ -1121,6 +1121,7 @@ export default function Home() {
 
         {/* ── CTA ── */}
         <section className="cta-section">
+          <div className="cta-bg-text">Haven</div>
           <div className="cta-inner">
             <p className="cta-eyebrow">Let's Work Together</p>
             <h2 className="cta-headline">
