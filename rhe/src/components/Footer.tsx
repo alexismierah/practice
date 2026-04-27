@@ -255,8 +255,8 @@ export default function Footer() {
         .footer-nav-label {
           font-size: 13px;
           font-weight: 500;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
+          letter-spacing: 0.em;
+          text-transform: Uppercase;
           color: var(--black);
           /* match the form's eyebrow + heading gap so first item aligns */
           margin-bottom: 14px;
@@ -574,6 +574,7 @@ export default function Footer() {
               <span className="footer-nav-label">Contact Us</span>
               <span className="footer-nav-item">hello@richhaven.net</span>
               <span className="footer-nav-item">0916 236 6737</span>
+              <span className="footer-nav-item">(02) 8294 0531</span>
             </nav>
 
             <nav className="footer-nav-block">
