@@ -1043,7 +1043,7 @@ export default function Home() {
           <div className="section-header">
             <div>
               <p className="section-label">What we offer</p>
-              <h2 className="section-title">Products<em> Collections</em></h2>
+              <h2 className="section-title">Product<em> Collections</em></h2>
             </div>
             <a href="/products-services" className="view-all">View all</a>
           </div>
@@ -1136,7 +1136,7 @@ export default function Home() {
               >
                 Get in Touch
               </button>
-              <a href="/products-services" className="cta-btn-ghost">Products & Services</a>
+              <a href="/products-services" className="cta-btn-ghost">Product collections</a>
             </div>
           </div>
         </section>
