@@ -451,7 +451,7 @@ export default function Page() {
                 fontWeight: 400,
                 letterSpacing: "0.30em",
                 textTransform: "uppercase",
-                color: "#8FA882",
+                color: "#6B7060",
                 margin: "0 0 0.5rem",
               }}
             >
@@ -516,7 +516,7 @@ export default function Page() {
               fontWeight: 400,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#8FA882",
+              color: "#6B7060",
               marginTop: "50px",
             }}
           >
