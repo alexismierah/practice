@@ -507,8 +507,8 @@ export default function Header() {
             <Image
               src="/logo.png"
               alt="Rich Haven logo"
-              width={48}
-              height={48}
+              width={973}
+              height={1104}
               style={{ objectFit: "contain", width: "auto", height: "48px", marginTop: "-15px" }}
             />
             <div className="hdr-logo-text">

@@ -532,8 +532,8 @@ export default function Footer() {
               <Image
                 src="/logo.png"
                 alt="Rich Haven logo"
-                width={62}
-                height={62}
+                width={973}
+                height={1104}
                 style={{ objectFit: "contain", marginTop: "-36px", width: "auto", height: "62px" }}
               />
               <div className="footer-logo-text">
