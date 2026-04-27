@@ -538,7 +538,7 @@ export default function Header() {
                     href="/products-services"
                     className={`hdr-dropdown-trigger${dropdownOpen ? " open" : ""}`}
                   >
-                    Products & Services
+                    Product Collections
                     <svg viewBox="0 0 24 24">
                       <polyline points="6 9 12 15 18 9" />
                     </svg>
@@ -584,7 +584,7 @@ export default function Header() {
             className={`hdr-mobile-products-toggle${mobileProductsOpen ? " open" : ""}`}
             onClick={() => setMobileProductsOpen(!mobileProductsOpen)}
           >
-            Products & Services
+            Product Collections
             <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9" /></svg>
           </button>
 
