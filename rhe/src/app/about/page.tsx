@@ -1,126 +1,197 @@
+"use client";
+
 export default function AboutPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-          --dg: #1a2e1e; --mg: #2d4a32; --sage: #7a9e7e; --sage-light: #a8c5ab;
-          --cream: #f7f7f7; --cream2: #eeeeee; --cream3: #e5e5e5; --muted: #6b7c6d;
+          --g-dark:   #1a3020;
+          --g-mid:    #2d5435;
+          --g-sage:   #5a8a62;
+          --g-lt:     #8ab892;
+          --g-mint:   #c4e2c8;
+          --g-foam:   #edf7ee;
+          --g-cream:  #f5faf5;
+          --g-white:  #ffffff;
+          --g-muted:  #567060;
+          --g-border: rgba(90,138,98,0.18);
+          --sans:     'DM Sans', sans-serif;
+          --gray-md:  #eeeeee;
         }
 
-        body { background: var(--cream); color: var(--dg); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+        body { font-family: var(--sans); font-weight: 300; overflow-x: hidden; }
 
+        /* ── HERO ──────────────────────────────────────── */
+        .ab-hero {
+          background: var(--gray-lt);
+          padding: 88px 40px 64px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
 
-        /* INTRO */
-        .intro { padding: 140px 56px 96px; background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1100px; margin: 0 auto; }
-        .intro-left { display: flex; flex-direction: column; }
-        .section-label { font-size: 10px; letter-spacing: .36em; text-transform: uppercase; color: var(--sage); margin-bottom: 20px; }
-        .intro-heading { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: clamp(32px, 4vw, 46px); line-height: 1.15; color: var(--dg); letter-spacing: -.5px; }
-        .intro-heading em { font-style: italic; color: var(--mg); }
-        .intro-divider { width: 40px; height: 1px; background: var(--sage); margin: 32px 0; opacity: 0.5; }
-        .intro-body { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--muted); }
-        .intro-right { display: flex; flex-direction: column; gap: 28px; }
-        .intro-stat { padding: 28px 32px; background: var(--cream2); border-radius: 12px; }
-        .intro-stat-num { font-family: 'DM Sans', sans-serif; font-weight: 200; font-size: 40px; color: var(--mg); letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
-        .intro-stat-label { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.6; }
+        .ab-hero-heading {
+          font-size: clamp(1.65rem, 3.2vw, 2.65rem);
+          font-weight: 300;
+          color: var(--g-dark);
+          line-height: 1.3;
+          letter-spacing: -0.02em;
+          max-width: 790px;
+          margin-bottom: 36px;
+          margin-top: 70px;
+        }
 
-        /* PILLARS */
-        .pillars-wrap { background: var(--cream); padding: 0 56px 96px; }
-        .pillars-inner { max-width: 1000px; margin: 0 auto; }
-        .pillars-top { margin-bottom: 56px; }
-        .pillars-heading { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: clamp(28px, 3.5vw, 38px); color: var(--dg); line-height: 1.1; letter-spacing: -.5px; margin-top: 12px; }
-        .pillars-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
-        .pillar-card { background: #ffffff; padding: 32px 40px; display: flex; flex-direction: column; border-radius: 2px; }
-        .pillar-num { display: none; }
-        .pillar-icon { width: 44px; height: 44px; border-radius: 10px; background: var(--cream2); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
-        .pillar-name { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 24px; color: var(--dg); line-height: 1.15; margin-bottom: 8px; letter-spacing: -.3px; }
-        .pillar-sub { font-size: 13px; font-style: italic; font-weight: 300; color: var(--sage); margin-bottom: 20px; }
-        .pillar-body { font-size: 14px; font-weight: 300; line-height: 1.9; color: var(--muted); }
+        /* ── FULL-WIDTH IMAGE ───────────────────────────── */
+        .ab-banner {
+          width: 100%;
+          max-width: 1080px;
+          margin: 0 auto;
+          padding: 0 40px;
+          display: block;
+        }
 
+        .ab-banner img {
+          width: 100%;
+          height: 360px;
+          object-fit: cover;
+          border-radius: 10px;
+          display: block;
+          filter: brightness(0.96) saturate(0.9);
+          margin-bottom: -60px;
+        }
 
-        @media (max-width: 768px) {
-          .intro {
-            grid-template-columns: 1fr;
-            gap: 32px;
-            padding: 135px 24px 56px;
-          }
-          .section-label { font-size: 10px; letter-spacing: 0.38em; color: var(--mg); margin-bottom: 14px; }
-          .intro-heading { font-size: clamp(26px, 7vw, 34px); }
-          .intro-body { font-size: 14px; line-height: 1.85; }
-          .intro-divider { margin: 20px 0; }
-          .intro-right { flex-direction: row; gap: 10px; }
-          .intro-stat { padding: 20px 18px; flex: 1; border-radius: 10px; }
-          .intro-stat-num { font-size: 26px; margin-bottom: 6px; }
-          .intro-stat-label { font-size: 11px; line-height: 1.5; }
-          .pillars-wrap { padding: 0 24px 60px; }
-          .pillars-grid { grid-template-columns: 1fr; gap: 2px; }
-          .pillar-card { padding: 28px 24px; }
-          .pillar-name { font-size: 20px; }
-          .pillar-sub { font-size: 12px; margin-bottom: 14px; }
-          .pillar-body { font-size: 13px; line-height: 1.8; }
-          .pillar-icon { width: 38px; height: 38px; margin-bottom: 18px; }
+        /* ── GET TO KNOW ────────────────────────────────── */
+        .ab-know-section {
+          background: var(--gray-lt);
+        }
+
+        .ab-know {
+          max-width: 1080px;
+          margin: 0 auto;
+          padding: 80px 40px;
+          display: flex;
+          flex-direction: column;
+          gap: 32px;
+        }
+
+        .ab-know-heading {
+          font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+          font-weight: 300;
+          color: var(--g-dark);
+          line-height: 1.2;
+          letter-spacing: -0.02em;
+        }
+
+        .ab-know-body p {
+          font-size: 18px;
+          font-weight: 300;
+          color: #3a3a3a;
+          line-height: 1.85;
+          margin-bottom: 20px;
+        }
+
+        .ab-know-body p:last-child { margin-bottom: 0; }
+
+        .ab-know-body strong {
+          font-weight: 400;
+          color: var(--g-dark);
+        }
+
+        /* ── QUOTE ──────────────────────────────────────── */
+        .ab-quote-section {
+          background: #f3f3f3;
+        }
+
+        .ab-quote-inner {
+          max-width: 1080px;
+          margin: 0 auto;
+          padding: 72px 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .ab-quote-text {
+          font-size: clamp(1.25rem, 2.6vw, 2rem);
+          font-weight: 300;
+          color: var(--g-dark);
+          line-height: 1.55;
+          letter-spacing: -0.01em;
+          font-style: italic;
+          text-align: center;
+        }
+
+        .ab-quote-cite {
+          display: block;
+          margin-top: 20px;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          color: var(--g-muted);
+          letter-spacing: 0.02em;
+        }
+
+        /* ── RESPONSIVE ────────────────────────────────── */
+        @media (max-width: 860px) {
+          .ab-know { grid-template-columns: 1fr; gap: 32px; }
+          .ab-know-heading { position: static; }
+          .ab-quote-inner { grid-template-columns: 1fr; gap: 32px; }
+          .ab-quote-person { flex-direction: row; align-items: center; gap: 16px; }
+        }
+
+        @media (max-width: 600px) {
+          .ab-hero { padding: 60px 24px 48px; }
+          .ab-banner { padding: 0 24px; }
+          .ab-banner img { height: 220px; border-radius: 8px; }
+          .ab-know { padding: 56px 24px; }
+          .ab-quote-inner { padding: 52px 24px; }
         }
       `}</style>
 
-      <div>
-        {/* Intro */}
-        <section style={{ background: "var(--cream)" }}>
-          <div className="intro">
-            <div className="intro-left">
-              <p className="section-label">Our story</p>
-              <h2 className="intro-heading">Rich Haven<br /><em>Artificial Garden</em></h2>
-              <div className="intro-divider" />
-              <p className="intro-body">
-                We bring nature-inspired beauty to every space — without the maintenance.
-                Thoughtfully designed greenery for homes, offices, and commercial spaces
-                that stays fresh and vibrant all year round.
-              </p>
-            </div>
-            <div className="intro-right">
-              <div className="intro-stat">
-                <div className="intro-stat-num">100%</div>
-                <p className="intro-stat-label">Maintenance-free greenery — no watering, pruning, or replacing needed.</p>
-              </div>
-              <div className="intro-stat">
-                <div className="intro-stat-num">Every<br/>Space</div>
-                <p className="intro-stat-label">From compact home corners to full commercial lobbies, we design for all environments.</p>
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* ── HERO ── */}
+      <section className="ab-hero">
+        <h1 className="ab-hero-heading">
+          We focus on bringing the beauty of nature into your space without the maintenance.
+        </h1>
+        {/* ── FULL-WIDTH IMAGE ── */}
+        <div className="ab-banner">
+          <img
+            src="about1.jpg"
+            alt="Rich Haven garden"
+          />
+        </div>
+      </section>
 
-        {/* Pillars */}
-        <section className="pillars-wrap">
-          <div className="pillars-inner">
-<div className="pillars-grid">
-              {[
-                {
-                  num: "01", name: "What we do", sub: "Greenery for every kind of space.",
-                  body: "Our collection covers potted plants, wall greens, hanging plants, and artificial turf — bringing the calm of nature indoors and out with none of the upkeep.",
-                  icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2C10 2 4 6 4 11a6 6 0 0012 0C16 6 10 2 10 2z" stroke="#7a9e7e" strokeWidth="1.2"/><line x1="10" y1="11" x2="10" y2="18" stroke="#7a9e7e" strokeWidth="1.2"/></svg>,
-                },
-                {
-                  num: "02", name: "How we do it", sub: "Realistic. Built to last.",
-                  body: "Our products are designed to look and feel like the real thing — durable materials, careful detail, and color that holds for years, not months. Artificial shouldn't mean artificial-looking.",
-                  icon: <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#7a9e7e" strokeWidth="1.2"/><path d="M7 10l2 2 4-4" stroke="#7a9e7e" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
-                },
-              ].map((p, i) => (
-                <div key={i} className="pillar-card">
-                  <p className="pillar-num">{p.num}</p>
-                  <div className="pillar-icon">{p.icon}</div>
-                  <h3 className="pillar-name">{p.name}</h3>
-                  <p className="pillar-sub">{p.sub}</p>
-                  <p className="pillar-body">{p.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
+      {/* ── GET TO KNOW ── */}
+      <section className="ab-know-section">
+      <div className="ab-know">
+        <h2 className="ab-know-heading">Get to know us</h2>
+        <div className="ab-know-body">
+          <p>
+            At Rich Haven Artificial Garden, we bring nature-inspired beauty to every space—without the maintenance.
+            We specialize in high-quality artificial greenery, including potted plants, wall greens, hanging plants, and artificial turf, thoughtfully designed to enhance homes, offices, and commercial spaces.
+          </p>
+          <p>
+            Our products combine realistic aesthetics with durability, offering a lasting green solution that stays fresh and vibrant all year round. Whether you’re elevating an interior, transforming an outdoor area, or creating a calming atmosphere, Rich Haven Artificial Garden is committed to delivering style, quality, and timeless greenery you can rely on.
+          </p>
+        </div>
       </div>
+      </section>
+
+      {/* ── QUOTE ── */}
+      {/*<section className="ab-quote-section">
+        <div className="ab-quote-inner">
+          <blockquote className="ab-quote-text">
+            {"“Our goal is to provide beautiful, lasting greenery for people who want nature in their space but can’t afford the time or cost of real plants because everyone deserves a space that feels alive.”"}
+            <cite className="ab-quote-cite">Rich Haven Artificial Garden</cite>
+          </blockquote>
+        </div>
+      </section>*/}
     </>
   );
 }
