@@ -426,7 +426,7 @@ export default function Home() {
         .about-headline {
           font-family: var(--serif);
           font-size: clamp(2.8rem, 5vw, 5rem);
-          font-weight: 300;
+          font-weight: 400;
           line-height: 1.18;
           color: var(--ink);
           margin-bottom: 28px;
