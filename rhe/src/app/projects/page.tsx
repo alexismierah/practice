@@ -219,14 +219,42 @@ const CSS = `
     border-radius: 9999px;
   }
 
-  /* Modal */
-  .rh-modal-backdrop { position: fixed; inset: 0; background: rgba(10,14,10,0.92); z-index: 999; display: flex; align-items: center; justify-content: center; animation: rh-fade 0.2s ease; }
+  /* ── MODAL ── */
+  .rh-modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(10,14,10,0.92);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: rh-fade 0.2s ease;
+    padding: 16px;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
   @keyframes rh-fade { from { opacity: 0; } to { opacity: 1; } }
 
-  .rh-modal-split { position: relative; width: min(92vw, 980px); height: min(82vh, 500px); display: flex; background: #fff; animation: rh-scale 0.25s ease; overflow: hidden; border-radius: 6px; }
+  /* Desktop: side-by-side */
+  .rh-modal-split {
+    position: relative;
+    width: min(92vw, 980px);
+    height: min(82vh, 500px);
+    display: flex;
+    flex-direction: row;
+    background: #fff;
+    animation: rh-scale 0.25s ease;
+    overflow: hidden;
+    border-radius: 6px;
+  }
   @keyframes rh-scale { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
 
-  .rh-modal-left { position: relative; flex: 0 0 58%; background: #111; overflow: hidden; border-radius: 6px 0 0 6px; }
+  .rh-modal-left {
+    position: relative;
+    flex: 0 0 58%;
+    background: #111;
+    overflow: hidden;
+    border-radius: 6px 0 0 6px;
+  }
   .rh-modal-main-img { width: 100%; height: 100%; object-fit: cover; display: block; animation: rh-imgfade 0.22s ease; }
   @keyframes rh-imgfade { from { opacity: 0; } to { opacity: 1; } }
 
@@ -237,7 +265,15 @@ const CSS = `
 
   .rh-img-counter { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.42); padding: 4px 12px; z-index: 2; white-space: nowrap; border-radius: 9999px; }
 
-  .rh-modal-right { flex: 1; display: flex; flex-direction: column; padding: 48px 28px 50px; position: relative; overflow-y: auto; background: #fff; }
+  .rh-modal-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 28px 50px;
+    position: relative;
+    overflow-y: auto;
+    background: #fff;
+  }
 
   .rh-modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.15s; z-index: 2; }
   .rh-modal-close:hover { opacity: 0.5; }
@@ -263,8 +299,91 @@ const CSS = `
   .rh-thumb { width: 52px; height: 36px; object-fit: cover; cursor: pointer; opacity: 0.4; border: 1.5px solid transparent; transition: opacity 0.15s, border-color 0.15s; flex-shrink: 0; border-radius: 3px; }
   .rh-thumb.active { opacity: 1; border-color: #b8986a; }
 
-  .rh-btn-gold { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: #e8d5b0; padding: 12px 28px; cursor: pointer; text-decoration: none; display: inline-block; border: 0.5px solid rgba(184,152,106,0.55); background: rgba(184,152,106,0.1); }
-  .rh-btn-ghost { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); padding: 12px 28px; cursor: pointer; text-decoration: none; display: inline-block; border: 0.5px solid rgba(255,255,255,0.12); background: transparent; }
+  /* ── MOBILE RESPONSIVE ── */
+  @media (max-width: 768px) {
+    /* Grid: single column on mobile */
+    .rh-grid {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    /* Hero cell full width */
+    .rh-hero-cell {
+      grid-column: span 1 !important;
+      min-height: auto;
+      padding: 28px 20px;
+    }
+
+    /* All cards full width on mobile */
+    .rh-card {
+      grid-column: span 1 !important;
+    }
+
+    /* Slightly shorter card heights on mobile */
+    .rh-card-mobile-h { height: 260px !important; }
+
+    /* Modal: stacked (image top, details bottom) */
+    .rh-modal-split {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      max-height: 92vh;
+      overflow-y: auto;
+      border-radius: 10px;
+      margin: auto;
+    }
+
+    .rh-modal-left {
+      flex: 0 0 auto;
+      height: 260px;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .rh-modal-right {
+      flex: 1;
+      padding: 20px 20px 28px;
+      overflow-y: visible;
+    }
+
+    .rh-modal-close {
+      /* On mobile, close button sits on top of image */
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0,0,0,0.45);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+    }
+
+    .rh-modal-close svg path {
+      stroke: #fff;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    /* Tablet: 2 columns */
+    .rh-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rh-hero-cell {
+      grid-column: span 2 !important;
+      min-height: auto;
+    }
+
+    .rh-card {
+      grid-column: span 1 !important;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    /* Desktop: restore original 12-col spans via data attributes */
+    .rh-card[data-span="4"]  { grid-column: span 4; }
+    .rh-card[data-span="6"]  { grid-column: span 6; }
+    .rh-card[data-span="8"]  { grid-column: span 8; }
+    .rh-card[data-span="12"] { grid-column: span 12; }
+  }
 `;
 
 export default function ProjectsPage() {
@@ -301,42 +420,24 @@ export default function ProjectsPage() {
     return () => { document.body.style.overflow = ""; };
   }, [modal]);
 
-  const spanClass = (index: number) => {
+  // Desktop span (12-col grid)
+  const desktopSpan = (index: number): string => {
     const map: Record<number, string> = {
-      0: "col-span-8",
-      1: "col-span-4",
-      2: "col-span-4",
-      3: "col-span-4",
-      4: "col-span-6",
-      5: "col-span-6",
-      6: "col-span-4",
-      7: "col-span-4",
-      8: "col-span-4",
-      9: "col-span-12",
-      10: "col-span-4",
-      11: "col-span-4",
-      12: "col-span-4",
-      13: "col-span-4",
+      0: "8", 1: "4", 2: "4", 3: "4",
+      4: "6", 5: "6", 6: "4", 7: "4",
+      8: "4", 9: "12", 10: "4", 11: "4",
+      12: "4", 13: "4",
     };
-    return map[index % 15] ?? "col-span-6";
+    return map[index % 15] ?? "6";
   };
 
+  // Desktop span as Tailwind class (only applies ≥1024px via data-span + CSS)
   const heightClass = (index: number) => {
     const map: Record<number, string> = {
-      0: "h-[450px]",
-      1: "h-[440px]",
-      2: "h-[440px]",
-      3: "h-[440px]",
-      4: "h-[445px]",
-      5: "h-[445px]",
-      6: "h-[445px]",
-      7: "h-[445px]",
-      8: "h-[445px]",
-      9: "h-[395px]",
-      10: "h-[395px]",
-      11: "h-[395px]",
-      12: "h-[395px]",
-      13: "h-[395px]",
+      0: "h-[450px]", 1: "h-[440px]", 2: "h-[440px]", 3: "h-[440px]",
+      4: "h-[445px]", 5: "h-[445px]", 6: "h-[445px]", 7: "h-[445px]",
+      8: "h-[445px]", 9: "h-[395px]", 10: "h-[395px]", 11: "h-[395px]",
+      12: "h-[395px]", 13: "h-[395px]",
     };
     return map[index % 13] ?? "h-[395px]";
   };
@@ -349,13 +450,12 @@ export default function ProjectsPage() {
 
       <div className="rh-root min-h-screen" style={{ background: "#f7f7f7" }}>
 
-        <section className="px-25 pt-1.5 pb-20">
+        <section className="px-4 sm:px-8 lg:px-25 pt-1.5 pb-20">
           <div className="rh-grid">
 
             {/* TEXT CELL */}
             <div className="rh-hero-cell">
               <div>
-                {/* "WHAT WE CREATE" — styled like "About Rich Haven" / "What we offer" */}
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
@@ -373,7 +473,6 @@ export default function ProjectsPage() {
                   WHAT WE CREATE
                 </p>
 
-                {/* "Explore Our Creations" — styled like "Your space deserves to be always green" */}
                 <h1
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
@@ -385,13 +484,12 @@ export default function ProjectsPage() {
                     marginBottom: 24,
                   }}
                 >
-                  Explore{" "}
-                  <em style={{ fontStyle: "italic", fontWeight: 200, color: "#2d4a27" }}>
-                    Our Creations
+                  Explore Our{" "}
+                  <em style={{ fontStyle: "italic", fontWeight: 300, color: "#4A6741" }}>
+                    Creations
                   </em>
                 </h1>
 
-                {/* Paragraph — styled like hw-step-sub */}
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
@@ -410,10 +508,13 @@ export default function ProjectsPage() {
             {PROJECTS.map((p, i) => (
               <article
                 key={p.id}
-                className={`rh-card bg-[#ddd] ${spanClass(i)} ${heightClass(i)}`}
+                className={`rh-card bg-[#ddd] ${heightClass(i)} rh-card-mobile-h`}
+                data-span={desktopSpan(i)}
                 onClick={() => openModal(p, 0)}
               >
-                <img src={p.images[0]} alt={p.title} loading="lazy" />
+                <img src={p.images[0]} alt={p.location} loading="lazy" />
+
+                {/* Static label: show location */}
                 <div className="rh-card-static">
                   <div
                     style={{
@@ -424,7 +525,7 @@ export default function ProjectsPage() {
                       lineHeight: 1.3,
                     }}
                   >
-                    {p.title}
+                    {p.location}
                   </div>
                   <div
                     style={{
@@ -436,9 +537,11 @@ export default function ProjectsPage() {
                       marginTop: 2,
                     }}
                   >
-                    {p.location} &middot; {p.area}
+                    {p.category} &middot; {p.area}
                   </div>
                 </div>
+
+                {/* Hover overlay: show location */}
                 <div className="rh-card-overlay">
                   <span className="rh-card-badge">{p.category}</span>
                   <div>
@@ -459,7 +562,7 @@ export default function ProjectsPage() {
                       className="rh-root"
                       style={{ fontWeight: 300, fontSize: 24, color: "#fff", lineHeight: 1.25 }}
                     >
-                      {p.title}
+                      {p.location}
                     </h2>
                     <p
                       style={{
@@ -475,6 +578,7 @@ export default function ProjectsPage() {
                     </p>
                   </div>
                 </div>
+
                 <div className="rh-card-arrow">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
@@ -489,11 +593,13 @@ export default function ProjectsPage() {
         {modal !== null && (
           <div className="rh-modal-backdrop" onClick={closeModal}>
             <div className="rh-modal-split" onClick={(e) => e.stopPropagation()}>
+
+              {/* Image panel */}
               <div className="rh-modal-left">
                 <img
                   key={m.imgIndex}
                   src={m.project.images[m.imgIndex]}
-                  alt={m.project.title}
+                  alt={m.project.location}
                   className="rh-modal-main-img"
                 />
                 {m.project.images.length > 1 && (
@@ -515,6 +621,7 @@ export default function ProjectsPage() {
                 </div>
               </div>
 
+              {/* Details panel */}
               <div className="rh-modal-right">
                 <button className="rh-modal-close" onClick={closeModal}>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a1a18" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -522,7 +629,7 @@ export default function ProjectsPage() {
                   </svg>
                 </button>
 
-                {/* Modal title — hw-step-label size/weight */}
+                {/* Modal title = location */}
                 <h2
                   className="rh-root"
                   style={{
@@ -535,14 +642,10 @@ export default function ProjectsPage() {
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  {m.project.title}
+                  {m.project.location}
                 </h2>
 
                 <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
-                  <div className="rh-detail-row">
-                    <span className="rh-detail-label">Location</span>
-                    <span className="rh-detail-value">{m.project.location}</span>
-                  </div>
                   <div className="rh-detail-row">
                     <span className="rh-detail-label">Area</span>
                     <span className="rh-detail-value">{m.project.area}</span>
@@ -553,7 +656,6 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Description — hw-step-sub style */}
                 <p
                   style={{
                     fontFamily: "'DM Sans', sans-serif",
@@ -569,7 +671,6 @@ export default function ProjectsPage() {
 
                 {m.project.images.length > 1 && (
                   <div className="mt-auto pt-5" style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
-                    {/* "PHOTOS" label — color like paragraph, style like "What we offer" */}
                     <span
                       style={{
                         fontFamily: "'DM Sans', sans-serif",

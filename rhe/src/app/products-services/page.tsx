@@ -64,7 +64,7 @@ export default function ProductsServicesPage() {
           padding: 9.5rem 0 5rem;
         }
 
-        /* ── EYEBROW — matches "About Rich Haven" style ── */
+        /* ── EYEBROW ── */
         .ps-eyebrow {
           font-family: var(--font);
           font-size: 10px;
@@ -78,7 +78,6 @@ export default function ProductsServicesPage() {
           margin-bottom: 12px;
         }
 
-        /* hero eyebrow keeps original muted color on light bg */
         .craft-eyebrow {
           font-family: var(--font);
           font-size: 10px;
@@ -98,7 +97,7 @@ export default function ProductsServicesPage() {
           margin: 0;
         }
 
-        /* ── SECTION HEADLINE — matches "Our Green Solutions" ── */
+        /* ── SECTION HEADLINE ── */
         .ps-section-headline {
           font-family: var(--font);
           font-size: clamp(1.6rem, 2.8vw, 2.2rem);
@@ -128,7 +127,7 @@ export default function ProductsServicesPage() {
           line-height: 1.4;
         }
 
-        /* ── VIEW MORE — matches "View all services" ── */
+        /* ── VIEW MORE ── */
         .ps-view-more {
           font-family: var(--font);
           font-size: 10px;
@@ -149,12 +148,22 @@ export default function ProductsServicesPage() {
           transition: transform 0.3s;
         }
 
-        .ps-view-more:hover {
-          color: var(--forest);
+        .ps-view-more:hover { color: var(--forest); }
+        .ps-view-more:hover::after { transform: translateX(4px); }
+
+        /* ── IMAGE WRAPPER ── */
+        /* Desktop: fixed height container */
+        .product-img-wrap {
+          width: 100%;
+          height: 450px;
+          border-radius: 16px;
+          overflow: hidden;
         }
 
-        .ps-view-more:hover::after {
-          transform: translateX(4px);
+        .product-img-wrap img {
+          width: 100%;
+          height: 100%;
+          display: block;
         }
 
         /* ── RESPONSIVE ── */
@@ -169,7 +178,22 @@ export default function ProductsServicesPage() {
           }
           .two-col-grid .text-cell { order: 2; }
           .two-col-grid .image-cell { order: 1; }
-          .product-img-wrap { height: 260px !important; }
+
+          /* Key fix: on mobile, let the image size itself naturally */
+          .product-img-wrap {
+            height: auto !important;
+            border-radius: 12px;
+          }
+
+          /* Images: full width, auto height, no cropping */
+          .product-img-wrap img {
+            width: 100%;
+            height: auto !important;
+            object-fit: contain !important;
+            /* Remove transforms that cause cropping */
+            transform: none !important;
+          }
+
           .feature-grid { grid-template-columns: 1fr !important; }
           .craft-hero { height: 100vh; }
           .craft-hero-inner { padding: 0 1.5rem; }
@@ -186,7 +210,6 @@ export default function ProductsServicesPage() {
 
         @media (max-width: 480px) {
           .two-col-grid { gap: 1.5rem; }
-          .product-img-wrap { height: 220px !important; }
         }
       `}</style>
 
@@ -210,18 +233,12 @@ export default function ProductsServicesPage() {
         <div>
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
-              <div
-                className="product-img-wrap"
-                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
-              >
+              <div className="product-img-wrap">
                 <img
                   src="/p10.png"
                   alt="Potted artificial plants on a wooden bench"
                   style={{
-                    width: "100%",
-                    height: "450px",
                     objectFit: "cover",
-                    display: "block",
                     transform: "translateY(10px) scale(1.03)",
                     filter: "drop-shadow(0px 1px 1px rgba(95,91,91,0.1))",
                     objectPosition: "55% 15%",
@@ -231,15 +248,12 @@ export default function ProductsServicesPage() {
             </div>
 
             <div className="text-cell" style={{ paddingTop: 5 }}>
-              {/* "What do we have?" — styled like "About Rich Haven" */}
               <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
 
-              {/* Headline — styled like "Our Green Solutions" */}
               <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Potted Artificial Plants
               </h2>
 
-              {/* Paragraph */}
               <p className="ps-body-text">
                 A premium collection of lifelike plants in pots, thoughtfully designed
                 to elevate indoor and outdoor spaces. Each piece comes ready for display in stylish
@@ -272,7 +286,6 @@ export default function ProductsServicesPage() {
                 ))}
               </div>
 
-              {/* View More — styled like "View all services" */}
               <Link href="/products-services/potted-plants" className="ps-view-more">
                 View more
               </Link>
@@ -334,18 +347,12 @@ export default function ProductsServicesPage() {
             </div>
 
             <div className="image-cell" style={{ position: "relative" }}>
-              <div
-                className="product-img-wrap"
-                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
-              >
+              <div className="product-img-wrap">
                 <img
                   src="/p19.png"
                   alt="Paneled Wall Greens"
                   style={{
-                    width: "100%",
-                    height: "450px",
                     objectFit: "contain",
-                    display: "block",
                     transform: "translateY(10px) scale(1.03)",
                     filter: "drop-shadow(0px 6px 2px rgba(117, 112, 112, 0.6))",
                     objectPosition: "50% 10%",
@@ -365,18 +372,12 @@ export default function ProductsServicesPage() {
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
-              <div
-                className="product-img-wrap"
-                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
-              >
+              <div className="product-img-wrap">
                 <img
                   src="/p16.png"
                   alt="Decorative planter box"
                   style={{
-                    width: "100%",
-                    height: "450px",
                     objectFit: "contain",
-                    display: "block",
                     transform: "translateY(10px) scale(1.03)",
                     filter: "drop-shadow(0px 4px 3px rgba(117, 112, 112, 0.4))",
                     objectPosition: "55% 15%",
@@ -487,18 +488,12 @@ export default function ProductsServicesPage() {
             </div>
 
             <div className="image-cell" style={{ position: "relative" }}>
-              <div
-                className="product-img-wrap"
-                style={{ width: "100%", height: 450, borderRadius: 16, overflow: "hidden" }}
-              >
+              <div className="product-img-wrap">
                 <img
                   src="/p18.png"
                   alt="Artificial turf grass"
                   style={{
-                    width: "100%",
-                    height: "450px",
                     objectFit: "contain",
-                    display: "block",
                     transform: "translateY(20px) scale(1.03)",
                     filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
                     objectPosition: "50% 10%",
