@@ -76,8 +76,7 @@ export default function AboutPage() {
               <p className="intro-body">
                 We bring nature-inspired beauty to every space — without the maintenance.
                 Thoughtfully designed greenery for homes, offices, and commercial spaces
-                that stays fresh and vibrant all year round. Because you shouldn't have
-                to choose between beauty and convenience.
+                that stays fresh and vibrant all year round.
               </p>
             </div>
             <div className="intro-right">
