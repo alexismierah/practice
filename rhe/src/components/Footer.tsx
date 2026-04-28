@@ -543,7 +543,7 @@ export default function Footer() {
             </div>
 
             <p className="footer-desc">
-              Bringing enduring botanical beauty into every space — a thoughtfully curated collection of lifelike artificial greenery crafted for those who appreciate the timeless elegance of nature.
+              Greenery made to look natural, stay flawless, and bring lasting beauty. No maintenance needed.
             </p>
 
             <div className="footer-socials">
