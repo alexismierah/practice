@@ -288,15 +288,7 @@ export default function Header() {
           transition: background 0.13s;
         }
         .hdr-dd-item:hover { background: #f0f7ff; }
-        .hdr-dd-item:hover .hdr-dd-dot { background: var(--blue); transform: scale(1.4); }
         .hdr-dd-item:hover .hdr-dd-lbl { color: var(--blue-dark); }
-        .hdr-dd-dot {
-          width: 5px; height: 5px;
-          border-radius: 50%;
-          background: #cbd5e0;
-          flex-shrink: 0;
-          transition: background 0.13s, transform 0.13s;
-        }
         .hdr-dd-lbl {
           font-size: 0.84rem;
           font-weight: 400;
@@ -424,7 +416,7 @@ export default function Header() {
           color: #fff;
           text-align: center;
           padding: 13px;
-          border-radius: 10px;
+          border-radius: 9999px;
           font-size: 0.9rem;
           font-weight: 500;
           text-decoration: none;
@@ -438,7 +430,7 @@ export default function Header() {
           .hdr-dd-grid { grid-template-columns: repeat(4, 1fr); }
         }
         @media (max-width: 900px) {
-          .hdr-nav, .hdr-divider { display: none; }
+          .hdr-nav, .hdr-divider, .hdr-cta { display: none; }
           .hdr-mobile-btn { display: flex; }
         }
         @media (max-width: 480px) {
@@ -495,7 +487,6 @@ export default function Header() {
                         onClick={() => { setServicesOpen(false); setActiveCategory(null) }}
                         role="menuitem"
                       >
-                        <span className="hdr-dd-dot" />
                         <span className="hdr-dd-lbl">{label}</span>
                       </Link>
                     ))}

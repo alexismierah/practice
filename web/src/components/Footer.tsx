@@ -78,7 +78,7 @@ export default function Footer() {
       <style>{`
         .footer-root {
           font-family: 'Instrument Sans', sans-serif;
-          background: #1c2333;
+          background: #111827;
           color: #e8e6e1;
           position: relative;
           overflow: hidden;
@@ -89,145 +89,135 @@ export default function Footer() {
           position: absolute;
           inset: 0;
           background:
-            radial-gradient(ellipse 60% 50% at 10% 100%, rgba(58, 137, 221, 0.12) 0%, transparent 60%),
-            radial-gradient(ellipse 40% 40% at 90% 0%, rgba(58, 137, 221, 0.07) 0%, transparent 60%);
+            radial-gradient(ellipse 70% 60% at 0% 100%, rgba(58, 137, 221, 0.1) 0%, transparent 55%),
+            radial-gradient(ellipse 50% 50% at 100% 0%, rgba(96, 165, 250, 0.06) 0%, transparent 55%),
+            radial-gradient(ellipse 40% 40% at 50% 80%, rgba(58, 137, 221, 0.04) 0%, transparent 60%);
           pointer-events: none;
         }
 
         .footer-grid {
-          max-width: 1200px;
+          max-width: 1240px;
           margin: 0 auto;
-          padding: 72px 40px 56px;
+          padding: 80px 48px 64px;
           display: grid;
-          grid-template-columns: 1.4fr 1fr 1.6fr;
-          gap: 64px;
+          grid-template-columns: 1.5fr 1fr 1.8fr;
+          gap: 72px;
           position: relative;
         }
 
-        @media (max-width: 768px) {
-          .footer-grid { grid-template-columns: 1fr; gap: 48px; padding: 48px 24px 40px; }
+        @media (max-width: 900px) {
+          .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; padding: 56px 32px 48px; }
         }
 
+        @media (max-width: 600px) {
+          .footer-grid { grid-template-columns: 1fr; gap: 40px; padding: 48px 24px 40px; }
+        }
+
+        /* Brand column */
         .brand-eyebrow {
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
           font-size: 10px;
-          font-weight: 500;
-          letter-spacing: 0.2em;
+          font-weight: 600;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           color: #3a89dd;
-          margin-bottom: 12px;
+          margin-bottom: 14px;
         }
 
         .brand-name {
-          font-size: 28px;
+          font-size: 26px;
           font-weight: 800;
           letter-spacing: -0.03em;
           color: #ffffff;
-          line-height: 1;
-          margin-bottom: 16px;
+          line-height: 1.1;
+          margin-bottom: 14px;
         }
 
         .brand-desc {
           font-size: 14px;
           font-weight: 300;
-          line-height: 1.7;
-          color: #9bacc4;
-          max-width: 240px;
-          margin-bottom: 20px;
+          line-height: 1.75;
+          color: #7a92ad;
+          max-width: 230px;
+          margin-bottom: 28px;
         }
 
-        .contacts-label {
-          font-size: 11px;
-          font-weight: 700;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: #4a6880;
-          margin-bottom: 10px;
-          margin-top: 4px;
-        }
-
-        .contacts-block {
-          font-size: 13px;
-          font-weight: 300;
-          line-height: 1.9;
-          color: #9bacc4;
-          margin-bottom: 24px;
-        }
-
-        .contacts-block a {
-          color: #9bacc4;
-          text-decoration: none;
-          transition: color 0.2s;
-        }
-
-        .contacts-block a:hover {
-          color: #3a89dd;
-        }
-
-        .social-row { display: flex; gap: 12px; }
+        .social-row { display: flex; gap: 10px; }
 
         .social-dot {
-          width: 36px;
-          height: 36px;
+          width: 38px;
+          height: 38px;
           border-radius: 50%;
-          border: 1px solid rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.1);
+          background: rgba(255,255,255,0.04);
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          transition: border-color 0.2s, background 0.2s;
+          transition: border-color 0.2s, background 0.2s, transform 0.15s;
           color: #7a92ad;
           text-decoration: none;
         }
-        .social-dot:hover { border-color: #3a89dd; background: rgba(58,137,221,0.12); }
+        .social-dot:hover {
+          border-color: rgba(58,137,221,0.5);
+          background: rgba(58,137,221,0.1);
+          transform: translateY(-2px);
+        }
         .social-dot:hover svg { fill: #3a89dd; }
-        .social-dot svg { fill: #ffffff; transition: fill 0.2s; }
+        .social-dot svg { fill: #9bacc4; transition: fill 0.2s; }
 
+        /* Column label */
         .col-label {
-          font-size: 11px;
+          font-size: 10px;
           font-weight: 700;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.18em;
           text-transform: uppercase;
-          color: #4a6880;
-          margin-bottom: 24px;
+          color: #3a89dd;
+          margin-bottom: 20px;
         }
 
-        .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 2px; }
+        /* Nav */
+        .nav-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
 
         .nav-item {
-          position: relative;
           display: inline-flex;
           align-items: center;
-          gap: 8px;
-          font-size: 15px;
+          font-size: 14.5px;
           font-weight: 400;
           color: #7a92ad;
-          cursor: pointer;
-          padding: 6px 0;
+          padding: 7px 0;
           transition: color 0.2s;
           width: fit-content;
           text-decoration: none;
         }
 
-        .nav-item::before {
-          content: '';
-          width: 0;
-          height: 1px;
-          background: #3a89dd;
-          transition: width 0.25s ease;
-          flex-shrink: 0;
+        .nav-item:hover { color: #e8e6e1; }
+
+        /* Contacts */
+        .contact-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; }
+
+        .contact-item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          font-size: 13.5px;
+          font-weight: 300;
+          color: #7a92ad;
+          padding: 7px 0;
+          cursor: default;
         }
 
-        .nav-item:hover { color: #e8e6e1; }
-        .nav-item:hover::before { width: 16px; }
-
-        .form-wrap { display: flex; flex-direction: column; gap: 12px; }
+        /* Form */
+        .form-wrap { display: flex; flex-direction: column; gap: 10px; }
 
         .field-wrap { position: relative; }
 
         .field-label {
           display: block;
           font-size: 10px;
-          font-weight: 500;
+          font-weight: 600;
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: #4a6880;
@@ -239,62 +229,64 @@ export default function Footer() {
 
         .field-input {
           width: 100%;
-          background: rgba(255,255,255,0.06);
-          border: 1px solid rgba(255,255,255,0.12);
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.09);
           border-radius: 999px;
-          padding: 10px 18px;
+          padding: 10px 16px;
           font-family: 'Instrument Sans', sans-serif;
           font-size: 14px;
           font-weight: 300;
           color: #e8e6e1;
-          transition: border-color 0.2s, background 0.2s;
+          transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
           outline: none;
           box-sizing: border-box;
           -webkit-appearance: none;
         }
 
-        .field-input::placeholder { color: #5a7080; }
-        .field-input:focus { border-color: rgba(58,137,221,0.6); background: rgba(58,137,221,0.06); }
-        .field-input.has-error { border-color: rgba(239,68,68,0.6); }
+        .field-input::placeholder { color: #445566; }
+        .field-input:focus {
+          border-color: rgba(58,137,221,0.5);
+          background: rgba(58,137,221,0.05);
+          box-shadow: 0 0 0 3px rgba(58,137,221,0.08);
+        }
+        .field-input.has-error { border-color: rgba(239,68,68,0.5); }
 
-        textarea.field-input { resize: none; border-radius: 20px; padding: 12px 18px; }
+        textarea.field-input { resize: none; border-radius: 24px; padding: 11px 16px; }
 
-        .field-error { color: #ef4444; font-size: 12px; margin-top: 4px; font-weight: 500; }
+        .field-error { color: #ef4444; font-size: 11px; margin-top: 4px; font-weight: 500; }
 
         .submit-btn {
-          margin-top: 4px;
+          margin-top: 6px;
           width: auto;
           align-self: flex-start;
-          background: #3a89dd;
+          background: linear-gradient(135deg, #3a89dd 0%, #2a78cc 100%);
           border: none;
           border-radius: 999px;
-          padding: 11px 28px;
+          padding: 9px 22px;
           font-family: 'Instrument Sans', sans-serif;
-          font-size: 13px;
-          font-weight: 500;
-          letter-spacing: 0.01em;
-          text-transform: none;
+          font-size: 12.5px;
+          font-weight: 600;
+          letter-spacing: 0.02em;
           color: #fff;
           cursor: pointer;
-          transition: background 0.2s, transform 0.15s;
+          transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+          box-shadow: 0 4px 16px rgba(58,137,221,0.25);
         }
 
-        .submit-btn:hover:not(:disabled) { background: #2a78cc; transform: translateY(-1px); }
+        .submit-btn:hover:not(:disabled) {
+          opacity: 0.9;
+          transform: translateY(-1px);
+          box-shadow: 0 6px 20px rgba(58,137,221,0.35);
+        }
         .submit-btn:active:not(:disabled) { transform: translateY(0); }
-        .submit-btn.success { background: #1a9e6e; }
-        .submit-btn:disabled { cursor: not-allowed; opacity: 0.7; }
+        .submit-btn.success { background: linear-gradient(135deg, #1a9e6e 0%, #158a5e 100%); box-shadow: 0 4px 16px rgba(26,158,110,0.3); }
+        .submit-btn:disabled { cursor: not-allowed; opacity: 0.6; }
 
-        .footer-divider {
-          max-width: 1200px;
-          margin: 0 auto;
-          height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1) 20%, rgba(255,255,255,0.1) 80%, transparent);
-        }
-
+        /* Bottom bar */
         .footer-bottom {
-          max-width: 1200px;
+          max-width: 1240px;
           margin: 0 auto;
-          padding: 20px 40px;
+          padding: 22px 48px;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -305,7 +297,8 @@ export default function Footer() {
           .footer-bottom { flex-direction: column; text-align: center; padding: 20px 24px; }
         }
 
-        .footer-copy { font-size: 12px; font-weight: 300; color: #5a7080; letter-spacing: 0.02em; }
+        .footer-copy { font-size: 12px; font-weight: 300; color: #3d5166; letter-spacing: 0.03em; }
+        .footer-tagline { font-size: 11px; font-weight: 400; color: #2d4156; letter-spacing: 0.05em; }
       `}</style>
 
       <footer id="footer" className="footer-root">
@@ -315,7 +308,7 @@ export default function Footer() {
           <div>
             <p className="brand-eyebrow">Est. 2014</p>
             <h2 className="brand-name">Unifix ICT Solutions</h2>
-            <p className="brand-desc">Professional tech solutions crafted to help your business thrive.</p>
+            <p className="brand-desc">Professional tech solutions crafted to help your business thrive in the digital age.</p>
 
             <div className="social-row">
               <a
@@ -325,14 +318,14 @@ export default function Footer() {
                 className="social-dot"
                 aria-label="Facebook"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
                   <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.887v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
                 </svg>
               </a>
             </div>
           </div>
 
-          {/* Quick Links + Contacts */}
+          {/* Navigation + Contacts */}
           <div>
             <p className="col-label">Navigation</p>
             <ul className="nav-list">
@@ -344,10 +337,10 @@ export default function Footer() {
             </ul>
 
             <p className="col-label" style={{ marginTop: "32px" }}>Contacts</p>
-            <ul className="nav-list">
-              <li><a className="nav-item">unifixictsolutions01@gmail.com</a></li>
-              <li><a className="nav-item">(02) 8294 0531</a></li>
-              <li><a className="nav-item">+63 936 496 8421</a></li>
+            <ul className="contact-list">
+              <li><span className="contact-item">unifixictsolutions01@gmail.com</span></li>
+              <li><span className="contact-item">(02) 8294 0531</span></li>
+              <li><span className="contact-item">+63 936 496 8421</span></li>
             </ul>
           </div>
 
@@ -401,12 +394,9 @@ export default function Footer() {
 
         </div>
 
-        <div className="footer-divider" />
-
         <div className="footer-bottom">
-          <span className="footer-copy">
-            © 2026 Unifix ICT Solutions. All rights reserved.
-          </span>
+          <span className="footer-copy">© 2026 Unifix ICT Solutions. All rights reserved.</span>
+          <span className="footer-tagline">Trusted IT Partner Since 2014</span>
         </div>
       </footer>
     </>
