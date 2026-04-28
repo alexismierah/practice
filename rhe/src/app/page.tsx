@@ -1052,9 +1052,7 @@ export default function Home() {
               <a key={i} href={s.href} className="svc-card">
                 <img className="svc-card-img" src={s.img} alt={s.name} />
                 {s.tag && <span className="svc-tag">{s.tag}</span>}
-                <span className="svc-arrow">↗</span>
                 <div className="svc-card-body">
-                  <span className="svc-num">{s.num}</span>
                   <h3 className="svc-name">{s.name}</h3>
                   <p className="svc-desc">{s.desc}</p>
                 </div>
