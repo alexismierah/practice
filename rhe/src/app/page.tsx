@@ -963,7 +963,7 @@ export default function Home() {
           }
           .about-section .about-headline {
             color: var(--ink);
-            font-size: clamp(2.6rem, 8vw, 3.4rem);
+            font-size: clamp(2rem, 6vw, 2.8rem);
             line-height: 1.06;
             letter-spacing: -0.02em;
             margin-bottom: 16px;
@@ -1000,8 +1000,8 @@ export default function Home() {
         }
         @media (max-width: 600px) {
           .about-text-col { padding: 0 24px 60px; }
-          .about-section .about-headline { font-size: 14vw; }
-          .about-section .about-body { font-size: 15.5px; max-width: 320px; }
+          .about-section .about-headline { font-size: 11vw; }
+          .about-section .about-body { font-size: 13px; max-width: 320px; }
           .services-section { padding: 56px 16px; }
           .services-grid { grid-template-columns: 1fr; gap: 10px; max-width: 360px; margin: 0 auto; }
           .svc-card { aspect-ratio: 3/4; border-radius: 10px; }
