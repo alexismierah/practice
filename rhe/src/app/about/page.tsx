@@ -146,7 +146,7 @@ export default function AboutPage() {
 
         @media (max-width: 600px) {
           .ab-hero { padding: 60px 24px 48px; }
-          .ab-banner { padding: 0 24px; }
+          .ab-banner { padding: 0; }
           .ab-banner img { height: 220px; border-radius: 8px; }
           .ab-know { padding: 56px 24px; }
           .ab-quote-inner { padding: 52px 24px; }
