@@ -4,7 +4,10 @@ import PageWrapper from "@/components/PageWrapper"
 import "./globals.css"
 
 export const metadata = {
-  title: "Rich Haven Artificial Garden",
+  title: {
+    default: "Home | Rich Haven Artificial Garden",
+    template: "%s | Rich Haven Artificial Garden",
+  },
   icons: {
     icon: "/logo.png",
   },
