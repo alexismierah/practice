@@ -1000,14 +1000,14 @@ export default function Home() {
         }
         @media (max-width: 600px) {
           .about-text-col { padding: 0 24px 60px; }
-          .about-section .about-headline { font-size: clamp(2.2rem, 10vw, 3rem); }
-          .about-section .about-body { font-size: 12.5px; max-width: 260px; }
+          .about-section .about-headline { font-size: 14vw; }
+          .about-section .about-body { font-size: 15.5px; max-width: 320px; }
           .services-section { padding: 56px 16px; }
           .services-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
           .svc-card { aspect-ratio: 3/4; border-radius: 10px; }
           .svc-card-body { padding: 12px 12px 14px; }
           .svc-name { font-size: 13px; }
-          .svc-desc { display: none; }
+          .svc-desc { font-size: 10px; line-height: 1.5; }
           .section-header { grid-template-columns: 1fr; }
           .cta-headline { font-size: 2.2rem; }
         }
