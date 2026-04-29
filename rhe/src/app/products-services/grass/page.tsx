@@ -99,27 +99,13 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         </div>
       </div>
 
-      <div
-        style={{
-          padding: "1.2rem 0.85rem 0",
-          textAlign: "center",
-          fontSize: "14px",
-          fontWeight: 500,
-          fontFamily: "'DM Sans', sans-serif",
-          color: "#000",
-        }}
-      >
-        <p style={{ ...detailText }}>{product.name}</p>
-        <p
-            style={{
-              fontSize: "12px",
-              marginTop: "-1px",
-              color: "#6B7060",
-            }}
-          >
-            {product.size}
-          </p>
-      </div>
+      <div className="tg-product-text">
+            <p style={{ margin: 0 }}>{product.name}</p>
+            <p style={{ marginTop: "-1px", color: "#6B7060" }}>
+              {product.size}
+            </p>
+          </div>
+      
     </div>
   );
 }
@@ -149,9 +135,33 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           from { opacity: 0; transform: scale(0.93) translateY(14px); }
           to   { opacity: 1; transform: scale(1)    translateY(0);    }
         }
+
+        .tg-modal-img-wrap {
+          width: 100%;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #f0f0eb;
+        }
+        .tg-modal-img-wrap img {
+          width: 100%;
+          max-height: 400px;
+          object-fit: contain;
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .tg-modal-img-wrap {
+            max-width: calc(100% - 20px);
+            max-height: 380px;
+            margin: 0 auto;
+          }
+          .tg-modal-img-wrap img {
+            max-height: 380px;
+          }
+        }
       `}</style>
 
-      <div
+      <div className="tg-modal-box"
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "#fafaf7",
@@ -199,23 +209,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         </button>
 
         {/* Product image */}
-        <div
-          style={{
-            width: "100%",
-            borderRadius: "6px",
-            overflow: "hidden",
-            background: "#f0f0eb",
-          }}
-        >
+        <div className="tg-modal-img-wrap">
           <img
             src={product.image}
             alt={product.name}
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "contain",
-              display: "block",
-            }}
           />
         </div>
 
@@ -296,6 +293,15 @@ export default function Page() {
           margin-top: -10px;
         }
 
+        .tg-product-text {
+          padding: var(--tg-product-padding, 1.2rem 0.85rem 0);
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: 'DM Sans', sans-serif;
+          color: #000;
+        }
+
         /* ABOUT */
         .tg-about-grid {
           width: 100%;
@@ -328,7 +334,7 @@ export default function Page() {
           flex-direction: column;
           gap: 0.5rem;
           text-align: center;
-        }
+        } 
         .tg-catalog-grid-wrap {
           padding: 0 8rem 5rem;
         }
@@ -365,7 +371,7 @@ export default function Page() {
 
           .tg-about-grid {
             grid-template-columns: 1fr;
-            padding: 0;
+            padding: 2rem 0 0;
             row-gap: 0;
           }
           .tg-about-img-col {
@@ -383,30 +389,54 @@ export default function Page() {
           .tg-about-text-col {
             order: 2;
             padding: 2rem 1.5rem 2.5rem;
+            text-align: center;
+          }
+          .tg-about-text-col p,
+          .tg-about-text-col h2 {
+            text-align: center;
+          }
+          .tg-about-text-col h2 {
+            font-size: 26px !important;
+            margin-bottom: 8px !important;
           }
 
           .tg-catalog-header {
-            padding: 2rem 1.5rem 1.5rem;
+            padding: 0.5rem 1.5rem 1rem;
+          }
+          .tg-catalog-header h2 {
+            font-size: 26px !important;
+            margin-bottom: -5px !important;
           }
           .tg-catalog-grid-wrap {
-            padding: 0 1.5rem 3rem;
+            padding: 0.5rem 1.5rem 3rem;
           }
           .tg-products-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.2rem;
+            grid-template-columns: repeat(2, 120px);
+            justify-content: center;
+            gap: 1rem;
           }
-
+          .tg-product-text {
+            --tg-product-padding: 0.5rem 0.85rem 0;
+          }
+          .tg-modal-box {
+            width: 75% !important;
+            max-width: 75% !important;
+          }
           .tg-features-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
           }
           .tg-features-section {
             padding: 56px 24px !important;
           }
+          .tg-features-section h2 {
+            font-size: 26px !important;
+            margin-bottom: 30px !important;
+          }
         }
 
         /* ── TABLET ── */
-        @media (min-width: 7614px) and (max-width: 1024px) {
+        @media (min-width: 769px) and (max-width: 1024px) {
           .tg-hero-inner {
             padding: 0 2rem;
           }

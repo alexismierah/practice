@@ -25,14 +25,14 @@ interface Product {
 /* ── PRODUCTS ── */
 const PRODUCTS: Product[] = [
   { id: "1", name: "Evergreen",                    size: "80cm",  image: "/pottedplants/pot8.png"  },
-  { id: "2", name: "Dracaena Fragrans",            size: "150cm", image: "/pottedplants/pot13.png" },
+  { id: "2", name: "Croton Tree",                  size: "120cm", image: "/pottedplants/pot14.png" },
   { id: "3", name: "Fiddle Leaf Tree",             size: "170cm", image: "/pottedplants/pot12.png" },
   { id: "4", name: "Monsterra Deliciosa",          size: "100cm", image: "/pottedplants/pot11.png" },
-  { id: "5", name: "Croton Tree",                  size: "120cm", image: "/pottedplants/pot14.png" },
-  { id: "6", name: "Sanseviera Trifasciata Prain", size: "100cm", image: "/pottedplants/pot7.png"  },
+  { id: "5", name: "Dracaena Fragrans",            size: "150cm", image: "/pottedplants/pot13.png" },
+  { id: "6", name: "Bird of Paradise",             size: "140cm", image: "/pottedplants/pot6.png"  },
   { id: "7", name: "Palm Tree",                    size: "180cm", image: "/pottedplants/pot15.png" },
-  { id: "8", name: "Bird of Paradise",             size: "140cm", image: "/pottedplants/pot6.png"  },
-  { id: "9", name: "Ficus Tree",                   size: "180cm", image: "/pottedplants/pot10.png" },
+  { id: "8", name: "Ficus Tree",                   size: "180cm", image: "/pottedplants/pot10.png" },
+  { id: "9", name: "Sanseviera Trifasciata Prain", size: "100cm", image: "/pottedplants/pot7.png"  },
 ];
 
 const featureLabelStyle: React.CSSProperties = {
@@ -106,24 +106,10 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         </div>
       </div>
 
-      <div
-        style={{
-          padding: "1.2rem 0.85rem 0",
-          textAlign: "center",
-          fontSize: "14px",
-          fontWeight: 500,
-          fontFamily: "'DM Sans', sans-serif",
-          color: "#000",
-        }}
-      >
-        <p style={{ ...detailText }}>{product.name}</p>
-        <p
-          style={{
-            fontSize: "12px",
-            marginTop: "-1px",
-            color: "#6B7060",
-          }}
-        >
+      {/* ── use className + CSS variable for mobile padding override, matching grass page ── */}
+      <div className="pp-product-text">
+        <p style={{ margin: 0 }}>{product.name}</p>
+        <p style={{ marginTop: "-1px", color: "#6B7060" }}>
           {product.size}
         </p>
       </div>
@@ -156,9 +142,35 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           from { opacity: 0; transform: scale(0.93) translateY(14px); }
           to   { opacity: 1; transform: scale(1)    translateY(0);    }
         }
+
+        .pp-modal-img-wrap {
+          width: 100%;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #f0f0eb;
+        }
+        .pp-modal-img-wrap img {
+          width: 100%;
+          max-height: 400px;
+          object-fit: contain;
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .pp-modal-img-wrap {
+            max-width: calc(100% - 20px);
+            max-height: 380px;
+            margin: 0 auto;
+          }
+          .pp-modal-img-wrap img {
+            max-height: 380px;
+          }
+        }
       `}</style>
 
+      {/* ── modal box now uses className for mobile width override ── */}
       <div
+        className="pp-modal-box"
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "#fafaf7",
@@ -206,23 +218,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         </button>
 
         {/* Product image */}
-        <div
-          style={{
-            width: "100%",
-            borderRadius: "6px",
-            overflow: "hidden",
-            background: "#f0f0eb",
-          }}
-        >
+        <div className="pp-modal-img-wrap">
           <img
             src={product.image}
             alt={product.name}
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "contain",
-              display: "block",
-            }}
           />
         </div>
 
@@ -302,6 +301,16 @@ export default function Page() {
           margin-top: -10px;
         }
 
+        /* PRODUCT CARD TEXT — CSS variable allows mobile override */
+        .pp-product-text {
+          padding: var(--pp-product-padding, 1.2rem 0.85rem 0);
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: 'DM Sans', sans-serif;
+          color: #000;
+        }
+
         /* ABOUT */
         .pp-about-grid {
           width: 100%;
@@ -352,7 +361,7 @@ export default function Page() {
           width: 100%;
         }
 
-        /* MOBILE */
+        /* ── MOBILE ── */
         @media (max-width: 768px) {
           .pp-hero { height: 220px; }
           .pp-hero-inner { padding: 0 1.5rem; gap: 0.8rem; }
@@ -361,7 +370,7 @@ export default function Page() {
 
           .pp-about-grid {
             grid-template-columns: 1fr;
-            padding: 0;
+            padding: 2rem 0 0;
             row-gap: 0;
           }
           .pp-about-img-col {
@@ -374,17 +383,52 @@ export default function Page() {
             max-height: unset !important;
           }
           .pp-about-img-col > div img { height: 260px !important; }
-          .pp-about-text-col { order: 2; padding: 2rem 1.5rem 2.5rem; }
+          .pp-about-text-col {
+            order: 2;
+            padding: 2rem 1.5rem 2.5rem;
+            text-align: center;
+          }
+          /* ── centre all text inside the about column on mobile ── */
+          .pp-about-text-col p,
+          .pp-about-text-col h2 {
+            text-align: center;
+          }
+          .pp-about-text-col h2 {
+            font-size: 26px !important;
+            margin-bottom: 8px !important;
+          }
 
-          .pp-catalog-header { padding: 2rem 1.5rem 1.5rem; }
-          .pp-catalog-grid-wrap { padding: 0 1.5rem 3rem; }
-          .pp-products-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+          .pp-catalog-header { padding: 0.5rem 1.5rem 1rem; }
+          .pp-catalog-header h2 {
+            font-size: 26px !important;
+            margin-bottom: -5px !important;
+          }
+          .pp-catalog-grid-wrap { padding: 0.5rem 1.5rem 3rem; }
+          .pp-products-grid {
+            grid-template-columns: repeat(2, 120px);
+            justify-content: center;
+            gap: 1rem;
+          }
+          .pp-product-text {
+            --pp-product-padding: 0.5rem 0.85rem 0;
+          }
+
+          /* ── modal 75 % width on mobile, matching grass page ── */
+          .pp-modal-box {
+            width: 75% !important;
+            max-width: 75% !important;
+            
+          }
 
           .pp-features-grid { grid-template-columns: 1fr; gap: 2rem; }
           .pp-features-section { padding: 56px 24px !important; }
+          .pp-features-section h2 {
+            font-size: 26px !important;
+            margin-bottom: 30px !important;
+          }
         }
 
-        /* TABLET */
+        /* ── TABLET ── */
         @media (min-width: 769px) and (max-width: 1024px) {
           .pp-hero-inner { padding: 0 2rem; }
           .pp-hero-title { font-size: 36px; }

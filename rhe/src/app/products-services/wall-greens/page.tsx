@@ -26,19 +26,19 @@ interface Product {
 const PRODUCTS: Product[] = [
   { id: "1",  name: "Pachysandra",    size: "50cm×50cm",   image: "/wallgreens/pachy.png"    },
   { id: "2",  name: "Gardenia",       size: "50cm×50cm",   image: "/wallgreens/gard.png"     },
-  { id: "3",  name: "Multi-Element",  size: "50cm×50cm",   image: "/wallgreens/multi.png"    },
+  { id: "3",  name: "Multielement",  size: "50cm×50cm",   image: "/wallgreens/multi.png"    },
   { id: "4",  name: "Spring Leaves",  size: "50cm×50cm",   image: "/wallgreens/spring.png"   },
   { id: "5",  name: "Lush Forest",    size: "50cm×50cm",   image: "/wallgreens/lushh.png"    },
   { id: "6",  name: "Rhein Jardin",   size: "50cm×50cm",   image: "/wallgreens/rheinb.png"   },
   { id: "7",  name: "Daffodil Smile", size: "50cm×50cm",   image: "/wallgreens/daff.png"     },
   { id: "8",  name: "Flourish Yard",  size: "50cm×50cm",   image: "/wallgreens/flourish.png" },
   { id: "9",  name: "Deluxe Fern",    size: "100cm×100cm", image: "/wallgreens/del.png"      },
-  { id: "10", name: "Amazon World",   size: "100cm×100cm", image: "/wallgreens/aw.png"       },
+  { id: "10", name: "Orchid Park",    size: "100cm×100cm", image: "/wallgreens/orchid.png"   },
   { id: "11", name: "Pittoso",        size: "50cm×50cm",   image: "/wallgreens/pitoo.png"    },
   { id: "12", name: "Cymbidium",      size: "50cm×50cm",   image: "/wallgreens/cym.png"      },
   { id: "13", name: "Gentle Breeze",  size: "100cm×100cm", image: "/wallgreens/breeze.png"   },
   { id: "14", name: "The Jungle",     size: "100cm×100cm", image: "/wallgreens/jungle.png"   },
-  { id: "15", name: "Orchid Park",    size: "100cm×100cm", image: "/wallgreens/orchid.png"   },
+  { id: "15", name: "Amazon World",   size: "100cm×100cm", image: "/wallgreens/aw.png"       },
   { id: "16", name: "Green Jewelry",  size: "100cm×100cm", image: "/wallgreens/jewel.png"    },
 ];
 
@@ -113,24 +113,10 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         </div>
       </div>
 
-      <div
-        style={{
-          padding: "1.2rem 0.85rem 0",
-          textAlign: "center",
-          fontSize: "14px",
-          fontWeight: 500,
-          fontFamily: "'DM Sans', sans-serif",
-          color: "#000",
-        }}
-      >
-        <p style={{ ...detailText }}>{product.name}</p>
-        <p
-          style={{
-            fontSize: "12px",
-            marginTop: "-1px",
-            color: "#6B7060",
-          }}
-        >
+      {/* ── use className + CSS variable for mobile padding override ── */}
+      <div className="wg-product-text">
+        <p style={{ margin: 0 }}>{product.name}</p>
+        <p style={{ marginTop: "-1px", color: "#6B7060" }}>
           {product.size}
         </p>
       </div>
@@ -163,9 +149,35 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           from { opacity: 0; transform: scale(0.93) translateY(14px); }
           to   { opacity: 1; transform: scale(1)    translateY(0);    }
         }
+
+        .wg-modal-img-wrap {
+          width: 100%;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #f0f0eb;
+        }
+        .wg-modal-img-wrap img {
+          width: 100%;
+          max-height: 400px;
+          object-fit: contain;
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .wg-modal-img-wrap {
+            max-width: calc(100% - 20px);
+            max-height: 380px;
+            margin: 0 auto;
+          }
+          .wg-modal-img-wrap img {
+            max-height: 380px;
+          }
+        }
       `}</style>
 
+      {/* ── modal box uses className for mobile width override ── */}
       <div
+        className="wg-modal-box"
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "#fafaf7",
@@ -213,23 +225,10 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
         </button>
 
         {/* Product image */}
-        <div
-          style={{
-            width: "100%",
-            borderRadius: "6px",
-            overflow: "hidden",
-            background: "#f0f0eb",
-          }}
-        >
+        <div className="wg-modal-img-wrap">
           <img
             src={product.image}
             alt={product.name}
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "contain",
-              display: "block",
-            }}
           />
         </div>
 
@@ -309,6 +308,16 @@ export default function Page() {
           margin-top: -10px;
         }
 
+        /* PRODUCT CARD TEXT — CSS variable allows mobile override */
+        .wg-product-text {
+          padding: var(--wg-product-padding, 1.2rem 0.85rem 0);
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: 'DM Sans', sans-serif;
+          color: #000;
+        }
+
         /* ABOUT */
         .wg-about-grid {
           width: 100%;
@@ -368,7 +377,7 @@ export default function Page() {
 
           .wg-about-grid {
             grid-template-columns: 1fr;
-            padding: 0;
+            padding: 2rem 0 0;
             row-gap: 0;
           }
           .wg-about-img-col { order: 1; }
@@ -382,14 +391,47 @@ export default function Page() {
             max-height: unset !important;
           }
           .wg-about-img-wrap > div img { height: 260px !important; }
-          .wg-about-text { padding: 2rem 1.5rem 2.5rem; }
+          .wg-about-text {
+            padding: 2rem 1.5rem 2.5rem;
+            text-align: center;
+          }
+          /* ── centre all text inside the about column on mobile ── */
+          .wg-about-text p,
+          .wg-about-text h2 {
+            text-align: center;
+          }
+          .wg-about-text h2 {
+            font-size: 26px !important;
+            margin-bottom: 8px !important;
+          }
 
-          .wg-catalog-header { padding: 2rem 1.5rem 1.5rem; }
-          .wg-catalog-grid-wrap { padding: 0 1.5rem 3rem; }
-          .wg-products-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+          .wg-catalog-header { padding: 0.5rem 1.5rem 1rem; }
+          .wg-catalog-header h2 {
+            font-size: 26px !important;
+            margin-bottom: -5px !important;
+          }
+          .wg-catalog-grid-wrap { padding: 0.5rem 1.5rem 3rem; }
+          .wg-products-grid {
+            grid-template-columns: repeat(2, 120px);
+            justify-content: center;
+            gap: 1rem;
+          }
+          .wg-product-text {
+            --wg-product-padding: 0.5rem 0.85rem 0;
+          }
+
+          /* ── modal 75% width on mobile ── */
+          .wg-modal-box {
+            width: 75% !important;
+            max-width: 75% !important;
+          }
 
           .wg-features-grid { grid-template-columns: 1fr; gap: 2rem; }
           .wg-features-section { padding: 56px 24px !important; }
+          .wg-features-section h2 {
+            font-size: 26px !important;
+            margin-bottom: 30px !important;
+          }
         }
 
         /* TABLET */

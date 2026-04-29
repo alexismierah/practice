@@ -100,24 +100,10 @@ function ProductCard({ product, onClick }: { product: Product; onClick: () => vo
         </div>
       </div>
 
-      <div
-        style={{
-          padding: "1.2rem 0.85rem 0",
-          textAlign: "center",
-          fontSize: "14px",
-          fontWeight: 500,
-          fontFamily: "'DM Sans', sans-serif",
-          color: "#000",
-        }}
-      >
-        <p style={{ ...detailText }}>{product.name}</p>
-        <p
-          style={{
-            fontSize: "12px",
-            marginTop: "-1px",
-            color: "#6B7060",
-          }}
-        >
+      {/* ── CSS variable for mobile padding override ── */}
+      <div className="pb-product-text">
+        <p style={{ margin: 0 }}>{product.name}</p>
+        <p style={{ marginTop: "-1px", color: "#6B7060" }}>
           {product.size}
         </p>
       </div>
@@ -150,9 +136,35 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           from { opacity: 0; transform: scale(0.93) translateY(14px); }
           to   { opacity: 1; transform: scale(1)    translateY(0);    }
         }
+
+        .pb-modal-img-wrap {
+          width: 100%;
+          border-radius: 6px;
+          overflow: hidden;
+          background: #f0f0eb;
+        }
+        .pb-modal-img-wrap img {
+          width: 100%;
+          max-height: 400px;
+          object-fit: contain;
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .pb-modal-img-wrap {
+            max-width: calc(100% - 20px);
+            max-height: 380px;
+            margin: 0 auto;
+          }
+          .pb-modal-img-wrap img {
+            max-height: 380px;
+          }
+        }
       `}</style>
 
+      {/* ── modal box uses className for mobile width override ── */}
       <div
+        className="pb-modal-box"
         onClick={(e) => e.stopPropagation()}
         style={{
           background: "#fafaf7",
@@ -198,24 +210,9 @@ function ProductModal({ product, onClose }: { product: Product; onClose: () => v
           ✕
         </button>
 
-        <div
-          style={{
-            width: "100%",
-            borderRadius: "6px",
-            overflow: "hidden",
-            background: "#f0f0eb",
-          }}
-        >
-          <img
-            src={product.image}
-            alt={product.name}
-            style={{
-              width: "100%",
-              maxHeight: "400px",
-              objectFit: "contain",
-              display: "block",
-            }}
-          />
+        {/* Product image */}
+        <div className="pb-modal-img-wrap">
+          <img src={product.image} alt={product.name} />
         </div>
 
         <p
@@ -293,6 +290,16 @@ export default function Page() {
           margin-top: -10px;
         }
 
+        /* PRODUCT CARD TEXT — CSS variable allows mobile override */
+        .pb-product-text {
+          padding: var(--pb-product-padding, 1.2rem 0.85rem 0);
+          text-align: center;
+          font-size: 14px;
+          font-weight: 500;
+          font-family: 'DM Sans', sans-serif;
+          color: #000;
+        }
+
         /* ABOUT */
         .pb-about-grid {
           width: 100%;
@@ -344,7 +351,7 @@ export default function Page() {
           width: 100%;
         }
 
-        /* MOBILE */
+        /* ── MOBILE ── */
         @media (max-width: 768px) {
           .pb-hero { height: 220px; }
           .pb-hero-inner { padding: 0 1.5rem; gap: 0.8rem; }
@@ -353,7 +360,7 @@ export default function Page() {
 
           .pb-about-grid {
             grid-template-columns: 1fr;
-            padding: 0;
+            padding: 2rem 0 0;
             row-gap: 0;
           }
           .pb-about-img-col {
@@ -366,17 +373,51 @@ export default function Page() {
             max-height: unset !important;
           }
           .pb-about-img-col > div img { height: 260px !important; }
-          .pb-about-text-col { order: 2; padding: 2rem 1.5rem 2.5rem; }
+          .pb-about-text-col {
+            order: 2;
+            padding: 2rem 1.5rem 2.5rem;
+            text-align: center;
+          }
+          /* ── centre all text inside the about column on mobile ── */
+          .pb-about-text-col p,
+          .pb-about-text-col h2 {
+            text-align: center;
+          }
+          .pb-about-text-col h2 {
+            font-size: 26px !important;
+            margin-bottom: 8px !important;
+          }
 
-          .pb-catalog-header { padding: 2rem 1.5rem 1.5rem; }
-          .pb-catalog-grid-wrap { padding: 0 1.5rem 3rem; }
-          .pb-products-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+          .pb-catalog-header { padding: 0.5rem 1.5rem 1rem; }
+          .pb-catalog-header h2 {
+            font-size: 26px !important;
+            margin-bottom: -5px !important;
+          }
+          .pb-catalog-grid-wrap { padding: 0.5rem 1.5rem 3rem; }
+          .pb-products-grid {
+            grid-template-columns: repeat(2, 120px);
+            justify-content: center;
+            gap: 1rem;
+          }
+          .pb-product-text {
+            --pb-product-padding: 0.5rem 0.85rem 0;
+          }
+
+          /* ── modal 75% width on mobile ── */
+          .pb-modal-box {
+            width: 75% !important;
+            max-width: 75% !important;
+          }
 
           .pb-features-grid { grid-template-columns: 1fr; gap: 2rem; }
           .pb-features-section { padding: 56px 24px !important; }
+          .pb-features-section h2 {
+            font-size: 26px !important;
+            margin-bottom: 30px !important;
+          }
         }
 
-        /* TABLET */
+        /* ── TABLET ── */
         @media (min-width: 769px) and (max-width: 1024px) {
           .pb-hero-inner { padding: 0 2rem; }
           .pb-hero-title { font-size: 36px; }
