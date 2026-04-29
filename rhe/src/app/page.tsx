@@ -1000,7 +1000,7 @@ export default function Home() {
         }
         @media (max-width: 600px) {
           .about-text-col { padding: 0 24px 60px; }
-          .about-section .about-headline { font-size: 14vw; }
+          .about-section .about-headline { font-size: 13vw; }
           .about-section .about-body { font-size: 15.5px; max-width: 320px; }
           .services-section { padding: 56px 16px; }
           .services-grid { grid-template-columns: 1fr; gap: 10px; max-width: 360px; margin: 0 auto; }
