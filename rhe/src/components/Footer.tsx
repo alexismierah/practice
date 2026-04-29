@@ -165,10 +165,10 @@ export default function Footer() {
 
         .footer-logo-tagline {
           font-size: 0.58rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.30em;
           text-transform: uppercase;
-          color: var(--text-faint);
+          color: var(--forest);
           margin-top: 3px;
         }
 

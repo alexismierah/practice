@@ -94,7 +94,7 @@ export default function Header() {
         }
 
         .hdr-root.transparent .hdr-logo-tagline {
-          color: var(--text-faint);
+          color: var(--forest);
         }
 
         .hdr-root.transparent .hdr-nav-link:hover,
@@ -148,10 +148,10 @@ export default function Header() {
         /* Matches .footer-logo-tagline */
         .hdr-logo-tagline {
           font-size: 0.53rem;
-          font-weight: 400;
+          font-weight: 500;
           letter-spacing: 0.28em;
           text-transform: uppercase;
-          color: var(--text-faint);
+          color: var(--forest);
           margin-top: 2px;
         }
 
