@@ -42,16 +42,15 @@ export default function ProductsServicesPage() {
         /* ── HERO ── */
         .craft-hero {
           width: 100%;
-          height: 50vh;
+          height: calc(38.5vh + var(--navbar-height, 80px));
           background-image: url('/blur6.png');
           background-size: cover;
-          background-position: 20%;
+          background-position: center;
           background-repeat: no-repeat;
           position: relative;
           display: flex;
           align-items: center;
           justify-content: center;
-          text-align: center;
         }
 
         .craft-hero-inner {
@@ -60,8 +59,9 @@ export default function ProductsServicesPage() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          gap: 0.5rem;
-          padding: 9.5rem 0 5rem;
+          text-align: center;
+          padding: 0rem 5rem;
+          margin-top: 4rem;
         }
 
         /* ── EYEBROW ── */
@@ -75,17 +75,17 @@ export default function ProductsServicesPage() {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-bottom: 12px;
         }
 
         .craft-eyebrow {
           font-family: var(--font);
-          font-size: 10px;
-          font-weight: 400;
-          letter-spacing: 0.30em;
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.22em;
           text-transform: uppercase;
           color: #fff;
-          margin: 0;
+          text-align: center;
+          justify-content: center;
         }
 
         .craft-title {
@@ -95,6 +95,7 @@ export default function ProductsServicesPage() {
           line-height: 1.12;
           color: #fff;
           margin: 0;
+          letter-spacing: 0.02em;
         }
 
         /* ── SECTION HEADLINE ── */
@@ -152,7 +153,6 @@ export default function ProductsServicesPage() {
         .ps-view-more:hover::after { transform: translateX(4px); }
 
         /* ── IMAGE WRAPPER ── */
-        /* Desktop: fixed height container */
         .product-img-wrap {
           width: 100%;
           height: 450px;
@@ -179,26 +179,37 @@ export default function ProductsServicesPage() {
           .two-col-grid .text-cell { order: 2; }
           .two-col-grid .image-cell { order: 1; }
 
-          /* Key fix: on mobile, let the image size itself naturally */
           .product-img-wrap {
             height: auto !important;
             border-radius: 12px;
           }
 
-          /* Images: full width, auto height, no cropping */
           .product-img-wrap img {
             width: 100%;
             height: auto !important;
             object-fit: contain !important;
-            /* Remove transforms that cause cropping */
             transform: none !important;
           }
 
           .feature-grid { grid-template-columns: 1fr !important; }
-          .craft-hero { height: 100vh; }
-          .craft-hero-inner { padding: 0 1.5rem; }
-          .craft-title { font-size: 28px; }
-          .craft-eyebrow { font-size: 11px; }
+
+          /* ── MOBILE HERO ONLY ── */
+          .craft-hero {
+            height: 290px;
+          }
+          .craft-hero-inner {
+            padding: 0 1.5rem;
+            gap: 0.8rem;
+          }
+          .craft-eyebrow {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+          }
+          .craft-title {
+            font-size: 28px;
+            margin-top: -10px;
+          }
         }
 
         @media (max-width: 640px) {
@@ -215,6 +226,7 @@ export default function ProductsServicesPage() {
 
       {/* ── HERO ── */}
       <section className="craft-hero">
+        <div style={{ position: "absolute", inset: 0, background: "rgba(20, 28, 20, 0.50)" }} />
         <div className="craft-hero-inner">
           <p className="craft-eyebrow">PRODUCT COLLECTIONS</p>
           <h1 className="craft-title">
