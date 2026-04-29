@@ -75,6 +75,7 @@ export default function ProductsServicesPage() {
           display: flex;
           align-items: center;
           gap: 10px;
+          margin-bottom: 15px;
         }
 
         .craft-eyebrow {
@@ -174,7 +175,7 @@ export default function ProductsServicesPage() {
         @media (max-width: 768px) {
           .two-col-grid {
             grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 2rem !important;
           }
           .two-col-grid .text-cell { order: 2; }
           .two-col-grid .image-cell { order: 1; }
@@ -193,23 +194,18 @@ export default function ProductsServicesPage() {
 
           .feature-grid { grid-template-columns: 1fr !important; }
 
-          /* ── MOBILE HERO ONLY ── */
-          .craft-hero {
-            height: 290px;
+          /* ── neutralise the inner max-width wrapper on mobile ── */
+          .band-inner {
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
           }
-          .craft-hero-inner {
-            padding: 0 1.5rem;
-            gap: 0.8rem;
-          }
-          .craft-eyebrow {
-            font-size: 11px;
-            font-weight: 500;
-            letter-spacing: 0.22em;
-          }
-          .craft-title {
-            font-size: 28px;
-            margin-top: -10px;
-          }
+
+          .craft-hero { height: 290px; }
+          .craft-hero-inner { padding: 0 1.5rem; gap: 0.8rem; }
+          .craft-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; }
+          .craft-title { font-size: 28px; margin-top: -10px; }
         }
 
         @media (max-width: 640px) {
@@ -220,7 +216,14 @@ export default function ProductsServicesPage() {
         }
 
         @media (max-width: 480px) {
-          .two-col-grid { gap: 1.5rem; }
+          .two-col-grid { gap: 1.5rem !important; }
+        }
+
+        /* ── DESKTOP-ONLY left offset for text cells ── */
+        .text-cell-offset-left { margin-left: -20px; }
+
+        @media (max-width: 768px) {
+          .text-cell-offset-left { margin-left: 0 !important; }
         }
       `}</style>
 
@@ -261,17 +264,14 @@ export default function ProductsServicesPage() {
 
             <div className="text-cell" style={{ paddingTop: 5 }}>
               <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
-
               <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Potted Artificial Plants
               </h2>
-
               <p className="ps-body-text">
                 A premium collection of lifelike plants in pots, thoughtfully designed
                 to elevate indoor and outdoor spaces. Each piece comes ready for display in stylish
                 containers, delivering the beauty of natural green perfect for both residential and commercial environments.
               </p>
-
               <div
                 className="feature-grid"
                 style={{
@@ -297,7 +297,6 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-
               <Link href="/products-services/potted-plants" className="ps-view-more">
                 View more
               </Link>
@@ -311,22 +310,19 @@ export default function ProductsServicesPage() {
         className="section-pad"
         style={{ background: "#efefef", padding: "2rem 5rem" }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div className="band-inner" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
-            <div className="text-cell" style={{ paddingTop: 5 }}>
+            <div className="text-cell text-cell-offset-left" style={{ paddingTop: 5 }}>
               <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
-
               <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Artificial Wall Greens
               </h2>
-
               <p className="ps-body-text">
                 A refined collection of artificial wall greens designed to
                 bring lush vertical beauty into any space. Ideal for both residential
                 and commercial settings, providing a clean and elegant backdrop that
                 enhances interiors while remaining easy to maintain and long lasting.
               </p>
-
               <div
                 className="feature-grid"
                 style={{
@@ -352,7 +348,6 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-
               <Link href="/products-services/wall-greens" className="ps-view-more">
                 View more
               </Link>
@@ -381,7 +376,7 @@ export default function ProductsServicesPage() {
         className="section-pad"
         style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div className="band-inner">
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
               <div className="product-img-wrap">
@@ -400,18 +395,15 @@ export default function ProductsServicesPage() {
 
             <div className="text-cell" style={{ paddingTop: 5 }}>
               <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
-
               <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Decorative Planter Box
               </h2>
-
               <p className="ps-body-text">
                 Decorative planter box features carefully arranged and combined artificial
-                plants on empty spaces, designed to enhance both indoor
-                and outdoor environments. Provides an instant and refined botanical
+                plants on empty spaces, thoughtfully designed to enhance indoor
+                and outdoor environments providing an instant and refined botanical
                 display, ideal for residential and commercial settings.
               </p>
-
               <div
                 className="feature-grid"
                 style={{
@@ -437,7 +429,6 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-
               <Link href="/products-services/planter-box" className="ps-view-more">
                 View more
               </Link>
@@ -451,23 +442,20 @@ export default function ProductsServicesPage() {
         className="section-pad"
         style={{ background: "#efefef", padding: "2rem 5rem" }}
       >
-        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div className="band-inner" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
-            <div className="text-cell" style={{ paddingTop: 5 }}>
+            <div className="text-cell text-cell-offset-left" style={{ paddingTop: 5 }}>
               <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
-
               <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
                 Artificial Turf Grass
               </h2>
-
               <p className="ps-body-text">
                 A high quality range of artificial turf grass designed to replicate
-                the look and feel of natural lawn surfaces. Built for durability and
+                the look and feel of natural lawn. Built for durability and
                 year round greenery, offering a practical and
                 visually appealing alternative to natural grass, ideal for residential,
                 commercial, and recreational spaces.
               </p>
-
               <div
                 className="feature-grid"
                 style={{
@@ -493,7 +481,6 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-
               <Link href="/products-services/grass" className="ps-view-more">
                 View more
               </Link>
