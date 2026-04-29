@@ -4,58 +4,40 @@ import { useState, useEffect, useCallback } from "react";
 
 interface Project {
   id: number;
-  title: string;
   location: string;
   category: string;
-  desc: string;
-  area: string;
   images: string[];
 }
 
 const PROJECTS: Project[] = [
   {
     id: 1,
-    title: "Casa Bella Residence",
-    location: "Makati City",
+    location: "Decorative Planter Box",
     category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
     images: ["/projects/proj1.jpeg", "/projects/proj2.jpeg", "/projects/proj3.jpeg"],
   },
   {
     id: 2,
-    title: "BGC Corporate Tower",
-    location: "Bonifacio Global City",
-    category: "Commercial",
-    desc: "Rooftop terrace turf installation with premium artificial grass",
-    area: "180 sqm",
+    location: "Wall Greens",
+    category: "Residential",
     images: ["/projects/proj4.jpeg", "/projects/proj5.jpeg", "/projects/proj6.jpeg"],
   },
   {
     id: 3,
-    title: "Serene Garden Villa",
-    location: "Alabang",
+    location: "Potted Artificial Plants",
     category: "Residential",
-    desc: "Curated collection of potted tropicals for indoor and poolside areas",
-    area: "Assorted",
     images: ["/projects/proj15.jpeg", "/projects/proj16.jpeg", "/projects/proj17.jpeg"],
   },
   {
     id: 4,
-    title: "Eastwood Mall Atrium",
-    location: "Quezon City",
-    category: "Commercial",
-    desc: "Large-scale vertical garden feature wall in the main atrium",
-    area: "540 sqm",
+    location: "Artificial Turf Grass",
+    category: "Residential",
     images: ["/projects/proj7.jpeg", "/projects/proj8.jpeg", "/projects/proj9.jpeg"],
   },
   {
     id: 5,
-    title: "The Greenfield Club",
-    location: "Mandaluyong",
+    location: "Decorative Planter Box",
     category: "Commercial",
-    desc: "Custom planter boxes lining the event hall perimeter and entryway",
-    area: "Modular",
     images: [
       "/projects/proj10.jpeg", "/projects/proj11.jpeg", "/projects/proj12.jpeg",
       "/projects/proj13.jpeg", "/projects/proj38.jpeg", "/projects/proj39.jpeg",
@@ -64,74 +46,50 @@ const PROJECTS: Project[] = [
   },
   {
     id: 6,
-    title: "Sun Valley Estates",
-    location: "Antipolo",
+    location: "Wall Greens",
     category: "Residential",
-    desc: "Residential lawn replacement with ultra-realistic turf grass",
-    area: "260 sqm",
     images: ["/projects/proj20.jpeg", "/projects/proj21.jpeg"],
   },
   {
     id: 7,
-    title: "Solana Hotel Lobby",
-    location: "Pasay City",
+    location: "Artificial Turf Grass",
     category: "Commercial",
-    desc: "Oversized potted palms and ferns for lobby and corridor ambience",
-    area: "Assorted",
     images: ["/projects/proj29.jpeg", "/projects/proj30.jpeg", "/projects/proj48.jpeg"],
   },
   {
     id: 8,
-    title: "Casa Bella Residence",
-    location: "Makati City",
-    category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
+    location: "Wall Greens",
+    category: "Residential",
     images: ["/projects/proj25.jpeg", "/projects/proj24.jpeg"],
   },
   {
     id: 9,
-    title: "Casa Bella Residence",
-    location: "Makati City",
-    category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
+    location: "Artificial Turf Grass",
+    category: "Residential",
     images: ["/projects/proj42.jpeg", "/projects/proj43.jpeg"],
   },
   {
     id: 10,
-    title: "Casa Bella Residence",
-    location: "Makati City",
+    location: "Decorative Planter Box",
     category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
     images: ["/projects/proj28.jpeg", "/projects/proj26.jpeg", "/projects/proj27.jpeg"],
   },
   {
     id: 11,
-    title: "Casa Bella Residence",
-    location: "Makati City",
-    category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
+    location: "Artificial Turf Grass",
+    category: "Residential",
     images: ["/projects/proj36.jpeg", "/projects/proj37.jpeg", "/projects/proj33.jpeg"],
   },
   {
     id: 12,
-    title: "Casa Bella Residence",
-    location: "Makati City",
-    category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
+    location: "Wall Greens",
+    category: "Residential",
     images: ["/projects/proj50.jpeg", "/projects/proj51.jpeg", "/projects/proj52.jpeg"],
   },
   {
     id: 13,
-    title: "Casa Bella Residence",
-    location: "Makati City",
+    location: "Potted Artificial Plants",
     category: "Commercial",
-    desc: "Full living wall installation across indoor dining and lounge areas",
-    area: "320 sqm",
     images: ["/projects/proj53.jpeg", "/projects/proj54.jpeg", "/projects/proj55.jpeg"],
   },
 ];
@@ -145,7 +103,6 @@ const CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@200;300;400;500&display=swap');
 
   .rh-root { font-family: 'DM Sans', sans-serif; }
-  .rh-serif { font-family: 'Cormorant Garamond', serif; }
 
   /* ── UNIFIED GRID ── */
   .rh-grid {
@@ -198,25 +155,6 @@ const CSS = `
     border: 0.5px solid rgba(255,255,255,0.35);
     background: rgba(255,255,255,0.12);
     backdrop-filter: blur(8px);
-    transition: color 0.2s, background 0.2s, border-color 0.2s;
-    cursor: pointer;
-  }
-  .rh-card:hover .rh-card-badge:hover {
-    color: #1a2e16;
-    background: #fff;
-    border-color: #fff;
-  }
-
-  .rh-category-badge {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #2d3d2d;
-    padding: 5px 14px;
-    background: #ede9e2;
-    border-radius: 9999px;
   }
 
   /* ── MODAL ── */
@@ -230,31 +168,20 @@ const CSS = `
     animation: rh-fade 0.2s ease;
     padding: 16px;
     box-sizing: border-box;
-    overflow-y: auto;
   }
   @keyframes rh-fade { from { opacity: 0; } to { opacity: 1; } }
 
-  /* Desktop: side-by-side */
-  .rh-modal-split {
+  .rh-modal-image {
     position: relative;
-    width: min(92vw, 980px);
-    height: min(82vh, 500px);
-    display: flex;
-    flex-direction: row;
-    background: #fff;
+    width: min(92vw, 600px);
+    height: min(85vh, 500px);
+    background: #111;
     animation: rh-scale 0.25s ease;
     overflow: hidden;
     border-radius: 6px;
   }
   @keyframes rh-scale { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: scale(1); } }
 
-  .rh-modal-left {
-    position: relative;
-    flex: 0 0 58%;
-    background: #111;
-    overflow: hidden;
-    border-radius: 6px 0 0 6px;
-  }
   .rh-modal-main-img { width: 100%; height: 100%; object-fit: cover; display: block; animation: rh-imgfade 0.22s ease; }
   @keyframes rh-imgfade { from { opacity: 0; } to { opacity: 1; } }
 
@@ -265,104 +192,37 @@ const CSS = `
 
   .rh-img-counter { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 300; letter-spacing: 0.12em; color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.42); padding: 4px 12px; z-index: 2; white-space: nowrap; border-radius: 9999px; }
 
-  .rh-modal-right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 48px 28px 50px;
-    position: relative;
-    overflow-y: auto;
-    background: #fff;
-  }
-
-  .rh-modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; background: none; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.15s; z-index: 2; }
+  .rh-modal-close { position: absolute; top: 14px; right: 14px; width: 30px; height: 30px; background: rgba(0,0,0,0.45); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.15s; z-index: 2; border-radius: 50%; }
   .rh-modal-close:hover { opacity: 0.5; }
-
-  .rh-detail-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 0.5px solid rgba(0,0,0,0.07); }
-  .rh-detail-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #a8ad9e;
-    flex: 0 0 80px;
-  }
-  .rh-detail-value {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    color: #1c1e19;
-  }
-
-  .rh-thumb-strip { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
-  .rh-thumb { width: 52px; height: 36px; object-fit: cover; cursor: pointer; opacity: 0.4; border: 1.5px solid transparent; transition: opacity 0.15s, border-color 0.15s; flex-shrink: 0; border-radius: 3px; }
-  .rh-thumb.active { opacity: 1; border-color: #b8986a; }
 
   /* ── MOBILE RESPONSIVE ── */
   @media (max-width: 768px) {
-    /* Grid: single column on mobile */
     .rh-grid {
       grid-template-columns: 1fr;
       gap: 6px;
     }
 
-    /* Hero cell full width */
     .rh-hero-cell {
       grid-column: span 1 !important;
       min-height: auto;
       padding: 28px 20px;
     }
 
-    /* All cards full width on mobile */
     .rh-card {
       grid-column: span 1 !important;
     }
 
-    /* Slightly shorter card heights on mobile */
     .rh-card-mobile-h { height: 260px !important; }
 
-    /* Modal: stacked (image top, details bottom) */
-    .rh-modal-split {
-      flex-direction: column;
+    .rh-modal-image {
       width: 100%;
-      height: auto;
-      max-height: 92vh;
-      overflow-y: auto;
+      height: 70vw;
+      min-height: 260px;
       border-radius: 10px;
-      margin: auto;
-    }
-
-    .rh-modal-left {
-      flex: 0 0 auto;
-      height: 260px;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .rh-modal-right {
-      flex: 1;
-      padding: 20px 20px 28px;
-      overflow-y: visible;
-    }
-
-    .rh-modal-close {
-      /* On mobile, close button sits on top of image */
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: rgba(0,0,0,0.45);
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-    }
-
-    .rh-modal-close svg path {
-      stroke: #fff;
     }
   }
 
   @media (min-width: 640px) and (max-width: 1023px) {
-    /* Tablet: 2 columns */
     .rh-grid {
       grid-template-columns: repeat(2, 1fr);
     }
@@ -378,7 +238,6 @@ const CSS = `
   }
 
   @media (min-width: 1024px) {
-    /* Desktop: restore original 12-col spans via data attributes */
     .rh-card[data-span="4"]  { grid-column: span 4; }
     .rh-card[data-span="6"]  { grid-column: span 6; }
     .rh-card[data-span="8"]  { grid-column: span 8; }
@@ -420,7 +279,6 @@ export default function ProjectsPage() {
     return () => { document.body.style.overflow = ""; };
   }, [modal]);
 
-  // Desktop span (12-col grid)
   const desktopSpan = (index: number): string => {
     const map: Record<number, string> = {
       0: "8", 1: "4", 2: "4", 3: "4",
@@ -431,7 +289,6 @@ export default function ProjectsPage() {
     return map[index % 15] ?? "6";
   };
 
-  // Desktop span as Tailwind class (only applies ≥1024px via data-span + CSS)
   const heightClass = (index: number) => {
     const map: Record<number, string> = {
       0: "h-[450px]", 1: "h-[440px]", 2: "h-[440px]", 3: "h-[440px]",
@@ -465,9 +322,6 @@ export default function ProjectsPage() {
                     textTransform: "uppercase",
                     color: "#8fa882",
                     marginBottom: "12px",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "14px",
                   }}
                 >
                   WHAT WE CREATE
@@ -514,7 +368,6 @@ export default function ProjectsPage() {
               >
                 <img src={p.images[0]} alt={p.location} loading="lazy" />
 
-                {/* Static label: show location */}
                 <div className="rh-card-static">
                   <div
                     style={{
@@ -537,14 +390,19 @@ export default function ProjectsPage() {
                       marginTop: 2,
                     }}
                   >
-                    {p.category} &middot; {p.area}
+                    {p.category}
                   </div>
                 </div>
 
-                {/* Hover overlay: show location */}
                 <div className="rh-card-overlay">
                   <span className="rh-card-badge">{p.category}</span>
                   <div>
+                    <h2
+                      className="rh-root"
+                      style={{ fontWeight: 300, fontSize: 24, color: "#fff", lineHeight: 1.25 }}
+                    >
+                      {p.location}
+                    </h2>
                     <div
                       style={{
                         fontFamily: "'DM Sans', sans-serif",
@@ -553,34 +411,15 @@ export default function ProjectsPage() {
                         letterSpacing: "0.25em",
                         textTransform: "uppercase",
                         color: "rgba(255,255,255,0.4)",
-                        marginBottom: 4,
                       }}
                     >
                       {p.images.length} image{p.images.length > 1 ? "s" : ""}
                     </div>
-                    <h2
-                      className="rh-root"
-                      style={{ fontWeight: 300, fontSize: 24, color: "#fff", lineHeight: 1.25 }}
-                    >
-                      {p.location}
-                    </h2>
-                    <p
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: 11,
-                        fontWeight: 200,
-                        color: "rgba(255,255,255,0.45)",
-                        marginTop: 6,
-                        lineHeight: 1.7,
-                      }}
-                    >
-                      {p.desc}
-                    </p>
                   </div>
                 </div>
 
                 <div className="rh-card-arrow">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </div>
@@ -592,113 +431,40 @@ export default function ProjectsPage() {
         {/* ── Modal ── */}
         {modal !== null && (
           <div className="rh-modal-backdrop" onClick={closeModal}>
-            <div className="rh-modal-split" onClick={(e) => e.stopPropagation()}>
+            <div className="rh-modal-image" onClick={(e) => e.stopPropagation()}>
 
-              {/* Image panel */}
-              <div className="rh-modal-left">
-                <img
-                  key={m.imgIndex}
-                  src={m.project.images[m.imgIndex]}
-                  alt={m.project.location}
-                  className="rh-modal-main-img"
-                />
-                {m.project.images.length > 1 && (
-                  <>
-                    <button className="rh-img-nav prev" onClick={modalPrev}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M19 12H5M12 5l-7 7 7 7" />
-                      </svg>
-                    </button>
-                    <button className="rh-img-nav next" onClick={modalNext}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </button>
-                  </>
-                )}
-                <div className="rh-img-counter">
-                  {m.imgIndex + 1} / {m.project.images.length}
-                </div>
+              <img
+                key={m.imgIndex}
+                src={m.project.images[m.imgIndex]}
+                alt={m.project.location}
+                className="rh-modal-main-img"
+              />
+
+              {m.project.images.length > 1 && (
+                <>
+                  <button className="rh-img-nav prev" onClick={modalPrev}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M19 12H5M12 5l-7 7 7 7" />
+                    </svg>
+                  </button>
+                  <button className="rh-img-nav next" onClick={modalNext}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              <div className="rh-img-counter">
+                {m.imgIndex + 1} / {m.project.images.length}
               </div>
 
-              {/* Details panel */}
-              <div className="rh-modal-right">
-                <button className="rh-modal-close" onClick={closeModal}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a1a18" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M18 6L6 18M6 6l12 12" />
-                  </svg>
-                </button>
+              <button className="rh-modal-close" onClick={closeModal}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
 
-                {/* Modal title = location */}
-                <h2
-                  className="rh-root"
-                  style={{
-                    fontWeight: 300,
-                    fontSize: 28,
-                    lineHeight: 1.2,
-                    color: "#1c1e19",
-                    marginBottom: 18,
-                    paddingRight: 32,
-                    letterSpacing: "-0.01em",
-                  }}
-                >
-                  {m.project.location}
-                </h2>
-
-                <div style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
-                  <div className="rh-detail-row">
-                    <span className="rh-detail-label">Area</span>
-                    <span className="rh-detail-value">{m.project.area}</span>
-                  </div>
-                  <div className="rh-detail-row">
-                    <span className="rh-detail-label">Category</span>
-                    <span className="rh-category-badge">{m.project.category}</span>
-                  </div>
-                </div>
-
-                <p
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    fontSize: 13,
-                    fontWeight: 300,
-                    color: "#6b7060",
-                    lineHeight: 1.8,
-                    marginTop: 16,
-                  }}
-                >
-                  {m.project.desc.charAt(0).toUpperCase() + m.project.desc.slice(1)}, executed with our signature attention to material quality and natural aesthetics.
-                </p>
-
-                {m.project.images.length > 1 && (
-                  <div className="mt-auto pt-5" style={{ borderTop: "0.5px solid rgba(0,0,0,0.07)" }}>
-                    <span
-                      style={{
-                        fontFamily: "'DM Sans', sans-serif",
-                        fontSize: 10,
-                        fontWeight: 400,
-                        letterSpacing: "0.3em",
-                        textTransform: "uppercase",
-                        color: "#6b7060",
-                        display: "block",
-                        marginBottom: 10,
-                      }}
-                    >
-                      Photos
-                    </span>
-                    <div className="rh-thumb-strip">
-                      {m.project.images.map((img, idx) => (
-                        <img
-                          key={idx}
-                          src={img}
-                          alt=""
-                          className={`rh-thumb${idx === m.imgIndex ? " active" : ""}`}
-                          onClick={() => setModal((prev) => (prev ? { ...prev, imgIndex: idx } : null))}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
             </div>
           </div>
         )}

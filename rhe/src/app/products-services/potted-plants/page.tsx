@@ -490,7 +490,7 @@ export default function Page() {
               }}
             >
               Every plant is supplied as a finished arrangement that already includes
-              its own decorative pot, making it ready for immediate placement upon delivery.
+              its own pot, making it ready for immediate placement upon delivery.
               Easy to decorate any space, whether used as a single
               accent piece or grouped for a more lush indoor display.
             </p>
