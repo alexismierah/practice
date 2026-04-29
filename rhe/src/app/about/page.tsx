@@ -182,6 +182,7 @@ export default function AboutPage() {
         </div>
       </div>
       </section>
+      
 
       {/* ── QUOTE ── */}
       {/*<section className="ab-quote-section">
