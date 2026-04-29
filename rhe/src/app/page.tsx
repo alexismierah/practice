@@ -989,8 +989,8 @@ export default function Home() {
           .svc-card { aspect-ratio: 4/5; border-radius: 12px; }
           .svc-card-body { padding: 16px 14px 18px; }
           .svc-num { font-size: 8px; margin-bottom: 4px; }
-          .svc-name { font-size: 14px; margin-bottom: 4px; }
-          .svc-desc { font-size: 10px; line-height: 1.55; }
+          .svc-name { font-size: 18px; margin-bottom: 6px; }
+          .svc-desc { font-size: 13px; line-height: 1.6; }
           .svc-arrow { width: 26px; height: 26px; top: 12px; right: 12px; font-size: 11px; }
           .ba-section { padding: 72px 32px; }
           .ba-container { aspect-ratio: 4/3; }
@@ -1003,11 +1003,11 @@ export default function Home() {
           .about-section .about-headline { font-size: 14vw; }
           .about-section .about-body { font-size: 15.5px; max-width: 320px; }
           .services-section { padding: 56px 16px; }
-          .services-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
+          .services-grid { grid-template-columns: 1fr; gap: 10px; max-width: 360px; margin: 0 auto; }
           .svc-card { aspect-ratio: 3/4; border-radius: 10px; }
           .svc-card-body { padding: 12px 12px 14px; }
-          .svc-name { font-size: 13px; }
-          .svc-desc { font-size: 10px; line-height: 1.5; }
+          .svc-name { font-size: 20px; }
+          .svc-desc { font-size: 14px; line-height: 1.6; }
           .section-header { grid-template-columns: 1fr; }
           .cta-headline { font-size: 2.2rem; }
         }
