@@ -998,6 +998,7 @@ export default function Home() {
           .hw-grid { grid-template-columns: 1fr; }
           .cta-section { padding: 80px 32px; }
         }
+          
         @media (max-width: 600px) {
           .about-text-col { padding: 0 24px 60px; }
           .about-section .about-headline { font-size: 13vw; }
