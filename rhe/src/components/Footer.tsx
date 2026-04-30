@@ -509,15 +509,6 @@ export default function Footer() {
           background: var(--text-faint);
         }
 
-        /* ── Animations ── */
-        @keyframes fadeUpIn {
-          from { opacity: 0; transform: translateY(16px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-
-        .footer-brand-col { animation: fadeUpIn 0.7s ease both; }
-        .footer-mid-col   { animation: fadeUpIn 0.7s 0.1s ease both; }
-        .footer-form-col  { animation: fadeUpIn 0.7s 0.2s ease both; }
       `}</style>
 
       <footer className="footer-root" id="footer">

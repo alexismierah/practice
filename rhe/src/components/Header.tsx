@@ -15,9 +15,10 @@ function scrollToFooter(e: React.MouseEvent) {
 
 const productLinks = [
   { label: "Artificial Grass", desc: "Low-maintenance turf for any space", href: "/product-collections/grass" },
-  { label: "Potted Plants & Trees", desc: "Curated planters for indoors & out", href: "/product-collections/potted-plants" },
+  { label: "Potted Plants", desc: "Curated planters for indoors & out", href: "/product-collections/potted-plants" },
   { label: "Planter Boxes", desc: "Custom boxes for offices & lobbies", href: "/product-collections/planter-box" },
   { label: "Wall Greens", desc: "Vertical gardens that transform walls", href: "/product-collections/wall-greens" },
+  { label: "Hanging Plants", desc: "Cascading greenery for any height", href: "/product-collections/hanging-plants" },
 ];
 
 export default function Header() {
@@ -229,7 +230,7 @@ export default function Header() {
           transform: translateX(-50%) translateY(-6px);
           background: var(--warm-white);
           border-radius: 10px;
-          min-width: 180px;
+          min-width: 150px;
           box-shadow: 0 8px 40px rgba(45,74,39,0.13), 0 2px 8px rgba(0,0,0,0.06);
           opacity: 0;
           pointer-events: none;
