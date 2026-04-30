@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = "https://richavenartificial.com";
+const BASE_URL = "https://richhaven.net";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
