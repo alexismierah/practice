@@ -169,7 +169,7 @@ export default function ProductsServicesPage() {
 
         /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-          .section-pad { padding-left: 2.5rem !important; padding-right: 2.5rem !important; }
+          .section-pad { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
         }
 
         @media (max-width: 768px) {
