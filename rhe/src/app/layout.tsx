@@ -11,6 +11,9 @@ export const metadata = {
   icons: {
     icon: "/logo.png",
   },
+  verification: {
+    google: "PuCdyAV9rZAsvCJthrAjBamLmVtMthayKz0zfCX8eNM",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
