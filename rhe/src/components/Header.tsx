@@ -19,6 +19,7 @@ const productLinks = [
   { label: "Planter Boxes", desc: "Custom boxes for offices & lobbies", href: "/product-collections/planter-box" },
   { label: "Wall Greens", desc: "Vertical gardens that transform walls", href: "/product-collections/wall-greens" },
   { label: "Hanging Plants", desc: "Cascading greenery for any height", href: "/product-collections/hanging-plants" },
+  { label: "Small Plants", desc: "Compact greenery for any corner", href: "/product-collections/small-plants" },
 ];
 
 export default function Header() {
