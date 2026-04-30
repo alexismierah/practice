@@ -75,7 +75,7 @@ export default function ProductsServicesPage() {
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-bottom: 15px;
+          margin-bottom: 12px;
         }
 
         .craft-eyebrow {
@@ -192,7 +192,11 @@ export default function ProductsServicesPage() {
             transform: none !important;
           }
 
-          .feature-grid { grid-template-columns: 1fr !important; }
+          .feature-grid { 
+            grid-template-columns: 1fr !important; 
+            margin-top: -10px !important;
+            gap: 10px !important;
+          }
 
           /* ── neutralise the inner max-width wrapper on mobile ── */
           .band-inner {
@@ -207,6 +211,9 @@ export default function ProductsServicesPage() {
           .craft-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.22em; }
           .craft-title { font-size: 28px; margin-top: -10px; }
         }
+
+        .ps-section-headline {
+          margin-bottom: 7px !important;
 
         @media (max-width: 640px) {
           .section-pad {
