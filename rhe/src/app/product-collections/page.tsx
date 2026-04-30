@@ -306,7 +306,7 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/products-services/potted-plants" className="ps-view-more">
+              <Link href="/product-collections/potted-plants" className="ps-view-more">
                 View more
               </Link>
             </div>
@@ -357,7 +357,7 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/products-services/wall-greens" className="ps-view-more">
+              <Link href="/product-collections/wall-greens" className="ps-view-more">
                 View more
               </Link>
             </div>
@@ -438,7 +438,7 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/products-services/planter-box" className="ps-view-more">
+              <Link href="/product-collections/planter-box" className="ps-view-more">
                 View more
               </Link>
             </div>
@@ -490,7 +490,7 @@ export default function ProductsServicesPage() {
                   </div>
                 ))}
               </div>
-              <Link href="/products-services/grass" className="ps-view-more">
+              <Link href="/product-collections/grass" className="ps-view-more">
                 View more
               </Link>
             </div>

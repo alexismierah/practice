@@ -33,7 +33,7 @@ export default function Home() {
       name: "Artificial Grass",
       desc: "Low-maintenance turf for lobbies, yards, and sports areas.",
       img: "https://cdn.thewirecutter.com/wp-content/media/2021/07/synthetic-lawn-2048px-802551536-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
-      href: "/products-services/grass",
+      href: "/product-collections/grass",
       tag: "",
     },
     {
@@ -41,7 +41,7 @@ export default function Home() {
       name: "Potted Plants & Trees",
       desc: "Curated planters for balconies, entrances, and lobbies.",
       img: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1719266906-live-majesty-palm-plant-w-grow-pot-xl-6679ee546c94b.jpg?crop=0.803xw:1.00xh;0.0994xw,0&resize=980:",
-      href: "/products-services/potted-plants",
+      href: "/product-collections/potted-plants",
       tag: "",
     },
     {
@@ -49,7 +49,7 @@ export default function Home() {
       name: "Wall Greens",
       desc: "Vertical gardens for homes, restaurants, and offices.",
       img: "/services-overview/p19.jpg",
-      href: "/products-services/wall-greens",
+      href: "/product-collections/wall-greens",
       tag: "",
     },
     {
@@ -57,7 +57,7 @@ export default function Home() {
       name: "Planter Boxes",
       desc: "Elegant greenery for offices and conference rooms.",
       img: "/services-overview/p1.jpg",
-      href: "/products-services/planter-box",
+      href: "/product-collections/planter-box",
       tag: "",
     },
   ];
@@ -1046,7 +1046,7 @@ export default function Home() {
               <p className="section-label">What we offer</p>
               <h2 className="section-title">Product<em> Collections</em></h2>
             </div>
-            <a href="/products-services" className="view-all">View all</a>
+            <a href="/product-collections" className="view-all">View all</a>
           </div>
           <div className="services-grid">
             {services.map((s, i) => (
@@ -1136,7 +1136,7 @@ export default function Home() {
               >
                 Get in Touch
               </button>
-              <a href="/products-services" className="cta-btn-ghost">Product collections</a>
+              <a href="/product-collections" className="cta-btn-ghost">Product collections</a>
             </div>
           </div>
         </section>

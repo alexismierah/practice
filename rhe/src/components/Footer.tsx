@@ -579,10 +579,10 @@ export default function Footer() {
 
             <nav className="footer-nav-block">
               <span className="footer-nav-label">Green Solutions</span>
-              <a className="footer-nav-link" href="/products-services/grass">Artificial Grass</a>
-              <a className="footer-nav-link" href="/products-services/potted-plants">Potted Plants &amp; Trees</a>
-              <a className="footer-nav-link" href="/products-services/planter-box">Planter Boxes</a>
-              <a className="footer-nav-link" href="/products-services/wall-greens">Wall Greens</a>
+              <a className="footer-nav-link" href="/product-collections/grass">Artificial Grass</a>
+              <a className="footer-nav-link" href="/product-collections/potted-plants">Potted Plants &amp; Trees</a>
+              <a className="footer-nav-link" href="/product-collections/planter-box">Planter Boxes</a>
+              <a className="footer-nav-link" href="/product-collections/wall-greens">Wall Greens</a>
             </nav>
           </div>
 

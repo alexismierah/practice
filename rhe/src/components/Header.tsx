@@ -14,10 +14,10 @@ function scrollToFooter(e: React.MouseEvent) {
 }
 
 const productLinks = [
-  { label: "Artificial Grass", desc: "Low-maintenance turf for any space", href: "/products-services/grass" },
-  { label: "Potted Plants & Trees", desc: "Curated planters for indoors & out", href: "/products-services/potted-plants" },
-  { label: "Planter Boxes", desc: "Custom boxes for offices & lobbies", href: "/products-services/planter-box" },
-  { label: "Wall Greens", desc: "Vertical gardens that transform walls", href: "/products-services/wall-greens" },
+  { label: "Artificial Grass", desc: "Low-maintenance turf for any space", href: "/product-collections/grass" },
+  { label: "Potted Plants & Trees", desc: "Curated planters for indoors & out", href: "/product-collections/potted-plants" },
+  { label: "Planter Boxes", desc: "Custom boxes for offices & lobbies", href: "/product-collections/planter-box" },
+  { label: "Wall Greens", desc: "Vertical gardens that transform walls", href: "/product-collections/wall-greens" },
 ];
 
 export default function Header() {
@@ -527,7 +527,7 @@ export default function Header() {
                   }}
                 >
                   <a
-                    href="/products-services"
+                    href="/product-collections"
                     className={`hdr-dropdown-trigger${dropdownOpen ? " open" : ""}`}
                   >
                     Product Collections
@@ -586,7 +586,7 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="/products-services"
+              href="/product-collections"
               onClick={() => setMobileOpen(false)}
               style={{ fontWeight: 500, color: "var(--forest)", letterSpacing: "0.04em" }}
             >
