@@ -195,6 +195,7 @@ export default function ProductsServicesPage() {
           .feature-grid { 
             grid-template-columns: 1fr !important; 
             margin-top: -10px !important;
+            margin-bottom: 11px !important;
             gap: 10px !important;
           }
 
@@ -290,7 +291,7 @@ export default function ProductsServicesPage() {
               >
                 {["Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
                   <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
-                    <div
+                    <div className=""
                       style={{
                         width: 6,
                         height: 6,
