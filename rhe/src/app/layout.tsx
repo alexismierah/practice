@@ -5,7 +5,7 @@ import "./globals.css"
 
 export const metadata = {
   title: {
-    default: "Home | Rich Haven Artificial Garden",
+    default: "Rich Haven Artificial Garden",
     template: "%s | Rich Haven Artificial Garden",
   },
   icons: {
