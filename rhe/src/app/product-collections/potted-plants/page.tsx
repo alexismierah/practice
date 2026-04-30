@@ -472,7 +472,7 @@ export default function Page() {
               }}
             >
               <img
-                src="/p38.2.png"
+                src="/others/p38.2.png"
                 alt="Potted artificial plant"
                 style={{ width: "100%", height: "400px", objectFit: "cover", display: "block" }}
               />

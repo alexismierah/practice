@@ -43,7 +43,7 @@ export default function ProductsServicesPage() {
         .craft-hero {
           width: 100%;
           height: calc(38.5vh + var(--navbar-height, 80px));
-          background-image: url('/blur6.png');
+          background-image: url('/others/blur6.png');
           background-size: cover;
           background-position: center;
           background-repeat: no-repeat;
@@ -252,14 +252,14 @@ export default function ProductsServicesPage() {
       {/* ── 1ST BAND — Potted Artificial Plants ── */}
       <section
         className="section-pad"
-        style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
+        style={{ background: "#efefef", padding: "2rem 6.5rem" }}
       >
         <div>
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
               <div className="product-img-wrap">
                 <img
-                  src="/p10.png"
+                  src="/others/p10.png"
                   alt="Potted artificial plants on a wooden bench"
                   style={{
                     objectFit: "cover",
@@ -278,8 +278,10 @@ export default function ProductsServicesPage() {
               </h2>
               <p className="ps-body-text">
                 A premium collection of lifelike plants in pots, thoughtfully designed
-                to elevate indoor and outdoor spaces. Each piece comes ready for display in stylish
-                containers, delivering the beauty of natural green perfect for both residential and commercial environments.
+                to bring a natural and balanced greenery aesthetic into any space. Each 
+                piece comes ready for display in containers, offering a clean, 
+                low-maintenance solution for enhancing indoor and outdoor areas with 
+                lasting visual appeal.
               </p>
               <div
                 className="feature-grid"
@@ -317,7 +319,7 @@ export default function ProductsServicesPage() {
       {/* ── 2ND BAND — Artificial Wall Greens ── */}
       <section
         className="section-pad"
-        style={{ background: "#efefef", padding: "2rem 5rem" }}
+        style={{ background: "#f7f7f7", padding: "2rem 6.5rem" }}
       >
         <div className="band-inner" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
@@ -365,13 +367,13 @@ export default function ProductsServicesPage() {
             <div className="image-cell" style={{ position: "relative" }}>
               <div className="product-img-wrap">
                 <img
-                  src="/p19.png"
+                  src="/others/p19.png"
                   alt="Paneled Wall Greens"
                   style={{
                     objectFit: "contain",
                     transform: "translateY(10px) scale(1.03)",
                     filter: "drop-shadow(0px 6px 2px rgba(117, 112, 112, 0.6))",
-                    objectPosition: "50% 10%",
+                    objectPosition: "5% 15%",
                   }}
                 />
               </div>
@@ -383,14 +385,14 @@ export default function ProductsServicesPage() {
       {/* ── 3RD BAND — Decorative Planter Box ── */}
       <section
         className="section-pad"
-        style={{ background: "#f7f7f7", padding: "2rem 5rem" }}
+        style={{ background: "#efefef", padding: "2rem 6.5rem" }}
       >
         <div className="band-inner">
           <div className="two-col-grid">
             <div className="image-cell" style={{ position: "relative" }}>
               <div className="product-img-wrap">
                 <img
-                  src="/p16.png"
+                  src="/others/p16.png"
                   alt="Decorative planter box"
                   style={{
                     objectFit: "contain",
@@ -449,7 +451,7 @@ export default function ProductsServicesPage() {
       {/* ── 4TH BAND — Artificial Turf Grass ── */}
       <section
         className="section-pad"
-        style={{ background: "#efefef", padding: "2rem 5rem" }}
+        style={{ background: "#f7f7f7", padding: "2rem 6.5rem" }}
       >
         <div className="band-inner" style={{ maxWidth: 1200, margin: "0 auto" }}>
           <div className="two-col-grid" style={{ gap: "5rem" }}>
@@ -498,13 +500,149 @@ export default function ProductsServicesPage() {
             <div className="image-cell" style={{ position: "relative" }}>
               <div className="product-img-wrap">
                 <img
-                  src="/p18.png"
+                  src="/others/p18.png"
                   alt="Artificial turf grass"
                   style={{
                     objectFit: "contain",
                     transform: "translateY(20px) scale(1.03)",
                     filter: "drop-shadow(0px 7px 2px rgba(107, 104, 104, 0.8))",
                     objectPosition: "50% 10%",
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+       {/* ── 5TH BAND — Hanging Plants ── */}
+      <section
+        className="section-pad"
+        style={{ background: "#efefef", padding: "2rem 6.5rem" }}
+      >
+        <div>
+          <div className="two-col-grid">
+            <div className="image-cell" style={{ position: "relative" }}>
+              <div className="product-img-wrap">
+                <img
+                  src="/others/small.png"
+                  alt="Potted artificial plants on a wooden bench"
+                  style={{
+                    objectFit: "contain",
+                    transform: "translateY(10px) scale(1.03)",
+                    filter: "drop-shadow(0px 7px 5px rgba(95,91,91,0.5))",
+                    objectPosition: "55% 20%",
+                    width: "93%",
+                    height:"87%",
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="text-cell" style={{ paddingTop: 5 }}>
+              <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
+              <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
+                Refined Small Plants
+              </h2>
+              <p className="ps-body-text">
+                A versatile range of artificial hanging plants designed to add depth and 
+                movement to vertical spaces. Crafted to mimic natural draping foliage, these 
+                pieces create a soft, cascading effect while remaining low maintenance, ideal 
+                for elevating both indoor and outdoor environments.
+              </p>
+              <div
+                className="feature-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.85rem 1.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                {["Decorative Edge and Border Planting", "Accent Fillers for Custom Planter Boxes", "Compact Greenery for Narrow Spaces"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
+                    <div className=""
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: "var(--forest)",
+                        flexShrink: 0,
+                        marginTop: "0.42rem",
+                      }}
+                    />
+                    <span className="ps-feature-label">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/product-collections/small-plants" className="ps-view-more">
+                View more
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6TH BAND — Hanging Plants ── */}
+      <section
+        className="section-pad"
+        style={{ background: "#f7f7f7", padding: "2rem 6.5rem" }}
+      >
+        <div className="band-inner" style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div className="two-col-grid" style={{ gap: "5rem" }}>
+            <div className="text-cell text-cell-offset-left" style={{ paddingTop: 5 }}>
+              <p className="ps-eyebrow">WHAT DO WE HAVE?</p>
+              <h2 className="ps-section-headline" style={{ marginBottom: "1rem" }}>
+                Premium Hanging Plants
+              </h2>
+              <p className="ps-body-text">
+                Designed to bring life into vertical spaces, this range of artificial hanging 
+                plants creates a natural cascading effect that softens walls and overhead structures. 
+                Each piece is crafted for a realistic look while remaining low maintenance, making it 
+                a practical solution for adding greenery in elevated areas.
+              </p>
+              <div
+                className="feature-grid"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr",
+                  gap: "0.85rem 1.5rem",
+                  marginBottom: "1rem",
+                }}
+              >
+                {["Ceiling Plant Installations", "Layered Hanging Plant Displays", "Silver Lining and Beam Accents", "Wall-Mounted Hanging Greenery"].map((item) => (
+                  <div key={item} style={{ display: "flex", alignItems: "flex-start", gap: "0.65rem" }}>
+                    <div
+                      style={{
+                        width: 6,
+                        height: 6,
+                        borderRadius: "50%",
+                        background: "var(--forest)",
+                        flexShrink: 0,
+                        marginTop: "0.42rem",
+                      }}
+                    />
+                    <span className="ps-feature-label">{item}</span>
+                  </div>
+                ))}
+              </div>
+              <Link href="/product-collections/hanging-plants" className="ps-view-more">
+                View more
+              </Link>
+            </div>
+
+            <div className="image-cell" style={{ position: "relative" }}>
+              <div className="product-img-wrap">
+                <img
+                  src="/others/hang.png"
+                  alt="Artificial turf grass"
+                  style={{
+                    objectFit: "contain",
+                    transform: "translateY(20px) scale(1.03)",
+                    filter: "drop-shadow(0px 3px 2px rgba(107, 104, 104, 0.8))",
+                    objectPosition: "50% 10%",
+                    width: "100%",
+                    height:"95%",
                   }}
                 />
               </div>
