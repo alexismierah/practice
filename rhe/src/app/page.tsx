@@ -1,15 +1,10 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [ctaPulse, setCtaPulse] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const baAfterRef = useRef<HTMLDivElement>(null);
-  const baLineRef = useRef<HTMLDivElement>(null);
-  const baHandleRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
 
   useEffect(() => {
     const t = setTimeout(() => setHeroLoaded(true), 100);
@@ -93,44 +88,6 @@ export default function Home() {
     },
   ];
 
-  const getPos = (e: MouseEvent | TouchEvent, el: HTMLElement) => {
-    const rect = el.getBoundingClientRect();
-    const clientX = (e as TouchEvent).touches
-      ? (e as TouchEvent).touches[0].clientX
-      : (e as MouseEvent).clientX;
-    const pct = ((clientX - rect.left) / rect.width) * 100;
-    return Math.min(Math.max(pct, 2), 98);
-  };
-
-  const moveSlider = useCallback((pct: number) => {
-    const p = `${pct}%`;
-    if (baAfterRef.current) baAfterRef.current.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
-    if (baLineRef.current) baLineRef.current.style.left = p;
-    if (baHandleRef.current) baHandleRef.current.style.left = p;
-  }, []);
-
-  const onSliderMouseDown = useCallback(
-    (e: React.MouseEvent<HTMLDivElement> | React.TouchEvent<HTMLDivElement>) => {
-      e.preventDefault();
-      isDragging.current = true;
-      const el = sliderRef.current;
-      const onMove = (ev: MouseEvent | TouchEvent) => {
-        if (isDragging.current) moveSlider(getPos(ev, el!));
-      };
-      const onUp = () => {
-        isDragging.current = false;
-        window.removeEventListener("mousemove", onMove);
-        window.removeEventListener("mouseup", onUp);
-        window.removeEventListener("touchmove", onMove);
-        window.removeEventListener("touchend", onUp);
-      };
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("mouseup", onUp);
-      window.addEventListener("touchmove", onMove, { passive: false });
-      window.addEventListener("touchend", onUp);
-    },
-    [moveSlider]
-  );
 
   return (
     <main>
@@ -1065,37 +1022,22 @@ export default function Home() {
         {/* ── BEFORE / AFTER ── */}
         <section className="ba-section">
           <div className="ba-inner">
-          <div className="ba-header-wrap">
-            <p className="section-label" style={{ color: "var(--fern)" }}>See the transformation</p>
+          <div className="ba-header-wrap" style={{ textAlign: "center" }}>
+            <p className="section-label" style={{ color: "var(--fern)", justifyContent: "center" }}>See our work</p>
             <h2 className="about-headline" style={{ color: "var(--ink)" }}>
-              Before &amp; <em>After</em>
+              A Glimpse of <em>Our Craft</em>
             </h2>
           </div>
-          <div
-            className="ba-container"
-            ref={sliderRef}
-            onMouseDown={onSliderMouseDown}
-            onTouchStart={onSliderMouseDown}
-          >
-            <img className="ba-img" src="/beforeafter/after2.jpg" alt="After" />
-            <div className="ba-after" ref={baAfterRef} style={{ clipPath: "inset(0 50% 0 0)" }}>
-              <img src="/beforeafter/before2.jpg" alt="Before" />
-            </div>
-            <div className="ba-line" ref={baLineRef} style={{ left: "50%" }} />
-            <div
-              className="ba-handle"
-              ref={baHandleRef}
-              style={{ left: "50%" }}
-              onMouseDown={onSliderMouseDown}
-              onTouchStart={onSliderMouseDown}
-            >
-              <div className="ba-handle-icon">
-                <div className="ba-arr ba-arr-l" />
-                <div className="ba-arr ba-arr-r" />
-              </div>
-            </div>
-            <span className="ba-label-pill ba-lb">Before</span>
-            <span className="ba-label-pill ba-la">After</span>
+          <div className="ba-container" style={{ cursor: "default" }}>
+            <video
+              className="ba-img"
+              autoPlay
+              muted
+              loop
+              playsInline
+              src="/RichHaven.mp4"
+              style={{ objectFit: "cover" }}
+            />
           </div>
           </div>
         </section>
