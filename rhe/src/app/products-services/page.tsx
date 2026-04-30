@@ -107,7 +107,6 @@ export default function ProductsServicesPage() {
           line-height: 1.0;
           letter-spacing: -0.015em;
           color: var(--text);
-          margin: 0;
         }
 
         /* ── BODY PARAGRAPH ── */
@@ -117,7 +116,8 @@ export default function ProductsServicesPage() {
           font-weight: 300;
           color: var(--text-muted);
           line-height: 1.85;
-          margin-bottom: 1.5rem;
+          margin-top: 0.8rem;
+          margin-bottom: 1rem;
         }
 
         /* ── FEATURE BULLET ── */
@@ -127,6 +127,7 @@ export default function ProductsServicesPage() {
           font-weight: 300;
           color: var(--text-muted);
           line-height: 1.4;
+          
         }
 
         /* ── VIEW MORE ── */
@@ -286,7 +287,7 @@ export default function ProductsServicesPage() {
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
                   gap: "0.85rem 1.5rem",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 {["Wall Plants", "Floor Plants", "Trees & Palms"].map((item) => (
@@ -337,7 +338,7 @@ export default function ProductsServicesPage() {
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
                   gap: "0.85rem 1.5rem",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 {["Hanging Plants", "Silver Lining", "Decorative Wall Plants"].map((item) => (
@@ -418,7 +419,7 @@ export default function ProductsServicesPage() {
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
                   gap: "0.85rem 1.5rem",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 {["Styled Built In Planters", "Artificial Plant Arrangements", "Custom Design Planter Boxes"].map((item) => (
@@ -470,7 +471,7 @@ export default function ProductsServicesPage() {
                   display: "grid",
                   gridTemplateColumns: "1fr 1fr",
                   gap: "0.85rem 1.5rem",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 {["Indoor Green Flooring Areas", "Sports and Play Areas", "Rooftop and Balcony Grass", "Garden Path and Ground Cover"].map((item) => (
