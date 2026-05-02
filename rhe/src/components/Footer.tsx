@@ -308,7 +308,7 @@ export default function Footer() {
         .footer-form-heading em,
         .footer-nav-label em {
           font-style: italic;
-          color: var(--forest);
+          color: #4a6741;
         }
 
         .footer-form-sub {
