@@ -494,7 +494,7 @@ export default function Home() {
           aspect-ratio: 3/4;
           background: var(--gray-md);
           cursor: pointer;
-          border-radius: 16px;
+          border-radius: 10px;
         }
         .svc-card-img {
           position: absolute;
@@ -601,7 +601,7 @@ export default function Home() {
         .ba-container {
           position: relative;
           width: 100%;
-          border-radius: 16px;
+          border-radius: 10px;
           cursor: col-resize;
           user-select: none;
           -webkit-user-select: none;
@@ -943,7 +943,7 @@ export default function Home() {
           .about-ctas { gap: 14px; flex-wrap: wrap; }
           .services-section { padding: 72px 32px; }
           .services-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-          .svc-card { aspect-ratio: 4/5; border-radius: 12px; }
+          .svc-card { aspect-ratio: 4/5; border-radius: 10px; }
           .svc-card-body { padding: 16px 14px 18px; }
           .svc-num { font-size: 8px; margin-bottom: 4px; }
           .svc-name { font-size: 18px; margin-bottom: 6px; }
