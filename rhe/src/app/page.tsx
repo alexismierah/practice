@@ -494,7 +494,7 @@ export default function Home() {
           aspect-ratio: 3/4;
           background: var(--gray-md);
           cursor: pointer;
-          border-radius: 10px;
+          border-radius: 11px;
         }
         .svc-card-img {
           position: absolute;
@@ -601,7 +601,7 @@ export default function Home() {
         .ba-container {
           position: relative;
           width: 100%;
-          border-radius: 10px;
+          border-radius: 11px;
           cursor: col-resize;
           user-select: none;
           -webkit-user-select: none;
@@ -943,7 +943,7 @@ export default function Home() {
           .about-ctas { gap: 14px; flex-wrap: wrap; }
           .services-section { padding: 72px 32px; }
           .services-grid { grid-template-columns: 1fr 1fr; gap: 6px; }
-          .svc-card { aspect-ratio: 4/5; border-radius: 10px; }
+          .svc-card { aspect-ratio: 4/5; border-radius: 11px; }
           .svc-card-body { padding: 16px 14px 18px; }
           .svc-num { font-size: 8px; margin-bottom: 4px; }
           .svc-name { font-size: 18px; margin-bottom: 6px; }
@@ -962,7 +962,7 @@ export default function Home() {
           .about-section .about-body { font-size: 15.5px; max-width: 320px; }
           .services-section { padding: 56px 16px; }
           .services-grid { grid-template-columns: 1fr; gap: 10px; max-width: 360px; margin: 0 auto; }
-          .svc-card { aspect-ratio: 3/4; border-radius: 10px; }
+          .svc-card { aspect-ratio: 3/4; border-radius: 11px; }
           .svc-card-body { padding: 12px 12px 14px; }
           .svc-name { font-size: 20px; }
           .svc-desc { font-size: 14px; line-height: 1.6; }
