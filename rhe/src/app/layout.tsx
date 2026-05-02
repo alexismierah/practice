@@ -9,7 +9,16 @@ export const metadata = {
     default: "Rich Haven Artificial Garden",
     template: "%s | Rich Haven Artificial Garden",
   },
+  description: "Premium artificial grass, potted plants, wall greens, and planter boxes for homes and commercial spaces.",
   applicationName: "Rich Haven Artificial Garden",
+  metadataBase: new URL("https://www.richhaven.net"),
+  openGraph: {
+    type: "website",
+    siteName: "Rich Haven Artificial Garden",
+    title: "Rich Haven Artificial Garden",
+    description: "Premium artificial grass, potted plants, wall greens, and planter boxes for homes and commercial spaces.",
+    url: "https://www.richhaven.net",
+  },
   icons: {
     icon: "/logo.png",
   },
