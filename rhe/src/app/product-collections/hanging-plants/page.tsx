@@ -268,9 +268,9 @@ export default function Page() {
         .pp-hero {
           width: 100%;
           height: 40vh;
-          background-image: url('/others/hanging2.jpeg');
+          background-image: url('/others/hanging6.jpg');
           background-size: cover;
-          background-position: center 16%;
+          background-position: center 45%;
           position: relative;
           display: flex;
           align-items: center;
@@ -445,7 +445,7 @@ export default function Page() {
 
       {/* ── SECTION 1 — HERO ── */}
       <section className="pp-hero">
-        <div style={{ position: "absolute", inset: 0, background: "rgba(20, 28, 20, 0.30)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(20, 28, 20, 0.10)" }} />
         <div className="pp-hero-inner">
           <h1 className={`${dmSans.className} pp-hero-title`}>
             Premium Hanging Plants

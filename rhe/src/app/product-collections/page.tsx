@@ -240,7 +240,7 @@ export default function ProductsServicesPage() {
       <section className="craft-hero">
         <div style={{ position: "absolute", inset: 0, background: "rgba(20, 28, 20, 0.50)" }} />
         <div className="craft-hero-inner">
-          <p className="craft-eyebrow">PRODUCT COLLECTIONS</p>
+          <p className="craft-eyebrow">PRODUCT COLLECTION</p>
           <h1 className="craft-title">
             Crafting Beauty
             <br />
