@@ -253,10 +253,10 @@ export default function Footer() {
 
         /* Section label — same height as form heading so they align */
         .footer-nav-label {
-          font-size: 13px;
+          font-size: 14px;
           font-weight: 500;
           letter-spacing: 0.em;
-          text-transform: Uppercase;
+          text-transform: Capitalize;
           color: var(--black);
           /* match the form's eyebrow + heading gap so first item aligns */
           margin-bottom: 14px;
@@ -305,7 +305,8 @@ export default function Footer() {
           letter-spacing: -0.01em;
         }
 
-        .footer-form-heading em {
+        .footer-form-heading em,
+        .footer-nav-label em {
           font-style: italic;
           color: var(--forest);
         }
@@ -460,6 +461,7 @@ export default function Footer() {
           max-width: 1200px;
           margin: 0 auto;
           padding: 22px 60px 32px;
+          border-top: 1px solid rgba(45,74,39,0.12);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -562,14 +564,14 @@ export default function Footer() {
           {/* ── Col 2: Contact + Products ── */}
           <div className="footer-mid-col">
             <nav className="footer-nav-block">
-              <span className="footer-nav-label">Contact Us</span>
+              <span className="footer-nav-label">Contact <em>Us</em></span>
               <span className="footer-nav-item">hello@richhaven.net</span>
               <span className="footer-nav-item">0916 236 6737</span>
               <span className="footer-nav-item">(02) 8294 0531</span>
             </nav>
 
             <nav className="footer-nav-block">
-              <span className="footer-nav-label">Green Solutions</span>
+              <span className="footer-nav-label">Product <em>Collections</em></span>
               <a className="footer-nav-link" href="/product-collections/grass">Artificial Grass</a>
               <a className="footer-nav-link" href="/product-collections/potted-plants">Potted Plants &amp; Trees</a>
               <a className="footer-nav-link" href="/product-collections/planter-box">Planter Boxes</a>
