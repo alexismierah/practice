@@ -688,6 +688,10 @@ export default function Home() {
           .section-header { grid-template-columns: 1fr; }
           .cta-headline { font-size: 2.4rem; }
         }
+        @media (max-width: 600px) and (hover: none) and (pointer: coarse) {
+          .about-headline { font-size: clamp(3rem, 12vw, 4rem); }
+          .about-body { font-size: 16px; max-width: 320px; }
+        }
       `}</style>
 
       <div className="rh">

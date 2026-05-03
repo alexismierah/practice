@@ -470,7 +470,8 @@ export default function Footer() {
         @media (max-width: 640px) {
           .footer-bottom {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
+            text-align: center;
             padding: 16px 28px 32px;
             gap: 10px;
           }
