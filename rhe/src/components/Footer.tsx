@@ -458,8 +458,6 @@ export default function Footer() {
         .footer-bottom {
           position: relative;
           z-index: 1;
-          max-width: 1200px;
-          margin: 0 auto;
           padding: 22px 60px 32px;
           border-top: 1px solid rgba(45,74,39,0.12);
           display: flex;
@@ -482,8 +480,29 @@ export default function Footer() {
           font-size: 10px;
           color: var(--text-faint);
           font-weight: 300;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          text-transform: none;
+        }
+        .footer-bottom-links {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+        .footer-bottom-link {
+          font-size: 10px;
+          color: var(--text-faint);
+          font-weight: 300;
+          letter-spacing: 0.04em;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        .footer-bottom-link:hover { color: var(--forest); }
+        .footer-bottom-sep {
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background: var(--text-faint);
+          opacity: 0.5;
         }
 
         .footer-copy a {
@@ -665,6 +684,13 @@ export default function Footer() {
           <span className="footer-copy">
             © {new Date().getFullYear()} <a href="#">Rich Haven Artificial Garden</a>. All rights reserved.
           </span>
+          <div className="footer-bottom-links">
+            <a href="/privacy-policy" className="footer-bottom-link">Privacy Policy</a>
+            <span className="footer-bottom-sep" aria-hidden="true" />
+            <a href="/terms" className="footer-bottom-link">Terms of Service</a>
+            <span className="footer-bottom-sep" aria-hidden="true" />
+            <a href="/sitemap" className="footer-bottom-link">Sitemap</a>
+          </div>
         </div>
       </footer>
     </>
