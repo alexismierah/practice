@@ -683,7 +683,7 @@ export default function Footer() {
         {/* ── Bottom bar ── */}
         <div className="footer-bottom">
           <span className="footer-copy">
-            © {new Date().getFullYear()} <a href="#">Rich Haven Artificial Garden</a>. All rights reserved.
+            © {new Date().getFullYear()} Rich Haven Artificial Garden. All rights reserved.
           </span>
           <div className="footer-bottom-links">
             <a href="/privacy-policy" className="footer-bottom-link">Privacy Policy</a>
