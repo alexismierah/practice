@@ -286,20 +286,19 @@ export default function Home() {
         .view-all {
           font-family: var(--sans);
           font-size: 10px;
-          letter-spacing: 0.18em;
+          letter-spacing: 0.3em;
           text-transform: uppercase;
-          color: var(--muted);
+          color: var(--fern);
           text-decoration: none;
-          font-weight: 400;
-          display: flex;
+          font-weight: 500;
+          display: inline-flex;
           align-items: center;
           gap: 10px;
-          transition: color 0.3s, gap 0.3s;
           padding-bottom: 4px;
           white-space: nowrap;
         }
-        .view-all::after { content: "→"; font-size: 15px; }
-        .view-all:hover { color: var(--fern); gap: 16px; }
+        .va-arrow { display: inline-block; transition: transform 0.3s; }
+        .view-all:hover .va-arrow { transform: translateX(6px); }
 
         .services-grid {
           display: grid;
@@ -728,7 +727,7 @@ export default function Home() {
               <p className="section-eyebrow">What We Offer</p>
               <h2 className="section-title">Product<em> Collections</em></h2>
             </div>
-            <a href="/product-collections" className="view-all">View all</a>
+            <a href="/product-collections" className="view-all">View all<span className="va-arrow">→</span></a>
           </div>
           <div className="services-grid">
             {services.map((s, i) => (
@@ -762,7 +761,7 @@ export default function Home() {
                 muted
                 loop
                 playsInline
-                src="/RichHaven.mp4"
+                src="/random/RichHaven.mp4"
                 style={{ objectFit: "cover" }}
               />
             </div>
@@ -809,7 +808,7 @@ export default function Home() {
               >
                 Get in Touch
               </button>
-              <a href="/product-collections" className="view-all">Product Collections</a>
+              <a href="/product-collections" className="view-all">Product Collections<span className="va-arrow">→</span></a>
             </div>
           </div>
         </section>

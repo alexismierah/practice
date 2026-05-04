@@ -161,7 +161,7 @@ export default function AboutPage() {
         {/* ── FULL-WIDTH IMAGE ── */}
         <div className="ab-banner">
           <img
-            src="about1.jpg"
+            src="/random/about1.jpg"
             alt="Rich Haven garden"
           />
         </div>
