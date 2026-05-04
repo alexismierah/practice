@@ -82,7 +82,7 @@ const CSS = `
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  .pg-root { font-family: 'DM Sans', sans-serif; background: var(--cream); min-height: 100vh; }
+  .pg-root { font-family: 'DM Sans', sans-serif; background: #f2f2f2; min-height: 100vh; }
 
   /* ─── HERO ─── */
   .hero {
