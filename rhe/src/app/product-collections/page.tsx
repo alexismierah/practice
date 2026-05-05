@@ -182,15 +182,21 @@ export default function ProductsServicesPage() {
           .two-col-grid .image-cell { order: 1; }
 
           .product-img-wrap {
-            height: auto !important;
+            height: 260px !important;
             border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
           }
 
           .product-img-wrap img {
-            width: 100%;
-            height: auto !important;
+            width: 100% !important;
+            height: 100% !important;
             object-fit: contain !important;
+            object-position: center !important;
             transform: none !important;
+            filter: none !important;
           }
 
           .feature-grid { 
@@ -515,7 +521,7 @@ export default function ProductsServicesPage() {
         </div>
       </section>
 
-       {/* ── 5TH BAND — Hanging Plants ── */}
+       {/* ── 5TH BAND — Refined Small Plants ── */}
       <section
         className="section-pad"
         style={{ background: "#efefef", padding: "2rem 6.5rem" }}
@@ -526,14 +532,14 @@ export default function ProductsServicesPage() {
               <div className="product-img-wrap">
                 <img
                   src="/others/small.png"
-                  alt="Potted artificial plants on a wooden bench"
+                  alt="Refined small plants"
                   style={{
                     objectFit: "contain",
                     transform: "translateY(10px) scale(1.03)",
                     filter: "drop-shadow(0px 7px 5px rgba(95,91,91,0.5))",
                     objectPosition: "55% 20%",
                     width: "93%",
-                    height:"87%",
+                    height: "87%",
                   }}
                 />
               </div>
@@ -583,7 +589,7 @@ export default function ProductsServicesPage() {
         </div>
       </section>
 
-      {/* ── 6TH BAND — Hanging Plants ── */}
+      {/* ── 6TH BAND — Premium Hanging Plants ── */}
       <section
         className="section-pad"
         style={{ background: "#f7f7f7", padding: "2rem 6.5rem" }}
@@ -635,14 +641,14 @@ export default function ProductsServicesPage() {
               <div className="product-img-wrap">
                 <img
                   src="/others/hang.png"
-                  alt="Artificial turf grass"
+                  alt="Premium hanging plants"
                   style={{
                     objectFit: "contain",
                     transform: "translateY(20px) scale(1.03)",
                     filter: "drop-shadow(0px 3px 2px rgba(107, 104, 104, 0.8))",
                     objectPosition: "50% 10%",
                     width: "100%",
-                    height:"95%",
+                    height: "95%",
                   }}
                 />
               </div>
