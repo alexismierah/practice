@@ -739,6 +739,7 @@ export default function Home() {
                 muted
                 loop
                 playsInline
+                preload="auto"
                 src="/random/RichHaven.mp4"
                 style={{ objectFit: "cover" }}
               />
