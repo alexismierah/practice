@@ -27,7 +27,7 @@ export default function Home() {
     },
     {
       num: "02",
-      name: "Potted Plants & Trees",
+      name: "Potted Plants",
       desc: "Curated planters for balconies, entrances, and lobbies.",
       img: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1719266906-live-majesty-palm-plant-w-grow-pot-xl-6679ee546c94b.jpg?crop=0.803xw:1.00xh;0.0994xw,0&resize=980:",
       href: "/product-collections/potted-plants",
