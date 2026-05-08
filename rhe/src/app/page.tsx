@@ -382,27 +382,6 @@ export default function Home() {
           line-height: 1.65;
           max-width: 200px;
         }
-        .svc-arrow {
-          position: absolute;
-          top: 16px;
-          right: 16px;
-          z-index: 3;
-          width: 34px;
-          height: 34px;
-          border: 1px solid rgba(255,255,255,0.2);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: rgba(255,255,255,0.7);
-          font-size: 14px;
-          opacity: 0;
-          transform: translateY(6px);
-          transition: all 0.4s cubic-bezier(0.22,1,0.36,1);
-          background: rgba(255,255,255,0.1);
-          backdrop-filter: blur(4px);
-        }
-        .svc-card:hover .svc-arrow { opacity: 1; transform: translateY(0); }
 
         /* ─── VIDEO / CRAFT SECTION ────────────────────────── */
         .ba-section {
@@ -739,7 +718,6 @@ export default function Home() {
                   <h3 className="svc-name">{s.name}</h3>
                   <p className="svc-desc">{s.desc}</p>
                 </div>
-                <div className="svc-arrow">↗</div>
               </a>
             ))}
           </div>
