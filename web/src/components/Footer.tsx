@@ -338,7 +338,7 @@ export default function Footer() {
 
             <p className="col-label" style={{ marginTop: "32px" }}>Contacts</p>
             <ul className="contact-list">
-              <li><span className="contact-item">unifixictsolutions01@gmail.com</span></li>
+              <li><span className="contact-item">hello@unifixictsolutions.com</span></li>
               <li><span className="contact-item">(02) 8294 0531</span></li>
               <li><span className="contact-item">+63 936 496 8421</span></li>
             </ul>
