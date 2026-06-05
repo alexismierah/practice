@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Parking System",
+  title: "Parking System | Unifix ICT Solutions",
 }
 
 const features = [

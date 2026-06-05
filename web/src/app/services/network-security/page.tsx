@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Network & Security",
+  title: "Network & Security | Unifix ICT Solutions",
 }
 
 const features = [

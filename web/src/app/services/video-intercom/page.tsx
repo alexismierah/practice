@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Video Intercom",
+  title: "Video Intercom | Unifix ICT Solutions",
 }
 
 const features = [

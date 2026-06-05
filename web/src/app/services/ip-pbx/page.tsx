@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "IP-PBX Telephone System",
+  title: "IP-PBX Telephone System | Unifix ICT Solutions",
 }
 
 const features = [

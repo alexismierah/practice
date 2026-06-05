@@ -3,7 +3,7 @@ import Footer from "@/components/Footer"
 import "./globals.css"
 
 export const metadata = {
-  title: "Home",
+  title: "Home | Unifix ICT Solutions",
   icons: {
     icon: "/favicon.png",
   },

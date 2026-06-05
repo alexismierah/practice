@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "LED Display",
+  title: "LED Display | Unifix ICT Solutions",
 }
 
 const features = [

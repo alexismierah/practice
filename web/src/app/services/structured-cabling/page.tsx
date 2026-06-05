@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Structured Network Cabling",
+  title: "Structured Network Cabling | Unifix ICT Solutions",
 }
 
 const features = [

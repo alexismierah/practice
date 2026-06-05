@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Public Address System",
+  title: "Public Address System | Unifix ICT Solutions",
 }
 
 const features = [
