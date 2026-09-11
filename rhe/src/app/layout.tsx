@@ -12,6 +12,9 @@ export const metadata = {
   description: "Premium artificial grass, potted plants, wall greens, and planter boxes for homes and commercial spaces.",
   applicationName: "Rich Haven Artificial Garden",
   metadataBase: new URL("https://www.richhaven.net"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     siteName: "Rich Haven Artificial Garden",
