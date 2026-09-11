@@ -41,7 +41,14 @@ export default function RootLayout({ children }: { children: ReactNode }) {
               "@context": "https://schema.org",
               "@type": "WebSite",
               name: "Rich Haven Artificial Garden",
+              alternateName: "Rich Haven",
               url: "https://www.richhaven.net/",
+              publisher: {
+                "@type": "Organization",
+                name: "Rich Haven Artificial Garden",
+                url: "https://www.richhaven.net/",
+                logo: "https://www.richhaven.net/logo.png",
+              },
             }),
           }}
         />
