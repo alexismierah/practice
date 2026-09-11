@@ -188,17 +188,18 @@ export default function HomePage() {
         .btn-outline {
           display: inline-block;
           margin-top: 0.75rem;
-          padding: 12px 24px;
-          border: 1px solid var(--border);
-          border-radius: 9999px; /* ✅ make it fully round */
+          padding: 9px 24px;
+          border: 1px solid var(--blue);
+          background: var(--blue);
+          border-radius: 9999px; 
           font-family: 'Instrument Sans', sans-serif;
           font-size: 0.875rem;
           font-weight: 500;
-          color: var(--ink-2);
+          color: #fff;
           text-decoration: none;
           transition: border-color 0.2s, background 0.2s;
         }
-        .btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-xlt); }
+        .btn-outline:hover { border-color: var(--blue-dark); color: #fff; background: var(--blue-dark); }
         .about-image { border-radius: 20px; overflow: hidden; aspect-ratio: 4/3; }
         .about-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
         .about-image:hover img { transform: scale(1.03); }
