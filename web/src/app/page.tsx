@@ -138,7 +138,7 @@ export default function HomePage() {
         .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
         .btn-primary {
           display: inline-block; background: var(--blue); color: #fff;
-          padding: 14px 28px;
+          padding: 9px 28px;
           border-radius: 9999px;
           font-family: 'Instrument Sans', sans-serif;
           font-size: 0.9rem; font-weight: 500; text-decoration: none;
@@ -321,8 +321,8 @@ export default function HomePage() {
           display: inline-block;
           border: 1px solid rgba(255,255,255,0.35);
           color: rgba(255,255,255,0.85);
-          padding: 14px 28px;
-          border-radius: 9999px; /* ✅ fully round */
+          padding: 9px 28px;
+          border-radius: 9999px; 
           font-family: 'Instrument Sans', sans-serif;
           font-size: 0.9rem;
           font-weight: 400;
@@ -434,7 +434,7 @@ export default function HomePage() {
           <div className="cta-inner">
             <h2>Ready to build something <em>exceptional?</em></h2>
             <div className="cta-right">
-              <p>Every project comes with its own needs and challenges. Tell us your priorities, and we'll fill them to your satisfaction.</p>
+              <p>Every project comes with its own needs and challenges. <br />Tell us your priorities, and we'll fill them to your satisfaction.</p>
               <div className="cta-btns">
                 <Link href="/services" className="btn-ghost-white2">View Services</Link>
               </div>
